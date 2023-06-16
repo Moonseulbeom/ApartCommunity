@@ -4,4 +4,4 @@
 	response.sendRedirect(
 		request.getContextPath()+"/main/main.do");
 %>
-<!-- dksksdsafks -->
+<!-- dksksdks -->
