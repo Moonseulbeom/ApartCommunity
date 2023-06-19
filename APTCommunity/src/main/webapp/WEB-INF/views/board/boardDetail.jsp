@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>글 상세</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/board.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/custom.css">
 <style type="text/css">
 	#back{

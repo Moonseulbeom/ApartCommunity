@@ -6,11 +6,10 @@
 <head>
 <meta charset="UTF-8">
 <title>자유게시판 목록</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/board.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/custom.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/sidebar.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/test.js"></script>
 <script type="text/javascript">
 	$(function(){
 		$('#search_form').submit(function(){
@@ -26,7 +25,13 @@
 <body>
 <div class="page-main">
    <jsp:include page="/WEB-INF/views/common/header.jsp"/>
-   <div id="sidebar">
+   
+   <!-- 내용 시작 -->
+   <div class="content-main">
+      <h2>자유게시판 목록</h2>   
+      <!-- 검색창 시작 -->
+      
+      <div id="sidebar">
 	<ul>
 		<li>
 			<img src="${pageContext.request.contextPath}/img/apt_logo.png" alt="아파트로고" width="280" height="300">
@@ -40,11 +45,8 @@
 		<li><a href="#">중고구매</a></li>
 		<li><a href="#">중고판매</a></li>
 	</ul>
-</div>
-   <!-- 내용 시작 -->
-   <div class="content-main">
-      <h2>자유게시판 목록</h2>   
-      <!-- 검색창 시작 -->
+	</div>
+      
       <form id="search_form" action="list.do" method="get">
          <ul class="search">
             <li>
