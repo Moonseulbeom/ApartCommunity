@@ -1,26 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!-- 상단 검은색 메뉴바 -->
 	<div class="topNavi">
 		<div class="inner">
 			<ul class="fr">
-				<!--소유주 권한 추가-->
-				<c:if test="${!empty user_num && user_auth == 9}">
-				<li>
-					<a href="${pageContext.request.contextPath}/member/memberList.do">회원관리</a>
+				<!--                    소유주 권한 추가-->
+				<li><a href="#">로그인</a></li>
+				<li><a href="#">회원가입</a></li>
 				</li>
-				</c:if>
-				<c:if test="${!empty user_num}">
-				<li class="menu-logout">
-					[<span>${user_dongho}</span>]
-					<a href="${pageContext.request.contextPath}/member/logout.do">로그아웃</a>
-				</li>
-				</c:if>
-				<c:if test="${empty user_num}">
-				<li><a href="${pageContext.request.contextPath}/member/loginForm.do">로그인</a></li>
-				<li><a href="${pageContext.request.contextPath}/member/registerUserForm.do">회원가입</a></li>
-				</c:if>
 			</ul>
 		</div>
 	</div>
@@ -75,8 +62,8 @@
 							<dt>예약/신청</dt>
 							<dd>
 								<ul>
-									<li><a href="${pageContext.request.contextPath}/booking/roomNameList.do"> 시설예약 </a></li>
-									<li><a href="${pageContext.request.contextPath}/fix/list.do"> 하자보수 신청 </a></li>
+									<li><a href="#"> 시설예약 </a></li>
+									<li><a href="#"> 하자보수 신청 </a></li>
 								</ul>
 							</dd>
 						</dl>
@@ -94,8 +81,8 @@
 							<dt>기타</dt>
 							<dd>
 								<ul>
-									<li><a href="#"> 1:1문의 </a></li>
-									<li><a href="#"> 자주묻는 질문 </a></li>
+									<li><a href="${pageContext.request.contextPath}/inquiry/list.do"> 1:1문의 </a></li>
+									<li><a href="${pageContext.request.contextPath}/question/list.do"> 자주묻는 질문 </a></li>
 								</ul>
 							</dd>
 						</dl>
@@ -120,10 +107,10 @@
 							<li class="sub_dropdown"><a href="#"> 건의사항 </a></li>
 						</ul>
 					</li>
-					<li class="dropdown"><a href="${pageContext.request.contextPath}/booking/main.do">예약/신청</a>
+					<li class="dropdown"><a href="#">예약/신청</a>
 						<ul class="lnb_dp2">
-							<li class="sub_dropdown"><a href="${pageContext.request.contextPath}/booking/roomNameList.do"> 시설예약 </a></li>
-							<li class="sub_dropdown"><a href="${pageContext.request.contextPath}/fix/list.do"> 하자보수 신청 </a></li>
+							<li class="sub_dropdown"><a href="#"> 시설예약 </a></li>
+							<li class="sub_dropdown"><a href="#"> 하자보수 신청 </a></li>
 						</ul>
 					</li>
 					<li class="dropdown"><a href="#">커뮤니티</a>
@@ -135,7 +122,7 @@
 					</li>
 					<li class="dropdown"><a href="#">기타</a>
 						<ul class="lnb_dp2">
-							<li class="sub_dropdown"><a href="#"> 1:1문의 </a></li>
+							<li class="sub_dropdown"><a href="${pageContext.request.contextPath}/inquiry/list.do"> 1:1문의 </a></li>
 							<li class="sub_dropdown"><a href="#"> 자주묻는 질문 </a></li>
 						</ul>
 					</li>

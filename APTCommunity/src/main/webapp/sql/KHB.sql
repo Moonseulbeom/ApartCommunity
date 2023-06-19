@@ -106,6 +106,27 @@ CREATE TABLE inquiry (
 );
 create sequence inquiry_seq;
 
+--자주묻는질문 테이블
+CREATE TABLE question(
+ que_num number not null,
+ mem_num number not null,
+ title varchar2(100) not null,
+ content varchar2(2000) not null,
+ reg_date date default SYSDATE not null,
+ modify_date date,
+ filename varchar2(150) 
+ ip varchar2(40) not null
+ CONSTRAINT PK_QUESTION PRIMARY KEY (que_num)
+);
+create SEQUENCE question_seq;
+
+ALTER TABLE question ADD CONSTRAINT FK_member_TO_question_1 FOREIGN KEY (
+  mem_num
+)
+REFERENCES member (
+  mem_num
+);
+
 CREATE TABLE inquiry_manage (
   re_num number NOT NULL,
   in_num number NOT NULL,
