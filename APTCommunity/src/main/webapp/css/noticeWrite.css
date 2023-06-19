@@ -1,0 +1,50 @@
+@charset "UTF-8";
+/*글 작성 페이지*/
+
+.write-page{
+	margin-top: 15px;
+	border: 1px solid #c5c6c7;
+	height: 100%;
+}
+.write-page form{
+	width: 800px;
+	margin: 0 auto;
+	height: 100%;
+}
+.keyfield{
+	margin: 20px 0;
+	height: 40px;
+	width: 100%;
+}
+wrtie-title{
+	width: 100%;
+}
+input[type="text"]{
+	height:30px;
+	width:700px;
+	margin-bottom: 20px;	
+}
+label{
+	margin: 0 5px 0 10px;
+}
+textarea {
+	width: 780px;
+	min-height: 400px; 
+}
+input[type="file"]{
+	height:25px;
+	margin: 20px 0;
+}
+/*버튼*/
+.write-btn-div{
+	padding-bottom: 40px;
+	text-align: center;
+}
+.write-btn{
+	margin-left:10px;
+	width: 100px;
+	height: 30px;
+}
+.write-btn:hover{
+	cursor: pointer;
+}
