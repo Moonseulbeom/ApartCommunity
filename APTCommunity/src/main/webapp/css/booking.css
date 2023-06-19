@@ -1,0 +1,82 @@
+@charset "UTF-8";
+/* 오세진 - 예약/신청 
+---- main 페이지--- */
+#mainContainer ul{
+	width: 100%;
+}
+#mainContainer .bMainLi{
+	width: 50%;
+	float: left;
+	text-align: center;
+	margin-top: 50px;
+}
+.bText{
+	display: block;
+	margin-top: 30px;
+	margin-bottom: 20px;
+	font-size: 25pt;
+	font-weight: bold;
+	color: black;
+	cursor: default;
+}
+.bMainLi .bImg{
+	width: 250px;
+	height: 250px;
+	margin-bottom: 30px;
+}
+/* 마우스 호버 트릭 */
+.mOver{
+	margin: 0 auto;
+	width: 250px;
+}
+.mOver img{
+	transition: all 0.3s linear;
+}
+.mOver:hover img{
+	transform: scale(1.05);
+}
+
+
+/* ----------------------------------------------
+-----roomNameList---- */
+#rnlTop{
+	margin-top:50px;
+}
+#rnlTopMenu{
+	cursor: default;
+}
+
+#mainContainer .rnlLi{
+	float: left;
+	text-align: center;
+	margin-top: 10px;
+}
+.rnlBox{
+	width: 300px;
+}
+.rnlBoxMR{
+	margin-right: 50px;
+}
+
+.rnlLi img{
+	width: 300px;
+	height: 220px;
+	border: 1px solid black;
+	border-radius: 10px;
+}
+.rnlLi .rnlBtn{
+	width: 80px;
+	height: 40px;
+	margin-top: 25px;
+	background-color: white;
+	border: 1px solid skyblue;
+	border-radius: 5px;
+	font-weight: bolder;
+	font-size:12pt;
+	color: teal;
+	cursor: pointer;
+}
+.rnlBtn:hover{
+	background-color:teal;
+	color: white;
+}

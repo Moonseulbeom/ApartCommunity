@@ -15,7 +15,7 @@
 	<!-- 검색바, 메인네임 시작-->
 	<div class="gnb">
 		<!-- 아파트 로고 사진 시작 -->
-		<a href="#">
+		<a href="${pageContext.request.contextPath}/main/main.do">
 		<img src="${pageContext.request.contextPath}/img/apt_logo.png" alt="아파트로고" />
 		</a>
 		<!-- 아파트 로고 사진 끝 -->
@@ -52,7 +52,7 @@
 							<dt>공지사항</dt>
 							<dd>
 								<ul>
-									<li><a href="#"> 관리사무소 공지사항 </a></li>
+									<li><a href="${pageContext.request.contextPath}/notice/noticeList.do"> 관리사무소 공지사항 </a></li>
 									<li><a href="#"> 입대의 공지사항 </a></li>
 									<li><a href="#"> 건의사항 </a></li>
 								</ul>
@@ -62,8 +62,8 @@
 							<dt>예약/신청</dt>
 							<dd>
 								<ul>
-									<li><a href="#"> 시설예약 </a></li>
-									<li><a href="#"> 하자보수 신청 </a></li>
+									<li><a href="${pageContext.request.contextPath}/booking/roomNameList.do"> 시설예약 </a></li>
+									<li><a href="${pageContext.request.contextPath}/fix/list.do"> 하자보수 신청 </a></li>
 								</ul>
 							</dd>
 						</dl>
@@ -102,15 +102,15 @@
 					</li>
 					<li class="dropdown"><a href="#">공지사항</a>
 						<ul class="lnb_dp2">
-							<li class="sub_dropdown"><a href="#"> 관리사무소 공지사항 </a></li>
+							<li class="sub_dropdown"><a href="${pageContext.request.contextPath}/notice/noticeList.do"> 관리사무소 공지사항 </a></li>
 							<li class="sub_dropdown"><a href="#"> 입대의 공지사항 </a></li>
 							<li class="sub_dropdown"><a href="#"> 건의사항 </a></li>
 						</ul>
 					</li>
-					<li class="dropdown"><a href="#">예약/신청</a>
+					<li class="dropdown"><a href="${pageContext.request.contextPath}/booking/main.do">예약/신청</a>
 						<ul class="lnb_dp2">
-							<li class="sub_dropdown"><a href="#"> 시설예약 </a></li>
-							<li class="sub_dropdown"><a href="#"> 하자보수 신청 </a></li>
+							<li class="sub_dropdown"><a href="${pageContext.request.contextPath}/booking/roomNameList.do"> 시설예약 </a></li>
+							<li class="sub_dropdown"><a href="${pageContext.request.contextPath}/fix/list.do"> 하자보수 신청 </a></li>
 						</ul>
 					</li>
 					<li class="dropdown"><a href="#">커뮤니티</a>
@@ -123,7 +123,7 @@
 					<li class="dropdown"><a href="#">기타</a>
 						<ul class="lnb_dp2">
 							<li class="sub_dropdown"><a href="${pageContext.request.contextPath}/inquiry/list.do"> 1:1문의 </a></li>
-							<li class="sub_dropdown"><a href="#"> 자주묻는 질문 </a></li>
+							<li class="sub_dropdown"><a href="${pageContext.request.contextPath}/question/list.do"> 자주묻는 질문 </a></li>
 						</ul>
 					</li>
 				</ul>
@@ -131,9 +131,5 @@
 			<!-- 드롭다운 메뉴 끝 -->
 		</div>
 	</div>
-	<div class="inner">
-		
-		<div id="container" class="inner">
-		</div>
 <!-- header -->
 <!-- header 끝 -->

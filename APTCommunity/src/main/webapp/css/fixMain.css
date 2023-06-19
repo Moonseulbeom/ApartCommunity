@@ -1,0 +1,98 @@
+@charset "UTF-8";
+
+/* ----------------------------------------------
+-----fix-list---- */
+/* sideBar, sideBox는 공용으로 사용 할 수 있습니다. */
+#sideBar{
+	float: left;
+    width: 200px;
+    height: 100%;
+    margin-right: 50px;
+}
+#sideBox{
+	float: left;
+    width: 700px;
+    height: 100%;
+}
+#sideLogin{
+	height: 220px;
+	margin-bottom: 30px;
+	border: 1px solid black;
+	background-color: #E2E2E2;
+}
+#sideMenuTitle{
+	height: 50px;
+	margin-bottom: 20px;
+	font-size: 22pt;
+	color: black;
+	border: 1px solid black;
+}
+#sideMenu{
+	text-align: center;
+	/* background-color: #E2E2E2;
+	border: 1px solid black; */
+}
+#sideMenu li{
+	height:25px;
+	background-color: #E2E2E2;
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+.first{
+	margin-bottom: 0px !important;
+}
+#sideMenu a{
+	font-size: 12pt;
+	font-weight: 600;
+	vertical-align: middle;
+}
+#sideMenu a:hover{
+	color:black;
+}
+#sideMenuTop{
+	width: 100%;
+	height: 285px;
+}
+/* 
+----- 검색창 스타일 ----- */
+#sideBox_inner{
+	height: 50px;
+	margin-top:30px;
+	margin-bottom: 20px;
+	background-color: gray; 
+}
+#sideBox_inner h2{
+	display: inline;
+	float: left;
+	margin-left: 10px;
+	margin-top: 10px;
+	font-size: 16pt;
+	color: black;
+}
+
+.search li{
+	float: right;
+	margin: 10px 10px 0 10px;
+}
+.search li input{
+	height:30px;
+}
+/* 
+----- 글 목록 테이블 스타일 ----- */
+#list_table{
+	width: 100%;
+	border-bottom: 1px solid black;
+	text-align: center;
+}
+#list_table tr:nth-child(1){
+	border-top: none;
+}
+#list_table tr{
+	border-top: 1px solid black;
+}
+#list_table th:nth-child(1), td:nth-child(1) {
+	width: 10%;
+}
+#list_table th:nth-last-child(1){
+	width: 20%;
+}
