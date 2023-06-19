@@ -18,6 +18,9 @@
 <body>
 	<div id="wrap">
 		<jsp:include page="/WEB-INF/views/common/header.jsp" />
+		<div class="inner">
+		<div id="container" class="inner">
+		</div>
 		<!-- 내용 시작 -->
 		<div class="main_loling_wrap fl">
 			<ul class="slide" id="main_slider">

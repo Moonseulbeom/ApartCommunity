@@ -144,5 +144,9 @@
 			<!-- 드롭다운 메뉴 끝 -->
 		</div>
 	</div>
+		<div class="inner">
+		
+		<div id="container" class="inner">
+		</div>
 <!-- header -->
 <!-- header 끝 -->
