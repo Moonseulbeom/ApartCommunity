@@ -1,0 +1,342 @@
+@charset "utf-8";
+
+*{-webkit-text-size-adjust:none; -moz-text-size-adjust:none; -ms-text-size-adjust:none; text-size-adjust:none;}
+@import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
+
+/* -------------------------------------------- */
+body{
+	width:100%;
+	margin: auto;
+}
+/* 페이지 레이아웃
+------------------*/
+.page-main{
+   background:#FFFFFF;
+   margin:40px 0;
+   border-radius:5px;
+   box-shadow:0 2px 6px rgba(100,100,100,0.3);
+   min-height:650px;
+}
+.content-main{
+	margin: 0 auto;
+	padding:10px 20px;
+	width: 1000px;
+}
+
+/* 공통 메시지
+------------------*/
+.result-display{
+   width:400px;
+   height:200px;
+   margin:50px auto;
+   border:1px solid #000;
+   display:flex;
+   align-items:center;/*세로 정렬*/
+   justify-content:center;/*가로 정렬*/
+}
+
+/* 공통 정렬
+------------------*/
+.align-center{
+   text-align:center;
+}
+.align-right{
+   text-align:right;
+}
+
+/* 메뉴
+------------------*/
+#main_logo{
+   padding-top:20px;
+}
+#main_nav{
+   padding:2px 10px 20px 10px;
+   height:20px;
+   background-color:#C1BFBF;
+}
+#main_nav ul{
+   list-style:none;
+   margin:0;
+   padding:0;   
+}
+#main_nav ul li{
+   display:inline-block;
+   width:100px;
+   text-align:center;
+   vertical-align:middle;
+   padding-top:8px;
+}
+#main_nav ul li img.my-photo{
+   vertical-align:middle;
+}
+#main_nav ul li.menu-profile{
+   padding-top:5px;
+   width:25px;
+}
+#main_nav ul li.menu-logout{
+   width:150px;
+   text-align:left;
+}
+/* 메인
+------------------*/
+.image-space .horizontal-area{
+   margin:2px;
+   padding:3px;
+   width:220px;
+   height:240px;
+   float:left;
+   overflow:hidden;
+   text-align:center;
+}
+
+.image-space .horizontal-area img{
+   width:215px;
+   height:195px;
+}
+
+.image-space .float-clear{
+   clear:both;
+}
+
+
+/* 공통 목록
+------------------*/
+form#search_form{
+   border:none;
+}
+ul.search{
+   width:340px;
+   list-style:none;
+   padding:0;
+   margin:0 auto;
+}
+ul.search li{
+   margin:0 0 9px 0;
+   padding:0;
+   display:inline;
+}
+.list-space{
+   margin-bottom:10px;
+}
+table{
+   width:100%;
+   border:1px solid #000;
+   border-collapse:collapse;
+   margin-top:5px;
+}
+table td, table th{
+   border:1px solid #000;
+   padding:5px;
+}
+/* 게시판 글 상세
+------------------*/
+ul.detail-info{
+   list-style:none;
+}
+ul.detail-info li{
+   display:inline-block;
+}
+.detail-img{
+   max-width:500px;
+}
+ul.detail-sub{
+   list-style:none;
+   margin:0;
+   padding:0;
+}
+ul.detail-sub li{
+   display:inline-block;
+   width:49%;
+   height:50px;
+   vertical-align:middle;
+}
+ul.detail-sub li:first-child img{
+   vertical-align:middle;
+}
+ul.detail-sub li:last-child{
+   text-align:right;
+   line-height:250%;
+}
+#output_fav{
+   cursor:pointer;
+}
+div#reply_div{
+   padding:5px 10px 40px 10px;
+   margin-top:10px;
+   background-color:#EEEEEE;
+}
+form#re_form{
+   width:650px;
+   border:none;
+}
+span.re-title{
+   color:#000000;
+   font-size:12pt;
+   line-height:200%;
+}
+span.letter-count{
+   font-size:10pt;
+   color:#999999;
+}
+textarea.rep-content{
+   width:90%;
+   height:50px;
+   margin:10px 10px;
+}
+div#re_first,div#mre_first{
+   float:left;
+   width:70%;
+   padding-left:15px;
+   margin-bottom:10px;
+}
+div#re_second,div#mre_second{
+   float:left;
+   width:19%;
+   margin-bottom:10px;
+}
+div#loading{
+   text-align:center;
+}
+div.paging-button{
+   text-align:right;
+}
+div#output{
+   clear:both;
+}
+form#mre_form{
+   border:none;
+   margin:5px;
+}
+
+/* 공통 등록, 수정 폼
+------------------*/
+form{
+   width:600px;
+   margin:0 auto;
+   border:1px solid #000;
+   padding:10px 10px 10px 30px;
+}
+
+form ul li{
+   clear:both;
+}
+
+ul{
+   list-style:none;
+}
+label{
+   width:130px;
+   float:left; /*태그를 왼쪽에 정렬*/
+}
+
+input{
+   margin-top:4px;
+}
+input[type="text"],input[type="password"]
+                  ,input[type="email"]{
+   width:310px;
+}
+#register_form input[id="id"]{
+   width:223px;
+}
+input[id="zipcode"]{
+   width:205px;
+}
+input[type="number"]{
+   width:100px;
+}
+.form-notice{
+   margin-left:130px;
+}
+/* 로그인
+------------------*/
+#login_form #id,#login_form #passwd{
+   width:200px;
+}
+/* MY페이지
+------------------*/
+.mypage-div{
+   width:48%;
+   float:left;
+   padding:5px;
+}
+.mypage-end{
+   clear:both;
+}
+.my-photo{
+   object-fit:cover;
+   /*정사각형이 아니라 직사각형일 경우 원 안에 
+     보여지게 할 중심 이미지의 위치를 지정*/
+   object-position:top;
+   /*사각형의 모서리 둥근 정도를 지정하는 속성
+     50%를 지정하면 완전한 원*/
+   border-radius:50%;
+}
+/* -------------------------------------------- */
+
+/* base */
+
+*{margin:0; padding:0}
+html{width:100%; height:100%}
+body{font-size:13px; font-family:'Nanum Gothic', 'Malgun Gothic', 'dotum', '돋움', 'Arial',dotum,Myriad,sans-serif; color:#67686a; letter-spacing:-1px;}
+body,div,h1,h2,h3,h4,h5,h6,ul,ol,li,dl,dt,dd,p,form,fieldset,input,table,tr,th,td{margin:0; padding:0}
+ul,ol,li{list-style:none}
+img, fieldset{border:none; vertical-align:top}
+legend, caption{display:none}
+textarea, button{vertical-align:middle}
+input, select{height:25px; vertical-align:middle; background:#fff; border:1px solid #c7c9cc; font-family:'Nanum Gothic', 'Malgun Gothic', 'dotum', '돋움', 'Arial','dotum','Myriad,sans-serif'; color:#67686a;}
+input,option{padding:3px}
+select{padding:2px}
+textarea{padding:10px; vertical-align:middle; background:#fff; border:1px solid #c7c9cc; font-family:'Nanum Gothic', 'Malgun Gothic', 'dotum', '돋움', 'Arial',dotum,Myriad,sans-serif; color:#67686a; font-size:14px;}
+.checkbox{padding:0; border:0}
+.disNone{display:none}
+a{text-decoration:none; color:#67686a}
+a:hover, a:focus, a:active{text-decoration:none;}
+table{border-collapse:collapse}
+map area{outline:none;}
+section{clear:both;}
+input[type="checkbox"],
+input[type="radio"]{border:none; background:none;}
+input[type="radio"]:focus{outline:1px dotted #888;}
+.inputFile{cursor:pointer; position:absolute; top:0; left:0; width:500px; opacity:0; z-index:1}
+.fl {float:left;}
+.fr {float:right;}
+
+/* 
+	수정한 사항
+	input, select 부분에 height를 16px 에서 25px로 수정
+ 
+ body{
+ 	width: 100%;
+ 	margin: auto;
+ }
+.page-main{
+	background:#FFFFFF;
+	border-radius:5px;
+	box-shadow:0 2px 6px rgba(100,100,100,0.3);
+	min-height:650px;
+}
+.content-main{
+	text-align: center;
+	width: auto;
+}
+.list-space align-right{
+	width: 100%;
+	margin: auto;
+	float: right;
+}
+h2{
+	font-size: 25px;
+}
+table{
+	width: 1000px;
+	margin: auto;
+	padding:40px 0px;
+	border:1px solid #b0b0b0;
+	border-collapse:collapse;
+	margin-top:5px;
+}
+table td, table th{
+	border:1px solid #b0b0b0;
+	padding:5px;
+}*/

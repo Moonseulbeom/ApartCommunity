@@ -71,8 +71,8 @@
 							<dt>커뮤니티</dt>
 							<dd>
 								<ul>
-									<li><a href="#"> 자유게시판 </a></li>
-									<li><a href="#"> 중고구매 </a></li>
+									<li><a href="${pageContext.request.contextPath}/board/boardList.do"> 자유게시판 </a></li>
+									<li><a href="${pageContext.request.contextPath}/secondhand/secondhandList.do"> 중고구매 </a></li>
 									<li><a href="#"> 중고판매 </a></li>
 								</ul>
 							</dd>
@@ -113,10 +113,10 @@
 							<li class="sub_dropdown"><a href="${pageContext.request.contextPath}/fix/list.do"> 하자보수 신청 </a></li>
 						</ul>
 					</li>
-					<li class="dropdown"><a href="#">커뮤니티</a>
+					<li class="dropdown"><a href="${pageContext.request.contextPath}/board/boardList.do">커뮤니티</a>
 						<ul class="lnb_dp2">
-							<li class="sub_dropdown"><a href="#"> 자유게시판 </a></li>
-							<li class="sub_dropdown"><a href="#"> 중고구매 </a></li>
+							<li class="sub_dropdown"><a href="${pageContext.request.contextPath}/board/boardList.do"> 자유게시판 </a></li>
+							<li class="sub_dropdown"><a href="${pageContext.request.contextPath}/secondhand/secondhandList.do"> 중고구매 </a></li>
 							<li class="sub_dropdown"><a href="#"> 중고판매 </a></li>
 						</ul>
 					</li>
