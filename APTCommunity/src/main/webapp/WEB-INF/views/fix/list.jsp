@@ -7,6 +7,7 @@
 <title>하자보수 목록 페이지</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/custom.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/fixMain.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/common.js"></script>
 </head>
