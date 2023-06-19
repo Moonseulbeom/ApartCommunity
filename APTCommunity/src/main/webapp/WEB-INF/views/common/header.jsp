@@ -1,13 +1,26 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!-- 상단 검은색 메뉴바 -->
 	<div class="topNavi">
 		<div class="inner">
 			<ul class="fr">
-				<!--                    소유주 권한 추가-->
-				<li><a href="#">로그인</a></li>
-				<li><a href="#">회원가입</a></li>
+				<!--소유주 권한 추가-->
+				<c:if test="${!empty user_num && user_auth == 9}">
+				<li>
+					<a href="${pageContext.request.contextPath}/member/memberList.do">회원관리</a>
 				</li>
+				</c:if>
+				<c:if test="${!empty user_num}">
+				<li class="menu-logout">
+					[<span>${user_dongho}</span>]
+					<a href="${pageContext.request.contextPath}/member/logout.do">로그아웃</a>
+				</li>
+				</c:if>
+				<c:if test="${empty user_num}">
+				<li><a href="${pageContext.request.contextPath}/member/loginForm.do">로그인</a></li>
+				<li><a href="${pageContext.request.contextPath}/member/registerUserForm.do">회원가입</a></li>
+				</c:if>
 			</ul>
 		</div>
 	</div>

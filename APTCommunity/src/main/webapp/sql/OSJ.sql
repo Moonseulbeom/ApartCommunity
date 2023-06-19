@@ -4,7 +4,6 @@ CREATE TABLE member (
   dongho varchar2(10) NOT NULL,
   auth number DEFAULT 1 NOT NULL ,
   CONSTRAINT PK_MEMBER PRIMARY KEY (mem_num)
-  CONSTRAINT FK_
 );
 
 create SEQUENCE member_seq;

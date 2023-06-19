@@ -56,31 +56,27 @@
 .main_loling_wrap .bx_pager .on{background-position:-18px 0;}
 .main_loling_wrap .slide .bg_01{background:url(../../img/homepage/slider_01.jpg) 0 0 no-repeat;}
 
-
-/* main_board*/
-.mBoard_box{margin-top:20px;overflow:hidden;}
-.mBoard_box .noti_board{width:666px;margin-right:20px;}
-.mBoard_box .comu_board{width:309px;}
-.mBoard{border:1px solid #dedede;float:left;}
-.mBoard .title{padding:20px;border-bottom:1px solid #dedede;font-size:16px;font-weight:bold;color:#222;}
-.mBoard .title span{font-size:12px;font-weight:normal;color:#6a6a6a}
-.tab_board_wrap{padding:20px;position:relative;}
-.tab_board_wrap .tab_more{display:block;width:21px;height:21px;position:absolute;top:20px;right:20px;background:url(../../img/homepage/tab_more_btn.jpg) 0 0 no-repeat;}
-.tab_cate{overflow:hidden;margin-bottom:20px;}
-.tab_cate li{float:left;padding:0 10px;background:url(../../img/homepage/tab_bar.gif) 0 center no-repeat;}
-.tab_cate li:first-child{padding-left:0;background:none;}
-.tab_cate li a{font-size:14px;font-weight:bold;color:#353535;letter-spacing:-2px;}
-.tab_cate .on a{color:#3264bf}
-.tab_noti_list{overflow:hidden;}
-.tab_noti_list ul{float:left;}
-.tab_noti_list li a{display:inline-block;padding-left:10px;background:url(../../img/homepage/dot_ico.jpg) 0 center no-repeat;line-height:18px;font-size:13px;overflow:hidden;white-space:nowrap; text-overflow:ellipsis;}
-.m_noti_list ul{width:300px;}
-.m_cumu_list ul{width:268px;}
-.m_noti_list li a{width:215px;}
-.m_cumu_list li a{width:180px;}
-.noti_board .tab_noti_list ul:first-child{margin-right:20px;}
-.tab_noti_list li{position:relative;padding:6px 0;}
-.tab_noti_list li small{position:absolute;top:7px;right:0;line-height:20px;font-family:'verdana';font-size:11px}
+/* main_Loginbox */
+#main{margin-top: 35px;}
+.mLogin_box{border:1px solid #dcdcdc;float:left;height:100%;}
+.mLogout{padding:20px 20px 20px;width:269px;}
+.loginGreetingt{margin-bottom:13px;font-size:14px;font-weight:bold;}
+.loginGreetingt span{color:#3264bf}
+.mLogin_box .login_input_text{width:251px;padding:6px 8px;margin-bottom:6px;border-radius:3px;background-color:#f5f5f5;font-size:12px;line-height:22px;}
+.mLogin_box .login_checkbox{padding:6px 8px;margin-bottom:6px;border-radius:3px;background-color:#f5f5f5;font-size:12px;line-height:22px;}
+.mLogin_box .loginBtn{width:269px;height:40px;margin-bottom:15px;border:none;border-radius:3px;color:#fff;line-height:42px;text-align:center;background-color:#3264bf}
+.loginHelp li{padding:10px 0;border-top:1px solid #dedede;position:relative;}
+.loginHelp li:last-child{padding-bottom:0;}
+.loginHelp li span{font-family:'dotum';letter-spacing:-2px;padding-left:10px;color:#888;background:url(../../img/homepage/dot_ico.jpg) 0 center no-repeat;}
+.loginHelp li a{position:absolute;right:0;display:inline-block;width:64px;height:20px;background:url(../../img/homepage/login_help.jpg) 0 0 no-repeat;}
+.loginHelp li .join_btn{background-position:0 -22px;}
+.storelink{float:left;width:311px;/*height:114px;*/border:0;text-align:center;}
+.storelink a{display:block;}
+.storelink img{margin:20px 0;}
+/*.storelink a{display:inline-block;padding-top:20px;}*/
+/*200413 하정은 앱다운로드 영역 추가*/
+.app-link-sms{border:0;width:100%;cursor:pointer;}
+.app-link-sms img{width:100%;height:auto;margin:0 !important;}
 
 /* footer */
 #footer{margin-top:50px;}
