@@ -19,7 +19,8 @@
 				</c:if>
 				<c:if test="${empty user_num}">
 				<li><a href="${pageContext.request.contextPath}/member/loginForm.do">로그인</a></li>
-				<li><a href="${pageContext.request.contextPath}/member/registerUserForm.do">회원가입</a></li>
+				<li><a href="${pageContext.request.contextPath}/member/registerUserAgree.do">회원가입</a></li>
+				<li><a href="${pageContext.request.contextPath}/member/myPage.do">my페이지</a></li>
 				</c:if>
 			</ul>
 		</div>
@@ -76,7 +77,7 @@
 							<dd>
 								<ul>
 									<li><a href="${pageContext.request.contextPath}/booking/roomNameList.do"> 시설예약 </a></li>
-									<li><a href="${pageContext.request.contextPath}/fix/list.do"> 하자보수 신청 </a></li>
+									<li><a href="${pageContext.request.contextPath}/fix/fixList.do"> 하자보수 신청 </a></li>
 								</ul>
 							</dd>
 						</dl>
@@ -123,7 +124,7 @@
 					<li class="dropdown"><a href="${pageContext.request.contextPath}/booking/main.do">예약/신청</a>
 						<ul class="lnb_dp2">
 							<li class="sub_dropdown"><a href="${pageContext.request.contextPath}/booking/roomNameList.do"> 시설예약 </a></li>
-							<li class="sub_dropdown"><a href="${pageContext.request.contextPath}/fix/list.do"> 하자보수 신청 </a></li>
+							<li class="sub_dropdown"><a href="${pageContext.request.contextPath}/fix/fixList.do"> 하자보수 신청 </a></li>
 						</ul>
 					</li>
 					<li class="dropdown"><a href="${pageContext.request.contextPath}/board/boardList.do">커뮤니티</a>

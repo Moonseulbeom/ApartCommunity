@@ -35,21 +35,21 @@
 			</p>
 			
 			<div class="loginBox">
+				<form>
 				<p>
-					<input type="text" class="login_input_text" id="member_dongho"
-						value="" placeholder="동-호수" maxlength="30"
-						onkeypress="if(event.keyCode==13) {member_login(); return false;}">
+					<input type="text" class="login_input_text" id="member_dong"
+						placeholder="동" maxlength="10">
+				</p>
+				<p>
+					<input type="text" class="login_input_text" id="member_ho"
+						placeholder="호" maxlength="10">
 				</p>
 				<p>
 					<input type="password" class="login_input_text" id="member_passwd"
-						value="" placeholder="비밀번호" maxlength="30"
-						onkeypress="if(event.keyCode==13) {member_login(); return false;}">
+						placeholder="비밀번호" maxlength="30">
 				</p>
-				<p>
-					<label><input type="checkbox" class="login_checkbox"
-						id="autologin">자동로그인</label>
-				</p>
-				<button type="button" class="loginBtn" onclick="member_login();">로그인</button>
+				<button type="button" class="loginBtn">로그인</button>
+				</form>
 			</div>
 			
 		</div>
