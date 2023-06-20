@@ -1,0 +1,18 @@
+h1 {
+  font-size: 2em;
+  font-weight: bold;
+  margin-top: 20px;
+}
+
+p {
+  font-size: 1em;
+  line-height: 1.5em;
+  margin-bottom: 10px;
+}
+
+input {
+  width: 100px;
+  height: 20px;
+  border: 1px solid #ccc;
+  margin-top: 20px;
+}
