@@ -66,9 +66,9 @@
 							<dt>공지사항</dt>
 							<dd>
 								<ul>
-									<li><a href="${pageContext.request.contextPath}/notice/noticeList.do"> 관리사무소 공지사항 </a></li>
-									<li><a href="#"> 입대의 공지사항 </a></li>
-									<li><a href="#"> 건의사항 </a></li>
+									<li><a href="${pageContext.request.contextPath}/notice/noticeList.do?dept=1"> 관리사무소 공지사항 </a></li>
+									<li><a href="${pageContext.request.contextPath}/notice/noticeList.do?dept=2"> 입대의 공지사항 </a></li>
+									<li><a href="${pageContext.request.contextPath}/notice/noticeList.do?dept=3"> 건의사항 </a></li>
 								</ul>
 							</dd>
 						</dl>
@@ -114,11 +114,11 @@
 							<li class="sub_dropdown"><a href="#"> 관리사무소 조직도 </a></li>
 						</ul>
 					</li>
-					<li class="dropdown"><a href="#">공지사항</a>
+					<li class="dropdown"><a href="${pageContext.request.contextPath}/notice/noticeList.do?dept=1">공지사항</a>
 						<ul class="lnb_dp2">
-							<li class="sub_dropdown"><a href="${pageContext.request.contextPath}/notice/noticeList.do"> 관리사무소 공지사항 </a></li>
-							<li class="sub_dropdown"><a href="#"> 입대의 공지사항 </a></li>
-							<li class="sub_dropdown"><a href="#"> 건의사항 </a></li>
+							<li class="sub_dropdown"><a href="${pageContext.request.contextPath}/notice/noticeList.do?dept=1"> 관리사무소 공지사항 </a></li>
+							<li class="sub_dropdown"><a href="${pageContext.request.contextPath}/notice/noticeList.do?dept=2"> 입대의 공지사항 </a></li>
+							<li class="sub_dropdown"><a href="${pageContext.request.contextPath}/notice/noticeList.do?dept=3"> 건의사항 </a></li>
 						</ul>
 					</li>
 					<li class="dropdown"><a href="${pageContext.request.contextPath}/booking/main.do">예약/신청</a>

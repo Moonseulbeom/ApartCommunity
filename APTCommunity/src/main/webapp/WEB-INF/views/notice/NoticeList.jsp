@@ -9,6 +9,19 @@
 <link rel="stylesheet" href="${ pageContext.request.contextPath }/css/notice.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/custom.css">
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/common.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$('#search_form').submit(function(){
+			if($('#keyword').val().trim() == ''){
+				alert('검색어를 입력하세요');
+				$('#keyword').val('').focus();
+				return false;
+			}
+		})
+	})
+</script>
 </head>
 <body>
 <div id="wrap">
@@ -26,11 +39,30 @@
 		<li>
 		<div class="page-right">
 			<div class="notice-main-img">
-				<img alt="" src="${pageContext.request.contextPath}/images/apart.jpg">
+				<img alt="" src="${pageContext.request.contextPath}/img/sideMenuTopImg.jpg">
 			</div>
 			<div class="notice-main-search">
-				<b>관리사무소 회의 결과</b>
-				<input type="search" size="16" name="keyword" id="keyword" value="${param.keyword}" placeholder="검색어를 입력하세요.">
+				<c:if test="${ dept == 1 }">
+					<b>관리사무소 회의 결과</b>
+				</c:if>
+				<c:if test="${ dept == 2 }">
+					<b>입대의 공지사항</b>
+				</c:if>
+				<c:if test="${ dept == 3 }">
+					<b>건의사항</b>
+				</c:if>
+				<form id="search_form" action="noticeList.do">
+				<ul>
+					<li>
+						<input type="hidden" name="dept" value="${ dept }">
+						<input type="search" size="16" name="keyword" id="keyword" value="${param.keyword}" placeholder="검색어를 입력하세요.">
+					</li>
+					<li>
+						<input type="submit" value="검색">
+					</li>
+				</ul>
+				
+				</form>
 			</div>
 			<div class="notice-main-list">
 				<ul>
@@ -71,7 +103,7 @@
 								${ notice.no_num }
 							</div>
 							<div class="board-list">
-								<a class="article" href="#">${ notice.title }</a>
+								<a class="article" href="noticeDetail.do?no_num=${ notice.no_num }">${ notice.title }</a>
 							</div>
 						</td>
 						<td class="board-name">관리자</td>
@@ -80,8 +112,10 @@
 				</c:forEach>
 				</table>
 				</div>
+				<div class="notice-page-count">${page}</div>
 				</c:if>
 			</div>
+			<c:if test="${ user_auth == 9 }">
 			<div class="write-btn">
 				<span>
 					<a href="writeNoticeForm.do">
@@ -90,6 +124,7 @@
 					</a>
 				</span>
 			</div>
+			</c:if>
 		</div>
 		</li>
 		<!-- 오른쪽 -->

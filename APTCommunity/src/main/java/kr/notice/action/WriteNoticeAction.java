@@ -18,11 +18,12 @@ public class WriteNoticeAction implements Action {
 		
 		MultipartRequest multi = FileUtil.createFile(request);
 		int check = Integer.parseInt(multi.getParameter("status"));
+		int dept = Integer.parseInt(multi.getParameter("keyfield_dept"));
 		if(check != 1) {
 			check = 0;
 		}
 		NoticeVO notice = new NoticeVO();
-		notice.setDept(Integer.parseInt(multi.getParameter("keyfield_dept")));
+		notice.setDept(dept);
 		notice.setTitle(multi.getParameter("title"));
 		notice.setContent(multi.getParameter("content"));
 		notice.setFilename(multi.getFilesystemName("filename"));
@@ -33,6 +34,7 @@ public class WriteNoticeAction implements Action {
 		NoticeDAO dao = NoticeDAO.getInstance();
 		dao.insertNotice(notice);
 		
+		request.setAttribute("dept", dept);
 		return "/WEB-INF/views/notice/writeNotice.jsp";
 	}
 

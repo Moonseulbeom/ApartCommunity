@@ -2,5 +2,5 @@
     pageEncoding="UTF-8"%>
 <script>
 	alert('글쓰기 완료!');
-	location.href='noticeList.do';
+	location.href='noticeList.do?dept=${dept}';
 </script>

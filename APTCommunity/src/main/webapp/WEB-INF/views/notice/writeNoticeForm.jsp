@@ -10,6 +10,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/custom.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/common.js"></script>
 <script type="text/javascript">
 	$(function(){
 		//이벤트 연결
@@ -28,6 +29,17 @@
 				$('#status').val(1);
 			}
 		});
+		$(document).on('keyup','textarea',function(){
+			let inputLength = $(this).val().length;
+			if(inputLength > 700){//300자를 넘어선 경우
+				$(this).val($(this).val().substring(0,700));//300자 다음 글자는 자름
+				alert('최대 700자까지 입력가능합니다.');
+			}else{//300자 이하인 경우
+				let remain = 700 - inputLength;
+				remain += '/700';
+				$('#re_first .letter-count').text(remain);
+			}
+		})
 	});
 </script>
 </head>
@@ -65,6 +77,9 @@
 			</li>
 			<li>
 				<textarea rows="5" cols="30" id="content" name="content" placeholder="내용을 입력해주세요."></textarea>
+				<div id="re_first">
+						<span class="letter-count">700/700</span>
+				</div>
 			</li>
 			<li>
 				<input type="file" id="filename" name="filename" accept="image/png, image/jpeg, image/gif" >
@@ -72,7 +87,7 @@
 			<li>
 			<div class="write-btn-div">
 				<input type="submit" value="등록" class="write-btn">
-				<input type="button" value="취소" onclick="location.href='noticeList.do'" class="write-btn">
+				<input type="button" value="취소" class="write-btn" onclick="history.go(-1)">
 			</div>
 			</li>
 		</ul>

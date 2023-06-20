@@ -9,9 +9,9 @@
 	<h2>공지사항</h2>
 	<div class="menu">
 		<ul>
-			<li><a href="#">관리사무소 회의 결과</a></li>
-			<li><a href="#">주민자치회 회의 결과</a></li>
-			<li><a href="#">선관위 회의 결과</a></li>
+			<li><a href="${pageContext.request.contextPath}/notice/noticeList.do?dept=1">관리사무소 회의 결과</a></li>
+			<li><a href="${pageContext.request.contextPath}/notice/noticeList.do?dept=2">입대의 공지사항</a></li>
+			<li><a href="${pageContext.request.contextPath}/notice/noticeList.do?dept=3">건의사항</a></li>
 		</ul>
 	</div>
 </div>
