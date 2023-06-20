@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!-- header -->
 <!-- 상단 검은색 메뉴바 -->
 	<div class="topNavi">
 		<div class="inner">
@@ -145,9 +146,4 @@
 			<!-- 드롭다운 메뉴 끝 -->
 		</div>
 	</div>
-		<div class="inner">
-		
-		<div id="container" class="inner">
-		</div>
-<!-- header -->
 <!-- header 끝 -->

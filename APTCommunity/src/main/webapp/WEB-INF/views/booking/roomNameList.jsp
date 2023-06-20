@@ -12,6 +12,7 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/common.js"></script>
 </head>
 <body>
+
 <div id="wrap">
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 	<!-- 내용 시작 -->
@@ -20,7 +21,6 @@
 			<span id="rnlTopMenu">시설예약 &nbsp;&nbsp;></span>
 		</div>
 		<hr class="Mhr" color="#edeff0" noshade="noshade">
-		<div id="listColor">
 			<ul>
 				<li class="rnlLi">
 					<div class="rnlBox rnlBoxMR">
@@ -44,7 +44,6 @@
 					</div>
 				</li>
 			</ul>
-		</div>
 	</div>
 	<!-- 내용 끝 -->
 	<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
