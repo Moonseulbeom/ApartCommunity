@@ -36,38 +36,42 @@
 <div id="wrap">
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 	<!-- 내용 시작 -->
-<div class="main-page">
-	<h1>하자보수 글쓰기</h1>
-	<div class="write-page">	
-	<form id="write_form" action="writeFix.do" method="post" enctype="multipart/form-data">
-		<ul>
-			<li>
-			</li>
-			<li>
-			<div class="write-title">
-				<input type="text" id="<c:if test="${user_auth==1}">title</c:if><c:if test="${user_auth==9}">adminTitle</c:if>" name="title" placeholder="제목을 입력해주세요.">
-				<c:if test="${user_auth == 9}">
-					<label for="checkbox">상단고정</label>			
-					<input type="checkbox" id="check" name="check" value="1">
-				</c:if>
+	<div class="inner">
+		<div id="container" class="inner">
+			<div class="main-page">
+				<h1>하자보수 글쓰기</h1>
+				<div class="write-page">	
+				<form id="write_form" action="writeFix.do" method="post" enctype="multipart/form-data">
+					<ul>
+						<li>
+						</li>
+						<li>
+						<div class="write-title">
+							<input type="text" id="<c:if test="${user_auth==1}">title</c:if><c:if test="${user_auth==9}">adminTitle</c:if>" name="title" placeholder="제목을 입력해주세요.">
+							<c:if test="${user_auth == 9}">
+								<label for="checkbox">상단고정</label>			
+								<input type="checkbox" id="check" name="check" value="1">
+							</c:if>
+						</div>
+						</li>
+						<li>
+							<textarea rows="5" cols="30" id="content" name="content" placeholder="하자 내용을 입력해주세요."></textarea>
+						</li>
+						<li>
+							<input type="file" id="filename" name="filename" accept="image/png, image/jpeg, image/gif" >
+						</li>
+						<li>
+						<div class="write-btn-div">
+							<input type="submit" value="등록" class="write-btn">
+							<input type="button" value="취소" onclick="location.href='fixList.do'" class="write-btn">
+						</div>
+						</li>
+					</ul>
+				</form>
+				</div>
 			</div>
-			</li>
-			<li>
-				<textarea rows="5" cols="30" id="content" name="content" placeholder="하자 내용을 입력해주세요."></textarea>
-			</li>
-			<li>
-				<input type="file" id="filename" name="filename" accept="image/png, image/jpeg, image/gif" >
-			</li>
-			<li>
-			<div class="write-btn-div">
-				<input type="submit" value="등록" class="write-btn">
-				<input type="button" value="취소" onclick="location.href='fixList.do'" class="write-btn">
-			</div>
-			</li>
-		</ul>
-	</form>
+		</div>
 	</div>
-</div>
 	<!-- 내용 끝 -->
 	<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 </div>

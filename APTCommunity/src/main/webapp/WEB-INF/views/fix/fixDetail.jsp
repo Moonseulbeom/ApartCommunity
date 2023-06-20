@@ -102,7 +102,7 @@
 								<div class="detail-btn-div2">
 									<input type="button" value="목록" class="bottom-btn" onclick="location.href='fixList.do'" id="fixDelete_btn">
 									<%-- 로그인 한 회원번호와 작성자 회원번호가 일치해야 수정, 삭제 가능 --%>
-								    <c:if test="${ user_num == fix.mem_num }">
+								    <c:if test="${ user_num == fix.mem_num || user_auth == 9}">
 								    <input type="button" value="수정" class="bottom-btn" onclick="location.href='fixUpdateForm.do?fix_num=${fix.fix_num}'">
 								    <input type="button" value="삭제" class="bottom-btn" id="delete_btn">
 								    <script type="text/javascript">

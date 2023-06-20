@@ -31,18 +31,18 @@ $(function(){
 					output += '<p>'+comment.re_content+'</p>';
 					
 					//날짜
-					if(item.re_modifydate){
-						output += '<span class="modify-date">최근 수정일 : '+item.re_modifydate+'</span>';
+					if(comment.modify_date){
+						output += '<span class="modify-date">최근 수정일 : '+comment.modify_date+'</span>';
 					}else{
-						output += '<span class="modify-date">등록일 : '+item.re_date+'</span>';
+						output += '<span class="modify-date">등록일 : '+comment.reg_date+'</span>';
 					}
 					
 					//수정 삭제 버튼처리
 					//로그인한 회원번호와 작성자의 회원번호가 일치 여부 체크
-					if(param.user_num == item.mem_num){
+					if(param.user_num == comment.mem_num){
 						//로그인한 회원번호와 작성자의 회원번호가 일치
-						output += ' <input type="button" data-renum="'+item.re_num+'" value="수정" class="modify-btn">';
-						output += ' <input type="button" data-renum="'+item.re_num+'" value="삭제" class="delete-btn">';
+						output += ' <input type="button" data-renum="'+comment.re_num+'" value="수정" class="modify-btn">';
+						output += ' <input type="button" data-renum="'+comment.re_num+'" value="삭제" class="delete-btn">';
 					}
 					
 					output += '<hr size="1" noshade width="100%">';
@@ -74,14 +74,14 @@ $(function(){
 	});
 	
 	//댓글 등록
-	$('#re_form').submit(function(event){
+	$('#comment_form').submit(function(event){
 		//기본이벤트 제거
 		event.preventDefault();
 		
 		//댓글내용이 없을 경우 댓글등록 불가
-		if($('#re_content').val().trim()==''){
+		if($('#comment_content').val().trim()==''){
 			alert('내용을 입력하세요');
-			$('#re_content').val('').focus();
+			$('#comment_content').val('').focus();
 			return false;
 		}
 		//폼 이하의 태그에서 입력한 데이터를 모두 읽어옴
@@ -89,7 +89,7 @@ $(function(){
 		
 		//서버와 통신
 		$.ajax({
-			url:'writeReply.do',
+			url:'fixWriteReply.do',
 			type:'post',
 			data:form_data,
 			dataType:'json',
@@ -114,7 +114,7 @@ $(function(){
 	//댓글 작성 폼 초기화
 	function initForm(){
 		$('textarea').val('');
-		$('#re_first .letter-count').text('300/300');
+		$('#comment_first .letter-count').text('300/300');
 	}
 	
 	//댓글 수정 버튼 클릭시 수정폼 노출
@@ -132,7 +132,7 @@ $(function(){
 		let modifyUI = '<form id="mre_form">';
 		modifyUI += '<input type="hidden" name="re_num" id="mre_num" value="'+re_num+'">';
 										//name->서버전송, id->js나 css에 사용
-		modifyUI += '<textarea rows="3" cols="50" name="re_content" id="mre_content" class="rep-content">'+content+'</textarea>';
+		modifyUI += '<textarea rows="3" cols="50" name="content" id="mre_content" class="rep-content">'+content+'</textarea>';
 							 //rows="높이" cols="넓이"
 		modifyUI += '<div id="mre_first"><span class="letter-count">300/300</span></div>';
 		modifyUI += '<div id="mre_second" class="align-right">';

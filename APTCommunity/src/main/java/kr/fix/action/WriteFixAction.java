@@ -40,7 +40,7 @@ public class WriteFixAction implements Action {
 		FixDAO dao = FixDAO.getInstance();
 		dao.insertFix(fix);
 		
-		return "/WEB-INF/views/notice/writeFix.jsp";
+		return "/WEB-INF/views/fix/writeFix.jsp";
 	}
 
 }

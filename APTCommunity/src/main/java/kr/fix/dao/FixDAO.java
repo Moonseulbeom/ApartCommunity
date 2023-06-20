@@ -6,8 +6,10 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import kr.fix.vo.FixReplyVO;
 import kr.fix.vo.FixVO;
 import kr.util.DBUtil;
+import kr.util.DurationFromNow;
 import kr.util.StringUtil;
 
 public class FixDAO {
@@ -188,8 +190,209 @@ public class FixDAO {
 		}
 	}
 	
+	//하자보수 글삭제
+	public void deleteFix(int fix_num) throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+		
+		try {
+			//커넥션풀로부터 커넥션을 할당
+			conn = DBUtil.getConnection();
+			
+			//댓글 삭제
+			
+			//부모글 삭제
+			sql = "DELETE FROM fix WHERE fix_num=?";
+			//PreparedStatement 객체 생성
+			pstmt = conn.prepareStatement(sql);
+			//?에 데이터 바인딩
+			pstmt.setInt(1, fix_num);
+			//SQL문 실행
+			pstmt.executeUpdate();
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			//자원정리
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+	}
 	
-
+	
 	//하자보수 내가 쓴 글목록
 	//하자보수 글목록(관리자)
+	/*
+	 * ==================================================================
+	 * */
+	
+	//댓글 등록
+	public void insertFixReply(FixReplyVO fixReply) throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+		
+		try {
+			//커넥션풀로부터 커넥션 할당
+			conn = DBUtil.getConnection();
+			//SQL문 작성
+			sql = "INSERT INTO fix_reply "
+					+ "(re_num,content,ip, "
+					+ "mem_num,fix_num) VALUES "
+					+ "(fix_reply_seq.nextval,?,?,?,?) ";
+			//PreparedStatement 객체 생성
+			pstmt = conn.prepareStatement(sql);
+			//?에 데이터 바인딩
+			pstmt.setString(1, fixReply.getContent());
+			pstmt.setString(2, fixReply.getIp());
+			pstmt.setInt(3, fixReply.getMem_num());
+			pstmt.setInt(4, fixReply.getFix_num());
+
+			//SQL문 실행
+			pstmt.executeUpdate();
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+	}
+	
+	//댓글 삭제
+	public void deleteFixReply(int re_num)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+		
+		try {
+			//커넥션풀로부터 커넥션 할당
+			conn = DBUtil.getConnection();
+			//SQL문 작성
+			sql = "DELETE FROM fix_reply WHERE re_num=? ";
+			//PreparedStatement 객체 생성
+			pstmt = conn.prepareStatement(sql);
+			//?에 데이터 바인딩
+			pstmt.setInt(1, re_num);
+			//SQL문 실행
+			pstmt.executeUpdate();
+					
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+	}
+	
+	//댓글 개수
+	public int getFixReplyCount(int fix_num) throws Exception{
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			String sql = null;
+			int count = 0;
+			
+			try {
+				//커넥션풀로부터 커넥션 할당
+				conn = DBUtil.getConnection();
+				//SQL문 작성
+				sql = "SELECT COUNT(*) FROM fix_reply f "
+					+ "JOIN member m ON f.mem_num=m.mem_num "
+					+ "WHERE f.fix_num=? ";
+				//PreparedStatement 객체 생성
+				pstmt = conn.prepareStatement(sql);
+				//?에 데이터 바인딩
+				pstmt.setInt(1, fix_num);
+				//SQL문 실행
+				rs = pstmt.executeQuery();
+				if (rs.next()) {
+					count = rs.getInt(1);
+				}
+						
+			}catch(Exception e) {
+				throw new Exception(e);
+			}finally {
+				DBUtil.executeClose(rs, pstmt, conn);
+			}
+			return count;
+		}
+	
+	//댓글 목록
+	public List<FixReplyVO>getListFixReply(int start, int end, int fix_num)throws Exception{
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			List<FixReplyVO> list = null;
+			String sql = null;
+			
+			try {
+				//커넥션풀로부터 커넥션 할당
+				conn = DBUtil.getConnection();
+				//SQL문 작성
+				sql = "SELECT * FROM (SELECT a.*,"
+					+ "rownum rnum FROM (SELECT * "
+					+ "FROM fix_reply f JOIN "
+					+ "member m USING(mem_num) "
+					+ "WHERE f.fix_num=? ORDER BY "
+					+ "f.re_num DESC)a) "
+					+ "WHERE rnum >= ? AND rnum <= ?";
+				
+				//pstmt 객체 생성
+				pstmt = conn.prepareStatement(sql);
+				
+				//?에 데이터 바인딩
+				pstmt.setInt(1, fix_num);
+				pstmt.setInt(2, start);
+				pstmt.setInt(3, end);
+				
+				rs = pstmt.executeQuery();
+				list = new ArrayList<FixReplyVO>();
+				while(rs.next()) {
+					FixReplyVO reply = new FixReplyVO();
+					reply.setRe_num(rs.getInt("re_num"));
+					//날짜 -> 1분전, 1시간전, 1일전 형식의 문자열로 변환
+					reply.setReg_date(DurationFromNow.getTimeDiffLabel(rs.getString("reg_date")));
+					if (rs.getString("re_modifydate")!=null) {
+						reply.setModify_date(DurationFromNow.getTimeDiffLabel(rs.getString("modify_date")));
+					}
+					reply.setContent(StringUtil.useBrNoHtml(rs.getString("content")));
+					reply.setFix_num(rs.getInt("fix_num"));
+					reply.setMem_num(rs.getInt("mem_num"));
+					reply.setDongho(rs.getString("dongho"));
+					
+					list.add(reply);
+				}
+			}catch(Exception e) {
+				throw new Exception(e);
+			}finally {
+				DBUtil.executeClose(rs, pstmt, conn);
+			}
+			return list;
+		}
+	
+	//댓글 수정
+	public void updateFixReply(FixReplyVO reply)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+		
+		try {
+			//커넥션풀로부터 커넥션 할당
+			conn = DBUtil.getConnection();
+			//SQL문 작성
+			sql = "UPDATE fix_reply SET content=?, modify_date=SYSDATE, ip=? "
+				+ "WHERE re_num=? ";
+			//PreparedStatement 객체 생성
+			pstmt = conn.prepareStatement(sql);
+			//?에 데이터 바인딩
+			pstmt.setString(1, reply.getContent());
+			pstmt.setString(2, reply.getIp());
+			pstmt.setInt(3, reply.getRe_num());
+			//SQL문 실행
+			pstmt.executeUpdate();
+					
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+	}
+	
 }

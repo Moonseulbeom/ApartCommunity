@@ -20,11 +20,21 @@ public class FixDetailAction implements Action{
 			request.setAttribute("notice_url", request.getContextPath()+"/member/loginForm.do");
 			return "/WEB-INF/views/common/alert_singleView.jsp";
 		}
+		
 		//글번호
 		int fix_num= Integer.parseInt(request.getParameter("fix_num"));
 		
 		FixDAO dao = FixDAO.getInstance();
 		FixVO fix = dao.getFix(fix_num);
+		
+		Integer user_auth = (Integer)session.getAttribute("user_auth");
+		
+		//작성자가 아니거나, 관리자가 아닐경우에 리스트목록으로
+		if (user_num != fix.getMem_num() && user_auth != 9) {
+			request.setAttribute("notice_msg", "조회 권한이 없습니다.");
+			request.setAttribute("notice_url", request.getContextPath()+"/fix/fixList.do");
+			return "/WEB-INF/views/common/alert_singleView.jsp";
+		}
 		
 		//HTML 태그를 허용하지 않음
 		fix.setTitle(StringUtil.useNoHtml(fix.getTitle()));
