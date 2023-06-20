@@ -26,15 +26,15 @@ $(function(){
 				}
 				$(param.list).each(function(index,item){
 					let output = '<div class="item">';
-					output += '<h4>'+item.id+'</h4>';
+					output += '<h4>'+item.dongho+'</h4>';
 					output += '<div class="sub-item">';
-					output += '<p>'+item.re_content+'</p>';
+					output += '<p>'+item.content+'</p>';
 					
 					//날짜
-					if(item.re_modifydate){
-						output += '<span class="modify-date">최근 수정일 : '+item.re_modifydate+'</span>';
+					if(item.modify_date){
+						output += '<span class="modify-date">최근 수정일 : '+item.modify_date+'</span>';
 					}else{
-						output += '<span class="modify-date">등록일 : '+item.re_date+'</span>';
+						output += '<span class="modify-date">등록일 : '+item.reg_date+'</span>';
 					}
 					
 					//수정 삭제 버튼처리
