@@ -27,7 +27,7 @@
 			</li>
 			<li class="bMainLi"><span class="bText">하자보수 신청</span><br>
 				<div class="mOver">
-					<a href="${pageContext.request.contextPath}/fix/list.do">
+					<a href="${pageContext.request.contextPath}/fix/fixList.do">
 					<img class="bImg" alt="하자보수" src="${pageContext.request.contextPath}/img/serviceTool.png">
 					</a>
 				</div>

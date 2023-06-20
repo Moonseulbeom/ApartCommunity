@@ -1,98 +1,148 @@
 @charset "UTF-8";
+/*메인 페이지*/
+.page-main{
+	width: 1000px;
+}
+.page-main li{
+	float: left;
+}
+.page-left{
+	padding-right: 50px;
+}
+.page-right{
+	width: 700px;
+}
 
-/* ----------------------------------------------
------fix-list---- */
-/* sideBar, sideBox는 공용으로 사용 할 수 있습니다. */
-#sideBar{
-	float: left;
-    width: 200px;
-    height: 100%;
-    margin-right: 50px;
+/*사이드 바*/
+.sidebar{
+	/*상우하좌*/
+	margin-top:50px 50px 0 100px;
+	width: 250px;
 }
-#sideBox{
-	float: left;
-    width: 700px;
-    height: 100%;
+.sidebar h2{
+	padding-left: 20px;
+	padding-bottom: 5px;
+	border-bottom: 2px solid #c5c6c7;
 }
-#sideLogin{
-	height: 220px;
-	margin-bottom: 30px;
-	border: 1px solid black;
-	background-color: #E2E2E2;
-}
-#sideMenuTitle{
-	height: 50px;
+.mem-service{
+	height: 120px;
 	margin-bottom: 20px;
-	font-size: 22pt;
-	color: black;
-	border: 1px solid black;
-}
-#sideMenu{
+	font-size: 1em;
 	text-align: center;
-	/* background-color: #E2E2E2;
-	border: 1px solid black; */
+	background: #dedfe0;
+	border: 1px solid black;
 }
-#sideMenu li{
-	height:25px;
-	background-color: #E2E2E2;
-	margin-top: 20px;
-	margin-bottom: 20px;
+.mem-service p{
+	padding: 20px 0;
 }
-.first{
-	margin-bottom: 0px !important;
+.menu{
+	margin-top: 20px; 
 }
-#sideMenu a{
-	font-size: 12pt;
-	font-weight: 600;
-	vertical-align: middle;
+.menu li{
+	margin-left:40px;
+	padding-bottom: 15px;
+	text-align: left;
+	font-size: 1.2em;
+	width: 250px;
+	list-style:circle;
 }
-#sideMenu a:hover{
-	color:black;
-}
-#sideMenuTop{
-	width: 100%;
+
+
+
+/*공지사항 상단*/
+.notice-main-img img{
+	width: 700px;
 	height: 285px;
 }
-/* 
------ 검색창 스타일 ----- */
-#sideBox_inner{
-	height: 50px;
+.notice-main-search{
 	margin-top:30px;
-	margin-bottom: 20px;
-	background-color: gray; 
+	border-top: 2px solid #c5c6c7;
+	border-bottom: 2px solid #c5c6c7;
+	height: 50px;
+	font-size: 1.5em;
+	display: flex;
+	align-items: center;
 }
-#sideBox_inner h2{
-	display: inline;
-	float: left;
-	margin-left: 10px;
-	margin-top: 10px;
-	font-size: 16pt;
-	color: black;
+input[type="search"]{
+	margin-left: 330px;
+	width: 160px;
+	height: 30px;
+	text-align: left;
+}
+/*공지사항 게시글 상단*/
+.notice-main-list ul{
+	margin: 10px 0;
 }
 
-.search li{
-	float: right;
-	margin: 10px 10px 0 10px;
+.notice-main-list li{
+	width: 100px;
+	height: 30px;	
+	text-align: center;
+	font-size: 1.1em;
 }
-.search li input{
-	height:30px;
+.notice-main-list li:nth-child(2){
+	width: 400px;
 }
-/* 
------ 글 목록 테이블 스타일 ----- */
-#list_table{
+/*공지사항 게시글 리스트*/
+td{
+	display: table-cell;
+    vertical-align: inherit;
+} 
+.board-article td{
+	height: 28px;
+    padding: 4px 7px;
+    border-bottom: 1px solid #f2f2f2;
+} 
+.notice-list{
 	width: 100%;
-	border-bottom: 1px solid black;
+}
+.notice-list td{
+	padding-left: 12px;
+    padding-right: 18px;
+}
+.td-article{
+	width: 400px;
+	padding-left: 12px;
+    padding-right: 18px;
+}
+.board-number{
+	width: 20px;
+	display: table-cell;
+ 	padding: 0 33px;
+ 	vertical-align: middle;
+}
+.board-list{
+    display: table-cell;
+    padding-top: 1px;
+    padding-left: 30px;
+}
+.article{
+	line-height: 18px;
+    color: #333;
+}
+.board-date{
+	text-align:center;
+}
+
+
+/*게시글이 없을 경우*/
+.result-notice-display{
+	height: 50px;
+	padding-top:25px;	
 	text-align: center;
 }
-#list_table tr:nth-child(1){
-	border-top: none;
+/*버튼*/
+.write-btn{
+	height: 27px;
+	margin: 20px 15px 0 0;
+	text-align: right;
 }
-#list_table tr{
-	border-top: 1px solid black;
+.write-btn span{
+	padding: 7px 5px;
+	font-size: 1.1em;
+	border: 1px solid #c5c6c7;
 }
-#list_table th:nth-child(1), td:nth-child(1) {
-	width: 10%;
-}
-#list_table th:nth-last-child(1){
-	width: 20%;
+.write-btn span img{
+	width: 18px;
+	height: 18px;
 }
