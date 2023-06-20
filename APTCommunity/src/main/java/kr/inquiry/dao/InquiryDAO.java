@@ -6,8 +6,11 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import kr.board.vo.BoardReplyVO;
+import kr.inquiry.vo.InquiryManageVO;
 import kr.inquiry.vo.InquiryVO;
 import kr.util.DBUtil;
+import kr.util.DurationFromNow;
 import kr.util.StringUtil;
 
 public class InquiryDAO {
@@ -290,14 +293,161 @@ public class InquiryDAO {
 	}
 	
 	//댓글 등록
+	public void insertManageInquiry(
+		      InquiryManageVO inquiryManage)
+                     throws Exception{
+	Connection conn = null;
+	PreparedStatement pstmt = null;
+	String sql = null;
+	
+	try {
+		//커넥션풀로부터 커넥션 할당
+		conn = DBUtil.getConnection();
+		//SQL문 작성
+		sql = "INSERT INTO inquiry_manage "
+			+ "(re_num,content,ip,"
+			+ "mem_num,in_num) VALUES ("
+			+ "inquiry_manage_seq.nextval,?,?,?,?)";
+		//PreparedStatement 객체 생성
+		pstmt = conn.prepareStatement(sql);
+		//?에 데이터 바인딩
+		pstmt.setString(1, 
+				inquiryManage.getContent());
+		pstmt.setString(2, 
+				inquiryManage.getIp());
+		pstmt.setInt(3, inquiryManage.getMem_num());
+		pstmt.setInt(4, inquiryManage.getIn_num());
+		//SQL문 실행
+		pstmt.executeUpdate();
+	}catch(Exception e) {
+		throw new Exception(e);
+	}finally {
+		DBUtil.executeClose(null, pstmt, conn);
+	}
+}
 	
 	//댓글 갯수
+	public int getManageInquiryCount(
+		    int in_num)throws Exception{
+	Connection conn = null;
+	PreparedStatement pstmt = null;
+	ResultSet rs = null;
+	String sql = null;
+	int count = 0;
+	
+	try {
+		//커넥션풀로부터 커넥션 할당
+		conn = DBUtil.getConnection();
+		//SQL문 작성
+		sql = "SELECT COUNT(*) FROM inquiry_manage i "
+			+ "JOIN member m ON i.mem_num=m.mem_num "
+			+ "WHERE i.in_num=?";
+		//PreparedStatement 객체 생성
+		pstmt = conn.prepareStatement(sql);
+		//?에 데이터 바인딩
+		pstmt.setInt(1, in_num);
+		//SQL문 실행
+		rs = pstmt.executeQuery();
+		if(rs.next()) {
+			count = rs.getInt(1);
+		}
+	}catch(Exception e) {
+		throw new Exception(e);
+	}finally {
+		DBUtil.executeClose(rs, pstmt, conn);
+	}		
+	return count;
+}
+	
 	
 	//댓글 목록
+	public List<InquiryManageVO> 
+				getListInquiryManage(int start,int end,int in_num)
+            throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<InquiryManageVO> list = null;
+		String sql = null;
+
+		try {
+			//커넥션풀로부터 커넥션 할당
+			conn = DBUtil.getConnection();
+			//SQL문 작성
+			sql = "SELECT * FROM (SELECT a.*,"
+					+ "rownum rnum FROM (SELECT * "
+					+ "FROM inquiry_manage i JOIN "
+					+ "member m USING(mem_num) "
+					+ "WHERE i.in_num=? ORDER BY "
+					+ "i.re_num DESC)a) "
+					+ "WHERE rnum >= ? AND rnum <= ?";
+			//PreparedStatement 객체 생성
+			pstmt = conn.prepareStatement(sql);
+			//?에 데이터 바인딩
+			pstmt.setInt(1, in_num);
+			pstmt.setInt(2, start);
+			pstmt.setInt(3, end);
+			//SQL문 실행
+			rs = pstmt.executeQuery();
+			list = new ArrayList<InquiryManageVO>();
+			while(rs.next()) {
+				InquiryManageVO manage = 
+						new InquiryManageVO();
+				manage.setRe_num(rs.getInt("re_num"));
+				manage.setReg_date(rs.getDate("reg_date"));
+				manage.setContent(
+						StringUtil.useBrNoHtml(
+								rs.getString("content")));
+				manage.setIn_num(rs.getInt("in_num"));
+				manage.setMem_num(rs.getInt("mem_num"));
+				manage.setDongho(rs.getString("Dongho"));
+	
+				list.add(manage);			}
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}		
+		return list;
+	}
+
 	
 	//댓글 상세
+	public InquiryManageVO getInquiryManage(int re_num)
+            			throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		InquiryManageVO manage = null;
+		String sql = null;
+
+		try {
+			//커넥션풀로부터 커넥션 할당
+			conn = DBUtil.getConnection();
+			//SQL문 작성
+			sql = "SELECT * FROM inquiry_manage "
+					+ "WHERE re_num=?";
+			//PreparedStatement 객체 생성
+			pstmt = conn.prepareStatement(sql);
+			//?에 데이터를 바인딩
+			pstmt.setInt(1, re_num);
+			//SQL문 실행
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				manage = new InquiryManageVO();
+				manage.setRe_num(rs.getInt("re_num"));
+				manage.setMem_num(rs.getInt("mem_num"));
+			}
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}		
+		return manage;
+	}
 	
 	//댓글 수정
+	
 	
 	//댓글 삭제
 }

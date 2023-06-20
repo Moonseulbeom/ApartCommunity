@@ -130,6 +130,7 @@ REFERENCES member (
 CREATE TABLE inquiry_manage (
   re_num number NOT NULL,
   in_num number NOT NULL,
+  mem_num number NOT NULL,
   content varchar2(1000) NOT NULL,
   reg_date date DEFAULT SYSDATE NOT NULL,
   modify_date date,
@@ -221,6 +222,12 @@ ALTER TABLE inquiry_manage ADD CONSTRAINT FK_inquiry_TO_inquiry_manage_1 FOREIGN
 )
 REFERENCES inquiry (
   in_num
+);
+
+ALTER TABLE inquiry_manage ADD CONSTRAINT FK_member_TO_inquiry_manage_2 FOREIGN KEY (
+)
+REFERENCES member (
+  mem_num
 );
 
 ALTER TABLE fix ADD CONSTRAINT FK_member_TO_fix_1 FOREIGN KEY (

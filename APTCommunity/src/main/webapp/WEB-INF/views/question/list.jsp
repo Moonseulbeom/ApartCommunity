@@ -82,19 +82,6 @@
 		<div class="align-center">${page}</div>
 		</c:if>
 	</div>
-<header class="header" role="banner">
-  <h1 class="logo">
-    <a href="#"><span>기타</span></a>
-  </h1>
-  <div class="nav-wrap">
-    <nav class="main-nav" role="navigation">
-      <ul class="unstyled list-hover-slide">
-        <li><a href="${pageContext.request.contextPath}/inquiry/list.do">1:1문의</a></li>
-    <li><a href="${pageContext.request.contextPath}/question/list.do">자주묻는 질문</a></li>
-      </ul>
-    </nav>
-  </div>
-</header>
 	<!-- 내용 끝 -->
 	<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 </div>
