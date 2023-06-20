@@ -43,7 +43,7 @@
 			</div>
 			<div class="notice-main-search">
 				<c:if test="${ dept == 1 }">
-					<b>관리사무소 회의 결과</b>
+					<b>관리사무소 공지사항</b>
 				</c:if>
 				<c:if test="${ dept == 2 }">
 					<b>입대의 공지사항</b>

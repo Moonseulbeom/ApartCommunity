@@ -7,32 +7,25 @@ import javax.servlet.http.HttpSession;
 import kr.controller.Action;
 import kr.notice.dao.NoticeDAO;
 import kr.notice.vo.NoticeVO;
-import kr.util.StringUtil;
 
-public class NoticeDetailAction implements Action {
+public class ModifyNoticeActionForm implements Action {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		HttpSession session = request.getSession();
 		Integer user_num = (Integer)session.getAttribute("user_num");
-		Integer user_auth = (Integer)session.getAttribute("user_auth");
-		int no_num = Integer.parseInt(request.getParameter("no_num"));
 		if (user_num==null) {
 			request.setAttribute("notice_msg", "로그인이 필요한 서비스입니다");
 			request.setAttribute("notice_url", request.getContextPath()+"/member/loginForm.do");
 			return "/WEB-INF/views/common/alert_singleView.jsp";
 		}
+		int no_num = Integer.parseInt(request.getParameter("no_num"));
 		NoticeDAO dao = NoticeDAO.getInstance();
 		NoticeVO notice = dao.getNoticeVO(no_num);
 		
-		notice.setTitle(StringUtil.useBrNoHtml(notice.getTitle()));
-		notice.setContent(StringUtil.useBrNoHtml(notice.getContent()));
-		
 		request.setAttribute("notice", notice);
-		request.setAttribute("user_num", user_num);
-		request.setAttribute("user_auth", user_auth);
 		
-		return "/WEB-INF/views/notice/noticeDetail.jsp";
+		return "/WEB-INF/views/notice/modifyNoticeForm.jsp";
 	}
 
 }

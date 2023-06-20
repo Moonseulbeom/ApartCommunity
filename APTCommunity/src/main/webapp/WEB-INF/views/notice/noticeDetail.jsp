@@ -33,7 +33,7 @@
 					<ul>
 						<li>
 						<c:if test="${ notice.dept == 1 }">
-							<a href="noticeList.do?dept=${ notice.dept }">관리사무소 회의 결과</a>
+							<a href="noticeList.do?dept=${ notice.dept }">관리사무소 공지사항</a>
 						</c:if>
 						<c:if test="${ notice.dept == 2 }">
 							<a href="noticeList.do?dept=${ notice.dept }">입대의 공지사항</a>
@@ -61,8 +61,22 @@
 		<div class="detail-btn">
 			<c:if test="${user_auth == 9 }">
 			<div class="detail-btn-div">
+				<form action="modifyNoticeForm.do" method="post">
+				<input type="hidden" name="no_num" value="${ notice.no_num }">
 				<input type="submit" value="수정" class="write-btn">
-				<input type="button" value="삭제" onclick="location.href='noticeList.do'" class="write-btn">
+				<input type="button" value="삭제" onclick="location.href='noticeList.do'" class="write-btn" id="delete_btn">
+				<script type="text/javascript">
+					let delete_btn = 
+						  document.getElementById('delete_btn');
+					//이벤트 연결
+					delete_btn.onclick=function(){
+						let choice = confirm('삭제하겠습니까?');
+						if(choice){
+							location.replace('delete.do?no_num=${notice.no_num}&dept=${notice.dept}');
+						}
+					};
+				</script>  
+				</form>
 			</div>
 			</c:if>
 			<div class="detail-btn-div2">

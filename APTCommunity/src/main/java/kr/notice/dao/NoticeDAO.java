@@ -10,20 +10,15 @@ import kr.notice.vo.NoticeVO;
 
 public class NoticeDAO
 {
-    private static NoticeDAO instance;
-    
-    static {
-        NoticeDAO.instance = new NoticeDAO();
-    }
+    private static NoticeDAO instance = new NoticeDAO();
     
     public static NoticeDAO getInstance() {
         return NoticeDAO.instance;
-    }
+   }
     
-    private NoticeDAO() {
-    }
-    
-    public void insertNotice(final NoticeVO notice) throws Exception {
+    private NoticeDAO() { }
+    //게시글 작성
+    public void insertNotice(NoticeVO notice) throws Exception {
         Connection conn = null;
         PreparedStatement pstmt = null;
         String sql = null;
@@ -44,12 +39,11 @@ public class NoticeDAO
             throw new Exception(e);
         }
         finally {
-            DBUtil.executeClose((ResultSet)null, pstmt, conn);
+            DBUtil.executeClose(null, pstmt, conn);
         }
-        DBUtil.executeClose((ResultSet)null, pstmt, conn);
     }
-    
-    public int getCount(final int dept, final String keyword) throws Exception {
+    //게시물 갯수 
+    public int getCount(int dept, String keyword) throws Exception {
         Connection conn = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
@@ -79,11 +73,10 @@ public class NoticeDAO
         finally {
             DBUtil.executeClose(rs, pstmt, conn);
         }
-        DBUtil.executeClose(rs, pstmt, conn);
         return count;
     }
-    
-    public List<NoticeVO> getList(final int dept, final String keyword, final int start, final int end) throws Exception {
+    //게시물 리스트 
+    public List<NoticeVO> getList( int dept,  String keyword,  int start,  int end) throws Exception {
         Connection conn = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
@@ -102,13 +95,13 @@ public class NoticeDAO
             if (keyword != null && !"".equals(keyword)) {
                 pstmt.setString(++cnt, "%" + keyword + "%");
                 pstmt.setString(++cnt, "%" + keyword + "%");
-            }
+            } 
             pstmt.setInt(++cnt, start);
             pstmt.setInt(++cnt, end);
             rs = pstmt.executeQuery();
             list = new ArrayList<NoticeVO>();
             while (rs.next()) {
-                final NoticeVO notice = new NoticeVO();
+                 NoticeVO notice = new NoticeVO();
                 notice.setNo_num(rs.getInt("no_num"));
                 notice.setTitle(rs.getString("title"));
                 notice.setReg_date(rs.getDate("reg_date"));
@@ -124,8 +117,8 @@ public class NoticeDAO
         DBUtil.executeClose(rs, pstmt, conn);
         return list;
     }
-    
-    public NoticeVO getNoticeVO(final int no_num) throws Exception {
+   //상세 페이지
+    public NoticeVO getNoticeVO( int no_num) throws Exception {
         Connection conn = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
@@ -143,6 +136,7 @@ public class NoticeDAO
                 noticeVO.setDept(rs.getInt("dept"));
                 noticeVO.setTitle(rs.getString("title"));
                 noticeVO.setContent(rs.getString("content"));
+                noticeVO.setStatus(rs.getInt("status"));
                 noticeVO.setFilename(rs.getString("filename"));
                 noticeVO.setReg_date(rs.getDate("reg_date"));
             }
@@ -155,5 +149,68 @@ public class NoticeDAO
         }
         DBUtil.executeClose(rs, pstmt, conn);
         return noticeVO;
+    }
+    //게시글 수정
+    public void modifyNotice(NoticeVO notice) throws Exception{
+    	Connection conn = null;
+    	PreparedStatement pstmt = null;
+    	String sql = null;
+    	
+    	try {
+    		conn = DBUtil.getConnection();
+    		sql = "UPDATE notice SET dept = ?, title = ?, content = ?, status = ?, filename = ?, modify_date = SYSDATE WHERE no_num = ?";
+    		pstmt = conn.prepareStatement(sql);
+    		pstmt.setInt(1, notice.getDept());
+    		pstmt.setString(2, notice.getTitle());
+    		pstmt.setString(3, notice.getContent());
+    		pstmt.setInt(4, notice.getStatus());
+    		pstmt.setString(5, notice.getFilename());
+    		pstmt.setInt(6, notice.getNo_num());
+    		
+    		pstmt.executeUpdate();
+    		
+		} catch (Exception e) {
+			throw new Exception(e);		
+		} finally {
+			DBUtil.executeClose(null, pstmt, conn);
+		}				
+    }
+    //파일 삭제
+    public void deleteFile(int no_num) throws Exception{
+    	Connection conn = null;
+    	PreparedStatement pstmt = null;
+    	String sql = null;
+    	
+    	try {
+    		conn = DBUtil.getConnection();
+    		sql = "UPDATE notice SET filename = '' WHERE no_num = ? ";
+    		pstmt = conn.prepareStatement(sql);
+    		pstmt.setInt(1, no_num);
+    		
+    		pstmt.executeUpdate();
+		} catch (Exception e) {
+			throw new Exception(e);
+		} finally {
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+    }
+    //게시글 삭제
+    public void deleteNotice(int no_num)throws Exception{
+    	Connection conn = null;
+    	PreparedStatement pstmt = null;
+    	String sql = null;
+    	
+    	try {
+			conn = DBUtil.getConnection();
+			sql = "DELETE FROM notice WHERE no_num = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, no_num);
+			pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			throw new Exception(e);
+		} finally {
+			DBUtil.executeClose(null, pstmt, conn);
+		}
     }
 }
