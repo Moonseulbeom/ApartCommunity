@@ -30,7 +30,7 @@ public class BoardDAO {
 		
 		try {
 			conn = DBUtil.getConnection();
-			sql = "INSERT INTO board (board_num, mem_num, title, content, filename, ip,reg_date)"
+			sql = "INSERT INTO board (board_num, mem_num, title, content, filename,ip,reg_date)"
 					+ " VALUES (board_seq.nextval,?,?,?,?,?,sysdate)";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, vo.getMem_num());
@@ -269,12 +269,13 @@ public class BoardDAO {
 		
 		try {
 			conn = DBUtil.getConnection();
-			sql = "INSERT INTO board_reply(re_num, content, ip, mem_num, board_num)"
-					+ " VALUES(board_reply_seq.nextval, ?,?,1,?";
+			sql = "INSERT INTO board_reply(re_num, content, ip, mem_num, board_num, reg_date)"
+					+ " VALUES(board_reply_seq.nextval,?,?,?,?,sysdate)";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, vo.getContent());
 			pstmt.setString(2, vo.getIp());
-			pstmt.setInt(3, vo.getBoard_num());
+			pstmt.setInt(3, vo.getMem_num());
+			pstmt.setInt(4, vo.getBoard_num());
 			pstmt.executeUpdate();
 		}catch(Exception e) {
 			throw new Exception(e);
@@ -321,7 +322,7 @@ public class BoardDAO {
 		try {
 			conn = DBUtil.getConnection();
 			sql = "SELECT * FROM (SELECT a.*, rownum rnum FROM"
-					+ " (SELECT * FROM baord_reply r JOIN member m"
+					+ " (SELECT * FROM board_reply r JOIN member m"
 					+ " USING(mem_num)"
 					+ " WHERE r.board_num=? ORDER BY r.re_num DESC)a)"
 					+ " WHERE rnum >= ? AND rnum <= ?";
@@ -335,12 +336,13 @@ public class BoardDAO {
 				BoardReplyVO reply = new BoardReplyVO();
 				reply.setRe_num(rs.getInt("re_num"));
 				if(rs.getDate("modify_date") != null) {
-					//reply.setModify_date(DurationFromNow.getTimeDiffLabel(rs.getDate("modify_date")));
+					reply.setModify_date(rs.getDate("modify_date"));
 				}
 				reply.setContent(StringUtil.useBrNoHtml(rs.getString("content")));
 				reply.setBoard_num(rs.getInt("board_num"));
 				reply.setMem_num(rs.getInt("mem_num"));
 				reply.setDongho(rs.getString("dongho"));
+				reply.setReg_date(rs.getDate("reg_Date"));
 				
 				list.add(reply);
 			}

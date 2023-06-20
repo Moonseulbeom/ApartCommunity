@@ -24,13 +24,13 @@ public class WriteReplyAction implements Action{
 			//로그인 되지 않은 경우
 			mapAjax.put("result", "logout");
 		}else {
-			//로그인 안된 경우
+			//로그인 된 경우
 			//전송
 			request.setCharacterEncoding("UTF-8");
 			
 			BoardReplyVO reply = new BoardReplyVO();
 			reply.setMem_num(user_num);//회원번호(댓글 작성자)
-			reply.setContent(request.getParameter("content"));
+			reply.setContent(request.getParameter("re_content"));
 			reply.setIp(request.getRemoteAddr());
 			reply.setBoard_num(Integer.parseInt(request.getParameter("board_num")));
 			

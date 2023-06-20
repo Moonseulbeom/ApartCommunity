@@ -31,7 +31,7 @@ public class WriteAction implements Action{
 		vo.setContent(multi.getParameter("content"));
 		vo.setIp(request.getRemoteAddr());
 		vo.setFilename(multi.getFilesystemName("filename"));
-		//vo.setMem_num(user_num);//작성자(회원번호)
+		vo.setMem_num(user_num);//작성자(회원번호)
 		
 		BoardDAO dao = BoardDAO.getinstance();
 		dao.insertBoard(vo);

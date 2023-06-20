@@ -39,7 +39,7 @@ public class UpdateReplyAction implements Action{
 			//로그인한 회원번호와 작성자 회원번호가 일치
 			BoardReplyVO reply = new BoardReplyVO();
 			reply.setRe_num(re_num);
-			reply.setContent(request.getParameter("content"));
+			reply.setContent(request.getParameter("re_content"));
 			reply.setIp(request.getRemoteAddr());
 			
 			dao.updateReplyBoard(reply);

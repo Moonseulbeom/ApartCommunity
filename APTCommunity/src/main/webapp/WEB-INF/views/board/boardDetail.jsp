@@ -24,8 +24,8 @@
 	
 </style>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/board.fav.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/board.reply.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/common.js"></script>
 <script type="text/javascript"></script>
 </head>
 <body>
@@ -36,12 +36,18 @@
 	<input type="button" value="뒤로가기" onclick="location.href='boardList.do'" id="back"><br>
 		<h2>${vo.title}</h2> 
 		<hr size="1" noshade="noshade" width="100%">
+		<ul class="detail-info">
+			<li>
+			${vo.dongho}
+			</li>
+		</ul>
+		<hr size="1" noshade="noshade" width="100%">
 		<c:if test="${!empty vo.filename}">
 			<div class="align-center">
 				<img src="${pageContext.request.contextPath}/upload/${vo.filename}" class="detail-img">
 			</div>
 		</c:if>
-		<p style="text-decoration: noen;">
+		<p style="text-decoration: none;">
 			${vo.content}
 		</p>
 		<hr size="1" noshade="noshade" width="100%">
@@ -51,12 +57,8 @@
 					최근 수정일 : ${vo.modify_date}
 				</c:if>
 				작성일 : ${vo.reg_date}
-				<%-- 염유진/아래의 c:if 태그 살리면 없어질 내용임 / CSS때문에 넣은 INPUT 2개--%>
-				<input type="button" value="수정" onclick="location.href='boardUpdateForm.do?board_num=${vo.board_num}'">
-				<input type="button" value="삭제" id="delete_btn">
-				
 				<%-- 로그인한 회원번호와 작성자 회원번호가 일치해야 수정삭제 가능 --%>
-				<!-- <c:if test="${user_num == vo.mem_num}"> -->
+				<c:if test="${user_num == vo.mem_num}"> 
 					<%-- user_num : 로그인한 회원번호 --%>
 					<%-- vo.mem_num : 작성한 회원번호 --%>
 					<input type="button" value="수정" onclick="location.href='boardUpdateForm.do?board_num=${vo.board_num}'">
@@ -72,7 +74,7 @@
 							}
 						};
 					</script>
-				<!-- </c:if> -->
+				</c:if>
 			</li>
 		</ul>
 		<!-- 댓글 시작 -->
@@ -80,10 +82,6 @@
 			<span class="re-title">댓글 달기</span>
 			<form id="re_form">
 				<input type="hidden" name="board_num" value="${vo.board_num}" id="board_num">
-				
-				<textarea rows="3" cols="50" name="re_content" id="re_content" class="rep-content"></textarea>
-				<input type="submit" value="등록"><!-- DB에 데이터 안들어가지네 -->
-				
 				<textarea rows="3" cols="50" name="re_content" id="re_content" class="rep-content"
 				<c:if test="${empty user_num}">disabled="disabled"</c:if>
 				><c:if test="${empty user_num}">로그인 후 이용하세요</c:if></textarea>

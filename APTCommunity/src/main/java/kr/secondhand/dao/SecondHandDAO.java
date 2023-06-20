@@ -23,7 +23,7 @@ public class SecondHandDAO {
 	 	2.글작성/수정/목록
 	 	3.모두 댓글사용할예정
 	 */
-	//중고거래 글작성 -> mem_num, division : 임의의 값으로 지정한 상태
+	//중고거래 글작성
 	public void insertSecondHand(SecondHandVO vo) throws Exception {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
