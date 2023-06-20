@@ -12,8 +12,15 @@ public class FixVO {
 	private Date modify_date;
 	private String filename;
 	private String ip;
+	private String dongho;
 	
 	
+	public String getDongHo() {
+		return dongho;
+	}
+	public void setDongHo(String dongho) {
+		this.dongho = dongho;
+	}
 	public int getFix_num() {
 		return fix_num;
 	}
