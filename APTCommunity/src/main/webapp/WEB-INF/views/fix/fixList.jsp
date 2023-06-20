@@ -44,7 +44,7 @@
 						<div class="menu">
 							<ul>
 								<li><a href="${pageContext.request.contextPath}/booking/roomNameList.do">시설예약</a></li>
-								<li><a href="${pageContext.request.contextPath}/fix/list.do">하자보수 신청</a></li>
+								<li><a href="${pageContext.request.contextPath}/fix/fixList.do">하자보수 신청</a></li>
 							</ul>
 						</div>
 					</div>
@@ -53,17 +53,17 @@
 				<!-- 오른쪽 -->
 				<li>
 				<div class="page-right">
-					<div class="notice-main-img">
+					<div class="fix-main-img">
 						<img alt="" src="${pageContext.request.contextPath}/img/sideMenuTopImg.jpg">
 					</div>
 					<form id="search_form" method="get" action="fixList.do">
-						<div class="notice-main-search">
+						<div class="fix-main-search">
 							<b>하자보수신청 목록</b>
 							<input type="hidden" name="keyfield" value="1">
 							<input type="search" size="16" name="keyword" id="keyword" value="${param.keyword}" placeholder="검색어를 입력하세요.">
 						</div>
 					</form>
-					<div class="notice-main-list">
+					<div class="fix-main-list">
 						<c:if test="${ count > 1 || !empty count }">
 						<ul>
 							<li>글번호</li>
@@ -83,7 +83,7 @@
 						</c:forEach>
 						</c:if>
 						<c:if test="${ count < 1 || empty count }">
-							<div class="result-notice-display">
+							<div class="result-fix-display">
 								게시글이 없습니다.
 							</div>
 							<hr color="#edeff0" noshade="noshade">
