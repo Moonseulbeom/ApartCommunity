@@ -1,0 +1,423 @@
+.inner {
+	width: 1000px;
+	margin: 0 auto;
+}
+
+#container {
+	margin-top: 30px;
+	position: relative;
+}
+
+#container:after {
+	content: '';
+	display: block;
+	clear: both;
+}
+
+.blind_txt {
+	overflow: hidden;
+	position: absolute;
+	width: 0;
+	height: 0;
+	font-size: 0;
+	line-height: 0;
+}
+
+.sbTitle {
+	margin-top: 20px;
+	padding-bottom: 20px;
+	border-bottom: 2px solid #d9d9d9;
+	text-align: center;
+	font-size: 35px;
+	font-weight: bold;
+	color: #2e2e2e
+}
+
+/* base */
+* {
+	margin: 0;
+	padding: 0
+}
+
+html {
+	width: 100%;
+	height: 100%
+}
+
+body {
+	font-size: 13px;
+	font-family: 'Nanum Gothic', 'Malgun Gothic', 'dotum', '돋움', 'Arial',
+		dotum, Myriad, sans-serif;
+	color: #67686a;
+	letter-spacing: -1px;
+}
+
+body, div, h1, h2, h3, h4, h5, h6, ul, ol, li, dl, dt, dd, p, form,
+	fieldset, input, table, tr, th, td {
+	margin: 0;
+	padding: 0
+}
+
+ul, ol, li {
+	list-style: none
+}
+
+img, fieldset {
+	border: none;
+	vertical-align: top
+}
+
+legend, caption {
+	display: none
+}
+
+textarea, button {
+	vertical-align: middle
+}
+
+input, select {
+	height: 16px;
+	vertical-align: middle;
+	background: #fff;
+	border: 1px solid #c7c9cc;
+	font-family: 'Nanum Gothic', 'Malgun Gothic', 'dotum', '돋움', 'Arial',
+		'dotum', 'Myriad,sans-serif';
+	color: #67686a;
+}
+
+input, option {
+	padding: 3px
+}
+
+select {
+	padding: 2px
+}
+
+textarea {
+	padding: 10px;
+	vertical-align: middle;
+	background: #fff;
+	border: 1px solid #c7c9cc;
+	font-family: 'Nanum Gothic', 'Malgun Gothic', 'dotum', '돋움', 'Arial',
+		dotum, Myriad, sans-serif;
+	color: #67686a;
+	font-size: 14px;
+}
+
+.checkbox {
+	padding: 0;
+	border: 0
+}
+
+.disNone {
+	display: none
+}
+
+a {
+	text-decoration: none;
+	color: #67686a
+}
+
+a:hover, a:focus, a:active {
+	text-decoration: none;
+}
+
+table {
+	border-collapse: collapse
+}
+
+map area {
+	outline: none;
+}
+
+section {
+	clear: both;
+}
+
+input[type="checkbox"], input[type="radio"] {
+	border: none;
+	background: none;
+}
+
+input[type="radio"]:focus {
+	outline: 1px dotted #888;
+}
+
+.inputFile {
+	cursor: pointer;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 500px;
+	opacity: 0;
+	z-index: 1
+}
+
+.fl {
+	float: left;
+}
+
+.fr {
+	float: right;
+}
+
+.inner {
+	width: 1000px;
+	margin: 0 auto;
+}
+
+#container {
+	margin-top: 30px;
+	position: relative;
+}
+
+#container:after {
+	content: '';
+	display: block;
+	clear: both;
+}
+
+.blind_txt {
+	overflow: hidden;
+	position: absolute;
+	width: 0;
+	height: 0;
+	font-size: 0;
+	line-height: 0;
+}
+
+.sbTitle {
+	margin-top: 20px;
+	padding-bottom: 20px;
+	border-bottom: 2px solid #d9d9d9;
+	text-align: center;
+	font-size: 35px;
+	font-weight: bold;
+	color: #2e2e2e
+}
+
+/* main_Loginbox */
+#main {
+	margin-top: 35px;
+}
+
+.mLogin_box {
+	border: 1px solid #dcdcdc;
+	float: left;
+	height: 100%;
+}
+
+.mLogout {
+	padding: 20px 20px 20px;
+	width: 269px;
+}
+
+.loginGreetingt {
+	margin-bottom: 13px;
+	font-size: 14px;
+	font-weight: bold;
+}
+
+.loginGreetingt span {
+	color: #3264bf
+}
+
+.mLogin_box .login_input_text {
+	width: 251px;
+	padding: 6px 8px;
+	margin-bottom: 6px;
+	border-radius: 3px;
+	background-color: #f5f5f5;
+	font-size: 12px;
+	line-height: 22px;
+}
+
+.mLogin_box .login_checkbox {
+	padding: 6px 8px;
+	margin-bottom: 6px;
+	border-radius: 3px;
+	background-color: #f5f5f5;
+	font-size: 12px;
+	line-height: 22px;
+}
+
+.mLogin_box .loginBtn {
+	width: 269px;
+	height: 40px;
+	margin-bottom: 15px;
+	border: none;
+	border-radius: 3px;
+	color: #fff;
+	line-height: 42px;
+	text-align: center;
+	background-color: #3264bf
+}
+
+.loginHelp li {
+	padding: 10px 0;
+	border-top: 1px solid #dedede;
+	position: relative;
+}
+
+.loginHelp li:last-child {
+	padding-bottom: 0;
+}
+
+.loginHelp li span {
+	font-family: 'dotum';
+	letter-spacing: -2px;
+	padding-left: 10px;
+	color: #888;
+	background: url(../../img/homepage/dot_ico.jpg) 0 center no-repeat;
+}
+
+.loginHelp li a {
+	position: absolute;
+	right: 0;
+	display: inline-block;
+	width: 64px;
+	height: 20px;
+	background: url(../../img/homepage/login_help.jpg) 0 0 no-repeat;
+}
+
+.loginHelp li .join_btn {
+	background-position: 0 -22px;
+}
+
+.storelink {
+	float: left;
+	width: 311px; /*height:114px;*/
+	border: 0;
+	text-align: center;
+}
+
+.storelink a {
+	display: block;
+}
+
+.storelink img {
+	margin: 20px 0;
+}
+/*.storelink a{display:inline-block;padding-top:20px;}*/
+/*200413 하정은 앱다운로드 영역 추가*/
+.app-link-sms {
+	border: 0;
+	width: 100%;
+	cursor: pointer;
+}
+
+.app-link-sms img {
+	width: 100%;
+	height: auto;
+	margin: 0 !important;
+}
+
+/* 메인 컨테이너 
+	공용으로돌려서 쓸 예정*/
+#mainContainer {
+	margin: 0 auto;
+	margin-bottom: 50px;
+	width: 1000px;
+	height: 500px;
+}
+
+.topM {
+	margin-top: 50px;
+}
+
+/* main_Loginbox */
+#main {
+	margin-top: 35px;
+}
+
+.mLogin_box {
+	border: 1px solid #dcdcdc;
+	float: left;
+	height: 100%;
+}
+
+.mLogout {
+	padding: 20px 20px 20px;
+	width: 269px;
+}
+
+.loginGreetingt {
+	margin-bottom: 13px;
+	font-size: 14px;
+	font-weight: bold;
+}
+
+.loginGreetingt span {
+	color: #3264bf
+}
+
+.mLogin_box .login_input_text {
+	width: 251px;
+	padding: 6px 8px;
+	margin-bottom: 6px;
+	border-radius: 3px;
+	background-color: #f5f5f5;
+	font-size: 12px;
+	line-height: 22px;
+}
+
+.mLogin_box .loginBtn {
+	width: 269px;
+	height: 40px;
+	margin-bottom: 15px;
+	border: none;
+	border-radius: 3px;
+	color: #fff;
+	line-height: 42px;
+	text-align: center;
+	background-color: #3264bf
+}
+
+.mLogin_box .registerBtn {
+	width: 269px;
+	height: 40px;
+	margin-bottom: 15px;
+	border: none;
+	border-radius: 3px;
+	color: #fff;
+	line-height: 42px;
+	text-align: center;
+	background-color: #3264bf
+}
+
+.mphnum_box {
+	padding: 20px 20px 20px;
+	width: 269px;
+	border: 1px solid #dcdcdc;
+	float: left;
+	height: 100%;
+	display: block;
+}
+
+.mBoard .title {
+	padding: 20px;
+	border-bottom: 1px solid #dedede;
+	font-size: 16px;
+	font-weight: bold;
+	color: #222;
+}
+
+.board-main {
+	position: relative;
+	top: 100px;
+}
+
+.board-main h4 {
+	font-size: 20px;
+	font-weight: bold;
+}
+
+.board-main table {
+	width: 100%;
+	border-collapse: collapse;
+}
+
+.board-main table td {
+	border: 1px solid black;
+	padding: 5px;
+}

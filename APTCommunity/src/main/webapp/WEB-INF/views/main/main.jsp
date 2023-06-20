@@ -8,33 +8,45 @@
 <title>메인</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/custom.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/mainpage.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/common.js"></script>
 <script type="text/javascript">
-$('#loginBtn').click(function(){
+	$(function(){
+		$('#login_form').submit(function(event) {
+			event.preventDefault();
 
-	// dong과 ho 값을 연결
-	let dongho = $('#dong').val() + '-' + $('#ho').val();
-	
-	//서버와의 통신
-	$.ajax({
-		url:'${pageContext.request.contextPath}/member/login.do',
-		type:'post',
-		data: { id: dongho, passwd: passwd},
-		dataType:'json',
-		success:function(param){
-				
-		},
-		error:function(){
-			alert('네트워크 오류 발생');
-		}
+			// dong과 ho 값을 연결
+			let dongho = $('#dong').val() + '-' + $('#ho').val();
+			
+			//서버와의 통신
+			$.ajax({
+				type : 'post',
+				url : '${pageContext.request.contextPath}/member/ajaxlogin.do',
+				data : {
+					dongho : dongho,
+					passwd : $('#passwd').val()
+				},
+				dataType : 'json',
+				success : function(param) {
+					if(param.result == 'success'){
+						location.href='main.do';
+						$('#login_form').append('<span class="loading">로그인 중...</span>');
+					}else if(param.result == 'failure'){
+						alert('아이디 또는 비밀번호가 틀렸습니다.');
+						history.go(-1);
+					}
+				},
+				error : function() {
+					alert('네트워크 오류 발생');
+				}
+			});
+		});//end of submit
 	});
-	
-});//end of click
 </script>
 </head>
 <body>
-	<div id="wrap">
+<div id="wrap">
 		<jsp:include page="/WEB-INF/views/common/header.jsp" />
 		<div class="inner">
 		<div id="container" class="inner">
@@ -52,27 +64,61 @@ $('#loginBtn').click(function(){
 				<span>쌍용아파트</span>에 오신 것을 환영합니다.
 			</p>
 			
-			<div class="loginBox">
-				<form class="submit" method="post">
+      		<div class="loginBox">
+		        <form id="login_form" >
 				<p>
-					<input type="text" class="login_input_text" id="member_dong"
+					<input type="text" class="login_input_text" id="dong"
 						placeholder="동" maxlength="10">
 				</p>
 				<p>
-					<input type="text" class="login_input_text" id="member_ho"
+					<input type="text" class="login_input_text" id="ho"
 						placeholder="호" maxlength="10">
 				</p>
 				<p>
-					<input type="password" class="login_input_text" id="member_passwd"
+					<input type="password" class="login_input_text" id="passwd"
 						placeholder="비밀번호" maxlength="30">
 				</p>
-				<input type="submit" value="로그인" class="loginBtn">
+				<input type="submit" value="로그인" class="loginBtn" id="loginBtn">
+				<input type="button" value="회원가입" class="registerBtn" id="registerBtn" 
+					onclick="location.href='<c:url value="/member/registerUserAgree.do" />'">
 				</form>
 			</div>
-			
 		</div>
-
+		
+		<div class="mphnum_box">
+			<input type="button" value="관리사무소 전화번호" id="mphnum">
+			<input type="button" value="팩스 번호" id="faxnum">
+		</div>
+		<p></p>
+		<div class="board-main">
+		<h4>공지사항</h4>
+		<table>
+			<c:forEach var="notice" 
+			              items="${noticelist}">
+				<tr>
+					<td><a href="${pageContext.request.contextPath}/notice/detail.do?no_num=${notice.no_num}">${notice.title}</a></td>
+					<td>${notice.dongho}</td>
+					<td>${notice.reg_date}</td>
+				</tr>
+			</c:forEach>
+		</table>
+		
+		<h4>자유 게시판</h4>
+		<table>
+			<c:forEach var="board" 
+			              items="${boardList}">
+				<tr>
+					<td><a href="${pageContext.request.contextPath}/board/detail.do?board_num=${board.board_num}">${board.title}</a></td>
+					<td>${board.dongho}</td>
+					<td>${board.reg_date}</td>
+					<td>${board.hit}</td>
+				</tr>
+			</c:forEach>
+		</table>
+		
+		</div>
 	<!-- 내용 끝 -->
+	</div>
 	<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 </div>
 </body>

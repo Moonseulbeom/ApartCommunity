@@ -1,57 +1,173 @@
+/* main_Loginbox */
+#main {
+	margin-top: 35px;
+}
+
+.mLogin_box {
+	border: 1px solid #dcdcdc;
+	float: left;
+	height: 100%;
+}
+
+.mLogout {
+	padding: 20px 20px 20px;
+	width: 269px;
+}
+
+.loginGreetingt {
+	margin-bottom: 13px;
+	font-size: 14px;
+	font-weight: bold;
+}
+
+.loginGreetingt span {
+	color: #3264bf
+}
+
+.mLogin_box .login_input_text {
+	width: 251px;
+	padding: 6px 8px;
+	margin-bottom: 6px;
+	border-radius: 3px;
+	background-color: #f5f5f5;
+	font-size: 12px;
+	line-height: 22px;
+}
+
+.mLogin_box .login_checkbox {
+	padding: 6px 8px;
+	margin-bottom: 6px;
+	border-radius: 3px;
+	background-color: #f5f5f5;
+	font-size: 12px;
+	line-height: 22px;
+}
+
+.mLogin_box .loginBtn {
+	width: 269px;
+	height: 40px;
+	margin-bottom: 15px;
+	border: none;
+	border-radius: 3px;
+	color: #fff;
+	line-height: 42px;
+	text-align: center;
+	background-color: #3264bf
+}
+
+.loginHelp li {
+	padding: 10px 0;
+	border-top: 1px solid #dedede;
+	position: relative;
+}
+
+.loginHelp li:last-child {
+	padding-bottom: 0;
+}
+
+.loginHelp li span {
+	font-family: 'dotum';
+	letter-spacing: -2px;
+	padding-left: 10px;
+	color: #888;
+	background: url(../../img/homepage/dot_ico.jpg) 0 center no-repeat;
+}
+
+.loginHelp li a {
+	position: absolute;
+	right: 0;
+	display: inline-block;
+	width: 64px;
+	height: 20px;
+	background: url(../../img/homepage/login_help.jpg) 0 0 no-repeat;
+}
+
+.loginHelp li .join_btn {
+	background-position: 0 -22px;
+}
+
+.storelink {
+	float: left;
+	width: 311px; /*height:114px;*/
+	border: 0;
+	text-align: center;
+}
+
+.storelink a {
+	display: block;
+}
+
+.storelink img {
+	margin: 20px 0;
+}
+/*.storelink a{display:inline-block;padding-top:20px;}*/
+/*200413 하정은 앱다운로드 영역 추가*/
+.app-link-sms {
+	border: 0;
+	width: 100%;
+	cursor: pointer;
+}
+
+.app-link-sms img {
+	width: 100%;
+	height: auto;
+	margin: 0 !important;
+}
+
 .login_box {
-  width: 500px;
-  margin: 0 auto;
-  padding: 20px;
-  background-color: #fff;
-  border-radius: 5px;
-  box-shadow: 0 0 5px 0 #ccc;
+	width: 500px;
+	margin: 0 auto;
+	padding: 20px;
+	background-color: #fff;
+	border-radius: 5px;
+	box-shadow: 0 0 5px 0 #ccc;
 }
 
 .login_box h2 {
-  margin-top: 0;
-  font-size: 18px;
-  font-weight: normal;
+	margin-top: 0;
+	font-size: 18px;
+	font-weight: normal;
 }
 
 .login_box ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
 }
 
 .login_box li {
-  margin-bottom: 10px;
+	margin-bottom: 10px;
 }
 
 .login_box input {
-  width: 100%;
-  height: 40px;
-  border: 1px solid #ccc;
-  border-radius: 3px;
-  padding: 10px;
-  font-size: 16px;
+	width: 100%;
+	height: 40px;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+	padding: 10px;
+	font-size: 16px;
 }
 
 .login_box input[type="submit"] {
-  background-color: #0088cc;
-  color: #fff;
-  border: none;
-  cursor: pointer;
-  font-size: 18px;
-  padding: 10px 20px;
-  border-radius: 5px;
+	background-color: #0088cc;
+	color: #fff;
+	border: none;
+	cursor: pointer;
+	font-size: 18px;
+	padding: 10px 20px;
+	border-radius: 5px;
 }
 
 .login_box input[type="button"] {
-  background-color: #ccc;
-  color: #000;
-  border: none;
-  cursor: pointer;
-  font-size: 18px;
-  padding: 10px 20px;
-  border-radius: 5px;
+	background-color: #ccc;
+	color: #000;
+	border: none;
+	cursor: pointer;
+	font-size: 18px;
+	padding: 10px 20px;
+	border-radius: 5px;
 }
 
 .align-center {
-  text-align: center;
+	text-align: center;
 }
