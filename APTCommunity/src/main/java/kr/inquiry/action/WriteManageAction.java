@@ -24,8 +24,7 @@ public class WriteManageAction implements Action{
 		
 		HttpSession session = request.getSession();
 		Integer user_num = 
-				(Integer)session.getAttribute(
-						              "user_num");
+				(Integer)session.getAttribute("user_num");
 		if(user_num==null) {//로그인 되지 않은 경우
 			mapAjax.put("result", "logout");
 		}else {//로그인 된 경우
@@ -36,11 +35,9 @@ public class WriteManageAction implements Action{
 					         new InquiryManageVO();
 			manage.setMem_num(user_num);//회원번호(댓글 작성자)
 			manage.setContent(
-				request.getParameter("content"));
+				request.getParameter("re_content"));
 			manage.setIp(request.getRemoteAddr());
-			manage.setIn_num(Integer.parseInt(
-						        request.getParameter(
-								        "in_num")));
+			manage.setIn_num(Integer.parseInt(request.getParameter("in_num")));
 			InquiryDAO dao = InquiryDAO.getInstance();
 			dao.insertManageInquiry(manage);
 			

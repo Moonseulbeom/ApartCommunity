@@ -209,6 +209,30 @@ public class InquiryDAO {
 		return inquiry;
 	}
 	//파일 삭제
+	public void deleteFile(int in_num)
+            				throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+		try {
+			//커넥션풀로부터 커넥션 할당
+			conn = DBUtil.getConnection();
+			//SQL문 작성
+			sql = "UPDATE inquiry SET filename='' "
+					+ "WHERE in_num=?";
+			//PreparedStatement 객체 생성
+			pstmt = conn.prepareStatement(sql);
+			//?에 데이터 바인딩
+			pstmt.setInt(1, in_num);
+			//SQL문 실행
+			pstmt.executeUpdate();
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			//자원정리
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+	}
 	
 	//글 수정
 	public void updateInquiry(InquiryVO inquiry)
@@ -311,9 +335,8 @@ public class InquiryDAO {
 		//PreparedStatement 객체 생성
 		pstmt = conn.prepareStatement(sql);
 		//?에 데이터 바인딩
-		pstmt.setString(1, 
-				inquiryManage.getContent());
-		pstmt.setString(2, 
+		pstmt.setString(1,inquiryManage.getContent());
+		pstmt.setString(2,
 				inquiryManage.getIp());
 		pstmt.setInt(3, inquiryManage.getMem_num());
 		pstmt.setInt(4, inquiryManage.getIn_num());
@@ -447,7 +470,60 @@ public class InquiryDAO {
 	}
 	
 	//댓글 수정
+	public void updateManage(InquiryManageVO inquiry)
+								throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+
+		try {
+			//커넥션풀로부터 커넥션 할당
+			conn = DBUtil.getConnection();
+			//SQL문 작성
+			sql = "UPDATE inquiry_manage SET "
+					+ "content=?,"
+					+ "modify_date=SYSDATE,"
+					+ "ip=? WHERE re_num=?";
+			//PreparedStatement 객체 생성
+			pstmt = conn.prepareStatement(sql);
+			//?에 데이터 바인딩
+			pstmt.setString(1, inquiry.getContent());
+			pstmt.setString(2, inquiry.getIp());
+			pstmt.setInt(3, inquiry.getRe_num());
+			//SQL문 실행
+			pstmt.executeUpdate();
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+	}
 	
 	
 	//댓글 삭제
-}
+	public void deleteManage(int re_num)
+            			throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+
+		try {
+			//커넥션풀로부터 커넥션 할당
+			conn = DBUtil.getConnection();
+			//SQL문 작성
+			sql = "DELETE FROM inquiry_manage "
+					+ "WHERE re_num=?";
+			//PreparedStatement 객체 생성
+			pstmt = conn.prepareStatement(sql);
+			//?에 데이터를 바인딩
+			pstmt.setInt(1, re_num);
+			//SQL문 실행
+			pstmt.executeUpdate();
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+	}
+
+	}

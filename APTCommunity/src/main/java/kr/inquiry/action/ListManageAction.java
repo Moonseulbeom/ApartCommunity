@@ -32,8 +32,7 @@ public class ListManageAction implements Action{
 		
 		int in_num = 
 				Integer.parseInt(
-						request.getParameter(
-								 "in_num"));
+						request.getParameter("in_num"));
 		InquiryDAO dao = InquiryDAO.getInstance();
 		int count = 
 			dao.getManageInquiryCount(in_num);
