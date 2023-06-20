@@ -11,8 +11,26 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/common.js"></script>
 <script type="text/javascript">
-//ajax 통신 이용 로그인 박스에 <form>씌우기
+$('#loginBtn').click(function(){
 
+	// dong과 ho 값을 연결
+	let dongho = $('#dong').val() + '-' + $('#ho').val();
+	
+	//서버와의 통신
+	$.ajax({
+		url:'${pageContext.request.contextPath}/member/login.do',
+		type:'post',
+		data: { id: dongho, passwd: passwd},
+		dataType:'json',
+		success:function(param){
+				
+		},
+		error:function(){
+			alert('네트워크 오류 발생');
+		}
+	});
+	
+});//end of click
 </script>
 </head>
 <body>
@@ -35,7 +53,7 @@
 			</p>
 			
 			<div class="loginBox">
-				<form>
+				<form class="submit" method="post">
 				<p>
 					<input type="text" class="login_input_text" id="member_dong"
 						placeholder="동" maxlength="10">
@@ -48,7 +66,7 @@
 					<input type="password" class="login_input_text" id="member_passwd"
 						placeholder="비밀번호" maxlength="30">
 				</p>
-				<button type="button" class="loginBtn">로그인</button>
+				<input type="submit" value="로그인" class="loginBtn">
 				</form>
 			</div>
 			
