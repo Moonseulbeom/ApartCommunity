@@ -55,7 +55,7 @@
 				<li>
 				<div class="page-right">
 					<form id="search_form" method="get" action="boardList.do">
-						<div class="notice-main-search">
+						<div class="commu-main-search">
 							<b> 자유게시판 목록 </b>
 							<ul class="search">
 								<li>
@@ -71,7 +71,7 @@
 							</ul>
 						</div>
 					</form>
-					<div class="notice-main-list">
+					<div class="commu-main-list">
 						<c:if test="${ count > 1 || !empty count }">
 						<ul>
 							<li>글번호</li>
@@ -91,7 +91,7 @@
 						</c:forEach>
 						</c:if>
 						<c:if test="${ count < 1 || empty count }">
-							<div class="result-notice-display">
+							<div class="result-commu-display">
 								게시글이 없습니다.
 							</div>
 							<hr color="#edeff0" noshade="noshade">
@@ -112,9 +112,6 @@
 						<span>
 							<a href="location.href='${pageContext.request.contextPath}/main/main.do'">메인페이지</a>
 						</span>
-					</div>
-					<div class="write-btn">
-						
 					</div>
 				</div>
 				</li>
