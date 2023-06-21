@@ -40,6 +40,7 @@ public class FixListReplyAction implements Action{
 		
 		List<FixReplyVO> list = null;
 		if (count > 0) {
+			System.out.println("댓글 페이지 스타트 : " + page.getStartRow() + "\n 페이지 끝 : " + page.getEndRow() + "\n 게시글의 번호 : " + fix_num);
 			list = dao.getListFixReply(page.getStartRow(), page.getEndRow(), fix_num);
 		}else {
 			list = Collections.emptyList();

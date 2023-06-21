@@ -342,7 +342,7 @@ public class FixDAO {
 			conn = DBUtil.getConnection();
 			
 			//SQL문 작성
-			sql = "SELECT * from zboard_reply WHERE re_num=? ";
+			sql = "SELECT * from fix_reply WHERE re_num=? ";
 			
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, re_num);
@@ -454,7 +454,7 @@ public class FixDAO {
 					reply.setRe_num(rs.getInt("re_num"));
 					//날짜 -> 1분전, 1시간전, 1일전 형식의 문자열로 변환
 					reply.setReg_date(DurationFromNow.getTimeDiffLabel(rs.getString("reg_date")));
-					if (rs.getString("re_modifydate")!=null) {
+					if (rs.getString("modify_date")!=null) {
 						reply.setModify_date(DurationFromNow.getTimeDiffLabel(rs.getString("modify_date")));
 					}
 					reply.setContent(StringUtil.useBrNoHtml(rs.getString("content")));

@@ -27,8 +27,12 @@
 							<div class="sidebar">
 								<div class="mem-service">
 									<p>000동 000호 주민</p>
-									<button onclick="location.href='#'">MY 페이지</button>
-									<button onclick="location.href='#'">로그아웃</button>	
+									<div class="service-myPage-button">
+										<a href="${pageContext.request.contextPath}/member/myPage.do">MY 페이지</a>
+									</div>
+									<div class="service-logout-button">
+										<a href="${pageContext.request.contextPath}/member/logout.do">로그아웃</a>
+									</div>
 								</div>
 								<h2>예약/신청</h2>
 								<div class="menu">

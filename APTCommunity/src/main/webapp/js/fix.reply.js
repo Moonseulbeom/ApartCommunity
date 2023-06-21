@@ -10,7 +10,7 @@ $(function(){
 		$('#loading').show();
 		
 		$.ajax({
-			url:'fixCommentList.do',
+			url:'fixListReply.do',
 			type:'post',
 			data:{pageNum:pageNum,fix_num:$('#fix_num').val()},
 			dataType:'json',
@@ -26,10 +26,10 @@ $(function(){
 				}
 				$(param.list).each(function(index,item){
 					let output = '<div class="comment">';
-					output += '<h4>'+item.id+'</h4>';
+					output += '<h4> 작성자 | '+item.dongho+'</h4>';
 					output += '<div class="sub-item">';
 					output += '<p>'+item.content+'</p>';
-					
+					output += '<div class="sub-down">';
 					//날짜
 					if(item.modify_date){
 						output += '<span class="modify-date">최근 수정일 : '+item.modify_date+'</span>';
@@ -39,13 +39,12 @@ $(function(){
 					
 					//수정 삭제 버튼처리
 					//로그인한 회원번호와 작성자의 회원번호가 일치 여부 체크
-					if(param.user_num == comment.mem_num){
+					if(param.user_num == item.mem_num){
 						//로그인한 회원번호와 작성자의 회원번호가 일치
 						output += ' <input type="button" data-renum="'+item.re_num+'" value="수정" class="modify-btn">';
 						output += ' <input type="button" data-renum="'+item.re_num+'" value="삭제" class="delete-btn">';
 					}
-					
-					output += '<hr size="1" noshade width="100%">';
+					output += '</div>';
 					output += '</div>';
 					output += '</div>';
 					

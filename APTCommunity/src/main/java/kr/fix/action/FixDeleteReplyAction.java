@@ -23,6 +23,8 @@ public class FixDeleteReplyAction implements Action{
 		//전송된 데이터 반환
 		int re_num = Integer.parseInt(request.getParameter("re_num"));
 		
+		
+		System.out.println(re_num);
 		Map<String,String> mapAjax = new HashMap<String,String>();
 		FixDAO dao = FixDAO.getInstance();
 		FixReplyVO db_reply = dao.getFixReply(re_num);

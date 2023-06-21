@@ -37,8 +37,12 @@
 					<div class="sidebar">
 						<div class="mem-service">
 							<p>000동 000호 주민</p>
-							<button onclick="location.href='#'">MY 페이지</button>
-							<button onclick="location.href='#'">로그아웃</button>	
+							<div class="service-myPage-button">
+								<a href="${pageContext.request.contextPath}/member/myPage.do">MY 페이지</a>
+							</div>
+							<div class="service-logout-button">
+								<a href="${pageContext.request.contextPath}/member/logout.do">로그아웃</a>
+							</div>
 						</div>
 						<h2>예약/신청</h2>
 						<div class="menu">
@@ -53,18 +57,26 @@
 				<!-- 오른쪽 -->
 				<li>
 				<div class="page-right">
-					<div class="fix-main-img">
+					<div class="main-img">
 						<img alt="" src="${pageContext.request.contextPath}/img/sideMenuTopImg.jpg">
 					</div>
-					<form id="search_form" method="get" action="fixList.do">
-						<div class="fix-main-search">
-							<b>하자보수신청 목록</b>
-							<input type="hidden" name="keyfield" value="1">
-							<input type="search" size="16" name="keyword" id="keyword" value="${param.keyword}" placeholder="제목으로 검색">
-						</div>
-					</form>
-					<div class="fix-main-list">
-						<c:if test="${ count > 1 || !empty count }">
+					<!-- 검색 시작 -->
+					<div class="main-search">
+						<b>하자보수 목록</b>
+						<form id="search_form" method="get" action="fixList.do">
+							<ul>
+								<li>
+									<input type="hidden" name="keyfield" value="1">
+									<input type="search" size="16" name="keyword" id="keyword" value="${param.keyword}" placeholder="제목으로 검색">
+								</li>
+								<li>
+									<input type="submit" value="검색">
+								</li>
+							</ul>
+						</form>
+					</div>
+					<!-- 검색 끝 -->
+					<div class="main-list">
 						<ul>
 							<li>글번호</li>
 							<li>제목</li>
@@ -72,29 +84,61 @@
 							<li>작성일</li>
 						</ul>
 						<hr color="#edeff0" noshade="noshade">
-						<c:forEach var="fix" items="${list}">
-						<ul>
-							<li>${fix.fix_num}</li>
-							<li><a href="fixDetail.do?fix_num=${fix.fix_num}">${fix.title}</a></li>
-							<li>${fix.dongHo}</li>
-							<li>${fix.reg_date}</li>
-						</ul>
-						<hr color="#edeff0" noshade="noshade">
+						<!-- 상단 고정 시작 -->
+						<div class="board-article-fixed">
+						<table class="list-fixed">
+						<c:forEach var="fixed" items="${ fixedList }">
+							<tr>
+								<td colspan="2" class="td-article">
+									<div class="board-number-fixed">
+										<span>공지</span>
+									</div>
+									<div class="board-list">
+										<a class="article-fixed" href="noticeDetail.do?no_num=${ fixed.no_num }">${ fixed.title }</a>
+									</div>
+								</td>
+								<td class="board-name">관리자</td>
+								<td class="board-date">${ fixed.reg_date }</td>
+							</tr>
 						</c:forEach>
-						</c:if>
+						</table>
+						</div>
+						<!-- 상단 고정 끝 -->
+						<!-- 게시글 없는 경우 -->
 						<c:if test="${ count < 1 || empty count }">
 							<div class="result-fix-display">
 								게시글이 없습니다.
 							</div>
 							<hr color="#edeff0" noshade="noshade">
 						</c:if>
+						<!-- 게시글 있을때 목록 시작 -->
+						<c:if test="${ count > 0 }">
+							<div class="board-article">
+								<table class="list">
+									<c:forEach var="fix" items="${list}">
+										<tr>
+											<td colspan="2" class="td-article">
+												<div class="board-number">
+													${fix.fix_num}
+												</div>
+												<div class="board-list">
+													<a class="article" href="fixDetail.do?fix_num=${fix.fix_num}">${fix.title}</a>
+												</div>
+											</td>
+											<td class="board-name">${fix.dongHo}</td>
+											<td class="board-date">${fix.reg_date}</td>
+										</tr>
+									</c:forEach>
+								</table>
+							</div>
+							<div class="page-count">${page}</div>
+						</c:if>
+						<!-- 게시글 목록 끝 -->
 					</div>
-					<div class="notice-page-count">${page}</div>
 					<div class="write-btn">
 						<span>
 							<a href="writeFixForm.do">
-							<img alt="" src="${pageContext.request.contextPath}/img/write_btn.png">
-							글쓰기
+								<img alt="" src="${pageContext.request.contextPath}/img/write_btn.png">글쓰기
 							</a>
 						</span>
 					</div>

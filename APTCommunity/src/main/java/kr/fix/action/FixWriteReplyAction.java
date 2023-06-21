@@ -28,9 +28,11 @@ public class FixWriteReplyAction implements Action{
 	         //전송된 데이터 인코딩 처리
 	         request.setCharacterEncoding("utf-8");
 	         
+	         System.out.println("유저 넘버 : " + user_num + "\n 컨텐츠 : " + request.getParameter("comment_content"));
+	         
 	         FixReplyVO reply = new FixReplyVO();
 	         reply.setMem_num(user_num);//회원번호(댓글 작성자)
-	         reply.setContent(request.getParameter("content"));
+	         reply.setContent(request.getParameter("comment_content"));
 	         reply.setIp(request.getRemoteAddr());
 	         reply.setFix_num(Integer.parseInt(request.getParameter("fix_num")));
 	         
