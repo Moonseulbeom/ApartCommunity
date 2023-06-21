@@ -91,6 +91,47 @@
 .notice-main-list li:nth-child(2){
 	width: 400px;
 }
+
+/*공지사항 고정 게시글*/
+.notice-list-fixed td{
+	display: table-cell;
+    vertical-align: inherit;
+    background-color: #f7f7f7;
+} 
+.board-article-fixed td{
+	height: 28px;
+    padding: 4px 7px;
+    border-bottom: 1px solid #f2f2f2;
+} 
+.notice-list-fixed{
+	width: 100%;
+}
+.notice-list-fixed td{
+	padding-left: 5px;
+    padding-right: 18px;
+}
+.article-fixed{
+	line-height: 18px;
+    color: #ff4e59;;
+    font-weight: bold;
+}
+.notice-list-fixed .board-number-fixed{
+	width: 60px;
+	color: #ff4e59;;
+    font-weight: bold;
+	display: table-cell;
+ 	padding: 0 13px;
+ 	vertical-align: middle;
+ 	text-align: center;
+}
+.notice-list-fixed .board-number-fixed span{
+	color: #ff4e59;;
+	border: 1px solid #ffc6c9;
+	padding: 1px 14px;
+	background-color: #ffe3e4;
+	border-radius: 5px;
+}
+
 /*공지사항 게시글 리스트*/
 .notice-list td{
 	display: table-cell;
@@ -118,6 +159,7 @@
 	display: table-cell;
  	padding: 0 33px;
  	vertical-align: middle;
+ 	text-align: center;
 }
 .board-list{
     display: table-cell;

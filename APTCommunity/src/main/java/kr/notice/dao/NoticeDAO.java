@@ -75,6 +75,39 @@ public class NoticeDAO
         }
         return count;
     }
+    //상단 고정 게시글
+    public List<NoticeVO> getFixedList( int dept, int start, int end) throws Exception{
+    	Connection conn = null;
+    	PreparedStatement pstmt = null;
+    	ResultSet rs = null;
+    	String sql = null;
+    	List<NoticeVO> list = null;
+    	
+    	try {
+			conn = DBUtil.getConnection();
+			sql = "SELECT * FROM ( SELECT a.*, rownum rnum FROM ( SELECT * FROM notice WHERE dept = ? AND status = 1"
+					+ " ORDER BY no_num DESC )a) WHERE rnum >= ? AND rnum <= ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, dept);
+			pstmt.setInt(2, start);
+			pstmt.setInt(3, end);
+			
+			rs = pstmt.executeQuery();
+			list = new ArrayList<NoticeVO>();
+			while(rs.next()) {
+				NoticeVO notice = new NoticeVO();
+                notice.setNo_num(rs.getInt("no_num"));
+                notice.setTitle(rs.getString("title"));
+                notice.setReg_date(rs.getDate("reg_date"));
+                list.add(notice);
+			}
+		} catch (Exception e) {
+			throw new Exception(e);
+		} finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+    	return list;
+    }
     //게시물 리스트 
     public List<NoticeVO> getList( int dept,  String keyword,  int start,  int end) throws Exception {
         Connection conn = null;
@@ -101,7 +134,7 @@ public class NoticeDAO
             rs = pstmt.executeQuery();
             list = new ArrayList<NoticeVO>();
             while (rs.next()) {
-                 NoticeVO notice = new NoticeVO();
+                NoticeVO notice = new NoticeVO();
                 notice.setNo_num(rs.getInt("no_num"));
                 notice.setTitle(rs.getString("title"));
                 notice.setReg_date(rs.getDate("reg_date"));

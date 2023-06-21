@@ -25,12 +25,16 @@ public class NoticeListAction implements Action
         int dept = Integer.parseInt(request.getParameter("dept"));
         
         request.setCharacterEncoding("utf-8");
+        NoticeDAO dao = NoticeDAO.getInstance();
+        //상단 게시글 목록
+        List<NoticeVO> fixedList = dao.getFixedList(dept, 1, 5);
+        
+        //게시글 목록
         String pageNum = request.getParameter("pageNum");
         if (pageNum == null) {
             pageNum = "1";
         }
          String keyword = request.getParameter("keyword");
-         NoticeDAO dao = NoticeDAO.getInstance();
          int count = dao.getCount(dept, keyword);
          
         PageUtil2 page = new PageUtil2(Integer.toString(dept), keyword, Integer.parseInt(pageNum), count, 10, 10, "noticeList.do?dept=" + dept);
@@ -38,7 +42,7 @@ public class NoticeListAction implements Action
         if (count > 0) {
             list = dao.getList(dept, keyword, page.getStartRow(), page.getEndRow());
         }
-        
+        request.setAttribute("fixedList", fixedList);
         request.setAttribute("dept", dept);
         request.setAttribute("count", count);
         request.setAttribute("list", list);

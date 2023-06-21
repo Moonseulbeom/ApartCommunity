@@ -64,7 +64,7 @@
 				<form action="modifyNoticeForm.do" method="post">
 				<input type="hidden" name="no_num" value="${ notice.no_num }">
 				<input type="submit" value="수정" class="write-btn">
-				<input type="button" value="삭제" onclick="location.href='noticeList.do'" class="write-btn" id="delete_btn">
+				<input type="button" value="삭제" class="write-btn" id="delete_btn">
 				<script type="text/javascript">
 					let delete_btn = 
 						  document.getElementById('delete_btn');

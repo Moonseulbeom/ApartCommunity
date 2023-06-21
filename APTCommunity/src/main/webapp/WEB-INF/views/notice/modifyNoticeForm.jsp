@@ -27,6 +27,8 @@
 			}
 			if($('#check').is(':checked')==true){
 				$('#status').val(1);
+			}else{
+				$('#status').val(0);
 			}
 		});
 		$(document).on('keyup','textarea',function(){

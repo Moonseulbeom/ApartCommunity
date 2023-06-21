@@ -51,6 +51,7 @@
 				<c:if test="${ dept == 3 }">
 					<b>건의사항</b>
 				</c:if>
+				<!-- 검색 시작 -->
 				<form id="search_form" action="noticeList.do">
 				<ul>
 					<li>
@@ -61,8 +62,8 @@
 						<input type="submit" value="검색">
 					</li>
 				</ul>
-				
 				</form>
+				<!-- 검색 끝 -->
 			</div>
 			<div class="notice-main-list">
 				<ul>
@@ -71,28 +72,35 @@
 					<li>작성자</li>
 					<li>작성일</li>
 				</ul>
-				<hr color="#edeff0" noshade="noshade">				
+				<hr color="#edeff0" noshade="noshade">
+				<!-- 고정 게시글 목록 시작 -->
+				<div class="board-article-fixed">
+				<table class="notice-list-fixed">
+				<c:forEach var="fixed" items="${ fixedList }">
+					<tr>
+						<td colspan="2" class="td-article">
+							<div class="board-number-fixed">
+								<span>공지</span>
+							</div>
+							<div class="board-list">
+								<a class="article-fixed" href="noticeDetail.do?no_num=${ fixed.no_num }">${ fixed.title }</a>
+							</div>
+						</td>
+						<td class="board-name">관리자</td>
+						<td class="board-date">${ fixed.reg_date }</td>
+					</tr>
+				</c:forEach>
+				</table>
+				</div>
+				<!-- 고정 게시글 목록 시작 -->
+				<!-- 게시글이 없을 때 -->				
 				 <c:if test="${ count < 1 || empty count }">
 					<div class="result-notice-display">
 						게시글이 없습니다.
 					</div>
 					<hr color="#edeff0" noshade="noshade">
 				</c:if>
-				
-				<%-- <c:if test="${ count > 0 }">
-				<table>
-					<c:forEach var="notice" items="${ list }">
-					<tr>
-						<td>${ notice.no_num }</td>
-						<td>${ notice.title }</td>
-						<td>관리자</td>
-						<td>${ notice.reg_date }</td>
-					</tr>
-					<hr color="#edeff0" noshade="noshade">	
-					</c:forEach>
-				</table>
-				</c:if> --%>
-				
+				<!-- 게시글 목록 시작 -->
 				<c:if test="${ count > 0 }">
 				<div class="board-article">
 				<table class="notice-list">
@@ -114,6 +122,7 @@
 				</div>
 				<div class="notice-page-count">${page}</div>
 				</c:if>
+				<!-- 게시글 목록 끝 -->
 			</div>
 			<c:if test="${ user_auth == 9 }">
 			<div class="write-btn">
