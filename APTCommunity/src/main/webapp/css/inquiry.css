@@ -20,6 +20,7 @@
 	width: 250px;
 }
 .sidebar h2{
+	padding-left: 20px;
 	padding-bottom: 5px;
 	border-bottom: 2px solid #c5c6c7;
 }
@@ -38,105 +39,10 @@
 	margin-top: 20px; 
 }
 .menu li{
+	margin-left:40px;
 	padding-bottom: 15px;
-	text-align: center;
+	text-align: left;
 	font-size: 1.2em;
-	list-style: none;
-}
-
-/*공지사항 상단*/
-.notice-main-img img{
-	width: 700px;
-	height: 285px;
-}
-.notice-main-search{
-	margin-top:30px;
-	border-top: 2px solid #c5c6c7;
-	border-bottom: 2px solid #c5c6c7;
-	height: 50px;
-	font-size: 1.5em;
-	display: flex;
-	align-items: center;
-}
-input[type="search"]{
-	margin-left: 330px;
-	width: 160px;
-	height: 30px;
-	text-align: right;
-}
-/*공지사항 게시글 상단*/
-.notice-main-list ul{
-	margin: 10px 0;
-}
-
-.notice-main-list li{
-	width: 100px;
-	height: 30px;	
-	text-align: center;
-	font-size: 1.1em;
-}
-.notice-main-list li:nth-child(2){
-	width: 400px;
-}
-/*공지사항 게시글 리스트*/
-td{
-	display: table-cell;
-    vertical-align: inherit;
-} 
-.board-article td{
-	height: 28px;
-    padding: 4px 7px;
-    border-bottom: 1px solid #f2f2f2;
-} 
-.notice-list{
-	width: 100%;
-}
-.notice-list td{
-	padding-left: 12px;
-    padding-right: 18px;
-}
-.td-article{
-	width: 400px;
-	padding-left: 12px;
-    padding-right: 18px;
-}
-.board-number{
-	width: 20px;
-	display: table-cell;
- 	padding: 0 33px;
- 	vertical-align: middle;
-}
-.board-list{
-    display: table-cell;
-    padding-top: 1px;
-    padding-left: 30px;
-}
-.article{
-	line-height: 18px;
-    color: #333;
-}
-.board-date{
-	text-align:center;
-}
-
-
-/*게시글이 없을 경우*/
-.result-notice-display{
-	height: 50px;
-	padding-top:25px;	
-	text-align: center;
-}
-/*버튼*/
-.write-btn{
-	margin: 20px 15px 0 0;
-	text-align: right;
-}
-.write-btn span{
-	padding: 7px 5px;
-	font-size: 1.1em;
-	border: 1px solid #c5c6c7;
-}
-.write-btn span img{
-	width: 18px;
-	height: 18px;
+	width: 250px;
+	list-style:circle;
 }
