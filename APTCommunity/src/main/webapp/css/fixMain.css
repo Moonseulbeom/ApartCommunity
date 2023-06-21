@@ -181,12 +181,12 @@
    height: 50px;
    margin: 10px 0px;
 }
-#comment_first, div#mre_first{
+#comment_first, div#m_first{
    float:left; 
    width: 70%;
    margin-bottom: 10px;
 }
-#comment_second, div#mre_second{
+#comment_second, div#m_second{
    float: right;
    width: 30%;
    margin-bottom: 10px;

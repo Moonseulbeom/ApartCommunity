@@ -11,6 +11,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/custom.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/common.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/fix.reply.js"></script>
 </head>
 <body>
 <div id="wrap">
@@ -47,7 +48,7 @@
 									<div class="detail-page-title">
 										<ul>
 											<li>
-												<a href="fix/fixList.do">하자보수 신청</a>
+												<a href="fixList.do">하자보수 신청</a>
 											</li>
 											<li><b>${ fix.title }</b></li>
 											<li>
@@ -93,14 +94,8 @@
 							</div>
 							<!-- 댓글 끝 -->
 							<div class="detail-btn">
-								<c:if test="${user_auth == 9 }">
-								<div class="detail-btn-div">
-									<input type="submit" value="수정" class="write-btn">
-									<input type="button" value="삭제" onclick="location.href='fixList.do'" class="write-btn">
-								</div>
-								</c:if>
 								<div class="detail-btn-div2">
-									<input type="button" value="목록" class="bottom-btn" onclick="location.href='fixList.do'" id="fixDelete_btn">
+									<input type="button" value="목록" class="bottom-btn" onclick="location.href='fixList.do'" id="fixList_btn">
 									<%-- 로그인 한 회원번호와 작성자 회원번호가 일치해야 수정, 삭제 가능 --%>
 								    <c:if test="${ user_num == fix.mem_num || user_auth == 9}">
 								    <input type="button" value="수정" class="bottom-btn" onclick="location.href='fixUpdateForm.do?fix_num=${fix.fix_num}'">

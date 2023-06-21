@@ -60,7 +60,7 @@
 						<div class="fix-main-search">
 							<b>하자보수신청 목록</b>
 							<input type="hidden" name="keyfield" value="1">
-							<input type="search" size="16" name="keyword" id="keyword" value="${param.keyword}" placeholder="검색어를 입력하세요.">
+							<input type="search" size="16" name="keyword" id="keyword" value="${param.keyword}" placeholder="제목으로 검색">
 						</div>
 					</form>
 					<div class="fix-main-list">
@@ -89,6 +89,7 @@
 							<hr color="#edeff0" noshade="noshade">
 						</c:if>
 					</div>
+					<div class="notice-page-count">${page}</div>
 					<div class="write-btn">
 						<span>
 							<a href="writeFixForm.do">

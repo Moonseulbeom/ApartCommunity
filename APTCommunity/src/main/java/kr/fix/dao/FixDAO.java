@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import kr.board.vo.BoardReplyVO;
 import kr.fix.vo.FixReplyVO;
 import kr.fix.vo.FixVO;
 import kr.util.DBUtil;
@@ -39,6 +40,8 @@ public class FixDAO {
 			//SQL문 작성
 			sql = "SELECT COUNT(*) FROM fix f "
 				+ "JOIN member m USING(mem_num) " + sub_sql;
+			
+			
 			//PreparedStatement 객체 생성
 			pstmt = conn.prepareStatement(sql);
 			if(keyword != null && !"".equals(keyword)) {
@@ -73,17 +76,20 @@ public class FixDAO {
 			conn = DBUtil.getConnection();
 			
 			if(keyword != null && !"".equals(keyword)) {
-				if(keyfield.equals("1")) sub_sql += "WHERE f.title LIKE ?";
+				sub_sql += "WHERE f.title LIKE ?";
 			}
 			
 			//SQL문 작성
 			sql = "SELECT mem_num, fix_num, mem_auth, title, content, reg_date, modify_date, filename, ip, dongho, rnum "
 				+ "FROM (SELECT a.*, "
 				+ "rownum rnum FROM (SELECT * "
-				+ "FROM fix f RIGHT JOIN member m "
+				+ "FROM fix f JOIN member m "
 				+ "USING(mem_num) " + sub_sql + " ORDER BY "
 				+ "f.fix_num DESC)a) "
-				+ "WHERE rnum>=? AND rnum<=? AND fix_num is not null";
+				+ "WHERE rnum>=? AND rnum<=? ";
+			
+			System.out.println("하자보수 글목록 확인용 " + sql);
+			
 			//PreparedStatement 객체 생성
 			pstmt = conn.prepareStatement(sql);
 			//?에 데이터 바인딩
@@ -323,6 +329,38 @@ public class FixDAO {
 		}
 	}
 	
+	//댓글 상세(댓글 수정시 작성자 회원번호 체크 용도로 사용)
+	public FixReplyVO getFixReply(int re_num)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		FixReplyVO reply = null;
+		String sql = null;
+		
+		try {
+			//커넥션풀로부터 커넥션 할당
+			conn = DBUtil.getConnection();
+			
+			//SQL문 작성
+			sql = "SELECT * from zboard_reply WHERE re_num=? ";
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, re_num);
+			
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				reply = new FixReplyVO();
+				reply.setRe_num(rs.getInt("re_num"));
+				reply.setMem_num(rs.getInt("mem_num"));
+			}
+		} catch (Exception e) {
+			throw new Exception(e);
+		} finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		return reply;
+	}
+	
 	//댓글 삭제
 	public void deleteFixReply(int re_num)throws Exception{
 		Connection conn = null;
@@ -461,6 +499,8 @@ public class FixDAO {
 			DBUtil.executeClose(null, pstmt, conn);
 		}
 	}
+	
+
 	
 	
 	

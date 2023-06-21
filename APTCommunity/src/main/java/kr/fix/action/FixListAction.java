@@ -30,11 +30,14 @@ public class FixListAction implements Action{
 		
 		String keyfield = request.getParameter("keyfield");
 		String keyword = request.getParameter("keyword");
+		if (keyword == null && "".equals(keyword)) {
+			keyfield = "2";
+		}
 		
 		FixDAO dao = FixDAO.getInstance();
 		int count = dao.getFixCount(keyfield, keyword);
 		//페이징 처리
-		PageUtil page = new PageUtil(keyfield, keyword, Integer.parseInt(pageNum), count, 5, 10,"list.do");
+		PageUtil page = new PageUtil(keyfield, keyword, Integer.parseInt(pageNum), count, 10, 5,"fixList.do");
 		
 		List<FixVO> list = null;
 		if(count > 0) {
