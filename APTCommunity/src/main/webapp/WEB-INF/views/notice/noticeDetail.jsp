@@ -93,8 +93,8 @@
 				</script>  
 				</form>
 			</c:if>
-			</div>
 				<input type="button" value="목록" class="bottom-btn" onclick="location.href='noticeList.do?dept=${ notice.dept }'">
+			</div>
 		</div>
 		</div>	
 		</li>
