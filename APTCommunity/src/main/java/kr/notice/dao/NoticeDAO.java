@@ -172,6 +172,7 @@ public class NoticeDAO
                 noticeVO.setStatus(rs.getInt("status"));
                 noticeVO.setFilename(rs.getString("filename"));
                 noticeVO.setReg_date(rs.getDate("reg_date"));
+                noticeVO.setCategory_status(rs.getInt("category_status"));
             }
         }
         catch (Exception e) {

@@ -4,6 +4,7 @@ import kr.notice.vo.NoticeVO;
 import java.util.List;
 import javax.servlet.http.HttpSession;
 import kr.util.PageUtil2;
+import kr.util.StringUtil;
 import kr.notice.dao.NoticeDAO;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpServletRequest;
@@ -28,7 +29,9 @@ public class NoticeListAction implements Action
         NoticeDAO dao = NoticeDAO.getInstance();
         //상단 게시글 목록
         List<NoticeVO> fixedList = dao.getFixedList(dept, 1, 5);
-        
+        for(NoticeVO no : fixedList) {
+        	no.setTitle(StringUtil.useNoHtml(no.getTitle()));
+        }
         //게시글 목록
         String pageNum = request.getParameter("pageNum");
         if (pageNum == null) {
@@ -41,6 +44,9 @@ public class NoticeListAction implements Action
         List<NoticeVO> list = null;
         if (count > 0) {
             list = dao.getList(dept, keyword, page.getStartRow(), page.getEndRow());
+            for(NoticeVO no : list) {
+            	no.setTitle(StringUtil.useNoHtml(no.getTitle()));
+            }
         }
         request.setAttribute("fixedList", fixedList);
         request.setAttribute("dept", dept);

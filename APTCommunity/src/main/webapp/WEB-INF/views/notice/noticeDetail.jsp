@@ -32,6 +32,7 @@
 				<div class="detail-page-title">
 					<ul>
 						<li>
+						<!-- 제목 상단 공지사항 목록 링크 -->
 						<c:if test="${ notice.dept == 1 }">
 							<a href="noticeList.do?dept=${ notice.dept }">관리사무소 공지사항</a>
 						</c:if>
@@ -41,6 +42,20 @@
 						<c:if test="${ notice.dept == 3 }">
 							<a href="noticeList.do?dept=${ notice.dept }">건의사항</a>
 						</c:if>
+						<!--  그 외 공지사항 목록 링크 -->  
+						<c:if test="${ notice.category_status == 2 }">
+							<a href="${ pageContext.request.contextPath }/board/boardList.do">자유게시판</a>
+						</c:if>
+						<c:if test="${ notice.category_status == 3 }">
+							<a href="${ pageContext.request.contextPath }/secondhand/secondhandList.do">중고거래</a>
+						</c:if>
+						<c:if test="${ notice.category_status == 4 }">
+							<a href="${ pageContext.request.contextPath }/fix/fixList.do">하자보수</a>
+						</c:if>
+						<c:if test="${ notice.category_status == 5 }">
+							<a href="${ pageContext.request.contextPath }/booking/roomNameList.do">예약(시설)</a>
+						</c:if>
+						<!-- 목록 링크 끝 -->
 						</li>
 						<li><b>${ notice.title }</b></li>
 						<li>
@@ -59,12 +74,12 @@
 			</div>
 		</div>
 		<div class="detail-btn">
+			<div class="detail-btn-div2">
 			<c:if test="${user_auth == 9 }">
-			<div class="detail-btn-div">
 				<form action="modifyNoticeForm.do" method="post">
 				<input type="hidden" name="no_num" value="${ notice.no_num }">
-				<input type="submit" value="수정" class="write-btn">
-				<input type="button" value="삭제" class="write-btn" id="delete_btn">
+				<input type="submit" value="수정" class="bottom-btn">
+				<input type="button" value="삭제" class="bottom-btn" id="delete_btn">
 				<script type="text/javascript">
 					let delete_btn = 
 						  document.getElementById('delete_btn');
@@ -77,13 +92,10 @@
 					};
 				</script>  
 				</form>
-			</div>
 			</c:if>
-			<div class="detail-btn-div2">
-				<input type="button" value="목록" class="list-btn" onclick="location.href='noticeList.do?dept=${ notice.dept }'">
 			</div>
+				<input type="button" value="목록" class="bottom-btn" onclick="location.href='noticeList.do?dept=${ notice.dept }'">
 		</div>
-		
 		</div>	
 		</li>
 		<!-- 오른쪽 -->

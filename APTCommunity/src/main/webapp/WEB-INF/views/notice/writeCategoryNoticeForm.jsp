@@ -62,7 +62,7 @@
 						<option value="2" <c:if test="${param.keyfield_dept==2}">selected</c:if>>입대의 공지사항</option>
 						<option value="3" <c:if test="${param.keyfield_dept==3}">selected</c:if>>건의사항</option>
 				</select> --%>
-				<select name="keyfield_cate" class="keyfield">
+				<select name="category_status" class="keyfield">
 						<option value="2" <c:if test="${param.keyfield_cate==2}">selected</c:if>>자유게시판</option>
 						<option value="3" <c:if test="${param.keyfield_cate==3}">selected</c:if>>중고거래</option>
 						<option value="4" <c:if test="${param.keyfield_cate==3}">selected</c:if>>하자보수</option>

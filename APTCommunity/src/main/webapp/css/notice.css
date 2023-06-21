@@ -18,7 +18,6 @@
 /*사이드 바*/
 .sidebar{
 	/*상우하좌*/
-	margin-top:50px 50px 0 100px;
 	width: 250px;
 }
 .sidebar h2{
@@ -28,13 +27,38 @@
 .mem-service{
 	height: 120px;
 	margin-bottom: 20px;
+	padding-bottom: 50px;
 	font-size: 1em;
 	text-align: center;
-	background: #dedfe0;
-	border: 1px solid black;
+	border-top: 2px solid #333;;
+	border-bottom: 2px solid #333;;
+	
 }
 .mem-service p{
-	padding: 20px 0;
+	padding: 30px 0 15px 0;
+	font-size: 13px;
+	font-weight: bold;
+}
+.mem-service div{
+	width: 200px;
+	height: 35px;
+	border: 1px solid #e5e5e5;
+}
+.mem-service div:hover{
+	cursor: pointer;
+}
+.service-myPage-button{
+	margin: 0 auto;
+	margin-bottom: 10px;
+	background-color: #5a5a5a;
+}  
+.service-myPage-button a{
+	height:30px;
+	color: #fff;
+}
+.service-logout-button{
+	margin: 0 auto;
+	background-color: #fff;
 }
 .menu{
 	margin-top: 20px; 
@@ -49,11 +73,11 @@
 }
 
 /*공지사항 상단*/
-.notice-main-img img{
+.main-img img{
 	width: 700px;
 	height: 285px;
 }
-.notice-main-search{
+.main-search{
 	margin-top:30px;
 	border-top: 2px solid #c5c6c7;
 	border-bottom: 2px solid #c5c6c7;
@@ -62,7 +86,7 @@
 	display: flex;
 	align-items: center;
 }
-.notice-main-search b{
+.main-search b{
 	width: 200px;
 }
 #keyword{
@@ -78,22 +102,22 @@
 	height: 30px;
 }
 /*공지사항 게시글 상단*/
-.notice-main-list ul{
+.main-list ul{
 	margin: 10px 0;
 }
 
-.notice-main-list li{
+.main-list li{
 	width: 100px;
 	height: 30px;	
 	text-align: center;
 	font-size: 1.1em;
 }
-.notice-main-list li:nth-child(2){
+.main-list li:nth-child(2){
 	width: 400px;
 }
 
 /*공지사항 고정 게시글*/
-.notice-list-fixed td{
+.list-fixed td{
 	display: table-cell;
     vertical-align: inherit;
     background-color: #f7f7f7;
@@ -103,10 +127,10 @@
     padding: 4px 7px;
     border-bottom: 1px solid #f2f2f2;
 } 
-.notice-list-fixed{
+.list-fixed{
 	width: 100%;
 }
-.notice-list-fixed td{
+.list-fixed td{
 	padding-left: 5px;
     padding-right: 18px;
 }
@@ -115,7 +139,7 @@
     color: #ff4e59;;
     font-weight: bold;
 }
-.notice-list-fixed .board-number-fixed{
+.list-fixed .board-number-fixed{
 	width: 60px;
 	color: #ff4e59;;
     font-weight: bold;
@@ -124,7 +148,7 @@
  	vertical-align: middle;
  	text-align: center;
 }
-.notice-list-fixed .board-number-fixed span{
+.list-fixed .board-number-fixed span{
 	color: #ff4e59;;
 	border: 1px solid #ffc6c9;
 	padding: 1px 14px;
@@ -133,7 +157,7 @@
 }
 
 /*공지사항 게시글 리스트*/
-.notice-list td{
+.list td{
 	display: table-cell;
     vertical-align: inherit;
 } 
@@ -142,10 +166,10 @@
     padding: 4px 7px;
     border-bottom: 1px solid #f2f2f2;
 } 
-.notice-list{
+.list{
 	width: 100%;
 }
-.notice-list td{
+.list td{
 	padding-left: 5px;
     padding-right: 18px;
 }
@@ -176,7 +200,7 @@
 
 
 /*게시글이 없을 경우*/
-.result-notice-display{
+.result-display{
 	height: 50px;
 	padding-top:25px;	
 	text-align: center;
@@ -239,7 +263,7 @@
 	font-size: 1.3em;
 }
 /*상세 페이지 처리*/
-.notice-page-count{
+.page-count{
 	margin-top: 10px;
 	text-align: center;
 	font-size: 1.1em;	
@@ -249,21 +273,12 @@
 	width: 700px;
 	margin-bottom: 10px;
 }
-.detail-btn-div{
-	margin-bottom: 30px;
-	display: table-cell;
-	vertical-align: middle;
-	height: 25px;
-	width: 160px;
-	position: absolute;
-}
-.detail-btn-div .write-btn{
-	text-align:center;
-	width: 50px;
-	height: 30px;
-}
-.detail-btn-div .write-btn:hover{
+
+.detail-btn-div2 .bottom-btn:hover{
 	cursor: pointer;
+}
+.detail-btn-div2 form{
+	display: inline !important;
 }
 .detail-btn-div2{
 	margin-bottom: 30px;
@@ -273,13 +288,9 @@
 	width: 700px;
 	text-align: right;
 }
-.detail-btn-div2 .list-btn{
-	
+.detail-btn-div2 .bottom-btn{
 	margin: 20px 15px 0 0;
 	text-align: center;
-	width: 50px;
-	height: 30px;
-}
-.detail-btn-div2 .list-btn:hover{
-	cursor: pointer;
+	width: 40px;
+	height: 25px;
 }

@@ -38,10 +38,10 @@
 		<!-- 오른쪽 -->
 		<li>
 		<div class="page-right">
-			<div class="notice-main-img">
+			<div class="main-img">
 				<img alt="" src="${pageContext.request.contextPath}/img/sideMenuTopImg.jpg">
 			</div>
-			<div class="notice-main-search">
+			<div class="main-search">
 				<c:if test="${ dept == 1 }">
 					<b>관리사무소 공지사항</b>
 				</c:if>
@@ -49,6 +49,9 @@
 					<b>입대의 공지사항</b>
 				</c:if>
 				<c:if test="${ dept == 3 }">
+					<b>건의사항</b>
+				</c:if>
+				<c:if test="${ dept == 4 }">
 					<b>건의사항</b>
 				</c:if>
 				<!-- 검색 시작 -->
@@ -65,7 +68,7 @@
 				</form>
 				<!-- 검색 끝 -->
 			</div>
-			<div class="notice-main-list">
+			<div class="main-list">
 				<ul>
 					<li>글번호</li>
 					<li>제목</li>
@@ -75,7 +78,7 @@
 				<hr color="#edeff0" noshade="noshade">
 				<!-- 고정 게시글 목록 시작 -->
 				<div class="board-article-fixed">
-				<table class="notice-list-fixed">
+				<table class="list-fixed">
 				<c:forEach var="fixed" items="${ fixedList }">
 					<tr>
 						<td colspan="2" class="td-article">
@@ -95,7 +98,7 @@
 				<!-- 고정 게시글 목록 시작 -->
 				<!-- 게시글이 없을 때 -->				
 				 <c:if test="${ count < 1 || empty count }">
-					<div class="result-notice-display">
+					<div class="result-display">
 						게시글이 없습니다.
 					</div>
 					<hr color="#edeff0" noshade="noshade">
@@ -103,7 +106,7 @@
 				<!-- 게시글 목록 시작 -->
 				<c:if test="${ count > 0 }">
 				<div class="board-article">
-				<table class="notice-list">
+				<table class="list">
 				<c:forEach var="notice" items="${ list }">
 					<tr>
 						<td colspan="2" class="td-article">
@@ -120,17 +123,27 @@
 				</c:forEach>
 				</table>
 				</div>
-				<div class="notice-page-count">${page}</div>
+				<div class="page-count">${page}</div>
 				</c:if>
 				<!-- 게시글 목록 끝 -->
 			</div>
 			<c:if test="${ user_auth == 9 }">
 			<div class="write-btn">
 				<span>
-					<a href="writeNoticeForm.do">
+					<!-- 공지사항 페이지 글작성 버튼 -->
+					<c:if test="${ dept != 4 }">
+					<a href="writeNoticeForm.do" >
 					<img alt="" src="${pageContext.request.contextPath}/img/write_btn.png">
 					글쓰기
 					</a>
+					</c:if>
+					<!-- 기타 페이지 공지사항 글작성 버튼 -->
+					<c:if test="${ dept == 4 }">
+					<a href="writeCategoryNoticeForm.do" >
+					<img alt="" src="${pageContext.request.contextPath}/img/write_btn.png">
+					글쓰기
+					</a>
+					</c:if>
 				</span>
 			</div>
 			</c:if>
