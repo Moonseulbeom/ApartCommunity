@@ -79,9 +79,9 @@ $(function(){
       event.preventDefault();
       
       //댓글내용이 없을 경우 댓글등록 불가
-      if($('#re_content').val().trim()==''){
+      if($('#manage_content').val().trim()==''){
          alert('내용을 입력하세요');
-         $('#re_content').val('').focus();
+         $('#manage_content').val('').focus();
          return false;
       }
       //폼 이하의 태그에서 입력한 데이터를 모두 읽어옴
@@ -114,7 +114,7 @@ $(function(){
    //댓글 작성 폼 초기화
    function initForm(){
       $('textarea').val('');
-      $('#re_first .letter-count').text('300/300');
+      $('#manage_first .letter-count').text('300/300');
    }
    
    //댓글 수정 버튼 클릭시 수정폼 노출
@@ -172,7 +172,7 @@ $(function(){
          remain += '/300';
          if($(this).attr('id')=='re_content'){
             //등록폼 글자수
-            $('#re_first .letter-count').text(remain);
+            $('#manage_first .letter-count').text(remain);
          }else{
             //수정폼 글자수
             $('#mre_first .letter-count').text(remain);

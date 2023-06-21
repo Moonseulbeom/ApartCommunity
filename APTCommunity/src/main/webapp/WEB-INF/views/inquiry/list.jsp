@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>1:1문의</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/commuList.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/inquiry.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/custom.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
@@ -53,8 +53,11 @@
 				<!-- 우측메인 -->
 				<li>
 				<div class="page-right">
+					<div class="inquiry-main-img">
+						<img alt="" src="${pageContext.request.contextPath}/img/sideMenuTopImg.jpg">
+					</div>
 					<form id="search_form" method="get" action="list.do">
-						<div class="notice-main-search">
+						<div class="inquiry-main-search">
 							<b> 1:1문의 목록 </b>
 							<ul class="search">
 								<li>
@@ -70,7 +73,7 @@
 							</ul>
 						</div>
 					</form>
-					<div class="notice-main-list">
+					<div class="inquiry-main-list">
 						<c:if test="${ count > 1 || !empty count }">
 						<ul>
 							<li>글번호</li>
@@ -90,7 +93,7 @@
 						</c:forEach>
 						</c:if>
 						<c:if test="${ count < 1 || empty count }">
-							<div class="result-notice-display">
+							<div class="result-inquiry-display">
 								게시글이 없습니다.
 							</div>
 							<hr color="#edeff0" noshade="noshade">

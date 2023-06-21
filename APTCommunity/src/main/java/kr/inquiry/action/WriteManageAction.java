@@ -35,7 +35,7 @@ public class WriteManageAction implements Action{
 					         new InquiryManageVO();
 			manage.setMem_num(user_num);//회원번호(댓글 작성자)
 			manage.setContent(
-				request.getParameter("re_content"));
+				request.getParameter("manage_content"));
 			manage.setIp(request.getRemoteAddr());
 			manage.setIn_num(Integer.parseInt(request.getParameter("in_num")));
 			InquiryDAO dao = InquiryDAO.getInstance();
