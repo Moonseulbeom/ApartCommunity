@@ -67,7 +67,7 @@
 				<hr size="1" width="100%" noshade="noshade" color="#e8e8e8">
 				<div class="detail-page-content">
 					<c:if test="${ !empty notice.filename }">
-					<img src="${pageContext.request.contextPath}/upload/${ notice.filename }" class="d etail-img">
+					<img src="${pageContext.request.contextPath}/upload/${ notice.filename }" class="detail-img">
 					</c:if>
 					<p>${ notice.content }</p>
 				</div>

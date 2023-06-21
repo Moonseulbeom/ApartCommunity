@@ -2,5 +2,5 @@
     pageEncoding="UTF-8"%>
 <script>
 	alert('수정되었습니다.');
-	location.href='noticeList.do?dept=${dept}';
+	location.href='noticeDetail.do?no_num=${no_num}';
 </script>

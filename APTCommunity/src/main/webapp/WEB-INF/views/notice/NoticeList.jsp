@@ -27,6 +27,8 @@
 <div id="wrap">
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 	<!-- 내용 시작 -->
+<div class="inner">
+	<div id="container" class="inner">
 	<div class="page-main">
 	<ul>
 		<!-- 왼쪽 -->
@@ -151,6 +153,8 @@
 		</li>
 		<!-- 오른쪽 -->
 	</ul>
+	</div>
+		</div>
 	</div>
 	<!-- 내용 끝 -->
 	<jsp:include page="/WEB-INF/views/common/footer.jsp"/>

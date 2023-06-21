@@ -76,7 +76,7 @@ public class NoticeDAO
         return count;
     }
     //상단 고정 게시글
-    public List<NoticeVO> getFixedList( int dept, int start, int end) throws Exception{
+    public List<NoticeVO> getFixedList( int dept, int category_status, int start, int end) throws Exception{
     	Connection conn = null;
     	PreparedStatement pstmt = null;
     	ResultSet rs = null;
@@ -85,12 +85,14 @@ public class NoticeDAO
     	
     	try {
 			conn = DBUtil.getConnection();
-			sql = "SELECT * FROM ( SELECT a.*, rownum rnum FROM ( SELECT * FROM notice WHERE dept = ? AND status = 1"
+			sql = "SELECT * FROM ( SELECT a.*, rownum rnum FROM ( SELECT * FROM notice WHERE dept = ? AND category_status = ? AND status = 1"
 					+ " ORDER BY no_num DESC )a) WHERE rnum >= ? AND rnum <= ?";
+			
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, dept);
-			pstmt.setInt(2, start);
-			pstmt.setInt(3, end);
+			pstmt.setInt(2, category_status);
+			pstmt.setInt(3, start);
+			pstmt.setInt(4, end);
 			
 			rs = pstmt.executeQuery();
 			list = new ArrayList<NoticeVO>();

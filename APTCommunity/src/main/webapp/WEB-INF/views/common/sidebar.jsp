@@ -3,10 +3,29 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <div class="sidebar">
 	<div class="mem-service">
+		<c:if test="${ user_auth ==  1 }">
 		<p>000동 000호 주민</p>
 		<div class="service-myPage-button">
 			<a href="${pageContext.request.contextPath}/member/myPage.do">MY 페이지</a>
 		</div>
+		</c:if>
+		<c:if test="${ user_auth == 9 }">
+		<p>관리자</p>
+		<div class="service-manager-button">
+			<ul>
+				<li>
+					<div>
+					<a href="${pageContext.request.contextPath}/member/memberList.do">회원관리	</a>
+					</div>
+				</li>
+				<li>
+					<div class="manage-btn">
+					<a href="${pageContext.request.contextPath}/member/myPage.do">관리자페이지</a>
+					</div>
+				</li>
+			</ul>
+		</div>
+		</c:if>
 		<div class="service-logout-button">
 			<a href="${pageContext.request.contextPath}/member/logout.do">로그아웃</a>
 		</div>

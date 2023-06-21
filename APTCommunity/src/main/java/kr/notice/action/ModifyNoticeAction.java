@@ -43,7 +43,7 @@ public class ModifyNoticeAction implements Action {
 			FileUtil.removeFile(request, vo.getFilename());
 		}
 		dao.modifyNotice(notice);
-		request.setAttribute("dept", dept);
+		request.setAttribute("no_num", no_num);
 		return "/WEB-INF/views/notice/modifyNotice.jsp";
 	}
 

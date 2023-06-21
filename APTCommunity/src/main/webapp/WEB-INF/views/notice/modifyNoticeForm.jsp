@@ -13,6 +13,7 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/common.js"></script>
 <script type="text/javascript">
 	$(function(){
+		alert(${notice.filename});
 		//이벤트 연결
 		$('#write_form').submit(function(){
 			if($('#title').val().trim()==''){
