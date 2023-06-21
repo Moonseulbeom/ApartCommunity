@@ -16,12 +16,12 @@
 				<li class="menu-logout">
 					[<span>${user_dongho}</span>]
 					<a href="${pageContext.request.contextPath}/member/logout.do">로그아웃</a>
+					<li><a href="${pageContext.request.contextPath}/member/myPage.do">my페이지</a></li>
 				</li>
 				</c:if>
 				<c:if test="${empty user_num}">
 				<li><a href="${pageContext.request.contextPath}/member/loginForm.do">로그인</a></li>
 				<li><a href="${pageContext.request.contextPath}/member/registerUserAgree.do">회원가입</a></li>
-				<li><a href="${pageContext.request.contextPath}/member/myPage.do">my페이지</a></li>
 				</c:if>
 			</ul>
 		</div>

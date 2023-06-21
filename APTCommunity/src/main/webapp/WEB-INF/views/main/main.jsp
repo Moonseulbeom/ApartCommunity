@@ -42,6 +42,16 @@
 				}
 			});
 		});//end of submit
+		
+/* 		let origin_status =${order.status};
+		$('input[type=radio]').click(function(){
+			if(origin_status==1 && $('input[type=radio]:checked').val()!=1){
+				$('input[type=text],textarea').parent().hide();
+			}else{
+				$('input[type=text],textarea').parent()show();
+			}
+		});//end of click
+		 */
 	});
 </script>
 </head>
@@ -90,7 +100,7 @@
 			<input type="button" value="팩스 번호" id="faxnum">
 		</div>
 		<p></p>
-		<div class="board-main">
+		<div class="board_notice">
 		<h4>공지사항</h4>
 		<table>
 			<c:forEach var="notice" 
@@ -102,7 +112,9 @@
 				</tr>
 			</c:forEach>
 		</table>
+		</div>
 		
+		<div class="board_board">
 		<h4>자유 게시판</h4>
 		<table>
 			<c:forEach var="board" 
@@ -115,7 +127,6 @@
 				</tr>
 			</c:forEach>
 		</table>
-		
 		</div>
 	<!-- 내용 끝 -->
 	</div>
