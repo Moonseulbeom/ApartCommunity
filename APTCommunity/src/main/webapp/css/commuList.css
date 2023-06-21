@@ -117,6 +117,19 @@ input[type="search"]{
 
 /*
 ------------------------------  글 상세 스타일 목록  ---------------------------------- */
+/* 뒤로가기버튼(상세페이지->목록페이지) */
+#back{
+	font-weight: bold;
+	float: right;
+	position: relative;
+	border: 0;
+	padding: 20px 26px;
+	text-align: center;
+	color: black;
+}
+#back:active{
+	top: 2px;
+}
 
 .detail{
 	width: 700px;
@@ -135,7 +148,7 @@ input[type="search"]{
 	float: none;
 }
 .detail-page-title #st{
-	padding: 0px 20px 0px 0px;
+	padding: 3px 20px 0px 0px;
 }
 .detail-page-title input{
 	height: 27px;
@@ -224,6 +237,23 @@ input[type="search"]{
 }
 #output{
    clear: both;
+}
+
+/* 댓글등록버튼 */
+#re_second.align-right{
+	height: 30px;
+}
+#size30{
+	height: 30px;
+}
+/* 댓글수정,삭제버튼 */
+.modify-btn{
+	height: 27px;
+	border: none;
+}
+.delete-btn{
+	height: 27px;
+	border: none;
 }
 
 /*상세 페이지 처리*/

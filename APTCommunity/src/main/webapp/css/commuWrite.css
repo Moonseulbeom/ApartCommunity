@@ -44,6 +44,18 @@
 	height:25px;
 	margin: 20px 0;
 }
+#update_form label{
+	margin: 0 5px 0 10px;
+}
+#update_form textarea{
+	width: 780px;
+	min-height: 400px; 
+	padding: 20px;
+}
+#update_form input[type="file"]{
+	height:25px;
+	margin: 20px 0;
+}
 /*버튼*/
 .write-btn-div{
 	padding-bottom: 40px;
@@ -56,4 +68,10 @@
 }
 .write-btn:hover{
 	cursor: pointer;
+}
+.size30{
+	height: 30px;
+}
+#size30{
+	height: 30px;
 }

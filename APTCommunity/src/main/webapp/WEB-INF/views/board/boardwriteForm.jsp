@@ -47,12 +47,13 @@
 						<li>
 						</li>
 						
-						<li><!-- 제목 -->
+						<li><!-- 제목 --><!-- 관리자페이지가 필요하면 사용 / 현재는 사용자,관리자 동일함 -->
 							<div class="write-title">
-								<input type="text" id="<c:if test="${user_auth==1}">title</c:if><c:if test="${user_auth==9}">adminTitle</c:if>" name="title" placeholder="제목을 입력해주세요.">
-								<c:if test="${user_auth == 9}">
-									<label for="checkbox">상단고정</label>
-									<input type="checkbox" id="check" name="check" value="1">
+								<c:if test="${user_auth==1}">
+									<input type="text" id="title" name="title" placeholder="제목을 입력해주세요.">
+								</c:if>
+								<c:if test="${user_auth==9}">
+									<input type="text" id="adminTitle" name="title" placeholder="제목을 입력해주세요.">
 								</c:if>
 							</div>
 						</li>

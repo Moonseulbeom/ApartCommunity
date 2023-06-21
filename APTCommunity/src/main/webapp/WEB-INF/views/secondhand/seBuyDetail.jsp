@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>자유게시판 글 상세</title>
+<title>중고구매 글 상세</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/commuList.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/custom.css">
@@ -47,12 +47,12 @@
    					<li>
    						<div class="page-right">
    							<div class="detail">
-   							<input type="button" value="뒤로가기" onclick="location.href='boardList.do'" id="back"><br>
+   							<input type="button" value="뒤로가기" onclick="location.href='seBuyList.do'" id="back"><br>
    								<div class="detail-page">
    									<div class="detail-page-title">
    										<ul>
    											<li>
-   												<a href="board/boardList.do">자유게시판</a>
+   												<a href="secondhand/seBuyList.do">자유게시판</a>
    											</li>
    											<li><b>${vo.title}</b></li>
    											<li><!-- &nbsp;:띄어쓰기인데, 작성자와 작성일을 위아래로 나눌지 사이에 공백을 둘지? -->
@@ -63,7 +63,7 @@
    											<%-- 로그인한 회원번호와 작성자 회원번호가 일치하거나 관리자일경우 수정삭제 가능 --%>
    											<c:if test="${user_num == vo.mem_num || user_auth == 9}">
    											<%-- user_num : 로그인한 회원번호 / vo.mem_num : 작성한 회원번호 --%>
-   												<input type="button" value="수정" onclick="location.href='boardUpdateForm.do?board_num=${vo.board_num}'">
+   												<input type="button" value="수정" onclick="location.href='seBuyUpdateForm.do?se_num=${vo.se_num}'">
    												<input type="button" value="삭제" id="delete_btn">
    												<script type="text/javascript">
    													//글 삭제버튼
@@ -72,7 +72,7 @@
    													delete_btn.onclick=function(){
    														let choice = confirm('삭제하시겠습니까?');
    														if(choice){
-   															location.replace('delete.do?board_num=${vo.board_num}');
+   															location.replace('delete.do?se_num=${vo.se_num}');
    														}
    													}
    												</script>
@@ -95,6 +95,7 @@
    							<div id="comment">
    								<span class="comment-title">댓글 달기</span>
    								<form id="re_form">
+   								<!-- board_num -> se_num 변경????? -->
    									<input type="hidden" name="board_num" value="${vo.board_num}" id="board_num">
 									<textarea rows="3" cols="45" name="re_content" id="re_content" class="rep-content"
 										<c:if test="${empty user_num}">disabled="disabled"</c:if>

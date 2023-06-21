@@ -221,6 +221,7 @@ public class BoardDAO {
 			}
 			pstmt.setString(++cnt, vo.getIp());
 			pstmt.setInt(++cnt, vo.getBoard_num());
+			pstmt.executeUpdate();
 		}catch(Exception e) {
 			throw new Exception(e);
 		}finally {

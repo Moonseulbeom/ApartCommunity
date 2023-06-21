@@ -36,7 +36,7 @@ public class ListAction implements Action{
 		request.setAttribute("page", page.getPage());
 		
 		//JSP 경로 반환
-		return "/WEB-INF/views/secondhand/secondhandList.jsp";
+		return "/WEB-INF/views/secondhand/seBuyList.jsp";
 	}
 
 }
