@@ -7,6 +7,7 @@
 <title>회원가입 완료</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/custom.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/registerUser.css">
 </head>
 <body>
 <div class="page-main">

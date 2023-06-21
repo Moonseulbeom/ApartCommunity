@@ -16,122 +16,49 @@ h2 {
     margin-inline-end: 0px;
     font-weight: bold;
 }
-body {
-  font-family: sans-serif;
-  font-size: 16px;
-  color: #000;
-  background-color: #fff;
+
+/* Set the overall width of the form */
+.content-main {
+  width: 500px;
+  margin: 0 auto;
 }
 
-h1, h2, h3, h4, h5, h6 {
-  font-family: sans-serif;
-  font-weight: bold;
-  margin: 0;
-  padding: 0;
+/* Style the form header */
+h2 {
+  text-align: center;
+  font-size: 20px;
+  margin-bottom: 20px;
 }
-
-p {
-  margin: 0 0 10px;
-  padding: 0;
-}
-
-ul, ol {
-  margin: 0;
-  padding: 0;
-}
-
-li {
-  margin: 0 0 10px;
-  padding: 0;
-}
-
-a {
-  text-decoration: none;
-  color: #000;
-}
-
-a:hover {
-  text-decoration: underline;
-}
-
-img {
-  display: block;
-  max-width: 100%;
-  max-height: 100%;
-}
-
-input, textarea, select {
-  font-family: sans-serif;
-  font-size: 16px;
-  color: #000;
-  background-color: #fff;
-  border: 1px solid #ccc;
+/* Style the input fields */
+input {
+  width: 100%;
   padding: 10px;
+  border: 1px solid #ccc;
+  margin-bottom: 10px;
 }
 
-button {
-  font-family: sans-serif;
-  font-size: 16px;
-  color: #000;
-  background-color: #fff;
-  border: 1px solid #ccc;
-  padding: 10px;
+/* Style the submit button */
+input[type="submit"] {
+  height: 40px;
+  background-color: #000;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
   cursor: pointer;
 }
 
-.content-main {
-  width: 100%;
-  height: 100%;
-  background-color: #fff;
+/* Style the "Home" button */
+input[type="button"] {
+  height: 40px;
+  background-color: #ccc;
+  color: #000;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
 }
 
-.align-center {
-  text-align: center;
-}
-
-.register_form {
-  width: 500px;
-  margin: 0 auto;
-  background-color: #f0f0f0;
-  padding: 10px;
-}
-
-.register_form ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-}
-
-.register_form li {
-  margin: 10px 0;
-}
-
-.register_form li label {
-  display: block;
-  font-size: 16px;
-  font-weight: bold;
-}
-
-.register_form li input, .register_form li select {
-  width: 100%;
-  border-radius: 5px;
-  box-shadow: 0px 0px 5px 0px #ccc;
-}
-
-.register_form .submit {
-  margin-top: 10px;
-  background-color: #000;
-  color: #fff;
-  border-radius: 5px;
-  box-shadow: 0px 0px 5px 0px #ccc;
-}
-
-.register_form .submit:hover {
-  background-color: #000088;
-}
-
-.register_form {
-  border: 1px solid #ccc;
-  padding: 20px;
-  margin: 10px auto;
+/* Style the error message */
+span.error {
+  color: red;
+  font-size: 12px;
 }

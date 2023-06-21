@@ -7,6 +7,7 @@
 <title>회원가입</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/custom.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/registerUserForm.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 $(function() {
@@ -123,7 +124,7 @@ $(function() {
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 	<!-- 내용 시작 -->
 	<div class="content-main">
-		<h2>회원가입</h2>
+		<h2 class="sbTitle">회원 가입</h2>
 		<form id="register_form" 
 		  action="registerUser.do" method="post">
 			<ul>

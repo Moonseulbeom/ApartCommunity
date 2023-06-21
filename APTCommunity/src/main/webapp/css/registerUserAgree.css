@@ -1,18 +1,117 @@
-h1 {
-  font-size: 2em;
-  font-weight: bold;
-  margin-top: 20px;
+.sbLogin {
+    width: 820px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.join_flow {
+    margin-bottom: 60px;
+    padding: 30px 20px;
+    border: 1px solid #d9d9d9;
+    background-color: #fdfdfd;
+}
+
+li {
+    display: list-item;
+    text-align: -webkit-match-parent;
+}
+
+.join_flow li {
+    width: 130px;
+    height: 35px;
+    padding: 0 65px;
+    float: left;
+    background: url(../../img/flow_arrow.png) 0 center no-repeat;
+}
+
+.join_flow li:first-child {
+    padding-left: 60px;
+    background: none;
+}
+
+.agreeList .agreeAll {
+    padding-bottom: 15px;
+    border-bottom: 1px solid #333;
+    text-align: left;
 }
 
 p {
-  font-size: 1em;
-  line-height: 1.5em;
-  margin-bottom: 10px;
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}
+.agreeArea {
+    margin-top: 50px;
 }
 
-input {
-  width: 100px;
-  height: 20px;
-  border: 1px solid #ccc;
-  margin-top: 20px;
+div {
+    display: block;
 }
+
+.agreeArea textarea {
+    width: 798px;
+    height: 150px;
+    resize: none;
+}
+textarea {
+    padding: 10px;
+    vertical-align: middle;
+    background: #fff;
+    border: 1px solid #c7c9cc;
+    font-family: 'Nanum Gothic', 'Malgun Gothic', 'dotum', '돋움', 'Arial',dotum,Myriad,sans-serif;
+    color: #67686a;
+    font-size: 14px;
+}
+
+.agreeAll label {
+    font-size: 15px;
+    color: #4e4e4e;
+    font-weight: bold;
+}
+
+label {
+    cursor: default;
+}
+
+.agreeList .agreeAll {
+    padding-bottom: 15px;
+    border-bottom: 1px solid #333;
+    text-align: left;
+}
+
+.sbLogin input[type=checkbox] {
+    width: 16px;
+    height: 16px;
+    border: 1px solid #ccc;
+}
+
+input:not([type="range"]):not([type="color"]) {
+    writing-mode: horizontal-tb !important;
+}
+
+input[type="checkbox" i] {
+    cursor: default;
+    appearance: auto;
+    box-sizing: border-box;
+}
+
+.agreeArea p {
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ddd;
+    text-align: left;
+    font-size: 14px;
+    color: #4e4e4e;
+}
+
+.sbLogin .btnWrap {
+    margin: 50px 0;
+	text-align: center;
+	display: inline-block;
+	width: 200px;
+	padding: 20px 20px;
+	display: inline-block;
+	background-color: #C20025;
+	color: #fff;}
