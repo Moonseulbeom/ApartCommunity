@@ -218,6 +218,73 @@ public class FixDAO {
 		}
 	}
 	
+	//하자보수 글수정
+	public void updateFix(FixVO fix) throws Exception {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+		String sub_sql = ""; //대입연산자나 누적으로 쓸수도 있음
+		int cnt = 0; //?에 번호를 사용하기 위해 변수지정
+		
+		try {
+			//커넥션 풀로부터 커넥션을 할당
+			conn = DBUtil.getConnection();
+			
+			if(fix.getFilename()!=null) {
+				//파일을 업로드한 경우
+				sub_sql += ",filename=?";
+			}
+			
+			sql = "UPDATE fix SET title=?,"
+				+ "content=?,modify_date=SYSDATE" 
+				+  sub_sql + ",ip=? WHERE fix_num=?";
+			
+			//PreparedStatement 객체 생성
+			pstmt = conn.prepareStatement(sql);
+			//?에 데이터 바인딩
+			pstmt.setString(++cnt, fix.getTitle());
+			pstmt.setString(++cnt, fix.getContent());
+			if(fix.getFilename()!=null) {
+				pstmt.setString(++cnt, fix.getFilename());
+			}
+			pstmt.setString(++cnt, fix.getIp());
+			pstmt.setInt(++cnt, fix.getFix_num());
+			
+			//SQL문 실행
+			pstmt.executeUpdate();
+			
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			//자원정리
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+	}
+	
+	//파일삭제(사진파일)
+	public void deleteFile(int fix_num) throws Exception {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+		
+		try {
+			//커넥션 풀로부터 커넥션을 할당
+			 conn = DBUtil.getConnection();
+			 //SQL문 작성
+			 sql  = "UPDATE fix SET filename='' WHERE fix_num = ? ";
+			 //PreparedStatement 객체 생성
+			 pstmt = conn.prepareStatement(sql);
+			 //?에 데이터 바인딩
+			 pstmt.setInt(1, fix_num);
+			 //SQL문 실행
+			 pstmt.executeUpdate();
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+	}
+	
 	
 	//하자보수 내가 쓴 글목록
 	//하자보수 글목록(관리자)
@@ -394,5 +461,8 @@ public class FixDAO {
 			DBUtil.executeClose(null, pstmt, conn);
 		}
 	}
+	
+	
+	
 	
 }

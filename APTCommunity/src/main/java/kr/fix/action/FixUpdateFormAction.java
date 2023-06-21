@@ -26,10 +26,13 @@ public class FixUpdateFormAction implements Action{
 			
 		FixDAO dao = FixDAO.getInstance();
 		FixVO fix = dao.getFix(fix_num);
+		
 		//로그인한 회원번호와 작성자 회원번호 일치 여부 체크
 		if(user_num != fix.getMem_num()) {
 			//로그인한 회원번호와 작성자 회원번호 불일치
-			return "/WEB-INF/views/common/notice.jsp";
+			request.setAttribute("notice_msg", "수정 권한이 없어 목록으로 돌아갑니다");
+			request.setAttribute("notice_url", request.getContextPath()+"/fix/fixList.do");
+			return "/WEB-INF/views/common/alert_singleView.jsp";
 		}
 		
 		//큰 따옴표 처리
@@ -37,8 +40,8 @@ public class FixUpdateFormAction implements Action{
 		fix.setTitle(StringUtil.parseQuot(fix.getTitle()));
 		
 		//로그인이 되어 있고 로그인한 회원번호와
-		//작성자 회원번호 일치
+		//작성자 (관리자)회원번호 일치
 		request.setAttribute("fix", fix);
-		return null;
+		return "/WEB-INF/views/fix/fixUpdateForm.jsp";
 	}
 }

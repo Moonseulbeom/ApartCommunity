@@ -48,11 +48,8 @@ public class FixUpdateAction implements Action{
 		fix.setIp(request.getRemoteAddr());
 		fix.setFilename(filename);
 		
-		//수정하기======================
-		//수정하기======================
-		//수정하기======================
-		//수정하기======================
-		//dao.updateBoard(fix);
+		//DB 데이터 수정하기
+		dao.updateFix(fix);
 		
 		//새 파일로 교체할 때 원래 파일 제거
 		if(filename!=null) {
@@ -60,7 +57,7 @@ public class FixUpdateAction implements Action{
 		}
 		
 		
-		return null;
+		return "redirect:/fix/fixDetail.do?fix_num="+fix_num;
 	}
 
 }

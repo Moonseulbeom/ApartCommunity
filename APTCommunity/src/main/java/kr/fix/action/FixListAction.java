@@ -31,9 +31,6 @@ public class FixListAction implements Action{
 		String keyfield = request.getParameter("keyfield");
 		String keyword = request.getParameter("keyword");
 		
-		System.out.println("키필드 : "+keyfield);
-		System.out.println("키워드 : "+keyword);
-		
 		FixDAO dao = FixDAO.getInstance();
 		int count = dao.getFixCount(keyfield, keyword);
 		//페이징 처리

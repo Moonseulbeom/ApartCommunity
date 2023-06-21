@@ -32,17 +32,26 @@
 	margin-bottom: 20px;
 	padding: 0px 20px;
 }
-#write_form label{
+.main-page label{
 	margin: 0 5px 0 10px;
 }
-#write_form textarea{
+.main-page textarea{
 	width: 780px;
 	min-height: 400px; 
 	padding: 20px;
 }
-#write_form input[type="file"]{
+.main-page input[type="file"]{
 	height:25px;
 	margin: 20px 0;
+}
+#file_detail {
+	display: inline;
+	height: 25px;
+}
+#file_detail input{
+	height: 25px;
+	padding: 3px;
+	vertical-align: middle;
 }
 /*버튼*/
 .write-btn-div{
