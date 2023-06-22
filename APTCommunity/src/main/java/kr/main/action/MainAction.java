@@ -10,6 +10,7 @@ import kr.board.vo.BoardVO;
 import kr.controller.Action;
 import kr.notice.dao.NoticeDAO;
 import kr.notice.vo.NoticeVO;
+import kr.util.StringUtil;
 
 public class MainAction implements Action{
 
@@ -20,12 +21,16 @@ public class MainAction implements Action{
 		List<NoticeVO> noticelist = 
 				noticeDao.getList(
 						         1, null, 1, 5);
-				
+		for(NoticeVO no : noticelist) {
+        	no.setTitle(StringUtil.useNoHtml(no.getTitle()));}
+		
 		//자유게시판 신규 데이터 처리
 		BoardDAO boardDao = BoardDAO.getinstance();
 		List<BoardVO> boardList = 
 				boardDao.getListBoard(
 						         1, 5, null, null);
+		for(BoardVO no : boardList) {
+        	no.setTitle(StringUtil.useNoHtml(no.getTitle()));}
 		
 		request.setAttribute("noticelist", noticelist);
 		request.setAttribute("boardList", boardList);

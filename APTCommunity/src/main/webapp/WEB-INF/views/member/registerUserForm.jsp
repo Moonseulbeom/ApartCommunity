@@ -46,7 +46,7 @@ $(function() {
 				if(param.result == 'idNotFound'){
 					//id 미중복
 					idChecked = 1;
-					$('#message_dongho').css('color','#000000')
+					$('#message_dongho').css('color','green')
 					                .text('등록 가능 동-호수');
 				}else if(param.result == 'idDuplicated'){
 					//id 중복
@@ -123,9 +123,16 @@ $(function() {
 <div class="page-main">
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 	<!-- 내용 시작 -->
-	<div class="content-main">
+	<div class="sbLogin">
 		<h2 class="sbTitle">회원 가입</h2>
-		<form id="register_form" 
+		<div class="join_flow">
+			<ul>
+				<li class="jo_01 jo_o1_on"><span>약관동의</span></li>
+				<li class="jo_02"><span>회원정보입력</span></li>
+				<li class="jo_03"><span>가입완료</span></li>
+			</ul>
+		</div>
+		<form id="register_form"
 		  action="registerUser.do" method="post">
 			<ul>
 				<li>
