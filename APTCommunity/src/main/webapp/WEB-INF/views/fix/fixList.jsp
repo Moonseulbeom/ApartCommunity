@@ -67,7 +67,7 @@
 							<ul>
 								<li>
 									<input type="hidden" name="keyfield" value="1">
-									<input type="search" size="16" name="keyword" id="keyword" value="${param.keyword}" placeholder="제목으로 검색">
+									<input type="search" size="16" name="keyword" id="keyword" value="${param.keyword}" placeholder="제목으로 검색" autocomplete="off">
 								</li>
 								<li>
 									<input type="submit" value="검색">

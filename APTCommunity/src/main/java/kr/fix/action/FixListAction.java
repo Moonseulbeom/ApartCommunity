@@ -9,6 +9,8 @@ import javax.servlet.http.HttpSession;
 import kr.controller.Action;
 import kr.fix.dao.FixDAO;
 import kr.fix.vo.FixVO;
+import kr.notice.dao.NoticeDAO;
+import kr.notice.vo.NoticeVO;
 import kr.util.PageUtil;
 
 public class FixListAction implements Action{
@@ -25,6 +27,7 @@ public class FixListAction implements Action{
 		}
 		
 		//로그인 됫을경우
+		//하자보수 글 페이징 처리 시작
 		String pageNum = request.getParameter("pageNum");
 		if (pageNum==null) pageNum = "1"; 
 		
@@ -44,8 +47,15 @@ public class FixListAction implements Action{
 			list = dao.getListFix(page.getStartRow(), page.getEndRow(),	keyfield, keyword);
 		}
 		
+		//상단 고정 게시글 가져오기 시작 | 부서번호:4(기타), 분류번호:4(하자보수)
+		NoticeDAO ndao = NoticeDAO.getInstance();
+		//			상단 고정 게시글 함수 구조(부서번호, 분류번호, 시작,  끝)
+		List<NoticeVO> nlist = ndao.getFixedList(4, 4, 1, 3);
+		
+		
 		request.setAttribute("count", count);
 		request.setAttribute("list", list);
+		request.setAttribute("nlist", nlist);
 		request.setAttribute("page", page.getPage());
 		
 		//JSP 경로 반환

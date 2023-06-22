@@ -41,8 +41,9 @@ $(function(){
 					//로그인한 회원번호와 작성자의 회원번호가 일치 여부 체크
 					if(param.user_num == item.mem_num){
 						//로그인한 회원번호와 작성자의 회원번호가 일치
-						output += ' <input type="button" data-renum="'+item.re_num+'" value="수정" class="modify-btn">';
 						output += ' <input type="button" data-renum="'+item.re_num+'" value="삭제" class="delete-btn">';
+						output += ' <input type="button" data-renum="'+item.re_num+'" value="수정" class="modify-btn">';
+						
 					}
 					output += '</div>';
 					output += '</div>';
@@ -121,7 +122,7 @@ $(function(){
 		//댓글 번호
 		let re_num = $(this).attr('data-renum');
 		//댓글 내용
-		let content = $(this).parent().find('p').html().replace(/<br>/gi,'\n');
+		let content = $(this).parent().parent().find('p').html().replace(/<br>/gi,'\n');
 		/* /<br>/gi,'\n' : <br>을 \n으로 바꿔라
 			g : 지정문자열 모두,
 			i : 대소문자 무시
@@ -131,14 +132,13 @@ $(function(){
 		let modifyUI = '<form id="mre_form">';
 		modifyUI += '<input type="hidden" name="re_num" id="mre_num" value="'+re_num+'">';
 										//name->서버전송, id->js나 css에 사용
-		modifyUI += '<textarea rows="3" cols="50" name="content" id="m_content" class="rep-content">'+content+'</textarea>';
+		modifyUI += '<textarea rows="3" cols="50" name="m_content" id="m_content" class="rep-content">'+content+'</textarea>';
 							 //rows="높이" cols="넓이"
 		modifyUI += '<div id="m_first"><span class="letter-count">300/300</span></div>';
 		modifyUI += '<div id="m_second" class="align-right">';
 		modifyUI += ' <input type="submit" value="수정">';
 		modifyUI += ' <input type="button" value="취소" class="re-reset">';
 		modifyUI += '</div>';
-		modifyUI += '<hr size="1" noshade width="96%">';
 		modifyUI += '</form>';
 		
 		//이전에 이미 수정하는 댓글이 있을 경우 수정버튼을 클릭하면
@@ -146,17 +146,21 @@ $(function(){
 		initModifyForm();
 		
 		//데이터가 표시되어 있는 div감추기
-		$(this).parent().hide();
+		$(this).parent().parent().hide();
 		//수정폼을 수정하고자 하는 데이터가 있는 div에 노출
-		$(this).parents('.item').append(modifyUI);
+		$(this).parent().parent().parent().append(modifyUI);
+		$(this).parent().parent().parent().css({
+			"background-color":"#EEE",
+			"margin-top":"20px"
+		});
 		
 		//입력한 글자수 세팅
-		let inputLength = $('#mre_content').val().length;
+		let inputLength = $('#m_content').val().length;
 		let remain = 300 - inputLength;
 		remain += '/300';
 		
 		//문서 객체에 반영
-		$('#mre_first .letter-count').text(remain);
+		$('#m_first .letter-count').text(remain);
 		
 	});
 	
@@ -164,14 +168,15 @@ $(function(){
 	$(document).on('keyup','textarea',function(){
 		//입력한 글자수 구함
 		let inputLength = $(this).val().length;
+		
 		if(inputLength>300){//300자를 넘어선 경우
 			$(this).val($(this).val().substring(0,300));//->300자까지만 인정, 나머지는 잘라냄
 		}else{//300자 이하인 경우
 			let remain = 300 - inputLength;
 			remain += '/300';
-			if($(this).attr('id')=='re_content'){
+			if($(this).attr('id')=='comment_content'){
 				//등록폼 글자수
-				$('#re_first .letter-count').text(remain);
+				$('#comment_first .letter-count').text(remain);
 			}else{
 				//수정폼 글자수
 				$('#mre_first .letter-count').text(remain);
@@ -186,6 +191,10 @@ $(function(){
 	
 	//댓글 수정폼 초기화
 	function initModifyForm(){
+		$('.sub-item').parent().css({
+			"background-color":"white",
+			"margin-top":"0"
+		});
 		$('.sub-item').show();
 		$('#mre_form').remove();
 	}
@@ -196,9 +205,9 @@ $(function(){
 		event.preventDefault();
 		
 		//조건체크->댓글내용을 입력하지 않은 경우
-		if($('#mre_content').val().trim()==''){
+		if($('#m_content').val().trim()==''){
 			alert('내용을 입력하세요');
-			$('#mre_content').val('').focus();
+			$('#m_content').val('').focus();
 			return false;
 		}
 		
@@ -215,7 +224,7 @@ $(function(){
 				if(param.result == 'logout'){
 					alert('로그인해야 수정할 수 있습니다.');
 				}else if(param.result == 'success'){
-					$('#mre_form').parent().find('p').html($('#mre_content').val().replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/g,'<br>'));
+					$('#mre_form').parent().find('p').html($('#m_content').val().replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/g,'<br>'));
 					//날짜,시간
 					$('#mre_form').parent().find('.modify-date').text('최근 수정일 : 5초미만');
 					//수정폼 삭제 및 초기화

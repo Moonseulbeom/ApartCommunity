@@ -41,8 +41,8 @@
 }
 .mem-service div{
 	width: 200px;
-	height: 35px;
-	border: 1px solid #e5e5e5;
+	height: 30px;
+	padding-top: 10px;
 }
 .mem-service div:hover{
 	cursor: pointer;
@@ -53,12 +53,34 @@
 	background-color: #5a5a5a;
 }  
 .service-myPage-button a{
+	margin-top: 10px;  
 	height:30px;
+	color: #fff;
+}
+.service-manager-button{  
+	margin: -10px 0px 20px 25px;
+	width: 100%;
+	
+}
+.service-manager-button li{
+	float: left; 
+}
+.service-manager-button div{
+	width:96px;
+	background-color: #5a5a5a;
+	border: 1px solid #e5e5e5;
+	
+}
+.manage-btn{
+	margin-left: 4px;
+}
+.service-manager-button a{
 	color: #fff;
 }
 .service-logout-button{
 	margin: 0 auto;
 	background-color: #fff;
+	border: 1px solid #e5e5e5;
 }
 .menu{
 	margin-top: 20px; 
@@ -280,10 +302,14 @@
 }
 
 /*상세 댓글 작성 스타일 */
-#comment{
+#comment, #mre_form{
 	padding: 5px 10px 40px 10px;
    	margin-top: 10px;
    	background-color: #EEEEEE;
+}
+#mre_form{
+	padding-top: 10px;
+	width: 660px;
 }
 #comment_form{
 	width: 660px;
@@ -298,7 +324,7 @@
    font-size: 10pt;
    color: #999999;
 }
-#comment .rep-content{
+form .rep-content{
    width: 100%;
    height: 50px;
    margin: 10px 0px;
@@ -313,7 +339,7 @@
    width: 30%;
    margin-bottom: 10px;
 }
-#comment_second input[type="submit"]{
+#comment_second input, #m_second input{
 	width: 40px;
 	height: 28px; 
 	border: 1px solid #c7c9cc;
@@ -326,15 +352,21 @@
 }
 /* 댓글 목록 출력 */
 .paging-button{
-   text-align:right;
+	text-align:right;
+}
+.paging-button input{
+	height: 28px; 
+	margin: 5px 0px;
 }
 #output{
    clear: both;
 }
 #output .comment{
-	border-top: 1px solid rgb(128, 128, 128);
 	border-bottom: 1px solid rgb(128, 128, 128);
 	padding: 10px 0px;
+}
+#output .comment:nth-child(1){
+	border-top: 1px solid rgb(128, 128, 128);
 }
 #output .sub-item{
 	margin-left: 10px;
@@ -360,6 +392,7 @@
 .sub-down input[type="button"]:hover{
 	cursor: pointer;
 }
+
 /*상세 페이지 처리*/
 .page-count{
 	margin-top: 10px;

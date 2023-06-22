@@ -78,6 +78,7 @@
 .rnlLi img{
 	width: 220px;
 	height: 220px;
+	object-fit: contain;
 	border-radius: 10px;
 }
 .rnlLi .rnlBtn{

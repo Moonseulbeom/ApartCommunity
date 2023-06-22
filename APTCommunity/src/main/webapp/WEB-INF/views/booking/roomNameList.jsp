@@ -21,29 +21,32 @@
 			<span id="rnlTopMenu">시설예약 &nbsp;&nbsp;></span>
 		</div>
 		<hr class="Mhr" color="#edeff0" noshade="noshade">
+		<form id="roomName_form" action="roomTypeList.do" method="get">
 			<ul>
+			<!-- room_name = 1:회의실, 2:도서실, 3:게스트하우스 -->
 				<li class="rnlLi">
 					<div class="rnlBox rnlBoxMR">
-						<span class="bText">독서실</span>
+						<span class="bText">도서실</span>
 						<img alt="독서실" src="${pageContext.request.contextPath}/img/Study-Room.png">
-						<button class="rnlBtn" value="">선택</button>
+						<button type="submit" class="rnlBtn" value="2" name="lib">선택</button>
 					</div>
 				</li>
 				<li class="rnlLi">
 					<div class="rnlBox rnlBoxMR">
 						<span class="bText">회의실</span>
 						<img alt="회의실" src="${pageContext.request.contextPath}/img/Meeting-Room.png">
-						<button type="button" class="rnlBtn" value="">선택</button>
+						<button type="submit" class="rnlBtn" value="1" name="meet">선택</button>
 					</div>
 				</li>
 				<li class="rnlLi">
 					<div class="rnlBox">
 						<span class="bText">게스트하우스</span>
 						<img alt="게스트하우스" src="${pageContext.request.contextPath}/img/Guest-House.png">
-						<button class="rnlBtn" value="">선택</button>
+						<button type="submit" class="rnlBtn" value="3" name="house">선택</button>
 					</div>
 				</li>
 			</ul>
+		</form>
 	</div>
 	<!-- 내용 끝 -->
 	<jsp:include page="/WEB-INF/views/common/footer.jsp"/>

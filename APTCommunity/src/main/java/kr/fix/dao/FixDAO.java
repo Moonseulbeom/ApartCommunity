@@ -6,7 +6,6 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-import kr.board.vo.BoardReplyVO;
 import kr.fix.vo.FixReplyVO;
 import kr.fix.vo.FixVO;
 import kr.util.DBUtil;

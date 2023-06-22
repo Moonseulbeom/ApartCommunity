@@ -38,7 +38,7 @@ public class FixUpdateReplyAction implements Action{
 			//자바빈을 생성하고 전송된 데이터를 저장
 			FixReplyVO reply = new FixReplyVO();
 			reply.setRe_num(re_num);
-			reply.setContent(request.getParameter("content"));
+			reply.setContent(request.getParameter("m_content"));
 			reply.setIp(request.getRemoteAddr());
 			dao.updateFixReply(reply);
 			mapAjax.put("result", "success");
