@@ -1,0 +1,79 @@
+.content-main {
+  width: 100%;
+  margin: 0 auto;
+  background-color: #f5f5f5;
+}
+
+.mypage-div {
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+h2 {
+  font-size: 18px;
+  margin-bottom: 10px;
+  font-family: sans-serif;
+  font-weight: bold;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  margin-bottom: 5px;
+}
+
+input[type="button"] {
+  background-color: #337ab7;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  font-family: sans-serif;
+  font-weight: bold;
+}
+
+.mypage-end {
+  text-align: center;
+  font-family: sans-serif;
+  font-weight: bold;
+}
+
+/* Custom CSS */
+
+.content-main {
+  max-width: 500px;
+}
+
+.mypage-div {
+  margin-bottom: 20px;
+}
+
+input[type="text"],
+input[type="email"] {
+  width: 100%;
+}
+
+.align-center {
+  text-align: center;
+}
+
+/* Your CSS */
+
+.mypage-div {
+  background-color: #fff;
+}
+
+input[type="text"],
+input[type="email"] {
+  border: 1px solid #ccc;
+  padding: 10px;
+}
+
+.align-center {
+  margin-top: 20px;
+}

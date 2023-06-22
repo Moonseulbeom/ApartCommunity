@@ -1,0 +1,48 @@
+.page-main {
+  width: 100%;
+  margin: 0 auto;
+}
+
+.content-main {
+  padding: 20px;
+  text-align: center;
+}
+
+.mypage-div {
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+h2 {
+  font-size: 18px;
+  margin-bottom: 10px;
+  font-family: sans-serif;
+  font-weight: bold;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  margin-bottom: 5px;
+}
+
+input[type="button"] {
+  background-color: #337ab7;
+  color: white;
+  padding: 0px 20px;
+  border: none;
+  cursor: pointer;
+  font-family: sans-serif;
+  font-weight: bold;
+}
+
+.mypage-end {
+  text-align: center;
+  font-family: sans-serif;
+  font-weight: bold;
+}

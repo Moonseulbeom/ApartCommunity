@@ -9,6 +9,7 @@
 <title>MY페이지</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/custom.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/mypage.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 </head>
 <body>
@@ -18,10 +19,6 @@
 	<div class="content-main">
 		<h2>회원정보</h2>
 		<div class="mypage-div">
-			<h3>
-				연락처 <input type="button" value="연락처 수정"
-						onclick="location.href='modifyUserForm.do'">
-			</h3>
 			<ul>
 				<li>세대주 : ${member.name}</li>
 				<li>전화번호 : ${member.phone}</li>
@@ -34,6 +31,10 @@
 			</ul>
 		</div><%-- end of .mypage-div --%>
 		<div class="mypage-div">
+			<h3>
+				회원정보 수정 <input type="button" value="회원정보 수정"
+						onclick="location.href='modifyUserForm.do'">
+			</h3>
 			<h3>
 				비밀번호 수정
 				<input type="button" 
