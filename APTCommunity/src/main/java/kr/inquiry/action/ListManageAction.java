@@ -62,6 +62,7 @@ public class ListManageAction implements Action{
 		Integer user_num = 
 				(Integer)session.getAttribute(
 				                    "user_num");
+		Integer auth = (Integer)session.getAttribute("auth");
 		
 		Map<String,Object> mapAjax = 
 				new HashMap<String,Object>();
@@ -70,6 +71,7 @@ public class ListManageAction implements Action{
 		mapAjax.put("list", list);
 		//로그인한 사람이 작성자인지 체크하기 위해서 전송
 		mapAjax.put("user_num", user_num);
+		mapAjax.put("auth", auth);
 		
 		//JSON 데이터 생성
 		ObjectMapper mapper = new ObjectMapper();

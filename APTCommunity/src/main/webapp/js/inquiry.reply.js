@@ -25,29 +25,36 @@ $(function(){
                $('#output').empty();
             }
             $(param.list).each(function(index,item){
-               let output = '<div class="item">';
-               output += '<h4>'+item.dongho+'</h4>';
-               output += '<div class="sub-item">';
-               output += '<p>'+item.content+'</p>';
-               
-               //날짜
-               if(item.modify_date){
+               let output = '<div class="manage-detail-page">';
+			   output += '<div class="manage-detail-page-title">';
+			   output += '<ul> <li>문의 답변</li>';
+			   output += '<li>관리자</li></ul>';
+			   output += '<div class="manage-detail-page-content">';
+			   output += '<p>'+item.content+'</p>'
+			   output += '<hr size="1" noshade width="100%">';
+			   output += '<div class="manage-detail-modify-date">';
+			   if(item.modify_date){
                   output += '<span class="modify-date">최근 수정일 : '+item.modify_date+'</span>';
                }else{
                   output += '<span class="modify-date">등록일 : '+item.reg_date+'</span>';
                }
+			   output += '</div>';
+			   
+			   
                
                //수정 삭제 버튼처리
                //로그인한 회원번호와 작성자의 회원번호가 일치 여부 체크
-               if(param.user_num == item.mem_num){
+               if(param.user_num == item.mem_num || param.auth == 9){
                   //로그인한 회원번호와 작성자의 회원번호가 일치
                   output += ' <input type="button" data-renum="'+item.re_num+'" value="수정" class="modify-btn">';
                   output += ' <input type="button" data-renum="'+item.re_num+'" value="삭제" class="delete-btn">';
                }
                
-               output += '<hr size="1" noshade width="100%">';
+               
                output += '</div>';
                output += '</div>';
+			   output += '</div>';
+			   
                
                //문서 객체에 추가
                $('#output').append(output);
@@ -68,6 +75,8 @@ $(function(){
          }
       });
    }
+
+
    //페이지 처리 이벤트 연결(다음 댓글 보기 버튼 클릭시 데이터 추가)
    $('.paging-button input').click(function(){
       selectList(currentPage + 1);

@@ -27,14 +27,18 @@
 							<div class="sidebar">
 								<div class="mem-service">
 									<p>000동 000호 주민</p>
-									<button onclick="location.href='#'">MY 페이지</button>
-									<button onclick="location.href='#'">로그아웃</button>	
+									<div class="service-myPage-button">
+										<a href="${pageContext.request.contextPath}/member/myPage.do">MY 페이지</a>
+									</div>
+									<div class="service-logout-button">
+										<a href="${pageContext.request.contextPath}/member/logout.do">로그아웃</a>
+									</div>
 								</div>
-								<h2>기타</h2>
+								<h2>예약/신청</h2>
 								<div class="menu">
 									<ul>
-										<li><a href="${pageContext.request.contextPath}/inquiry/list.do">1:1문의</a></li>
-										<li><a href="${pageContext.request.contextPath}/question/list.do">자주 묻는 질문</a></li>
+										<li><a href="${pageContext.request.contextPath}/inqruiry/list.do">1:1문의</a></li>
+										<li><a href="${pageContext.request.contextPath}/question/list.do">자주묻는 질문</a></li>
 									</ul>
 								</div>
 							</div>
@@ -48,12 +52,12 @@
 									<div class="inquiry-detail-page-title">
 										<ul>
 											<li>
-												<a href="inquiry/list.do">1:1문의</a>
+												<a href="list.do">1:1문의</a>
 											</li>
-											<li><b>${inquiry.title}</b></li>
+											<li><b>${ inquiry.title }</b></li>
 											<li>
-												작성자 ${inquiry.dongho } |
-												작성일 ${inquiry.reg_date }
+												작성자 ${ inquiry.dongho } |
+												작성일 ${ inquiry.reg_date }
 											</li>
 										</ul>
 									</div>
@@ -64,32 +68,23 @@
 										</c:if>
 										<p>${ inquiry.content }</p>
 									</div>
-								</div><!-- detail-page -->
-							</div>
-							<hr class="hLine" size="1" noshade="noshade" width="100%">
-							<!-- 댓글 목록 출력 시장 -->
-							<div id="output"></div>		
-							<div class="paging-button" style="display:none;">
-								<input type="button" value="다음글 보기">
-							</div>
-							<div id="loading" style="display: none;">
-								<img src="${pageContext.request.contextPath}/images/loading.gif" width="50" height="50">
-							</div>
-								<div class="detail-btn">
-								<c:if test="${user_auth == 9 }">
-								<div class="detail-btn-div">
-									<input type="submit" value="수정" class="write-btn">
-									<input type="button" value="삭제" onclick="location.href='fixList.do'" class="write-btn">
 								</div>
-								</c:if>
-							<!-- 댓글 입력 시작 -->
+							</div>
+							<!-- 답변 글 시작 -->
+			
+							<!-- 답변 글 끝 -->
+							<!-- 댓글 목록 출력 시장 -->
+							<div id="output"></div>	
+							<hr class="hLine" size="1" noshade="noshade" width="100%">
+							<!-- 댓글시작 -->
+							<c:if test="${!empty user_num && user_auth == 9}">
 							<div id="manage">
-								<span class="manage-title">댓글 달기</span>
+								
+								<span class="manage-title">답변 작성</span>
 								<form id="manage_form">
-								<c:if test="${ user_num == fix.mem_num || user_auth == 9}">
 									<input type="hidden" name="in_num" value="${inquiry.in_num}" id="in_num">
-									<textarea rows="3" cols="50" name="manage_content" id="manage_content" class="rep-content"
-									<c:if test="${empty user_num}">disabled="disabled"</c:if>><c:if test="${empty user_num}">로그인해야 작성할 수 있습니다.</c:if></textarea>
+									<textarea rows="3" cols="50" name="manage_content" id="manage_content" class="rep-content" disabled="disabled">
+									<c:if test="${empty user_num}">로그인해야 작성할 수 있습니다.</c:if></textarea>
 									<c:if test="${!empty user_num}"> <%-- 로그인 된 상태 --%>
 									<div id="manage_first">
 										<span class="letter-count">300/300</span>
@@ -98,16 +93,24 @@
 										<input type="submit" value="전송">				
 									</div>
 									</c:if>
-									</c:if>
 								</form>
+							</div>
+							</c:if>
+							
+								
+							<div class="paging-button" style="display:none;">
+								<input type="button" value="다음글 보기">
+							</div>
+							<div id="loading" style="display: none;">
+								<img src="${pageContext.request.contextPath}/images/loading.gif" width="50" height="50">
 							</div>
 							<!-- 댓글 끝 -->
 							<div class="detail-btn">
 								<div class="detail-btn-div2">
-									<input type="button" value="목록" class="bottom-btn" onclick="location.href='list.do'" id="fixDelete_btn">
+									<input type="button" value="목록" class="bottom-btn" onclick="location.href='list.do'" id="list_btn">
 									<%-- 로그인 한 회원번호와 작성자 회원번호가 일치해야 수정, 삭제 가능 --%>
 								    <c:if test="${ user_num == inquiry.mem_num || user_auth == 9}">
-								    <input type="button" value="수정" class="bottom-btn" onclick="location.href='updateForm.do?in_num=${inquriy.in_num}'">
+								    <input type="button" value="수정" class="bottom-btn" onclick="location.href='updateForm.do?in_num=${inquiry.in_num}'">
 								    <input type="button" value="삭제" class="bottom-btn" id="delete_btn">
 								    <script type="text/javascript">
 								    	let delete_btn =  document.getElementById('delete_btn');
@@ -122,8 +125,6 @@
 						        	</c:if>
 								</div>
 							</div>
-							</div>
-						
 						</div>	
 					</li>
 					<!-- 오른쪽 -->

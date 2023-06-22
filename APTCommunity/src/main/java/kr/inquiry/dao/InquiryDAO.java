@@ -6,11 +6,9 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-import kr.board.vo.BoardReplyVO;
 import kr.inquiry.vo.InquiryManageVO;
 import kr.inquiry.vo.InquiryVO;
 import kr.util.DBUtil;
-import kr.util.DurationFromNow;
 import kr.util.StringUtil;
 
 public class InquiryDAO {
@@ -53,8 +51,7 @@ public class InquiryDAO {
 		}
 	}
 	//검색 레코드 수
-	public int getInquiryCount(String keyfield,
-            					String keyword)
+	public int getInquiryCount(String keyfield,String keyword)
             				throws Exception{
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -424,6 +421,7 @@ public class InquiryDAO {
 				manage.setIn_num(rs.getInt("in_num"));
 				manage.setMem_num(rs.getInt("mem_num"));
 				manage.setDongho(rs.getString("Dongho"));
+				manage.setAuth(rs.getInt("auth"));
 	
 				list.add(manage);			}
 		}catch(Exception e) {
