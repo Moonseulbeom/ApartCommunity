@@ -109,7 +109,7 @@
 			              items="${noticelist}">
 				<tr>
 					<td><a href="${pageContext.request.contextPath}/notice/noticeDetail.do?no_num=${notice.no_num}">${notice.title}</a></td>
-					<td>${notice.dongho}</td>
+					<td>${notice.dept}</td>
 					<td>${notice.content}</td>
 					<td>${notice.reg_date}</td>
 				</tr>
