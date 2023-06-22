@@ -10,6 +10,12 @@ import kr.secondhand.vo.SecondHandVO;
 import kr.util.DBUtil;
 
 public class SecondHandDAO {
+	/*
+		division : 판매 및 구매 분류번호
+		1 -> 판매
+		2 -> 구매
+	*/
+	
 	//싱글턴 패턴
 		private static SecondHandDAO instance = new SecondHandDAO();
 		public static SecondHandDAO getinstance() {
@@ -23,8 +29,9 @@ public class SecondHandDAO {
 	 	2.글작성/수정/목록
 	 	3.모두 댓글사용할예정
 	 */
-	//중고거래 글작성
-	public void insertSecondHand(SecondHandVO vo) throws Exception {
+		
+	//중고구매 글작성 (division : 2 -> 구매)
+	public void insertSeBuy(SecondHandVO vo) throws Exception {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		String sql = null;
@@ -32,14 +39,37 @@ public class SecondHandDAO {
 		try {
 			conn = DBUtil.getConnection();
 			sql = "INSERT INTO secondhand (se_num, mem_num, division, title, content, filename, ip)"
-					+ " VALUES (secondhand_seq.nextval,?,?,?,?,?,?)";
+					+ " VALUES (secondhand_seq.nextval,?,2,?,?,?,?)";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, vo.getMem_num());
-			pstmt.setInt(2, vo.getDivision());
-			pstmt.setString(3, vo.getTitle());
-			pstmt.setString(4, vo.getContent());
-			pstmt.setString(5, vo.getFilename());
-			pstmt.setString(6, vo.getIp());
+			pstmt.setString(2, vo.getTitle());
+			pstmt.setString(3, vo.getContent());
+			pstmt.setString(4, vo.getFilename());
+			pstmt.setString(5, vo.getIp());
+			pstmt.executeUpdate();
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally{
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+	}
+	
+	//중고판매 글작성 (division : 1 -> 판매)
+	public void insertSeSale(SecondHandVO vo) throws Exception {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+			
+		try {
+			conn = DBUtil.getConnection();
+			sql = "INSERT INTO secondhand (se_num, mem_num, division, title, content, filename, ip)"
+					+ " VALUES (secondhand_seq.nextval,?,1,?,?,?,?)";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, vo.getMem_num());
+			pstmt.setString(2, vo.getTitle());
+			pstmt.setString(3, vo.getContent());
+			pstmt.setString(4, vo.getFilename());
+			pstmt.setString(5, vo.getIp());
 			pstmt.executeUpdate();
 		}catch(Exception e) {
 			throw new Exception(e);
@@ -124,8 +154,8 @@ public class SecondHandDAO {
 		return vo;
 	}
 	
-	//중고거래 글목록
-	public List<SecondHandVO> getListSecondHand(int start, int end, String keyfield, String keyword) throws Exception{
+	//중고구매 글목록
+	public List<SecondHandVO> getListSeBuy(int start, int end, String keyfield, String keyword) throws Exception{
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -144,7 +174,7 @@ public class SecondHandDAO {
 			sql = "SELECT * FROM (SELECT A.*, ROWNUM RNUM FROM"
 					+ " (SELECT * FROM SECONDHAND S JOIN MEMBER M"
 					+ " USING(MEM_NUM) "+sub_sql+" ORDER BY S.SE_NUM DESC)A)"
-							+ " WHERE RNUM >= ? AND RNUM <= ?";
+							+ " WHERE RNUM >= ? AND RNUM <= ? AND division=2";
 			pstmt = conn.prepareStatement(sql);
 			if(keyword != null && !"".equals(keyword)) {
 				pstmt.setString(++cnt, "%"+keyword+"%");
@@ -171,6 +201,78 @@ public class SecondHandDAO {
 		return list;
 	}
 	
+	//중고판매 글목록
+	public List<SecondHandVO> getListSeSale(int start, int end, String keyfield, String keyword) throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<SecondHandVO> list = null;
+		String sql = null;
+		String sub_sql = "";
+		int cnt = 0;
+			
+		try {
+			conn = DBUtil.getConnection();
+			if(keyword != null && !"".equals(keyword)) {
+				if(keyfield.equals("1")) sub_sql += "WHERE s.title LIKE ?";
+				else if(keyfield.equals("2")) sub_sql += "WHERE m.id LIKE ?";
+				else if(keyfield.equals("3")) sub_sql += "WHERE s.content LIKE ?";
+			}
+			sql = "SELECT * FROM (SELECT A.*, ROWNUM RNUM FROM"
+					+ " (SELECT * FROM SECONDHAND S JOIN MEMBER M"
+					+ " USING(MEM_NUM) "+sub_sql+" ORDER BY S.SE_NUM DESC)A)"
+							+ " WHERE RNUM >= ? AND RNUM <= ? AND division=1";
+			pstmt = conn.prepareStatement(sql);
+			if(keyword != null && !"".equals(keyword)) {
+				pstmt.setString(++cnt, "%"+keyword+"%");
+			}
+			pstmt.setInt(++cnt, start);
+			pstmt.setInt(++cnt, end);
+				
+			rs = pstmt.executeQuery();
+			list = new ArrayList<SecondHandVO>();
+			while(rs.next()) {
+				SecondHandVO vo = new SecondHandVO();
+				vo.setSe_num(rs.getInt("se_num"));
+				vo.setTitle(rs.getString("title"));
+				vo.setReg_date(rs.getDate("reg_date"));
+				vo.setDongho(rs.getString("dongho"));
+					
+				list.add(vo);
+			}
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		return list;
+	}
+	
+	//동,호 불러오기???
+	public String getDongho(int mem_num) throws Exception {
+		Connection conn = null;
+	   	PreparedStatement pstmt = null;
+	   	ResultSet rs = null;
+	   	String sql = null;
+	   	String dongho = null;
+	    	
+	   	try {
+	   		conn = DBUtil.getConnection();
+	   		sql = "SELECT dongho FROM member WHERE mem_num=?";
+	   		pstmt = conn.prepareStatement(sql);
+	   		pstmt.setInt(1, mem_num);
+	   		rs = pstmt.executeQuery();
+	   		if(rs.next()) {
+	   			dongho = rs.getString(1);
+	   		}
+	   	}catch(Exception e) {
+	   		throw new Exception(e);
+	   	}finally {
+	   		DBUtil.executeClose(rs, pstmt, conn);
+	   	}
+    	return dongho;
+	}
+	
 	//파일삭제
 	public void deleteFile(int se_num) throws Exception {
 		Connection conn = null;
@@ -189,8 +291,8 @@ public class SecondHandDAO {
 		}
 	}
 	
-	//중고거래 글 수정
-	public void updateSecondHand(SecondHandVO vo) throws Exception {
+	//중고구매 글 수정
+	public void updateSeBuy(SecondHandVO vo) throws Exception {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		String sql = null;
@@ -203,7 +305,7 @@ public class SecondHandDAO {
 				sub_sql += ",filename=?";
 			}
 			sql = "UPDATE secondhane SET title=?, content=?, modify_date=SYSDATE"+sub_sql+",ip=?"
-					+ " WHERE se_num=?";
+					+ " WHERE se_num=? AND division=2";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(++cnt, vo.getTitle());
 			pstmt.setString(++cnt, vo.getContent());
@@ -218,7 +320,37 @@ public class SecondHandDAO {
 			DBUtil.executeClose(null, pstmt, conn);
 		}
 	}
-	
+
+	//중고판매 글 수정
+	public void updateSeSale(SecondHandVO vo) throws Exception {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+		String sub_sql = "";
+		int cnt = 0;//파일삭제 관련
+		
+		try {
+			conn = DBUtil.getConnection();
+			if(vo.getFilename() != null) {
+				sub_sql += ",filename=?";
+			}
+			sql = "UPDATE secondhane SET title=?, content=?, modify_date=SYSDATE"+sub_sql+",ip=?"
+					+ " WHERE se_num=? AND division=1";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(++cnt, vo.getTitle());
+			pstmt.setString(++cnt, vo.getContent());
+			if(vo.getFilename() != null) {
+				pstmt.setString(++cnt, vo.getFilename());
+			}
+			pstmt.setString(++cnt, vo.getIp());
+			pstmt.setInt(++cnt, vo.getSe_num());
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+	}
+
 	//글삭제
 	public void deleteSecondHand(int se_num) throws Exception {
 		Connection conn = null;
@@ -256,6 +388,7 @@ public class SecondHandDAO {
 	//중고거래-판매 찜버튼
 	
 	//댓글 등록
+	//public void insertReplySe()
 	
 	//댓글 개수
 	

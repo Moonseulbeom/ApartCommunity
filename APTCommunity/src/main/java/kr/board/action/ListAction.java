@@ -8,7 +8,10 @@ import javax.servlet.http.HttpServletResponse;
 import kr.board.dao.BoardDAO;
 import kr.board.vo.BoardVO;
 import kr.controller.Action;
+import kr.notice.dao.NoticeDAO;
+import kr.notice.vo.NoticeVO;
 import kr.util.PageUtil;
+import kr.util.StringUtil;
 
 public class ListAction implements Action{
 
@@ -34,6 +37,19 @@ public class ListAction implements Action{
 		request.setAttribute("count", count);
 		request.setAttribute("list", list);
 		request.setAttribute("page", page.getPage());
+		
+		//상단고정 게시글 가져오기(notice)
+		NoticeDAO ndao = NoticeDAO.getInstance();
+		/* 
+			getFixedList(int dept, int category_status, int start, int end)
+			dept : 분류번호(4:기타)
+			category_status : 분류번호(2:자유게시판,3:중고거래)
+		 */
+		List<NoticeVO> fixedList = ndao.getFixedList(4, 2, 1, 5);
+		for(NoticeVO no : fixedList) {
+			no.setTitle(StringUtil.useNoHtml(no.getTitle()));
+		}
+		request.setAttribute("fixedList", fixedList);		
 		
 		//JSP 경로 반환
 		return "/WEB-INF/views/board/boardList.jsp";

@@ -29,6 +29,10 @@
 	<!-- 내용 시작 -->
 	<div class="inner">
 		<div id="container" class="inner">
+		<!-- 상단링크버튼 -->
+		<div class="service-up">
+			<jsp:include page="/WEB-INF/views/common/up_button.jsp"/>
+		</div>
 			<div class="page-main">
 			<ul>
 				<!-- 좌측 사이드바 -->
@@ -41,15 +45,6 @@
 				<li>
 				<div class="page-right">
 				<div class="main-search">
-					<c:if test="${dept==1}">
-						<b>자유게시판</b>
-					</c:if>
-					<c:if test="${dept==2}">
-						<b>중고구매</b>
-					</c:if>
-					<c:if test="${dept==3}">
-						<b>중고판매</b>
-					</c:if>
 					<!-- 검색 시작 -->
 					<form id="search_form" method="get" action="boardList.do">
 						<div class="commu-main-search">
@@ -75,14 +70,14 @@
 						<!-- 고정 게시글 목록 시작 -->
 						<div class="board-article-fixed">
 						<table class="list-fixed">
-						<c:forEach var="vo" items="${list}">
+						<c:forEach var="fixed" items="${fixedList}">
 							<tr>
 								<td colspan="2" class="td-article">
 									<div class="board-number-fixed">
 										<span>공지</span>
 									</div>
 									<div class="board-list">
-										<a class="article-fixed" href="boardDetail.do?board_num=${fixed.no_num}">${fixed.title}</a>
+										<a class="article-fixed" href="noticeDetail.do?no_num=${fixed.no_num}">${fixed.title}</a>
 									</div>
 								</td>
 								<td class="board-name">관리자</td>

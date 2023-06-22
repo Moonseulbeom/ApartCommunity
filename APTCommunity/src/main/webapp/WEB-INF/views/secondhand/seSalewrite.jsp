@@ -2,5 +2,5 @@
     pageEncoding="UTF-8"%>
 <script>
 	alert('글쓰기 완료');
-	location.href='seBuyList.do';
+	location.href='seSaleList.do';
 </script>

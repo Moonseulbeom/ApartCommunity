@@ -8,7 +8,7 @@ import kr.secondhand.dao.SecondHandDAO;
 import kr.secondhand.vo.SecondHandVO;
 import kr.util.StringUtil;
 
-public class DetailAction implements Action{
+public class SaleDetailAction implements Action{
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -18,17 +18,17 @@ public class DetailAction implements Action{
 		
 		//레코드 반환받기
 		SecondHandVO vo = dao.getSecondHand(se_num);
-		
+				
 		//HTML 태그를 허용하지 않음
 		vo.setTitle(StringUtil.useNoHtml(vo.getTitle()));
-		
+				
 		//HTML 태그를 허용하지 않으면서 줄바꿈처리
 		vo.setContent(StringUtil.useBrNoHtml(vo.getContent()));
-		
+			
 		request.setAttribute("vo", vo);
-		
+				
 		//JSP 경로반환
-		return "/WEB-INF/views/secondhand/secondhandDetail.jsp";
+		return "/WEB-INF/views/secondhand/seSaleDetail.jsp";
 	}
 
 }

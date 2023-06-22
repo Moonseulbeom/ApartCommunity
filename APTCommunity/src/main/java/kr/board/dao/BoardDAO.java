@@ -8,9 +8,7 @@ import java.util.List;
 
 import kr.board.vo.BoardReplyVO;
 import kr.board.vo.BoardVO;
-import kr.secondhand.vo.SecondHandVO;
 import kr.util.DBUtil;
-import kr.util.DurationFromNow;
 import kr.util.StringUtil;
 
 public class BoardDAO {
@@ -143,6 +141,32 @@ public class BoardDAO {
 			DBUtil.executeClose(rs, pstmt, conn);
 		}
 			return list;
+	}
+	
+	//상단 고정 게시글????
+	//동,호 불러오기???
+	public String getDongho(int mem_num) throws Exception {
+		Connection conn = null;
+    	PreparedStatement pstmt = null;
+    	ResultSet rs = null;
+    	String sql = null;
+    	String dongho = null;
+    	
+    	try {
+    		conn = DBUtil.getConnection();
+    		sql = "SELECT dongho FROM member WHERE mem_num=?";
+    		pstmt = conn.prepareStatement(sql);
+    		pstmt.setInt(1, mem_num);
+    		rs = pstmt.executeQuery();
+    		if(rs.next()) {
+    			dongho = rs.getString(1);
+    		}
+    	}catch(Exception e) {
+    		throw new Exception(e);
+    	}finally {
+    		DBUtil.executeClose(rs, pstmt, conn);
+    	}
+    	return dongho;
 	}
 	
 	//글 상세

@@ -18,9 +18,12 @@
 <div class="wrap">
 	<jsp:include page="/WEB-INF/views/common/header.jsp"></jsp:include>
 	<!-- 내용 시작 -->
-	
 	<div class="inner">
    		<div class="inner" id="container">
+   		<!-- 상단링크버튼 -->
+   		<div class="service-up">
+			<jsp:include page="/WEB-INF/views/common/up_button.jsp"/>
+		</div>
    			<div class="page-main">
    				<ul>
    					<!-- 좌측 사이드바 -->

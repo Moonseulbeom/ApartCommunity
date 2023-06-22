@@ -21,28 +21,18 @@
 	
 	<div class="inner">
    		<div class="inner" id="container">
+   		<!-- 상단링크버튼 -->
+   		<div class="service-up">
+			<jsp:include page="/WEB-INF/views/common/up_button.jsp"/>
+		</div>
    			<div class="page-main">
    				<ul>
    					<!-- 좌측 사이드바 -->
    					<li>
-   						<div class="page-left">
-   							<div class="sidebar">
-   								<div class="mem-service">
-   									<p>000동 000호 주민</p>
-   									<button onclick="location.href='#'">MY 페이지</button>
-   									<button onclick="location.href='#'">로그아웃</button>
-   								</div>
-   								<h2>${vo.title}</h2>
-   								<div class="menu">
-   									<ul>
-   										<li><a href="${pageContext.request.contextPath}/board/boardList.do">자유게시판</a></li>
-   										<li><a href="${pageContext.request.contextPath}/secondhand/secondhandList.do">중고구매</a></li>
-   										<li><a href="${pageContext.request.contextPath}/secondhand/secondhandList.do">중고판매</a></li>
-   									</ul>
-   								</div>
-   							</div>
-   						</div>
-   					</li>
+  					<div class="page-left">
+						<jsp:include page="/WEB-INF/views/common/sidebarCommu.jsp"/>
+  					</div>
+  					</li>
    					<!-- 우측 메인 -->
    					<li>
    						<div class="page-right">
@@ -52,7 +42,7 @@
    									<div class="detail-page-title">
    										<ul>
    											<li>
-   												<a href="secondhand/seBuyList.do">자유게시판</a>
+   												<a href="secondhand/seBuyList.do">중고구매</a>
    											</li>
    											<li><b>${vo.title}</b></li>
    											<li><!-- &nbsp;:띄어쓰기인데, 작성자와 작성일을 위아래로 나눌지 사이에 공백을 둘지? -->
@@ -95,8 +85,7 @@
    							<div id="comment">
    								<span class="comment-title">댓글 달기</span>
    								<form id="re_form">
-   								<!-- board_num -> se_num 변경????? -->
-   									<input type="hidden" name="board_num" value="${vo.board_num}" id="board_num">
+   									<input type="hidden" name="se_num" value="${vo.se_num}" id="se_num">
 									<textarea rows="3" cols="45" name="re_content" id="re_content" class="rep-content"
 										<c:if test="${empty user_num}">disabled="disabled"</c:if>
 										><c:if test="${empty user_num}">로그인 후 이용하세요</c:if></textarea>

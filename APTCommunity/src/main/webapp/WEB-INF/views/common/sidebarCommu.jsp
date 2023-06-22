@@ -1,9 +1,26 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<script>
+	$(function(){
+		$.ajax({
+			url:'getdongho.do',
+			type:'post',
+			data:{user_num:${user_num}},
+			dataType:'json',
+			success:function(param){
+				let output = param.dong+'동 '+param.ho+'호';
+				$('#output').append(output);
+			},
+			error:function(){
+				alert('네트워크오류발생');
+			}
+		});
+	});
+</script>
 <div class="sidebar">
 	<div class="mem-service">
-		<p>000동 000호 주민</p>
+		<p id="output"></p>
 		<div class="service-myPage-button">
 			<a href="${pageContext.request.contextPath}/member/myPage.do">MY 페이지</a>
 		</div>

@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>중고구매 게시판 목록</title>
+<title>중고판매 게시판 목록</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/commuList.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/custom.css">
@@ -46,9 +46,9 @@
 				<div class="page-right">
 				<div class="main-search">
 					<!-- 검색 시작 -->
-					<form id="search_form" method="get" action="boardList.do">
+					<form id="search_form" method="get" action="seSaleList.do">
 						<div class="commu-main-search">
-							<b> 중고구매 목록 </b>
+							<b> 중고판매 목록 </b>
 							<ul class="search">
 								<li>
 									<select name="keyfield" style="height: 30px;">
@@ -111,7 +111,7 @@
 										${vo.se_num}
 									</div>
 									<div class="board-list">
-										<a href="seBuyDetail.do?se_num=${vo.se_num}">${vo.title}</a>
+										<a href="seSaleDetail.do?se_num=${vo.se_num}">${vo.title}</a>
 									</div>
 								</td>
 								<td class="board-name">${vo.dongho}</td>
@@ -130,13 +130,13 @@
 					<div class="write-btn">
 						<!-- 글작성버튼 -->
 						<span>
-							<a href="seBuywriteForm.do">
+							<a href="seSalewriteForm.do">
 							<img alt="" src="${pageContext.request.contextPath}/img/write_btn.png">글쓰기</a>
 						</span>
 						<!-- 자유게시판목록버튼 -->
 						<span>
 							<c:if test="${empty user_num}">disabled="disabled"</c:if>
-							<a href="seBuyList.do">목록</a>
+							<a href="seSaleList.do">목록</a>
 						</span>
 						<!-- 메인페이지버튼 -->
 						<span>

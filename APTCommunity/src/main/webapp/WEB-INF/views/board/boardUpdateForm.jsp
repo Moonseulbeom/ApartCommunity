@@ -66,7 +66,7 @@
 					<li><!-- 파일 -->
 					<input type="file" name="filename" id="filename" accept="image/gif,image/png,image/jpeg">
 					<c:if test="${!empty vo.filename}">
-					<div class="file_detail">
+					<div id="file_detail">
 						(${vo.filename})파일이 등록되어 있습니다.
 						<input type="button" value="파일삭제" id="file_del" class="size30"><!-- 파일삭제버튼 -->
 					</div>

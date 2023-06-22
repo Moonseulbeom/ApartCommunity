@@ -87,8 +87,8 @@
 							<dd>
 								<ul>
 									<li><a href="${pageContext.request.contextPath}/board/boardList.do"> 자유게시판 </a></li>
-									<li><a href="${pageContext.request.contextPath}/secondhand/secondhandList.do"> 중고구매 </a></li>
-									<li><a href="#"> 중고판매 </a></li>
+									<li><a href="${pageContext.request.contextPath}/secondhand/seBuyList.do"> 중고구매 </a></li>
+									<li><a href="${pageContext.request.contextPath}/secondhand/seSaleList.do"> 중고판매 </a></li>
 								</ul>
 							</dd>
 						</dl>
@@ -131,8 +131,8 @@
 					<li class="dropdown"><a href="${pageContext.request.contextPath}/board/boardList.do">커뮤니티</a>
 						<ul class="lnb_dp2">
 							<li class="sub_dropdown"><a href="${pageContext.request.contextPath}/board/boardList.do"> 자유게시판 </a></li>
-							<li class="sub_dropdown"><a href="${pageContext.request.contextPath}/secondhand/secondhandList.do"> 중고구매 </a></li>
-							<li class="sub_dropdown"><a href="#"> 중고판매 </a></li>
+							<li class="sub_dropdown"><a href="${pageContext.request.contextPath}/secondhand/seBuyList.do"> 중고구매 </a></li>
+							<li class="sub_dropdown"><a href="${pageContext.request.contextPath}/secondhand/seSaleList.do"> 중고판매 </a></li>
 						</ul>
 					</li>
 					<li class="dropdown"><a href="#">기타</a>

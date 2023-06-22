@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>자유게시판 글 수정</title>
+<title>중고구매 글 수정</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/commuWrite.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/custom.css">

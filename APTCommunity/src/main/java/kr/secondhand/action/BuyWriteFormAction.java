@@ -6,11 +6,10 @@ import javax.servlet.http.HttpSession;
 
 import kr.controller.Action;
 
-public class WriteFormAction implements Action{
+public class BuyWriteFormAction implements Action{
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		
 		//로그인 여부 체크
 		HttpSession session = request.getSession();
 		Integer user_num = (Integer)session.getAttribute("user_num");
@@ -19,8 +18,7 @@ public class WriteFormAction implements Action{
 			return "redirect:/member/loginForm.do";
 		}
 		
-		
-		return "/WEB-INF/views/secondhand/secondhandwriteForm.jsp";
+		return "/WEB-INF/views/secondhand/seBuywriteForm.jsp";
 	}
 
 }

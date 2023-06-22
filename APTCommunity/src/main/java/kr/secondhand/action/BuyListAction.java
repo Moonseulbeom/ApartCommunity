@@ -10,7 +10,7 @@ import kr.secondhand.dao.SecondHandDAO;
 import kr.secondhand.vo.SecondHandVO;
 import kr.util.PageUtil;
 
-public class ListAction implements Action{
+public class BuyListAction implements Action{
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -28,12 +28,14 @@ public class ListAction implements Action{
 		
 		List<SecondHandVO> list = null;
 		if(count > 0) {
-			list = dao.getListSecondHand(page.getStartRow(), page.getEndRow(), keyfield, keyword);
+			list = dao.getListSeBuy(page.getStartRow(), page.getEndRow(), keyfield, keyword);
 		}
 		
 		request.setAttribute("count", count);
 		request.setAttribute("list", list);
 		request.setAttribute("page", page.getPage());
+		
+		
 		
 		//JSP 경로 반환
 		return "/WEB-INF/views/secondhand/seBuyList.jsp";

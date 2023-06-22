@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -5,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>중고구매 글 작성</title>
+<title>중고판매 글 작성</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/commuWrite.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/custom.css">
@@ -42,7 +43,7 @@
 			<div class="main-page">
 				<h1>게시판 글 쓰기</h1>
 				<div class="write-page">
-				<form id="write_form" action="seBuywrite.do" method="post" enctype="multipart/form-data">
+				<form id="write_form" action="seSalewrite.do" method="post" enctype="multipart/form-data">
 					<ul>
 						<li>
 						</li>
@@ -68,7 +69,7 @@
 						<li>
 							<div class="write-btn-div">
 								<input type="submit" value="등록" class="write-btn">
-								<input type="button" value="취소" onclick="location.href='seBuyList.do'" class="write-btn">
+								<input type="button" value="취소" onclick="location.href='seSaleList.do'" class="write-btn">
 							</div>
 						</li>
 					</ul>
