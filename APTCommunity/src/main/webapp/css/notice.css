@@ -4,6 +4,7 @@
 	width: 1000px;
 	margin: 50px auto;
 	border: none;
+	min-height: 400px;
 }
 .page-main li{
 	float: left;
@@ -34,7 +35,7 @@
 	border-bottom: 2px solid #333;;
 }
 .mem-service p{
-	padding: 30px 0 15px 0;
+	padding: 20px 0 15px 0;
 	font-size: 13px;
 	font-weight: bold;
 }
@@ -315,3 +316,34 @@
 	width: 40px;
 	height: 25px;
 }
+/*상단 바로가기 버튼*/
+.service-up{
+	margin-right: 30px;
+	position: fixed;
+    right: 24px;
+    bottom: 24px;
+    z-index: 50;
+}
+.link-service img{
+	width: 50px;
+	height: 50px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

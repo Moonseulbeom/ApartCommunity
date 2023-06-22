@@ -29,6 +29,10 @@
 	<!-- 내용 시작 -->
 <div class="inner">
 	<div id="container" class="inner">
+	<!-- 상단 링크 버튼 -->
+		<div class="service-up">
+			<jsp:include page="/WEB-INF/views/common/up_button.jsp"/>
+		</div>
 	<div class="page-main">
 	<ul>
 		<!-- 왼쪽 -->
@@ -40,6 +44,7 @@
 		<!-- 오른쪽 -->
 		<li>
 		<div class="page-right">
+		
 			<div class="main-img">
 				<img alt="" src="${pageContext.request.contextPath}/img/sideMenuTopImg.jpg">
 			</div>
@@ -97,7 +102,7 @@
 				</c:forEach>
 				</table>
 				</div>
-				<!-- 고정 게시글 목록 시작 -->
+				<!-- 고정 게시글 목록 끝 -->
 				<!-- 게시글이 없을 때 -->				
 				 <c:if test="${ count < 1 || empty count }">
 					<div class="result-display">

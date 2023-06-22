@@ -17,6 +17,33 @@ public class NoticeDAO
    }
     
     private NoticeDAO() { }
+    //회원 아이디?불러오기
+    public String getDongho(int mem_num) throws Exception{
+    	Connection conn = null;
+    	PreparedStatement pstmt = null;
+    	ResultSet rs = null;
+    	String sql = null;
+    	String dongho = null;
+    	try {
+			conn = DBUtil.getConnection();
+			sql = "SELECT dongho FROM member WHERE mem_num = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, mem_num);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				dongho = rs.getString(1);
+			}
+		} catch (Exception e) {
+			throw new  Exception(e);
+		} finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+    	return dongho;
+    }
+    
+    
+    
+    
     //게시글 작성
     public void insertNotice(NoticeVO notice) throws Exception {
         Connection conn = null;
@@ -51,14 +78,14 @@ public class NoticeDAO
         String sub_sql = "";
         int count = 0;
         try {
-            if (keyword != null && "".equals(keyword)) {
+            if (keyword != null && !"".equals(keyword)) {
                 sub_sql = " AND ( title LIKE ? OR content LIKE ? )";
             }
             conn = DBUtil.getConnection();
             sql = "SELECT COUNT(*) FROM notice WHERE dept = ?" + sub_sql;
             pstmt = conn.prepareStatement(sql);
             pstmt.setInt(1, dept);
-            if (keyword != null && "".equals(keyword)) {
+            if (keyword != null && !"".equals(keyword)) {
                 pstmt.setString(2, "%" + keyword + "%");
                 pstmt.setString(3, "%" + keyword + "%");
             }
@@ -153,7 +180,7 @@ public class NoticeDAO
         return list;
     }
    //상세 페이지
-    public NoticeVO getNoticeVO( int no_num) throws Exception {
+    public NoticeVO getNoticeVO(int no_num) throws Exception {
         Connection conn = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
@@ -191,17 +218,25 @@ public class NoticeDAO
     	Connection conn = null;
     	PreparedStatement pstmt = null;
     	String sql = null;
-    	
+    	String sub_sql = "";
+    	int cnt = 0;
     	try {
     		conn = DBUtil.getConnection();
-    		sql = "UPDATE notice SET dept = ?, title = ?, content = ?, status = ?, filename = ?, modify_date = SYSDATE WHERE no_num = ?";
+    		
+    		if(notice.getFilename() != null) {
+    			sub_sql += ",filename = ?";
+    		}
+    		
+    		sql = "UPDATE notice SET dept = ?, title = ?, content = ?, status = ?"+sub_sql+", modify_date = SYSDATE WHERE no_num = ?";
     		pstmt = conn.prepareStatement(sql);
-    		pstmt.setInt(1, notice.getDept());
-    		pstmt.setString(2, notice.getTitle());
-    		pstmt.setString(3, notice.getContent());
-    		pstmt.setInt(4, notice.getStatus());
-    		pstmt.setString(5, notice.getFilename());
-    		pstmt.setInt(6, notice.getNo_num());
+    		pstmt.setInt(++cnt, notice.getDept());
+    		pstmt.setString(++cnt, notice.getTitle());
+    		pstmt.setString(++cnt, notice.getContent());
+    		pstmt.setInt(++cnt, notice.getStatus());
+    		if(notice.getFilename() != null) {
+    			pstmt.setString(++cnt, notice.getFilename());
+    		}
+    		pstmt.setInt(++cnt, notice.getNo_num());
     		
     		pstmt.executeUpdate();
     		
