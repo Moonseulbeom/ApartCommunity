@@ -94,7 +94,7 @@
 										<span>공지</span>
 									</div>
 									<div class="board-list">
-										<a class="article-fixed" href="noticeDetail.do?no_num=${ fixed.no_num }">${ fixed.title }</a>
+										<a class="article-fixed" href="${pageContext.request.contextPath}/notice/noticeDetail.do?no_num=${ fixed.no_num }">${ fixed.title }</a>
 									</div>
 								</td>
 								<td class="board-name">관리자</td>

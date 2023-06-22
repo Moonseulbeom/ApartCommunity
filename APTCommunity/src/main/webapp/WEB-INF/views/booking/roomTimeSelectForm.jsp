@@ -30,18 +30,6 @@
 		<form id="roomType_form" action="roomTimeSelect.do" method="get">
 		<input type="hidden" name="room_Name" value="${room_Name}">
 		<!-- 회의실 일 경우 -->
-			<ul>
-				<c:forEach var="list" items="${list}">
-					<li class="rnlLi">
-						<div class="rnlBox rnlBoxMR">
-							<img alt="${list.room_type}" src="${pageContext.request.contextPath}/img/meetingRoom.jpeg">
-							<span class="bText">${list.room_type}</span>
-							<p class="pCnt">(최대 인원 수 : ${list.total_mem}명)</p>
-							<button type="submit" name="room_Type" class="rnlBtn" value="${list.room_type}">선택</button>
-						</div>
-					</li>
-				</c:forEach>
-			</ul>
 		</form>
 	</div>
 	<!-- 내용 끝 -->

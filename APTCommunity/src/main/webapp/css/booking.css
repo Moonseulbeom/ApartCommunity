@@ -12,7 +12,7 @@
 }
 .bText{
 	display: block;
-	margin-top: 30px;
+	margin-top: 20px;
 	margin-bottom: 20px;
 	font-size: 20pt;
 	font-weight: bold;
@@ -41,11 +41,12 @@
 -----roomNameList---- */
 .Mhr{
 	margin-top: 10px;
-	margin-bottom: 30px;
+	margin-bottom: 10px;
 }
 .center{
 	text-align: center;
 	font-size: 14pt;
+	margin-bottom: 10px;
 }
 
 #rnlTop{
@@ -67,16 +68,22 @@
 	float: left;
 	text-align: center;
 	margin-top: 10px;
+	margin-right:5px;	
+	width: 33%;
+}
+#mainContainer .rnlLi:last-child{
+	margin-right: 0px;
 }
 .rnlBox{
-	width: 300px;
+	width: 100%;
 }
+
 .rnlBoxMR{
 	margin-right: 50px;
 }
 
 .rnlLi img{
-	width: 220px;
+	width: 330px;
 	height: 220px;
 	object-fit: contain;
 	border-radius: 10px;
@@ -96,4 +103,11 @@
 .rnlBtn:hover{
 	background-color:teal;
 	color: white;
+}
+
+/* ----------------------------------------------
+-----roomTypeList---- */
+.rName{
+	font-size: 11pt;
+	margin-bottom: 5px;
 }

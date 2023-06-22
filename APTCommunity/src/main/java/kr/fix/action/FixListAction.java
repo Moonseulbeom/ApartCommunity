@@ -50,12 +50,12 @@ public class FixListAction implements Action{
 		//상단 고정 게시글 가져오기 시작 | 부서번호:4(기타), 분류번호:4(하자보수)
 		NoticeDAO ndao = NoticeDAO.getInstance();
 		//			상단 고정 게시글 함수 구조(부서번호, 분류번호, 시작,  끝)
-		List<NoticeVO> nlist = ndao.getFixedList(4, 4, 1, 3);
+		List<NoticeVO> fixedList = ndao.getFixedList(4, 4, 1, 3);
 		
 		
 		request.setAttribute("count", count);
 		request.setAttribute("list", list);
-		request.setAttribute("nlist", nlist);
+		request.setAttribute("fixedList", fixedList);
 		request.setAttribute("page", page.getPage());
 		
 		//JSP 경로 반환
