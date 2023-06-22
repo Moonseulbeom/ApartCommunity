@@ -6,6 +6,88 @@
 	margin과 padding의 순서
 	상 우 하 좌
  */
+/* 공지사항 고정 게시글 */
+.list-fixed td{
+	display: table-cell;
+    vertical-align: inherit;
+    background-color: #f7f7f7;
+}
+.board-article-fixed td{
+	height: 28px;
+    padding: 4px 7px;
+    border-bottom: 1px solid #f2f2f2;
+} 
+.list-fixed{
+	width: 100%;
+}
+.list-fixed td{
+	padding-left: 5px;
+    padding-right: 18px;
+}
+.article-fixed{
+	line-height: 18px;
+    color: #ff4e59;;
+    font-weight: bold;
+}
+.list-fixed .board-number-fixed{
+	width: 60px;
+	color: #ff4e59;;
+    font-weight: bold;
+	display: table-cell;
+ 	padding: 0 13px;
+ 	vertical-align: middle;
+ 	text-align: center;
+}
+.list-fixed .board-number-fixed span{
+	color: #ff4e59;;
+	border: 1px solid #ffc6c9;
+	padding: 1px 14px;
+	background-color: #ffe3e4;
+	border-radius: 5px;
+}
+
+/*공지사항 게시글 리스트*/
+.list td{
+	display: table-cell;
+    vertical-align: inherit;
+} 
+.board-article td{
+	height: 28px;
+    padding: 4px 7px;
+    border-bottom: 1px solid #f2f2f2;
+} 
+.list{
+	width: 100%;
+}
+.list td{
+	padding-left: 5px;
+    padding-right: 18px;
+}
+.td-article{
+	width: 400px;
+	padding-left: 12px;
+    padding-right: 18px;
+}
+.board-number{
+	width: 20px;
+	display: table-cell;
+ 	padding: 0 33px;
+ 	vertical-align: middle;
+ 	text-align: center;
+}
+.board-list{
+    display: table-cell;
+    padding-top: 1px;
+    padding-left: 30px;
+}
+.article{
+	line-height: 18px;
+    color: #333;
+}
+.board-date{
+	text-align:center;
+}
+
 
 /*메인 페이지*/
 .page-main{
@@ -23,21 +105,47 @@
 
 /*사이드 바*/
 .sidebar{
-	margin-top:50px 50px 0 100px;
+	/*상우하좌*/
 	width: 250px;
 }
 .sidebar h2{
-	padding-left: 20px;
 	padding-bottom: 5px;
 	border-bottom: 2px solid #c5c6c7;
 }
 .mem-service{
 	height: 120px;
 	margin-bottom: 20px;
+	padding-bottom: 50px;
 	font-size: 1em;
 	text-align: center;
-	background: #dedfe0;
-	border: 1px solid black;
+	border-top: 2px solid #333;
+	border-bottom: 2px solid #333;
+}
+.mem-service p{
+	padding: 30px 0 15px 0;
+	font-size: 13px;
+	font-weight: bold;
+}
+.mem-service div{
+	width: 200px;
+	height: 35px;
+	border: 1px solid #e5e5e5;
+}
+.mem-service div:hover{
+	cursor: pointer;
+}
+.service-myPage-button{
+	margin: 0 auto;
+	margin-bottom: 10px;
+	background-color: #5a5a5a;
+}  
+.service-myPage-button a{
+	height:30px;
+	color: #fff;
+}
+.service-logout-button{
+	margin: 0 auto;
+	background-color: #fff;
 }
 .mem-service p{
 	padding: 20px 0;
@@ -51,7 +159,7 @@
 	text-align: left;
 	font-size: 1.2em;
 	width: 250px;
-	list-style:circle;
+	list-style: disc;
 }
 
 

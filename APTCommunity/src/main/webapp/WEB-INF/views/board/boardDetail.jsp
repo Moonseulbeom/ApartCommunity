@@ -25,24 +25,10 @@
    				<ul>
    					<!-- 좌측 사이드바 -->
    					<li>
-   						<div class="page-left">
-   							<div class="sidebar">
-   								<div class="mem-service">
-   									<p>000동 000호 주민</p>
-   									<button onclick="location.href='#'">MY 페이지</button>
-   									<button onclick="location.href='#'">로그아웃</button>
-   								</div>
-   								<h2>${vo.title}</h2>
-   								<div class="menu">
-   									<ul>
-   										<li><a href="${pageContext.request.contextPath}/board/boardList.do">자유게시판</a></li>
-   										<li><a href="${pageContext.request.contextPath}/secondhand/secondhandList.do">중고구매</a></li>
-   										<li><a href="${pageContext.request.contextPath}/secondhand/secondhandList.do">중고판매</a></li>
-   									</ul>
-   								</div>
-   							</div>
-   						</div>
-   					</li>
+  					<div class="page-left">
+						<jsp:include page="/WEB-INF/views/common/sidebarCommu.jsp"/>
+  					</div>
+  					</li>
    					<!-- 우측 메인 -->
    					<li>
    						<div class="page-right">

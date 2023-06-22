@@ -34,26 +34,23 @@
 				<!-- 좌측 사이드바 -->
 				<li>
 				<div class="page-left">
-					<div class="sidebar">
-						<div class="mem-service">
-							<p>000동 000호 주민</p>
-							<button onclick="location.href='#'">MY 페이지</button>
-							<button onclick="location.href='#'">로그아웃</button>	
-						</div>
-						<h2>예약/신청</h2>
-						<div class="menu">
-							<ul>
-								<li><a href="${pageContext.request.contextPath}/board/boardList.do">자유게시판</a></li>
-								<li><a href="${pageContext.request.contextPath}/secondhand/secondhandList.do">중고구매</a></li>
-								<li><a href="${pageContext.request.contextPath}/secondhand/secondhandList.do">중고판매</a></li>
-							</ul>
-						</div>
-					</div>
+					<jsp:include page="/WEB-INF/views/common/sidebarCommu.jsp"/>
 				</div>
 				</li>
 				<!-- 우측메인 -->
 				<li>
 				<div class="page-right">
+				<div class="main-search">
+					<c:if test="${dept==1}">
+						<b>자유게시판</b>
+					</c:if>
+					<c:if test="${dept==2}">
+						<b>중고구매</b>
+					</c:if>
+					<c:if test="${dept==3}">
+						<b>중고판매</b>
+					</c:if>
+					<!-- 검색 시작 -->
 					<form id="search_form" method="get" action="boardList.do">
 						<div class="commu-main-search">
 							<b> 자유게시판 목록 </b>
@@ -71,31 +68,69 @@
 							</ul>
 						</div>
 					</form>
+					</div>
 					<div class="commu-main-list">
 						<c:if test="${ count > 1 || !empty count }">
-						<ul>
-							<li>글번호</li>
-							<li>제목</li>
-							<li>작성자</li>
-							<li>작성일</li>
-						</ul>
 						<hr color="#edeff0" noshade="noshade">
+						<!-- 고정 게시글 목록 시작 -->
+						<div class="board-article-fixed">
+						<table class="list-fixed">
 						<c:forEach var="vo" items="${list}">
-						<ul>
-							<li>${vo.board_num}</li>
-							<li><a href="boardDetail.do?board_num=${vo.board_num}">${vo.title}</a></li>
-							<li>${vo.dongho}</li>
-							<li>${vo.reg_date}</li>
-						</ul>
-						<hr color="#edeff0" noshade="noshade">
+							<tr>
+								<td colspan="2" class="td-article">
+									<div class="board-number-fixed">
+										<span>공지</span>
+									</div>
+									<div class="board-list">
+										<a class="article-fixed" href="boardDetail.do?board_num=${fixed.no_num}">${fixed.title}</a>
+									</div>
+								</td>
+								<td class="board-name">관리자</td>
+								<td class="board-date">${fixed.reg_date}</td>
+							</tr>
 						</c:forEach>
-						</c:if>
+						</table>
+						</div>
+						<!-- 고정 게시글 목록 시작 -->
+						<!-- 게시글이 없을 경우 -->
 						<c:if test="${ count < 1 || empty count }">
 							<div class="result-commu-display">
 								게시글이 없습니다.
 							</div>
 							<hr color="#edeff0" noshade="noshade">
 						</c:if>
+						<!-- 게시글 목록 시작 -->
+						<c:if test="${count > 0}">
+						<ul>
+							<li>글번호</li>
+							<li>제목</li>
+							<li>작성자</li>
+							<li>작성일</li>
+						</ul>
+						<div class="board-article">
+						<table class="list">
+						<c:forEach var="vo" items="${list}">
+							<tr>
+								<td colspan="2" class="td-article">
+									<div class="board-number">
+										${vo.board_num}
+									</div>
+									<div class="board-list">
+										<a href="boardDetail.do?board_num=${vo.board_num}">${vo.title}</a>
+									</div>
+								</td>
+								<td class="board-name">${vo.dongho}</td>
+								<td class="board-date">${vo.reg_date}</td>
+							</tr>
+						</c:forEach>
+						</table>
+						</div>
+						<div class="page-count">${page}</div>
+						</c:if>
+						<!-- 게시물 목록 끝 -->
+						
+						</c:if><!-- 글목록을 볼수있는 if문 -->
+						
 					</div>
 					<div class="write-btn">
 						<!-- 글작성버튼 -->
