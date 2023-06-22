@@ -100,14 +100,17 @@
 			<input type="button" value="팩스 번호" id="faxnum">
 		</div>
 		<p></p>
+		
+		
 		<div class="board_notice">
 		<h4>공지사항</h4>
 		<table>
 			<c:forEach var="notice" 
 			              items="${noticelist}">
 				<tr>
-					<td><a href="${pageContext.request.contextPath}/notice/detail.do?no_num=${notice.no_num}">${notice.title}</a></td>
+					<td><a href="${pageContext.request.contextPath}/notice/noticeDetail.do?no_num=${notice.no_num}">${notice.title}</a></td>
 					<td>${notice.dongho}</td>
+					<td>${notice.content}</td>
 					<td>${notice.reg_date}</td>
 				</tr>
 			</c:forEach>
@@ -117,13 +120,13 @@
 		<div class="board_board">
 		<h4>자유 게시판</h4>
 		<table>
-			<c:forEach var="board" 
-			              items="${boardList}">
+			<c:forEach var="vo" 
+			              items="${list}">
 				<tr>
-					<td><a href="${pageContext.request.contextPath}/board/detail.do?board_num=${board.board_num}">${board.title}</a></td>
-					<td>${board.dongho}</td>
-					<td>${board.reg_date}</td>
-					<td>${board.hit}</td>
+					<td><a href="${pageContext.request.contextPath}/board/boardDetail.do?board_num=${vo.board_num}">${vo.title}</a></td>
+					<td>${vo.dongho}</td>
+					<td>${vo.content}</td>
+					<td>${vo.reg_date}</td>
 				</tr>
 			</c:forEach>
 		</table>
