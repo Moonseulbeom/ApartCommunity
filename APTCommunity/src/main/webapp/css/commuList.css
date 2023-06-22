@@ -340,9 +340,7 @@ input[type="search"]{
    text-align: center;
 }
 /* 댓글 목록 출력 */
-.paging-button{
-   text-align:right;
-}
+
 #output{
    clear: both;
 }
@@ -411,3 +409,22 @@ input[type="search"]{
 #fixDelete_btn{
 	float:left;
 }
+
+/*상단 바로가기 버튼*/
+.service-up{
+	margin-right: 30px;
+	position: fixed;
+    right: 24px;
+    bottom: 24px;
+    z-index: 50;
+}
+.link-service img{
+	width: 50px;
+	height: 50px;
+}
+
+
+
+
+
+

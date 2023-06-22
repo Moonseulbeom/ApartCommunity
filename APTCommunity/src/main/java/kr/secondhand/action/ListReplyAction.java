@@ -1,6 +1,6 @@
-/*
 package kr.secondhand.action;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -11,12 +11,12 @@ import javax.servlet.http.HttpSession;
 
 import org.codehaus.jackson.map.ObjectMapper;
 
-import kr.board.vo.BoardReplyVO;
 import kr.controller.Action;
 import kr.secondhand.dao.SecondHandDAO;
+import kr.secondhand.vo.SecondhandReplyVO;
 import kr.util.PageUtil;
 
-public class ReplyAction implements Action{
+public class ListReplyAction implements Action{
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -27,9 +27,9 @@ public class ReplyAction implements Action{
 		if(pageNum == null) {
 			pageNum = "1";
 		}
-		int board_num = Integer.parseInt(request.getParameter("board_num"));
+		int se_num = Integer.parseInt(request.getParameter("se_num"));
 		SecondHandDAO dao = SecondHandDAO.getinstance();
-		int count = dao.getReplyBoardCount(board_num);
+		int count = dao.getReplySecondhandCount(se_num);
 		
 		//AJAX 방식으로 목록을 표시하기 때문에 PageUtil은 페이지 수를 표시할 목적이 아니라
 		//목록 데이터의 페이지 처리를 위해 rownum 번호를 구하는 목적으로 사용함
@@ -37,9 +37,9 @@ public class ReplyAction implements Action{
 		PageUtil page = new PageUtil(Integer.parseInt(pageNum), count, rowCount);
 											     //currentPage, count, rowCount
 		
-		List<BoardReplyVO> list = null;
+		List<SecondhandReplyVO> list = null;
 		if(count > 0) {
-			list = dao.getListReplyBoard(page.getStartRow(), page.getEndRow(), board_num);
+			list = dao.getListReplyBoard(page.getStartRow(), page.getEndRow(), se_num);
 		}else {
 			list = Collections.emptyList();
 		}
@@ -65,4 +65,3 @@ public class ReplyAction implements Action{
 	}
 
 }
-*/

@@ -7,7 +7,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import kr.secondhand.vo.SecondHandVO;
+import kr.secondhand.vo.SecondhandReplyVO;
 import kr.util.DBUtil;
+import kr.util.StringUtil;
 
 public class SecondHandDAO {
 	/*
@@ -388,15 +390,161 @@ public class SecondHandDAO {
 	//중고거래-판매 찜버튼
 	
 	//댓글 등록
-	//public void insertReplySe()
+	public void insertReplySe(SecondhandReplyVO vo) throws Exception {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+		
+		try {
+			conn = DBUtil.getConnection();
+			sql = "INSERT INTO secondhand_reply(re_num, content, ip, mem_num, se_num, reg_date)"
+					+ " VALUES(secondhand_reply_seq.nextval,?,?,?,?,sysdate)";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, vo.getContent());
+			pstmt.setString(2, vo.getIp());
+			pstmt.setInt(3, vo.getMem_num());
+			pstmt.setInt(4, vo.getSe_num());
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+	}
 	
 	//댓글 개수
+	public int getReplySecondhandCount(int se_num) throws Exception {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
+		int count = 0;
+		
+		try {
+			conn = DBUtil.getConnection();
+			sql = "SELECT COUNT(*) FROM secondhand_reply s JOIN member m"
+					+ " ON s.mem_num=m.mem_num"
+					+ " WHERE s.se_num=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, se_num);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				count = rs.getInt(1);
+			}
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		return count;
+	}
 	
 	//댓글 목록
+	public List<SecondhandReplyVO> getListReplyBoard(int start, int end, int se_num) throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<SecondhandReplyVO> list = null;
+		String sql = null;
+		
+		try {
+			conn = DBUtil.getConnection();
+			sql = "SELECT * FROM (SELECT a.*, rownum rnum FROM"
+					+ " (SELECT * FROM secondhand_reply s JOIN member m"
+					+ " USING(mem_num) WHERE s.se_num=? ORDER BY s.re_num DESC)a)"
+					+ " WHERE rnum >= ? AND rnum <= ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, se_num);
+			pstmt.setInt(2, start);
+			pstmt.setInt(3, end);
+			rs = pstmt.executeQuery();
+			list = new ArrayList<SecondhandReplyVO>();
+			while(rs.next()) {
+				SecondhandReplyVO reply = new SecondhandReplyVO();
+				reply.setRe_num(rs.getInt("re_num"));
+				if(rs.getDate("modify_date") != null) {
+					reply.setModify_date(rs.getDate("modify_date"));
+				}
+				reply.setContent(StringUtil.useBrNoHtml(rs.getString("content")));
+				reply.setSe_num(rs.getInt("se_num"));
+				reply.setMem_num(rs.getInt("mem_num"));
+				reply.setDongho(rs.getString("dongho"));
+				reply.setReg_date(rs.getDate("reg_Date"));
+				
+				list.add(reply);
+			}
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		return list;
+	}
 	
 	//댓글 상세
+	public SecondhandReplyVO getReplySecondhand(int re_num) throws Exception {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		SecondhandReplyVO reply = null;
+		String sql = null;
+		
+		try {
+			conn = DBUtil.getConnection();
+			sql = "SELECT * FROM secondhand_reply WHERE re_num=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, re_num);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				reply = new SecondhandReplyVO();
+				reply.setRe_num(rs.getInt("re_num"));
+				reply.setMem_num(rs.getInt("mem_num"));
+			}
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		return reply;
+	}
 	
 	//댓글 수정
+	public void updateReplySecondhand(SecondhandReplyVO reply) throws Exception {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+		
+		try {
+			conn = DBUtil.getConnection();
+			sql = "UPDATE secondhand_reply SET content=?, modify_date=SYSDATE, ip=?"
+					+ " WHERE re_num=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, reply.getContent());
+			pstmt.setString(2, reply.getIp());
+			pstmt.setInt(3, reply.getRe_num());
+			pstmt.executeUpdate();
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+	}
 	
 	//댓글 삭제
+	public void deleteReplySecondhand(int re_num) throws Exception {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+		
+		try {
+			conn = DBUtil.getConnection();
+			sql = "DELETE FROM secondhand_reply WHERE re_num=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, re_num);
+			pstmt.executeUpdate();
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+	}
 }

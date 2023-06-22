@@ -33,59 +33,70 @@
 		<div class="service-up">
 			<jsp:include page="/WEB-INF/views/common/up_button.jsp"/>
 		</div>
-			<div class="page-main">
-			<ul>
-				<!-- 좌측 사이드바 -->
-				<li>
-				<div class="page-left">
-					<jsp:include page="/WEB-INF/views/common/sidebarCommu.jsp"/>
-				</div>
-				</li>
-				<!-- 우측메인 -->
-				<li>
-				<div class="page-right">
-				<div class="main-search">
-					<!-- 검색 시작 -->
-					<form id="search_form" method="get" action="boardList.do">
-						<div class="commu-main-search">
-							<b> 자유게시판 목록 </b>
-							<ul class="search">
-								<li>
-									<select name="keyfield" style="height: 30px;">
-										<option value="1" <c:if test="${param.keyfield==1}">selected</c:if>>제목</option>
-										<option value="2" <c:if test="${param.keyfield==2}">selected</c:if>>작성자</option>
-										<option value="3" <c:if test="${param.keyfield==3}">selected</c:if>>내용</option>
-									</select>
-									<input type="search" size="10" name="keyword" id="keyword" 
+		<div class="page-main">
+		<ul>
+			<!-- 좌측 사이드바 -->
+			<li>
+			<div class="page-left">
+			<div class="sidebar">
+				<jsp:include page="/WEB-INF/views/common/sidebarCommu.jsp"/>
+				<h2>커뮤니티</h2>
+			<div class="menu">
+				<ul>
+					<li><a href="${pageContext.request.contextPath}/board/boardList.do">자유게시판</a></li>
+					<li><a href="${pageContext.request.contextPath}/secondhand/seBuyList.do">중고구매</a></li>
+					<li><a href="${pageContext.request.contextPath}/secondhand/seSaleList.do">중고판매</a></li>
+				</ul>
+			</div>
+			</div>
+			</div>
+			</li>
+			
+			<!-- 우측메인 -->
+			<li>
+			<div class="page-right">
+			<div class="main-search">
+				<!-- 검색 시작 -->
+				<form id="search_form" method="get" action="boardList.do">
+					<div class="commu-main-search">
+						<b> 자유게시판 목록 </b>
+						<ul class="search">
+							<li>
+								<select name="keyfield" style="height: 30px;">
+									<option value="1" <c:if test="${param.keyfield==1}">selected</c:if>>제목</option>
+									<option value="2" <c:if test="${param.keyfield==2}">selected</c:if>>작성자</option>
+									<option value="3" <c:if test="${param.keyfield==3}">selected</c:if>>내용</option>
+								</select>
+								<input type="search" size="10" name="keyword" id="keyword" 
 												value="${param.keyword}" placeholder="검색어를 입력하세요">
-									<input type="submit" value="검색" style="height: 30px;">
-								</li>
-							</ul>
-						</div>
-					</form>
+								<input type="submit" value="검색" style="height: 30px;">
+							</li>
+						</ul>
 					</div>
-					<div class="commu-main-list">
-						<c:if test="${ count > 1 || !empty count }">
-						<hr color="#edeff0" noshade="noshade">
-						<!-- 고정 게시글 목록 시작 -->
-						<div class="board-article-fixed">
-						<table class="list-fixed">
-						<c:forEach var="fixed" items="${fixedList}">
-							<tr>
-								<td colspan="2" class="td-article">
-									<div class="board-number-fixed">
-										<span>공지</span>
-									</div>
-									<div class="board-list">
-										<a class="article-fixed" href="noticeDetail.do?no_num=${fixed.no_num}">${fixed.title}</a>
-									</div>
-								</td>
-								<td class="board-name">관리자</td>
-								<td class="board-date">${fixed.reg_date}</td>
-							</tr>
-						</c:forEach>
-						</table>
-						</div>
+				</form>
+				</div>
+				<div class="commu-main-list">
+					<c:if test="${ count > 1 || !empty count }">
+					<hr color="#edeff0" noshade="noshade">
+					<!-- 고정 게시글 목록 시작 -->
+					<div class="board-article-fixed">
+					<table class="list-fixed">
+					<c:forEach var="fixed" items="${fixedList}">
+						<tr>
+							<td colspan="2" class="td-article">
+								<div class="board-number-fixed">
+									<span>공지</span>
+								</div>
+								<div class="board-list">
+									<a class="article-fixed" href="noticeDetail.do?no_num=${fixed.no_num}">${fixed.title}</a>
+								</div>
+							</td>
+							<td class="board-name">관리자</td>
+							<td class="board-date">${fixed.reg_date}</td>
+						</tr>
+					</c:forEach>
+					</table>
+					</div>
 						<!-- 고정 게시글 목록 시작 -->
 						<!-- 게시글이 없을 경우 -->
 						<c:if test="${ count < 1 || empty count }">
@@ -123,7 +134,6 @@
 						<div class="page-count">${page}</div>
 						</c:if>
 						<!-- 게시물 목록 끝 -->
-						
 						</c:if><!-- 글목록을 볼수있는 if문 -->
 						
 					</div>
