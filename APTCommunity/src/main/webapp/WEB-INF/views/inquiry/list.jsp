@@ -29,37 +29,37 @@
 	<!-- 내용 시작 -->
 	<div class="inner">
 		<div id="container" class="inner">
+		<!-- 상단 링크 버튼 -->
+			<div class="service-up">
+				<jsp:include page="/WEB-INF/views/common/up_button.jsp"/>
+			</div>
 			<div class="page-main">
-			<ul>
-				<!-- 좌측 사이드바 -->
-				<li>
-				<div class="page-left">
-					<div class="sidebar">
-						<div class="mem-service">
-							<p>000동 000호 주민</p>
-							<button onclick="location.href='#'">MY 페이지</button>
-							<button onclick="location.href='#'">로그아웃</button>	
+				<ul>
+				<!-- 왼쪽 -->
+					<li>
+						<div class="page-left">
+							<jsp:include page="/WEB-INF/views/inquiry/sidebar.jsp"/>
 						</div>
-						<h2>기타</h2>
-						<div class="menu">
-							<ul>
-								<li><a href="${pageContext.request.contextPath}/inquiry/list.do">1:1문의</a></li>
-								<li><a href="${pageContext.request.contextPath}/question/list.do">자주 묻는 질문</a></li>
-							</ul>
-						</div>
-					</div>
-				</div>
-				</li>
-				<!-- 우측메인 -->
-				<li>
+					</li>
+				<!-- 오른쪽 -->
+					<li>
 				<div class="page-right">
-					<div class="inquiry-main-img">
+		
+					<div class="main-img">
 						<img alt="" src="${pageContext.request.contextPath}/img/sideMenuTopImg.jpg">
 					</div>
+				<div class="main-search">
+				<c:if test="${ dept == 1 }">
+					<b>1:1 문의</b>
+				</c:if>
+				<c:if test="${ dept == 2 }">
+					<b>자주묻는 질문</b>
+				</c:if>
+				<!-- 검색 시작 -->
 					<form id="search_form" method="get" action="list.do">
 						<div class="inquiry-main-search">
 							<b> 1:1문의 목록 </b>
-							<ul class="search">
+							<ul>
 								<li>
 									<select name="keyfield" style="height: 30px;">
 										<option value="1" <c:if test="${param.keyfield==1}">selected</c:if>>제목</option>
@@ -115,6 +115,7 @@
 						
 					</div>
 				</div>
+			</div>
 				</li>
 				<!-- 오른쪽 -->
 			</ul>

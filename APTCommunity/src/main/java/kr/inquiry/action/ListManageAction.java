@@ -24,18 +24,15 @@ public class ListManageAction implements Action{
 		//전송된 데이터 인코딩 처리
 		request.setCharacterEncoding("utf-8");
 		//전송된 데이터 반환
-		String pageNum = request.getParameter(
-				                     "pageNum");
+		String pageNum = request.getParameter("pageNum");
 		if(pageNum==null) {
 			pageNum = "1";
 		}
 		
-		int in_num = 
-				Integer.parseInt(
-						request.getParameter("in_num"));
+		int in_num = Integer.parseInt(request.getParameter("in_num"));
+		
 		InquiryDAO dao = InquiryDAO.getInstance();
-		int count = 
-			dao.getManageInquiryCount(in_num);
+		int count = dao.getManageInquiryCount(in_num);
 		
 		//ajax 방식으로 목록을 표시하기 때문에 
 		//PageUtil은 페이지수를 표시할 목적이 아니라
@@ -44,15 +41,11 @@ public class ListManageAction implements Action{
 		
 		//currentPage,count,rowCount
 		int rowCount = 10;
-		PageUtil page = new PageUtil(
-				Integer.parseInt(pageNum),
-				             count,rowCount);
+		PageUtil page = new PageUtil(Integer.parseInt(pageNum),count,rowCount);
 		
 		List<InquiryManageVO> list = null;
 		if(count > 0) {
-			list = dao.getListInquiryManage(
-					 page.getStartRow(),
-					 page.getEndRow(),in_num);
+			list = dao.getListInquiryManage(page.getStartRow(),page.getEndRow(),in_num);
 		}else {
 			list = Collections.emptyList();
 		}
@@ -62,7 +55,6 @@ public class ListManageAction implements Action{
 		Integer user_num = 
 				(Integer)session.getAttribute(
 				                    "user_num");
-		Integer auth = (Integer)session.getAttribute("auth");
 		
 		Map<String,Object> mapAjax = 
 				new HashMap<String,Object>();
@@ -71,7 +63,6 @@ public class ListManageAction implements Action{
 		mapAjax.put("list", list);
 		//로그인한 사람이 작성자인지 체크하기 위해서 전송
 		mapAjax.put("user_num", user_num);
-		mapAjax.put("auth", auth);
 		
 		//JSON 데이터 생성
 		ObjectMapper mapper = new ObjectMapper();

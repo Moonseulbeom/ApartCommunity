@@ -45,7 +45,7 @@ public class UpdateManageAction implements Action{
 					InquiryManageVO manage = new InquiryManageVO();
 					manage.setRe_num(re_num);
 					manage.setContent(
-						request.getParameter("re_content"));
+						request.getParameter("manage_content"));
 					manage.setIp(request.getRemoteAddr());
 					
 					dao.updateManage(manage);

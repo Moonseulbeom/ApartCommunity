@@ -19,6 +19,31 @@ public class InquiryDAO {
 	}
 	private InquiryDAO() {}
 	
+    //회원 아이디?불러오기
+    public String getDongho(int mem_num) throws Exception{
+    	Connection conn = null;
+    	PreparedStatement pstmt = null;
+    	ResultSet rs = null;
+    	String sql = null;
+    	String dongho = null;
+    	try {
+			conn = DBUtil.getConnection();
+			sql = "SELECT dongho FROM member WHERE mem_num = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, mem_num);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				dongho = rs.getString(1);
+			}
+		} catch (Exception e) {
+			throw new  Exception(e);
+		} finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+    	return dongho;
+    }
+    
+	
 	//글 등록
 	public void insertInquiry(InquiryVO inquiry)
 									throws Exception{
@@ -415,8 +440,7 @@ public class InquiryDAO {
 						new InquiryManageVO();
 				manage.setRe_num(rs.getInt("re_num"));
 				manage.setReg_date(rs.getDate("reg_date"));
-				manage.setContent(
-						StringUtil.useBrNoHtml(
+				manage.setContent(StringUtil.useBrNoHtml(
 								rs.getString("content")));
 				manage.setIn_num(rs.getInt("in_num"));
 				manage.setMem_num(rs.getInt("mem_num"));
@@ -458,6 +482,7 @@ public class InquiryDAO {
 				manage = new InquiryManageVO();
 				manage.setRe_num(rs.getInt("re_num"));
 				manage.setMem_num(rs.getInt("mem_num"));
+				manage.setAuth(rs.getInt("auth"));
 			}
 		}catch(Exception e) {
 			throw new Exception(e);

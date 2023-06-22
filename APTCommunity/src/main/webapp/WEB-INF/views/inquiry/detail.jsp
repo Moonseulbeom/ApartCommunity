@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>1:1문의 상세</title>
+<title>하자보수 글 상세</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/inquiry.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/custom.css">
@@ -37,8 +37,8 @@
 								<h2>예약/신청</h2>
 								<div class="menu">
 									<ul>
-										<li><a href="${pageContext.request.contextPath}/inqruiry/list.do">1:1문의</a></li>
-										<li><a href="${pageContext.request.contextPath}/question/list.do">자주묻는 질문</a></li>
+										<li><a href="${pageContext.request.contextPath}/inquiry/list.do">1:1문의</a></li>
+										<li><a href="${pageContext.request.contextPath}/question/list.do">자주묻는 문의</a></li>
 									</ul>
 								</div>
 							</div>
@@ -47,9 +47,9 @@
 					<!-- 오른쪽 -->
 					<li>
 						<div class="page-right">
-							<div class="inquiry-detail">
-								<div class="inquiry-detail-page">
-									<div class="inquiry-detail-page-title">
+							<div class="detail">
+								<div class="detail-page">
+									<div class="detail-page-title">
 										<ul>
 											<li>
 												<a href="list.do">1:1문의</a>
@@ -62,42 +62,34 @@
 										</ul>
 									</div>
 									<hr size="1" width="100%" noshade="noshade" color="#e8e8e8">
-									<div class="inquiry-detail-page-content">
+									<div class="detail-page-content">
 										<c:if test="${ !empty inquiry.filename }">
 										<img src="${pageContext.request.contextPath}/upload/${ inquiry.filename }" class="detail-img">
 										</c:if>
 										<p>${ inquiry.content }</p>
 									</div>
-								</div>
+								</div><!-- detail-page -->
 							</div>
-							<!-- 답변 글 시작 -->
-			
-							<!-- 답변 글 끝 -->
-							<!-- 댓글 목록 출력 시장 -->
-							<div id="output"></div>	
 							<hr class="hLine" size="1" noshade="noshade" width="100%">
 							<!-- 댓글시작 -->
-							<c:if test="${!empty user_num && user_auth == 9}">
-							<div id="manage">
-								
-								<span class="manage-title">답변 작성</span>
-								<form id="manage_form">
-									<input type="hidden" name="in_num" value="${inquiry.in_num}" id="in_num">
-									<textarea rows="3" cols="50" name="manage_content" id="manage_content" class="rep-content" disabled="disabled">
-									<c:if test="${empty user_num}">로그인해야 작성할 수 있습니다.</c:if></textarea>
+							<div id="comment">
+								<span class="comment-title">댓글 달기</span>
+								<form id="comment_form">
+									<input type="hidden" name="fix_num" value="${inquiry.in_num}" id="fix_num">
+									<textarea rows="3" cols="50" name="comment_content" id="comment_content" class="rep-content"
+									<c:if test="${empty user_num}">disabled="disabled"</c:if>><c:if test="${empty user_num}">로그인해야 작성할 수 있습니다.</c:if></textarea>
 									<c:if test="${!empty user_num}"> <%-- 로그인 된 상태 --%>
-									<div id="manage_first">
+									<div id="comment_first">
 										<span class="letter-count">300/300</span>
 									</div>
-									<div id="manage_second" class="align-right">
+									<div id="comment_second" class="align-right">
 										<input type="submit" value="전송">				
 									</div>
 									</c:if>
 								</form>
 							</div>
-							</c:if>
-							
-								
+							<!-- 댓글 목록 출력 시장 -->
+							<div id="output"></div>		
 							<div class="paging-button" style="display:none;">
 								<input type="button" value="다음글 보기">
 							</div>
@@ -107,7 +99,7 @@
 							<!-- 댓글 끝 -->
 							<div class="detail-btn">
 								<div class="detail-btn-div2">
-									<input type="button" value="목록" class="bottom-btn" onclick="location.href='list.do'" id="list_btn">
+									<input type="button" value="목록" class="bottom-btn" onclick="location.href='list.do'" id="fixList_btn">
 									<%-- 로그인 한 회원번호와 작성자 회원번호가 일치해야 수정, 삭제 가능 --%>
 								    <c:if test="${ user_num == inquiry.mem_num || user_auth == 9}">
 								    <input type="button" value="수정" class="bottom-btn" onclick="location.href='updateForm.do?in_num=${inquiry.in_num}'">
