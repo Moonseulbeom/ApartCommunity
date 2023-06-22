@@ -13,6 +13,7 @@
 	padding-right: 50px;
 }
 .page-right{
+	
 	width: 700px;
 }
 
@@ -244,6 +245,7 @@
 
 /*글 상세 페이지*/
 .detail{
+	margin-left:50px;
 	width: 700px;
 	height: 100%;
 	border: 1px solid #c5c6c7;
@@ -303,6 +305,7 @@
 	display: inline !important;
 }
 .detail-btn-div2{
+	margin-left:50px;
 	margin-bottom: 30px;
 	display: table-cell;
 	vertical-align: middle;

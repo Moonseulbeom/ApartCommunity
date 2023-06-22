@@ -27,8 +27,17 @@
 	<ul>
 		<!-- 왼쪽 -->
 		<li>
-		<div class="page-left">
+		<div class="sidebar">
 			<jsp:include page="/WEB-INF/views/common/sidebar.jsp"/>
+			<h2>공지사항</h2>
+		<div class="menu">
+		<ul>
+			<li><a href="${pageContext.request.contextPath}/notice/noticeList.do?dept=1">관리사무소 공지사항</a></li>
+			<li><a href="${pageContext.request.contextPath}/notice/noticeList.do?dept=2">입대의 공지사항</a></li>
+			<li><a href="${pageContext.request.contextPath}/notice/noticeList.do?dept=3">건의사항</a></li>
+			<li><a href="${pageContext.request.contextPath}/notice/noticeList.do?dept=4">기타</a></li>
+		</ul>
+		</div>
 		</div>
 		</li>
 		<!-- 오른쪽 -->

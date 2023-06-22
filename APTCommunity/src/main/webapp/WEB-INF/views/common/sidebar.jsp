@@ -38,7 +38,7 @@ $(function(){
 				</li>
 				<li>
 					<div class="manage-btn">
-					<a href="${pageContext.request.contextPath}/member/myPage.do">관리자페이지</a>
+					<a href="${pageContext.request.contextPath}/manager/manageMain.do">관리자페이지</a>
 					</div>
 				</li>
 			</ul>

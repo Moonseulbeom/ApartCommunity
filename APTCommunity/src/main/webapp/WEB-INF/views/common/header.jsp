@@ -16,7 +16,12 @@
 				<li class="menu-logout">
 					[<span>${user_dongho}</span>]
 					<a href="${pageContext.request.contextPath}/member/logout.do">로그아웃</a>
+					<c:if test="${!empty user_num && user_auth == 1}">
 					<li><a href="${pageContext.request.contextPath}/member/myPage.do">my페이지</a></li>
+					</c:if>
+					<c:if test="${!empty user_num && user_auth == 9}">
+					<li><a href="${pageContext.request.contextPath}/manager/manageMain.do">관리자페이지</a></li>
+					</c:if>
 				</li>
 				</c:if>
 				<c:if test="${empty user_num}">

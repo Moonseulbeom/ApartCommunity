@@ -49,7 +49,7 @@
 			<li><a href="${pageContext.request.contextPath}/notice/noticeList.do?dept=4">기타</a></li>
 		</ul>
 		</div>
-	</div>
+		</div>
 		</div>
 		</li>
 		<!-- 오른쪽 -->

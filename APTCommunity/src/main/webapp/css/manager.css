@@ -1,5 +1,5 @@
 @charset "UTF-8";
-
+/*관리자 페이지 상단*/
 .manage-header{
 	margin: 10px 10px;
 	height: 50px;
@@ -29,16 +29,18 @@
 	position: absolute;
 }
 .manage-page-main{
-	margin: 10px 10px;
+	margin: 30px 50px;
+	height: 20px;	
 }
-.manage-page-main{
-	height: 20px;
+.manage-page-main ul li{
+	float: left;
 }
+/*관리자 페이지 왼쪽 메뉴*/
 .manage-menu{
 	margin-top:10px;
 	width:200px;
-	height: 318px;
-	border: 1px solid #e0e0e0;
+	height: 374px;
+	border: 3px solid #e0e0e0;
 }
 .manage-page-left h1{
 	margin: 0 0 5px 5px;
@@ -46,16 +48,43 @@
 .manage-menu div{
 	margin: 2px 2px;
 	background-color: #e0e0e0;
-	height: 50px;
+	height: 30px;
+	padding: 15px 0 15px 15px;
+	font-size: 1.3em;
+	font-weight: bold;
+}
+.manage-menu div:hover{
+	cursor: pointer;
+	background-color: #bababa;
 }
 .manage-menu div a{
 	margin-top:10px;
-	font-size: 1.4em;
 }
-
-
-
-
+/*관리자 페이지 오른쪽 내용*/
+#manage-title{
+	font-size: 2em;
+	font-weight: bold;
+}
+.manage-content{
+	margin-left:50px;
+	width: 1000px;
+	min-height: 500px;
+}
+.manage-content h1{
+	width: 100%;
+	padding-bottom: 5px;
+	border-bottom: 2px solid #e0e0e0;
+}
+/*회원 검색*/
+.mem-search{
+	margin-top: 15px; 
+}
+.select-member{
+	height: 30px;
+}	
+.search-member{
+	height: 30px;
+}
 
 
 
