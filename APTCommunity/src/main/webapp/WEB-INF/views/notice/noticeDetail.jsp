@@ -16,6 +16,13 @@
 <div id="wrap">
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 	<!-- 내용 시작 -->
+	<div class="inner">
+		<div id="container" class="inner">
+		<!-- 상단 링크 버튼 -->
+		<div class="service-up">
+			<jsp:include page="/WEB-INF/views/common/up_button.jsp"/>
+		</div>
+		
 	<div class="page-main">
 	<ul>
 		<!-- 왼쪽 -->
@@ -100,6 +107,8 @@
 		</li>
 		<!-- 오른쪽 -->
 	</ul>
+	</div>
+	</div>
 	</div>
 	<!-- 내용 끝 -->
 	<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
