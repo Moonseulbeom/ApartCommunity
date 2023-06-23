@@ -27,7 +27,7 @@
 								<c:if test="${room_Name=='3'}">게스트하우스</c:if>
 		</h4>
 		<h4 class="center">예약하실 방 타입을 선택하세요.</h4>
-		<form id="roomType_form" action="roomTimeSelect.do" method="get">
+		<form id="roomType_form" action="roomTimeSelectForm.do" method="get">
 		<input type="hidden" name="room_Name" value="${room_Name}">
 		<!-- 회의실 일 경우 -->
 			<ul>

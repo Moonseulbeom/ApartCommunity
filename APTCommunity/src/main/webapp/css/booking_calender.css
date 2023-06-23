@@ -1,0 +1,148 @@
+@charset "UTF-8";
+
+#mainContainer{
+	height: 600px !important; 
+}
+/*
+--- 전체 폼 가두기---  */
+#cols_wrap{
+	width: 500px;
+	height:550px;
+	padding: 20px 0;
+    margin-top: 50px;
+    border-top: 2px solid #DDD;
+}
+/* 캘린더 크기 지정 */
+#calendar{
+	width: 100%;
+}
+
+/* 
+----- float 데이터 삭제하기 ----- */
+.clear{
+	clear: both;
+}
+
+
+
+/* 
+---- 클릭시 색변경 하기--- */
+
+/* 모든 폰트 변경 */
+#calendar table,
+#calendar tr,
+#calendar th,
+#calendar td{
+    font-family: "NotoSansR";
+}
+
+#calendar,
+#calendar td{
+	margin: 0 auto;
+}
+
+/* 년 월 스타일 */
+#calendar tr:first-child{
+	font-size: 14pt;
+	font-weight: bold;
+}
+
+#calendarTitle{
+    width: 200px !important;
+    text-align: center;
+}
+
+/* 이전 달, 다음 달 버튼 시작*/
+#calendar tr:first-child td:first-child{
+	text-align: right;
+	width: 200px;
+}
+#calendar tr:first-child td:last-child{
+	text-align: left;
+	width: 200px;
+}
+.go-prev,
+.go-next {
+	padding: 0px 10px;
+}
+
+.go-prev::before,
+.go-next::before {
+    color: #000;
+}
+
+.go-prev:hover,
+.go-next:hover {
+    color: #ed2a61;
+}
+/* 이전 달, 다음 달 버튼 끝*/
+
+.weeks{
+	font-weight:bold;
+	font-size: 15px;
+	text-align: center;
+	height: 50px;
+}
+
+/* 숫자 폰트 스타일 관련 */
+tr .days {
+	font-size: 12px;
+    color: #999;
+}
+
+/* 모든 td의 가로 및 세로 크기 */
+tr td{
+	width: 14%;
+	height: 50px;
+	text-align: center;
+}
+tr{
+	border-bottom: 1px solid gray;
+}
+
+.sec_cal .cal_wrap .day, .dayT {
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    width: calc(100% / 7);
+    text-align: left;
+    color: #999;
+    font-size: 12px;
+    text-align: center;
+    border-radius:5px
+}
+
+.sec_cal .cal_wrap .dates {
+    display: flex;
+    flex-flow: wrap;
+    height: 290px;
+}
+
+/* 토요일 */
+.saturday {
+    color: #3c6ffa;
+}
+
+/* 일요일,공휴일 */
+.holiday{
+    color: #ed2a61;
+}
+
+/* 
+---- 비활성화 된 날짜들 td--- */
+#calendar .disable{
+	background-image: linear-gradient(-45deg, rgba(80, 80, 80, 0) 0%, rgba(80, 80, 80, 0) 44%, rgba(80, 80, 80, 0.3) 45%, rgba(80, 80, 80, 0.3) 55%, rgba(80, 80, 80, 0) 56%, rgba(80, 80, 80, 0) 100%);
+    background-size: 7px 7px;
+    background-repeat: repeat;
+    color: gray;
+}
+.yday{
+	font-weight: bold;
+}
+
+.enable {
+    border: solid 1px #ee8542;
+    background-color: #ee8542;
+    color: #FFF !important;
+}
+
