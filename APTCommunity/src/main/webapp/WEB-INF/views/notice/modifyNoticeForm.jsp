@@ -78,7 +78,7 @@
 			</li>
 			<li>
 			<div class="wirte-title">
-				<input type="text" id="title" name="title" placeholder="제목을 입력해주세요." value="${ notice.title }">
+				<input type="text" id="title" name="title" placeholder="제목을 입력해주세요." value="${ notice.title }" maxlength="20">
 					<label for="checkbox">상단고정</label>			
 					<input type="checkbox" id="check" name="check" value="1" checked="checked" >
 			</div>

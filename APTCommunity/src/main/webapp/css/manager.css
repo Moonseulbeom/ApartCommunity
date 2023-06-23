@@ -131,9 +131,18 @@
 	padding-top:25px;	
 	text-align: center;
 }
+/*관리자 페이지 공지사항 글쓰기*/
 
-
-
+.manage-write-page{
+	width: 1000px;
+	height: 100%;
+	border-radius: 5px;
+}
+.manage-write-page form{
+	width: 800px;
+	margin: 0 auto;
+	height: 100%;
+}
 
 
 
