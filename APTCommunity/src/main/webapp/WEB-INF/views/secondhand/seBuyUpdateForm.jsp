@@ -45,16 +45,13 @@
 				<form id="update_form" action="seBuyUpdate.do" method="post" enctype="multipart/form-data">
 				<input type="hidden" name="se_num" value="${vo.se_num}">
 					<ul>
-					<li>
-					</li>
-						
 					<li><!-- 제목 --><!-- 관리자페이지가 필요하면 사용 / 현재는 사용자,관리자 동일함 -->
 						<div class="write-title">
 							<c:if test="${user_auth==1}">
-								<input type="text" id="title" name="title" value="${vo.title}">
+								<input type="text" id="title" name="title" value="${vo.title}" maxlength="20">
 							</c:if>
 							<c:if test="${user_auth==9}">
-								<input type="text" id="adminTitle" name="title">${vo.title}
+								<input type="text" id="adminTitle" name="title" value="${vo.title}" maxlength="20">
 							</c:if>
 						</div>
 					</li>
@@ -66,7 +63,7 @@
 					<li><!-- 파일 -->
 					<input type="file" name="filename" id="filename" accept="image/gif,image/png,image/jpeg">
 					<c:if test="${!empty vo.filename}">
-					<div class="file_detail">
+					<div id="file_detail">
 						(${vo.filename})파일이 등록되어 있습니다.
 						<input type="button" value="파일삭제" id="file_del" class="size30"><!-- 파일삭제버튼 -->
 					</div>

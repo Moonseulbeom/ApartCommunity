@@ -27,11 +27,21 @@
 				<div class="page-main">
 					<ul>
 						<!-- 좌측 사이드바 -->
-						<li>
-							<div class="page-left">
-								<jsp:include page="/WEB-INF/views/common/sidebarCommu.jsp" />
-							</div>
-						</li>
+				<li>
+				<div class="page-left">
+				<div class="sidebar">
+					<jsp:include page="/WEB-INF/views/common/sidebarCommu.jsp"/>
+					<h2>커뮤니티</h2>
+				<div class="menu">
+					<ul>
+						<li><a href="${pageContext.request.contextPath}/board/boardList.do">자유게시판</a></li>
+						<li><a href="${pageContext.request.contextPath}/secondhand/seBuyList.do">중고구매</a></li>
+						<li><a href="${pageContext.request.contextPath}/secondhand/seSaleList.do">중고판매</a></li>
+					</ul>
+				</div>
+				</div>
+				</div>
+				</li>
 						<!-- 우측 메인 -->
 						<li>
 							<div class="page-right">

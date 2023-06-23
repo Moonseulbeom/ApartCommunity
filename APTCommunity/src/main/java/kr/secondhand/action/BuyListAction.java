@@ -6,9 +6,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import kr.controller.Action;
+import kr.notice.dao.NoticeDAO;
+import kr.notice.vo.NoticeVO;
 import kr.secondhand.dao.SecondHandDAO;
 import kr.secondhand.vo.SecondHandVO;
 import kr.util.PageUtil;
+import kr.util.StringUtil;
 
 public class BuyListAction implements Action{
 
@@ -30,6 +33,20 @@ public class BuyListAction implements Action{
 		if(count > 0) {
 			list = dao.getListSeBuy(page.getStartRow(), page.getEndRow(), keyfield, keyword);
 		}
+		
+		//상단고정 게시글 가져오기(notice)
+		NoticeDAO ndao = NoticeDAO.getInstance();
+		/* 
+			getFixedList(int dept, int category_status, int start, int end)
+			dept : 분류번호(4:기타)
+			category_status : 분류번호(2:자유게시판,3:중고거래)
+		 */
+		List<NoticeVO> fixedList = ndao.getFixedList(4, 3, 1, 5);
+		for(NoticeVO no : fixedList) {
+			no.setTitle(StringUtil.useNoHtml(no.getTitle()));
+		}
+		request.setAttribute("fixedList", fixedList);		
+
 		
 		request.setAttribute("count", count);
 		request.setAttribute("list", list);

@@ -26,7 +26,6 @@ public class DetailAction implements Action{
 		vo.setContent(StringUtil.useBrNoHtml(vo.getContent()));
 		
 		request.setAttribute("vo", vo);
-		System.out.println("구분 : "+vo.getDivision());
 		if(vo.getDivision() == 1) {
 			return "/WEB-INF/views/secondhand/seSaleDetail.jsp";
 		}

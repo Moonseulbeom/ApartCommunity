@@ -51,7 +51,6 @@
 			</div>
 			</div>
 			</li>
-			
 			<!-- 우측메인 -->
 			<li>
 			<div class="page-right">

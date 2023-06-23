@@ -24,7 +24,7 @@ public class UpdateAction implements Action{
 		
 		MultipartRequest multi = FileUtil.createFile(request);
 		int se_num = Integer.parseInt(multi.getParameter("se_num"));
-		String filename = multi.getParameter("filename");
+		String filename = multi.getFilesystemName("filename");
 		
 		//수정전 데이터 변환
 		SecondHandDAO dao = SecondHandDAO.getinstance();
@@ -36,6 +36,7 @@ public class UpdateAction implements Action{
 			FileUtil.removeFile(request, filename);
 			return "/WEB-INF/views/common/notice.jsp";
 		}
+		
 		//일치 경우
 		SecondHandVO vo = new SecondHandVO();
 		vo.setSe_num(se_num);
@@ -43,9 +44,6 @@ public class UpdateAction implements Action{
 		vo.setContent(multi.getParameter("content"));
 		vo.setIp(request.getRemoteAddr());
 		vo.setFilename(filename);
-		vo.setDivision(Integer.parseInt(multi.getParameter("division")));
-		
-		
 		
 		//DAO에 있는 updateSecondhand에 데이터 넘겨주기
 		dao.updateSecondhand(vo);
@@ -55,11 +53,11 @@ public class UpdateAction implements Action{
 			
 			FileUtil.removeFile(request, db_secondhand.getFilename());
 		}
-		/*division 변수 만들어서 저장해두고 이용하기/염유진
-		if(vo.setDivision()==1) {
+		//division 변수 만들어서 저장해두고 이용하기/염유진
+		if(db_secondhand.getDivision()==1) {
 			return "redirect:/secondhand/seSaleDetail.do?se_num="+se_num;
 		}
-		*/
+		
 		return "redirect:/secondhand/seBuyDetail.do?se_num="+se_num;
 	}
 

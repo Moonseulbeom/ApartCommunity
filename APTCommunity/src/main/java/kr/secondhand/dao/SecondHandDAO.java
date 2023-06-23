@@ -95,7 +95,7 @@ public class SecondHandDAO {
 	        //조건체크
 			if(keyword != null && !"".equals(keyword)) {
 				if(keyfield.equals("1")) sub_sql += "WHERE s.title LIKE ?";
-				else if(keyfield.equals("2")) sub_sql += "WHERE m.id LIKE ?";
+				else if(keyfield.equals("2")) sub_sql += "WHERE m.dongho LIKE ?";
 				else if(keyfield.equals("3")) sub_sql += "WHERE s.content LIKE ?";
 			}
 			//SQL문 작성
@@ -171,7 +171,7 @@ public class SecondHandDAO {
 			conn = DBUtil.getConnection();
 			if(keyword != null && !"".equals(keyword)) {
 				if(keyfield.equals("1")) sub_sql += "WHERE s.title LIKE ?";
-				else if(keyfield.equals("2")) sub_sql += "WHERE m.id LIKE ?";
+				else if(keyfield.equals("2")) sub_sql += "WHERE m.dongho LIKE ?";
 				else if(keyfield.equals("3")) sub_sql += "WHERE s.content LIKE ?";
 			}
 			sql = "SELECT * FROM (SELECT A.*, ROWNUM RNUM FROM"
@@ -218,7 +218,7 @@ public class SecondHandDAO {
 			conn = DBUtil.getConnection();
 			if(keyword != null && !"".equals(keyword)) {
 				if(keyfield.equals("1")) sub_sql += "WHERE s.title LIKE ?";
-				else if(keyfield.equals("2")) sub_sql += "WHERE m.id LIKE ?";
+				else if(keyfield.equals("2")) sub_sql += "WHERE m.dongho LIKE ?";
 				else if(keyfield.equals("3")) sub_sql += "WHERE s.content LIKE ?";
 			}
 			sql = "SELECT * FROM (SELECT A.*, ROWNUM RNUM FROM"
@@ -307,8 +307,8 @@ public class SecondHandDAO {
 			if(vo.getFilename() != null) {
 				sub_sql += ",filename=?";
 			}
-			sql = "UPDATE secondhane SET title=?, content=?, modify_date=SYSDATE"+sub_sql+",ip=?"
-					+ " WHERE se_num=? AND division=?";
+			sql = "UPDATE secondhand SET title=?, content=?, modify_date=SYSDATE"+sub_sql+",ip=?"
+					+ " WHERE se_num=?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(++cnt, vo.getTitle());
 			pstmt.setString(++cnt, vo.getContent());
@@ -317,7 +317,7 @@ public class SecondHandDAO {
 			}
 			pstmt.setString(++cnt, vo.getIp());
 			pstmt.setInt(++cnt, vo.getSe_num());
-			pstmt.setInt(++cnt, vo.getDivision());
+			pstmt.executeUpdate();
 		}catch(Exception e) {
 			throw new Exception(e);
 		}finally {
@@ -325,36 +325,6 @@ public class SecondHandDAO {
 		}
 	}
 
-/*	//중고판매 글 수정
-	public void updateSeSale(SecondHandVO vo) throws Exception {
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		String sql = null;
-		String sub_sql = "";
-		int cnt = 0;//파일삭제 관련
-		
-		try {
-			conn = DBUtil.getConnection();
-			if(vo.getFilename() != null) {
-				sub_sql += ",filename=?";
-			}
-			sql = "UPDATE secondhane SET title=?, content=?, modify_date=SYSDATE"+sub_sql+",ip=?"
-					+ " WHERE se_num=? AND division=1";
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(++cnt, vo.getTitle());
-			pstmt.setString(++cnt, vo.getContent());
-			if(vo.getFilename() != null) {
-				pstmt.setString(++cnt, vo.getFilename());
-			}
-			pstmt.setString(++cnt, vo.getIp());
-			pstmt.setInt(++cnt, vo.getSe_num());
-		}catch(Exception e) {
-			throw new Exception(e);
-		}finally {
-			DBUtil.executeClose(null, pstmt, conn);
-		}
-	}
-*/
 	//글삭제
 	public void deleteSecondHand(int se_num) throws Exception {
 		Connection conn = null;

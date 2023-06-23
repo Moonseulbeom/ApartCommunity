@@ -59,7 +59,7 @@ public class BoardDAO {
 	         
 			if(keyword != null && !"".equals(keyword)) {
 				if(keyfield.equals("1")) sub_sql += "WHERE b.title LIKE ?";
-				else if(keyfield.equals("2")) sub_sql += "WHERE m.id LIKE ?";
+				else if(keyfield.equals("2")) sub_sql += "WHERE m.dongho LIKE ?";
 				else if(keyfield.equals("3")) sub_sql += "WHERE b.content LIKE ?";
 			}
 	         
