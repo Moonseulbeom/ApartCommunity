@@ -39,14 +39,6 @@
 		<img src="${pageContext.request.contextPath}/img/apt_logo.png" alt="아파트로고" />
 		</a>
 		<!-- 아파트 로고 사진 끝 -->
-		<!-- 검색바 시작 -->
-		<div class="fr search_wrap">
-			<label for="search_box"> <input type="text" name="search_box"
-				id="search_box" value="" title="검색어 입력" class="search_field"
-				onkeypress="if(event.keyCode==13) {search_board(); return false;}" />
-			</label> <a href="javascript:search_board();" class="top_search_btn">검색</a>
-		</div>
-		<!-- 검색바 끝 -->
 	</div>
 	<!-- 검색바, 메인네임 끝-->
 	<div class="lnb">

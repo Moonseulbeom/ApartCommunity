@@ -8,7 +8,7 @@ import kr.secondhand.dao.SecondHandDAO;
 import kr.secondhand.vo.SecondHandVO;
 import kr.util.StringUtil;
 
-public class BuyDetailAction implements Action{
+public class DetailAction implements Action{
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -17,7 +17,7 @@ public class BuyDetailAction implements Action{
 		SecondHandDAO dao = SecondHandDAO.getinstance();
 		
 		//레코드 반환받기
-		SecondHandVO vo = dao.getSecondHand(se_num);
+		SecondHandVO vo = dao.getSecondHandDetail(se_num);
 		
 		//HTML 태그를 허용하지 않음
 		vo.setTitle(StringUtil.useNoHtml(vo.getTitle()));
@@ -26,6 +26,10 @@ public class BuyDetailAction implements Action{
 		vo.setContent(StringUtil.useBrNoHtml(vo.getContent()));
 		
 		request.setAttribute("vo", vo);
+		System.out.println("구분 : "+vo.getDivision());
+		if(vo.getDivision() == 1) {
+			return "/WEB-INF/views/secondhand/seSaleDetail.jsp";
+		}
 		
 		//JSP 경로반환
 		return "/WEB-INF/views/secondhand/seBuyDetail.jsp";

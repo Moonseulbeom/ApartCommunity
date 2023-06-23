@@ -41,7 +41,7 @@
    									<div class="detail-page-title">
    										<ul>
    											<li>
-   												<a href="board/boardList.do">자유게시판</a>
+   												<a href="boardList.do">자유게시판</a>
    											</li>
    											<li><b>${vo.title}</b></li>
    											<li><!-- &nbsp;:띄어쓰기인데, 작성자와 작성일을 위아래로 나눌지 사이에 공백을 둘지? -->

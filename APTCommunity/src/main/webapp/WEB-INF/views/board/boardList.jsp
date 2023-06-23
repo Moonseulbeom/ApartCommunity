@@ -130,7 +130,7 @@
 							</tr>
 						</c:forEach>
 						</table>
-						</div>
+						</div><br>
 						<div class="page-count">${page}</div>
 						</c:if>
 						<!-- 게시물 목록 끝 -->
@@ -159,7 +159,6 @@
 			</ul>
 			</div>
 		<!-- 내용 끝 -->
-		<div style="text-align:center;" class="align-center">${page}</div>
 		</div>
 	</div>
 	<jsp:include page="/WEB-INF/views/common/footer.jsp"/>

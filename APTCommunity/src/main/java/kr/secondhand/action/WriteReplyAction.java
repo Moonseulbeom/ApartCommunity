@@ -29,9 +29,9 @@ public class WriteReplyAction implements Action{
 			request.setCharacterEncoding("UTF-8");
 			
 			SecondhandReplyVO reply = new SecondhandReplyVO();
-			reply.setMem_num(user_num);//회원번호(댓글 작성자)
 			reply.setContent(request.getParameter("re_content"));
 			reply.setIp(request.getRemoteAddr());
+			reply.setMem_num(user_num);//회원번호(댓글 작성자)
 			reply.setSe_num(Integer.parseInt(request.getParameter("se_num")));
 			
 			SecondHandDAO dao = SecondHandDAO.getinstance();

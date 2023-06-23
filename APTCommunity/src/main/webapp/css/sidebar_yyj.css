@@ -1,0 +1,79 @@
+@charset "UTF-8";
+
+/*사이드 바*/
+.sidebar{
+	/*상우하좌*/
+	width: 250px;
+}
+.sidebar h2{
+	padding-bottom: 5px;
+	border-bottom: 2px solid #c5c6c7;
+}
+.mem-service{
+	height: 120px;
+	margin-bottom: 20px;
+	padding-bottom: 50px;
+	font-size: 1em;
+	text-align: center;
+	border-top: 2px solid #333;;
+	border-bottom: 2px solid #333;;
+}
+.mem-service p{
+	padding: 20px 0 15px 0;
+	font-size: 13px;
+	font-weight: bold;
+}
+.mem-service div{
+	width: 200px;
+	height: 30px;
+	padding-top: 10px;
+}
+.mem-service div:hover{
+	cursor: pointer;
+}
+.service-myPage-button{
+	margin: 0 auto;
+	margin-bottom: 10px;
+	background-color: #5a5a5a;
+}  
+.service-myPage-button a{
+	margin-top: 10px;  
+	height:30px;
+	color: #fff;
+}
+.service-manager-button{  
+	margin: -10px 0px 20px 25px;
+	width: 100%;
+	
+}
+.service-manager-button li{
+	float: left; 
+}
+.service-manager-button div{
+	width:96px;
+	background-color: #5a5a5a;
+	border: 1px solid #e5e5e5;
+	
+}
+.manage-btn{
+	margin-left: 4px;
+}
+.service-manager-button a{
+	color: #fff;
+}
+.service-logout-button{
+	margin: 0 auto;
+	background-color: #fff;
+	border: 1px solid #e5e5e5;
+}
+.menu{
+	margin-top: 20px; 
+}
+.menu li{
+	margin-left: 40px;
+	width: 250px;
+	padding-bottom: 15px;
+	text-align: left;
+	font-size: 1.2em;
+	list-style: disc;
+}

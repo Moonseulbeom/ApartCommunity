@@ -58,6 +58,8 @@
 	height:25px;
 	margin: 20px 0;
 }
+
+
 /*버튼*/
 .write-btn-div{
 	padding-bottom: 40px;
@@ -71,9 +73,9 @@
 .write-btn:hover{
 	cursor: pointer;
 }
-.size30{
+#size30{
 	height: 30px;
 }
-#size30{
+.size30{
 	height: 30px;
 }

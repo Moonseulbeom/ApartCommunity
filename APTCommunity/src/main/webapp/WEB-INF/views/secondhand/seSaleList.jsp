@@ -38,7 +38,17 @@
 				<!-- 좌측 사이드바 -->
 				<li>
 				<div class="page-left">
+				<div class="sidebar">
 					<jsp:include page="/WEB-INF/views/common/sidebarCommu.jsp"/>
+				<h2>커뮤니티</h2>
+			<div class="menu">
+				<ul>
+					<li><a href="${pageContext.request.contextPath}/board/boardList.do">자유게시판</a></li>
+					<li><a href="${pageContext.request.contextPath}/secondhand/seBuyList.do">중고구매</a></li>
+					<li><a href="${pageContext.request.contextPath}/secondhand/seSaleList.do">중고판매</a></li>
+				</ul>
+			</div>
+				</div>
 				</div>
 				</li>
 				<!-- 우측메인 -->
@@ -119,7 +129,7 @@
 							</tr>
 						</c:forEach>
 						</table>
-						</div>
+						</div><br>
 						<div class="page-count">${page}</div>
 						</c:if>
 						<!-- 게시물 목록 끝 -->
@@ -149,7 +159,6 @@
 			</ul>
 			</div>
 		<!-- 내용 끝 -->
-		<div style="text-align:center;" class="align-center">${page}</div>
 		</div>
 	</div>
 	<jsp:include page="/WEB-INF/views/common/footer.jsp"/>

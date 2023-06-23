@@ -103,64 +103,6 @@
 	width: 700px;
 }
 
-/*사이드 바*/
-.sidebar{
-	/*상우하좌*/
-	width: 250px;
-}
-.sidebar h2{
-	padding-bottom: 5px;
-	border-bottom: 2px solid #c5c6c7;
-}
-.mem-service{
-	height: 120px;
-	margin-bottom: 20px;
-	padding-bottom: 50px;
-	font-size: 1em;
-	text-align: center;
-	border-top: 2px solid #333;
-	border-bottom: 2px solid #333;
-}
-.mem-service p{
-	padding: 30px 0 15px 0;
-	font-size: 13px;
-	font-weight: bold;
-}
-.mem-service div{
-	width: 200px;
-	height: 35px;
-	border: 1px solid #e5e5e5;
-}
-.mem-service div:hover{
-	cursor: pointer;
-}
-.service-myPage-button{
-	margin: 0 auto;
-	margin-bottom: 10px;
-	background-color: #5a5a5a;
-}  
-.service-myPage-button a{
-	height:30px;
-	color: #fff;
-}
-.service-logout-button{
-	margin: 0 auto;
-	background-color: #fff;
-}
-.mem-service p{
-	padding: 20px 0;
-}
-.menu{
-	margin-top: 20px; 
-}
-.menu li{
-	margin-left:40px;
-	padding-bottom: 15px;
-	text-align: left;
-	font-size: 1.2em;
-	width: 250px;
-	list-style: disc;
-}
 
 
 
@@ -205,6 +147,10 @@ input[type="search"]{
 	padding-top:25px;	
 	text-align: center;
 }
+/* 페이지(1~10까지 나오는)->게시글하단 */
+.page-count{
+	text-align: center;
+}
 
 /*버튼*/
 .write-btn{
@@ -220,6 +166,12 @@ input[type="search"]{
 .write-btn span img{
 	width: 18px;
 	height: 18px;
+}
+#size30{
+	height: 30px;
+}
+.size30{
+	height: 30px;
 }
 
 

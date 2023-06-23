@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>중고구매 글 수정</title>
+<title>중고판매 글 수정</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/commuWrite.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/custom.css">
@@ -40,9 +40,9 @@
 	<div class="inner">
 		<div id="container" class="inner">
 			<div class="main-page">
-				<h1>중고구매 글 수정</h1>
+				<h1>중고판매 글 수정</h1>
 				<div class="write-page">
-				<form id="update_form" action="seBuyUpdate.do" method="post" enctype="multipart/form-data">
+				<form id="update_form" action="seSaleUpdate.do" method="post" enctype="multipart/form-data">
 				<input type="hidden" name="se_num" value="${vo.se_num}">
 					<ul>
 					<li>
@@ -104,7 +104,7 @@
 					<li>
 						<div class="write-btn-div">
 							<input type="submit" value="수정" class="write-btn">
-							<input type="button" value="취소" onclick="location.href='seBuyDetail.do?se_num=${vo.se_num}'" class="write-btn">
+							<input type="button" value="취소" onclick="location.href='seSaleDetail.do?se_num=${vo.se_num}'" class="write-btn">
 						</div>
 					</li>
 					</ul>

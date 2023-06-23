@@ -17,7 +17,7 @@ public class SaleDetailAction implements Action{
 		SecondHandDAO dao = SecondHandDAO.getinstance();
 		
 		//레코드 반환받기
-		SecondHandVO vo = dao.getSecondHand(se_num);
+		SecondHandVO vo = dao.getSecondHandDetail(se_num);
 				
 		//HTML 태그를 허용하지 않음
 		vo.setTitle(StringUtil.useNoHtml(vo.getTitle()));
