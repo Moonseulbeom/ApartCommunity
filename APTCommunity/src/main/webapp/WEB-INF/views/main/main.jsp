@@ -166,24 +166,36 @@
 				<!-- 게시판 시작 -->
 				<div class="board_all">
 					<!-- 좌측 공지사항 게시판 시작 -->
+					<c:if test="${empty user_auth}">
 					<div class="board_notice">
 						<p class="title">공지사항</p>
-						<div class="board_notice1">
 						<table>
 							<c:forEach var="notice" items="${noticelist}">
 								<tr>
-									<td><a
-										href="${pageContext.request.contextPath}/notice/noticeDetail.do?no_num=${notice.no_num}">${notice.no_num}</a></td>
-									<td>
-									<c:if test="${!empty user_auth}">${notice.title}</c:if>
-									<c:if test="${empty user_auth}">로그인 후 열람 가능합니다.</c:if>
-									</td>
+									<td>${notice.no_num}</td>
+									<td>로그인 후 열람 가능합니다.</td>
 									<td>${notice.reg_date}</td>
 								</tr>
 							</c:forEach>
 						</table>
-						</div>
 					</div>
+					</c:if>
+					<c:if test="${!empty user_auth}">
+					<div class="board_notice1">
+						<p class="title">공지사항</p>
+						<table>
+							<c:forEach var="notice" items="${noticelist}">
+								<tr>
+									<td>
+										<a href="${pageContext.request.contextPath}/notice/noticeDetail.do?no_num=${notice.no_num}">${notice.no_num}</a>
+									</td>
+									<td>${notice.title}</td>
+									<td>${notice.reg_date}</td>
+								</tr>
+							</c:forEach>
+						</table>
+					</div>
+					</c:if>
 					<!-- 좌측 공지사항 게시판 끝 -->
 					<!-- 우측 자유 게시판 시작 -->
 					<div class="board_board">
@@ -191,11 +203,17 @@
 						<table>
 							<c:forEach var="vo" items="${boardList}">
 								<tr>
-									<td><a
-										href="${pageContext.request.contextPath}/board/boardDetail.do?board_num=${vo.board_num}">${vo.board_num}</a></td>
 									<td>
-									<c:if test="${!empty user_auth}">${vo.title}</c:if>
-									<c:if test="${empty user_auth}">로그인 후 열람 가능합니다.</c:if>
+										<c:if test="${!empty user_auth}">
+											<a href="${pageContext.request.contextPath}/board/boardDetail.do?board_num=${vo.board_num}">${vo.board_num}</a>
+										</c:if>
+										<c:if test="${empty user_auth}">
+											${vo.board_num}
+										</c:if>
+									<td>
+									<td>
+										<c:if test="${!empty user_auth}">${vo.title}</c:if>
+										<c:if test="${empty user_auth}">로그인 후 열람 가능합니다.</c:if>
 									</td>
 									<td>${vo.reg_date}</td>
 								</tr>

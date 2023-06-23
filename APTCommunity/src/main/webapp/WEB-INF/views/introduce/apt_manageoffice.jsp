@@ -21,9 +21,11 @@
 				<jsp:include page="/WEB-INF/views/common/up_button.jsp" />
 			</div>
 			<!-- 상단 링크 버튼 끝-->
-
 			<!-- 내용 시작 -->
-			<p>관리 관리</p>
+			<h1>관리사무소 조직도</h1>
+			<div class="text-align">
+				<img src="../images/manageoffice.png">
+			</div>
 			<!-- 내용 끝 -->
 		</div>
 	</div>

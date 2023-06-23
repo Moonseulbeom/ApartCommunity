@@ -158,10 +158,19 @@ div.mphnum_box p {
   border: 1px solid #dcdcdc;
 }
 
+.board_notice1 {
+  margin-top: 21px;
+  float: left;
+  width: 610px;
+  border: none;
+  border-radius: 3px;
+  border: 1px solid #dcdcdc;
+}
+
 .board_board {
   border: none;
   border-radius: 3px;
-  width: 300px;
+  width: auto;
   float: right;
   border: 1px solid #dcdcdc;
 }
@@ -176,6 +185,19 @@ div.mphnum_box p {
 }
 
 .board_all .board_notice a {
+  color: #3264bf;
+}
+
+.board_all .board_notice1 table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.board_all .board_notice1 table td {
+  padding: 10px;
+}
+
+.board_all .board_notice1 a {
   color: #3264bf;
 }
 
@@ -198,11 +220,10 @@ td:first-child {
 
 td:nth-child(2) {
   text-align: left;
-  overflow: hidden;
 }
 
 td:last-child {
-  text-align: center;
+  text-align: right;
 }
 
 
