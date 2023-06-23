@@ -192,5 +192,18 @@ div.mphnum_box p {
   color: #3264bf;
 }
 
+td:first-child {
+  text-align: center;
+}
+
+td:nth-child(2) {
+  text-align: left;
+  overflow: hidden;
+}
+
+td:last-child {
+  text-align: center;
+}
+
 
 

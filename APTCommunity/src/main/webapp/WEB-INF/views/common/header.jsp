@@ -54,9 +54,9 @@
 							<dt>아파트 소개</dt>
 							<dd>
 								<ul>
-									<li><a href="#"> 아파트 정보 </a></li>
-									<li><a href="#"> 주민자치회 정보 </a></li>
-									<li><a href="#"> 관리사무소 조직도 </a></li>
+									<li><a href="${pageContext.request.contextPath}/introduce/aptIntroduce.do"> 아파트 정보 </a></li>
+									<li><a href="${pageContext.request.contextPath}/introduce/aptCouncil.do"> 주민자치회 정보 </a></li>
+									<li><a href="${pageContext.request.contextPath}/introduce/aptManageOffice.do"> 관리사무소 조직도 </a></li>
 								</ul>
 							</dd>
 						</dl>
@@ -105,11 +105,11 @@
 			<!-- 드롭다운 메뉴 시작 -->
 			<div class="cateList">
 				<ul>
-					<li class="dropdown"><a href="#">아파트 소개</a>
+					<li class="dropdown"><a href="${pageContext.request.contextPath}/introduce/aptIntroduce.do">아파트 소개</a>
 						<ul class="lnb_dp2">
-							<li class="sub_dropdown"><a href="#"> 아파트 정보 </a></li>
-							<li class="sub_dropdown"><a href="#"> 주민자치회 정보 </a></li>
-							<li class="sub_dropdown"><a href="#"> 관리사무소 조직도 </a></li>
+							<li class="sub_dropdown"><a href="${pageContext.request.contextPath}/introduce/aptIntroduce.do"> 아파트 정보 </a></li>
+							<li class="sub_dropdown"><a href="${pageContext.request.contextPath}/introduce/aptCouncil.do"> 주민자치회 정보 </a></li>
+							<li class="sub_dropdown"><a href="${pageContext.request.contextPath}/introduce/aptManageOffice.do"> 관리사무소 조직도 </a></li>
 						</ul>
 					</li>
 					<li class="dropdown"><a href="${pageContext.request.contextPath}/notice/noticeList.do?dept=1">공지사항</a>

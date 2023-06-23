@@ -6,18 +6,12 @@
 <head>
 <meta charset="UTF-8">
 <title>메인</title>
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/css/style.css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/css/custom.css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/css/mainpage.css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/css/notice.css">
-<script type="text/javascript"
-	src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
-<script type="text/javascript"
-	src="${pageContext.request.contextPath}/js/common.js"></script>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/custom.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/mainpage.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/notice.css">
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/common.js"></script>
 <script type="text/javascript">
 	$(function() {
 		$('#login_form')
@@ -169,8 +163,8 @@
 
 				<p></p>
 
-				<!-- 하단 게시판 시작 -->
-					<div class="board_all">
+				<!-- 게시판 시작 -->
+				<div class="board_all">
 					<!-- 좌측 공지사항 게시판 시작 -->
 					<div class="board_notice">
 						<p class="title">공지사항</p>
@@ -180,7 +174,10 @@
 								<tr>
 									<td><a
 										href="${pageContext.request.contextPath}/notice/noticeDetail.do?no_num=${notice.no_num}">${notice.no_num}</a></td>
-									<td>${notice.title}</td>
+									<td>
+									<c:if test="${!empty user_auth}">${notice.title}</c:if>
+									<c:if test="${empty user_auth}">로그인 후 열람 가능합니다.</c:if>
+									</td>
 									<td>${notice.reg_date}</td>
 								</tr>
 							</c:forEach>
@@ -196,7 +193,10 @@
 								<tr>
 									<td><a
 										href="${pageContext.request.contextPath}/board/boardDetail.do?board_num=${vo.board_num}">${vo.board_num}</a></td>
-									<td>${vo.title}</td>
+									<td>
+									<c:if test="${!empty user_auth}">${vo.title}</c:if>
+									<c:if test="${empty user_auth}">로그인 후 열람 가능합니다.</c:if>
+									</td>
 									<td>${vo.reg_date}</td>
 								</tr>
 							</c:forEach>
@@ -204,7 +204,7 @@
 					</div>
 					<!-- 우측 자유 게시판 끝 -->
 				</div>
-				<!-- 하단 게시판 끝 -->
+				<!-- 게시판 끝 -->
 				
 			</div>
 		</div>
