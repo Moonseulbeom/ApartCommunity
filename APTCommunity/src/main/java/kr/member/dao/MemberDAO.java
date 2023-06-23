@@ -3,6 +3,8 @@ package kr.member.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 import kr.member.vo.MemberVO;
 import kr.util.DBUtil;
@@ -208,11 +210,106 @@ public class MemberDAO {
 		}
 	}
 	//회원탈퇴(회원정보 삭제)
-	
-	
 	//관리자
 	//전체글 개수, 검색글 개수
+	public int getMemberCountByAdmin(String keyfield,String keyword) throws Exception{
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			String sql = null;
+			String sub_sql = "";
+			int count = 0;
+			
+			try {
+				//커넥션풀로부터 커넥션을 할당
+				conn = DBUtil.getConnection();
+				
+				if(keyword != null && !"".equals(keyword)) {
+					if(keyfield.equals("1")) sub_sql += "WHERE name LIKE ?";
+					else if(keyfield.equals("2")) sub_sql += "WHERE dongho LIKE ?";
+					else if(keyfield.equals("3")) sub_sql += "WHERE dongho LIKE ?";
+				}
+				
+				sql = "SELECT COUNT(*) FROM member m "
+					+ "LEFT OUTER JOIN member_detail d "
+					+ "USING(mem_num) " + sub_sql;
+				
+				pstmt = conn.prepareStatement(sql);
+				if(keyword != null && !"".equals(keyword)) {
+					if(keyfield.equals("1")) pstmt.setString(1, "%"+keyword+"%");
+					else if(keyfield.equals("2")) pstmt.setString(1, keyword+"%");
+					else if(keyfield.equals("3")) pstmt.setString(1, "%"+keyword);
+				}
+				rs = pstmt.executeQuery();
+				if(rs.next()) {
+					count = rs.getInt(1);
+				}
+			}catch(Exception e) {
+				throw new Exception(e);
+			}finally {
+				DBUtil.executeClose(rs, pstmt, conn);
+			}		
+			return count;
+		}
 	//목록, 검색 글 목록
+	public List<MemberVO> getListMemberByAdmin(int start, int end, String keyfield,String keyword) throws Exception{
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			List<MemberVO> list = null;
+			String sql = null;
+			String sub_sql = "";
+			int cnt = 0;
+			try {
+			//커넥션풀로부터 커넥션 할당
+			conn = DBUtil.getConnection();
+			
+			if(keyword != null && !"".equals(keyword)) {
+				if(keyfield.equals("1")) sub_sql += "WHERE name LIKE ?";
+				else if(keyfield.equals("2")) sub_sql += "WHERE dongho LIKE ?";
+				else if(keyfield.equals("3")) sub_sql += "WHERE dongho LIKE ?";
+			}
+			
+			sql = "SELECT * FROM (SELECT a.*, rownum rnum "
+				+ "FROM (SELECT * FROM member m "
+				+ "LEFT OUTER JOIN member_detail d "
+				+ "USING(mem_num) " + sub_sql 
+				+ " ORDER BY reg_date DESC NULLS LAST)a) "
+				+ "WHERE rnum >= ? AND rnum <= ?";
+			
+			pstmt = conn.prepareStatement(sql);
+			if(keyword != null && !"".equals(keyword)) {
+				if(keyfield.equals("1")) pstmt.setString(++cnt, "%"+keyword+"%");
+				else if(keyfield.equals("2")) pstmt.setString(++cnt, keyword+"%");
+				else if(keyfield.equals("3")) pstmt.setString(++cnt, "%"+keyword);
+			}
+			pstmt.setInt(++cnt, start);
+			pstmt.setInt(++cnt, end);
+			
+			rs = pstmt.executeQuery();
+			list = new ArrayList<MemberVO>();
+			while(rs.next()) {
+				MemberVO member = new MemberVO();
+				member.setMem_num(rs.getInt("mem_num"));
+				member.setDongho(rs.getString("dongho"));
+				member.setAuth(rs.getInt("auth"));
+				member.setPasswd(rs.getString("passwd"));
+				member.setName(rs.getString("name"));
+				member.setPhone(rs.getString("phone"));
+				member.setEmail(rs.getString("email"));
+				member.setReg_date(rs.getDate("reg_date"));
+				member.setModify_date(rs.getDate("modify_date"));
+				
+				list.add(member);
+			}
+			}catch(Exception e) {
+			throw new Exception(e);
+			}finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+			}	
+			return list;
+		}
+	
 	//회원정보 수정
 	
 }

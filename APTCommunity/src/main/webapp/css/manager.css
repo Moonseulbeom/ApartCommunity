@@ -1,7 +1,7 @@
 @charset "UTF-8";
 /*관리자 페이지 상단*/
 .manage-header{
-	margin: 10px 10px;
+	margin: 10px 20px 10px 10px;
 	height: 50px;
 	width:100%;
 	border-bottom: 2px solid #bababa;
@@ -19,16 +19,17 @@
 	float: left;
 	list-style: none;
 }
-.manage-header div{
-	width: 450px;
+.manage-header ul li:last-child{
+	float: right;
 }
 .manage-header-btn{
-	margin-left:550px;
+	padding-right: 20px;
 	padding-top: 20px;
 	text-align: right;
-	position: absolute;
+	width: 200px;
 }
 .manage-page-main{
+	width: 100%;
 	margin: 30px 50px;
 	height: 20px;	
 }
@@ -65,9 +66,13 @@
 	font-size: 2em;
 	font-weight: bold;
 }
+.manage-page-right{
+	width: 60%;
+	position: absolute;
+}
 .manage-content{
 	margin-left:50px;
-	width: 1000px;
+	width: 100%;
 	min-height: 500px;
 }
 .manage-content h1{
@@ -85,11 +90,47 @@
 .search-member{
 	height: 30px;
 }
+.mem-search-btn{
+	margin-top: 15px;
+	height	: 40px;
+}
+.mem-search-btn input{
+	height: 30px;
+}
+/*회원 리스트*/
+.mem-list{
+	clear:both;	
+}
 
-
-
-
-
+.mem-list table{
+	margin-top:20px;
+	width: 100%;
+	border: 2px solid  #b0b0b0;
+	text-align: center;
+	font-size: 1.2em;
+}
+.mem-list table tr{
+	height:40px;
+	border: 1px solid #b0b0b0;
+}
+.mem-list table th{
+	border: 1px solid #b0b0b0;
+	background-color: #e0e0e0;
+	font-weight: bold;
+}
+.mem-list table tr td{
+	border: 1px solid #b0b0b0;
+}
+.mem-page{
+	font-size: 14px;
+	margin-top: 10px;
+	text-align: center;
+}
+.result-display{
+	height: 50px;
+	padding-top:25px;	
+	text-align: center;
+}
 
 
 
