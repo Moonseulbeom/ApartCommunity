@@ -56,10 +56,16 @@
 					</tr>
 				</table>
 				<!-- 왼쪽영역 끝 -->
+				<div id="timeList">
+					<ul id="t_l">
+						<li>뚜비 껀띠뉴</li>
+					</ul>
+				</div>
 				<!-- 오른쪽 시작 -->
 			</div>
 			<!-- 합친 div -->
 		</div>
+		<div class="clear"></div>
 		<!-- 내용 끝 -->
 		<jsp:include page="/WEB-INF/views/common/footer.jsp" />
 	</div>

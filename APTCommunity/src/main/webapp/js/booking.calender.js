@@ -5,6 +5,15 @@
 		let row = null;
 		let cnt = 0;
 		let realDate = new Date();
+		//현재 날짜 숫자형태 (yyyymm)
+		let realYM = realDate.getFullYear()*100 + (realDate.getMonth()+1);
+		//선택한 날짜 숫자형태 (yyyymm)
+		let currentYM = today.getFullYear()*100 + (today.getMonth()+1);
+		//id값에 yyyy-mm-dd 형식을 집어넣기 위함.
+		let fmM = (today.getMonth()+1);
+		if(fmM<10)
+			fmM = "0" + fmM;
+		let fmYM = today.getFullYear() + "-" + fmM + "-";
 		
 		//캘린더 테이블 불러오기
 		let calendar = document.getElementById("calendar");
@@ -35,7 +44,13 @@
 			cell = row.insertCell();
 			cnt += 1;
 		    
-		   	cell.setAttribute('id', i);
+			let fmYMD = "";
+			if(i<10){
+				fmYMD = fmYM + "0" + i;
+			}else{
+				fmYMD = fmYM + i;
+			}
+		   	cell.setAttribute('id', fmYMD);
 		   	cell.setAttribute('class', 'current');
 
 			//오늘 이전의 날짜들은 모두 비활성화 / else 면 활성화 
@@ -63,12 +78,6 @@
 		}
 		
 		
-		//현재 날짜 숫자형태 (yyyymm)
-		let realYM = realDate.getFullYear()*100 + (realDate.getMonth()+1);
-		//선택한 날짜 숫자형태 (yyyymm)
-		let currentYM = today.getFullYear()*100 + (today.getMonth()+1);
-		//console.log("현재 yyyymm : " + realYM);
-		//console.log("선택한 yyyymm : " + currentYM);
 		let currentDays = document.getElementsByClassName("current");
 		//현재 날짜보다 선택한 날짜가 더 크면 모두 활성화
 		if(realYM < currentYM){
@@ -101,7 +110,31 @@
 $(function(){
 	//예약 가능한 날짜 클릭시 주황색으로 변경하기
 	$(document).on('click','.yday',function() {
-		    $('.yday').removeClass('enable');
-		    $(this).addClass('enable');
+	    $('.yday').removeClass('enable');
+	    $(this).addClass('enable');
+
+		$("#t_l").empty();
+		let output = "<li>9:00 ~ 11:00</li>";
+		output += "<li>11:00 ~ 13:00</li>";
+		output += "<li>14:00 ~ 16:00</li>";
+		output += "<li>16:00 ~ 18:00</li>";
+		output += "<li>18:00 ~ 20:00</li>";
+		output += "<li>20:00 ~ 22:00</li>";
+		
+		$('#t_l').append(output);
+		
+
+		
+		let isDate = $(this).attr("id");
+/*		$.ajax({
+			url:'bookingGetTimeList.do',
+			type:'post',
+			data:{pageNum:pageNum,board_num:$('#board_num').val()},
+			dataType:'json',
+			success:function(param){},
+			error:function(){
+				alert('네트워크 오류 발생');
+			}
+		});*/
 	});
 });

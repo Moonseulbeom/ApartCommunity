@@ -6,15 +6,17 @@
 /*
 --- 전체 폼 가두기---  */
 #cols_wrap{
-	width: 500px;
+	width: 1000px;
 	height:550px;
 	padding: 20px 0;
     margin-top: 50px;
-    border-top: 2px solid #DDD;
+    
 }
 /* 캘린더 크기 지정 */
 #calendar{
-	width: 100%;
+	width: 500px;
+	border-top: 2px solid #DDD;
+	float:left;
 }
 
 /* 
@@ -145,4 +147,20 @@ tr{
     background-color: #ee8542;
     color: #FFF !important;
 }
+/* 
+------ 오른쪽 타임 리스트 ---- */
+#timeList{
+	width: 498px;
+	height: 100%;
+	float:right;
+	border: 1px solid black;
+	text-align:center;
+}
+#timeList ul{
+	margin: 0 auto;
+}
 
+#timeList li{
+	font-weight:bold;
+	font-size: 20pt;
+}

@@ -18,8 +18,12 @@ public class RoomTimeSelectFormAction implements Action{
 			request.setAttribute("notice_url", request.getContextPath()+"/member/loginForm.do");
 			return "/WEB-INF/views/common/alert_singleView.jsp";
 		}
-		//DB에 있는 모든 방들의 날짜, 시간을 비교하여 가져와 뿌려야함
+		//방선택에서 이름, 타입 가져와서 넘겨주고, 시간선택 Form에서 ajax 처리를 진행 하면 된다.
+		String room_Name = request.getParameter("room_Name");
+		String room_Type = request.getParameter("room_Type");
 		
+		request.setAttribute("room_Name", room_Name);
+		request.setAttribute("room_Type", room_Type);
 		
 		return "/WEB-INF/views/booking/roomTimeSelectForm.jsp";
 	}
