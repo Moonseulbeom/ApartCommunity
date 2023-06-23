@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import kr.secondhand.vo.SecondHandVO;
+import kr.secondhand.vo.SecondhandFavVO;
 import kr.secondhand.vo.SecondhandReplyVO;
 import kr.util.DBUtil;
 import kr.util.StringUtil;
@@ -328,9 +329,9 @@ public class SecondHandDAO {
 	//글삭제
 	public void deleteSecondHand(int se_num) throws Exception {
 		Connection conn = null;
-		PreparedStatement pstmt1 = null; //-> 댓글
-		PreparedStatement pstmt2 = null; //-> 글
-		//PreparedStatement pstmt3 = null; -> 찜버튼
+		PreparedStatement pstmt1 = null; //-> 찜버튼
+		PreparedStatement pstmt2 = null; //-> 댓글
+		PreparedStatement pstmt3 = null; //-> 글
 		String sql = null;
 		SecondHandVO vo = null;
 		
@@ -338,29 +339,165 @@ public class SecondHandDAO {
 			conn = DBUtil.getConnection();
 			conn.setAutoCommit(false);
 			vo = new SecondHandVO();
-			//댓글삭제
-			sql = "DELETE FROM SECONDHAND_REPLY WHERE SE_NUM=?";
+			//찜삭제
+			sql = "DELETE FROM SECONDHAND_FAV WHERE SE_NUM=?";
 			pstmt1 = conn.prepareStatement(sql);
 			pstmt1.setInt(1, se_num);
 			pstmt1.executeUpdate();
-			//부모글삭제
-			sql = "DELETE FROM SECONDHAND WHERE SE_NUM=?";
+			//댓글삭제
+			sql = "DELETE FROM SECONDHAND_REPLY WHERE SE_NUM=?";
 			pstmt2 = conn.prepareStatement(sql);
 			pstmt2.setInt(1, se_num);
 			pstmt2.executeUpdate();
+			//부모글삭제
+			sql = "DELETE FROM SECONDHAND WHERE SE_NUM=?";
+			pstmt3 = conn.prepareStatement(sql);
+			pstmt3.setInt(1, se_num);
+			pstmt3.executeUpdate();
 			
 			conn.commit();
 		}catch(Exception e) {
 			conn.rollback();
 			throw new Exception(e);
 		}finally {
-			//DBUtil.executeClose(null, pstmt3, null);
+			DBUtil.executeClose(null, pstmt3, null);
 			DBUtil.executeClose(null, pstmt2, null);
 			DBUtil.executeClose(null, pstmt1, conn);
 		}
 	}
 	
 	//중고거래-판매 찜버튼
+	public void insertFav(SecondHandVO favVO) throws Exception {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+		
+		try {
+			conn = DBUtil.getConnection();
+			sql = "INSERT INTO secondhand_fav (fav_num, mem_num, se_num)"
+					+ " VALUES(secondhand_fav_seq.nextval, ?, ?)";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, favVO.getMem_num());
+			pstmt.setInt(2, favVO.getSe_num());
+			pstmt.executeUpdate();
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+	}
+	
+	//찜 개수
+	public int selectFavCount(int se_num) throws Exception {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
+		int count = 0;
+		
+		try {
+			conn = DBUtil.getConnection();
+			sql = "SELECT COUNT(*) FROM secondhand_fav WHERE se_num";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, se_num);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				count = rs.getInt(1);
+			}
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		return count;
+	}
+	
+	//찜 삭제
+	public void deleteFav(int fav_num) throws Exception {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+		
+		try {
+			conn = DBUtil.getConnection();
+			sql = "DELETE FROM secondhand_fav WHERE fav_num=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, fav_num);
+			pstmt.executeUpdate();
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+	}
+	
+	//찜 정보(게시물 번호를 이용한) -> 회원이 게시물을 호출할 때 찜 선택여부 표시
+	public SecondhandFavVO selectFav(SecondhandFavVO favVO) throws Exception {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		SecondhandFavVO fav = null;
+		String sql = null;
+		
+		try {
+			conn = DBUtil.getConnection();
+			sql = "SELECT * FROM secondhand_fav WHERE se_num=? AND mem_num";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, favVO.getSe_num());
+			pstmt.setInt(2, favVO.getMem_num());
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				fav = new SecondhandFavVO();
+				fav.setFav_num(rs.getInt("fav_num"));
+				fav.setSe_num(rs.getInt("se_num"));
+				fav.setMem_num(rs.getInt("mem_num"));
+				fav.setDongho(rs.getString("dongho"));//회원아이디
+			}
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		return fav;
+	}	
+	
+	//마이페이지에 사용할 찜 정보 -> 내가 선택한 찜 목록
+	public List<SecondHandVO> getListSecondhandFav(int start, int end, int mem_num) throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<SecondHandVO> list = null;
+		String sql = null;
+		
+		try {
+			conn = DBUtil.getConnection();
+			sql = "SELECT * FROM (SELECT a.*, rownum rnum"
+					+ " FROM (SELECT * FROM secondhand s JOIN member m"
+					+ " USING(mem_num) secondhand_fav f USING(se_num)"
+					+ " WHERE f.mem_num=? ORDER BY se_num DESC)a)"
+					+ " WHERE rnum >= ? AND rnum <= ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, mem_num);
+			pstmt.setInt(2, start);
+			pstmt.setInt(3, end);
+			rs = pstmt.executeQuery();
+			list = new ArrayList<SecondHandVO>();
+			while(rs.next()) {
+				SecondHandVO vo = new SecondHandVO();
+				vo.setSe_num(rs.getInt("se_num"));
+				vo.setTitle(StringUtil.useNoHtml(rs.getString("title")));
+				vo.setReg_date(rs.getDate("reg_date"));
+				vo.setDongho(rs.getString("dongho"));
+				
+				list.add(vo);
+			}
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		return list;
+	}
 	
 	//댓글 등록
 	public void insertReplySe(SecondhandReplyVO vo) throws Exception {

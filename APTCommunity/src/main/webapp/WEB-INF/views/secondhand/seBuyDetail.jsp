@@ -60,6 +60,7 @@
 												</li>
 												<li class="align-right" id="st">
 												<%-- 로그인한 회원번호와 작성자 회원번호가 일치하거나 관리자일경우 수정삭제 가능 --%> 
+												
 												<c:if test="${user_num == vo.mem_num || user_auth == 9}">
 												<%-- user_num : 로그인한 회원번호 / vo.mem_num : 작성한 회원번호 --%>
 													<input type="button" value="수정" onclick="location.href='seBuyUpdateForm.do?se_num=${vo.se_num}'">
@@ -82,10 +83,14 @@
 										<hr size="1" width="100%" noshade="noshade" color="#e8e8e8">
 										<div class="detail-page-content">
 											<c:if test="${ !empty vo.filename }">
-											<img src="${pageContext.request.contextPath}/upload/${ vo.filename }" class="detail-img">
+											<img src="${pageContext.request.contextPath}/upload/${ vo.filename }" class="detail-img"
+												style="border:noen;">
 											</c:if>
 											<p>${vo.content}</p>
 										</div>
+								<div>
+									<img src="${pageContext.request.contextPath}/img/empty_찜3.png">
+								</div>
 									</div>
 									<!-- detail-page -->
 								</div>

@@ -45,7 +45,7 @@ public class BuyListAction implements Action{
 		for(NoticeVO no : fixedList) {
 			no.setTitle(StringUtil.useNoHtml(no.getTitle()));
 		}
-		request.setAttribute("fixedList", fixedList);		
+		request.setAttribute("fixedList", fixedList);
 
 		
 		request.setAttribute("count", count);
