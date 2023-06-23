@@ -10,10 +10,17 @@
 	href="${pageContext.request.contextPath}/css/custom.css">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/css/registerUserAgree.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/css/notice.css">
 </head>
-<body>
+<body>		
+	<jsp:include page="/WEB-INF/views/common/header.jsp" />
+	<!-- 상단 링크 버튼 시작-->
+	<div class="service-up">
+		<jsp:include page="/WEB-INF/views/common/up_button.jsp" />
+	</div>
+	<!-- 상단 링크 버튼 끝-->
 	<div class="page-main">
-		<jsp:include page="/WEB-INF/views/common/header.jsp" />
 		<!-- 내용 시작 -->
 		<div class="sbLogin">
 			<h2 class="sbTitle">약관 동의</h2>
@@ -558,8 +565,8 @@
 				</div>
 			</div>
 			<!-- 내용 끝 -->
-			<jsp:include page="/WEB-INF/views/common/footer.jsp" />
 		</div>
 	</div>
+	<jsp:include page="/WEB-INF/views/common/footer.jsp" />
 </body>
 </html>

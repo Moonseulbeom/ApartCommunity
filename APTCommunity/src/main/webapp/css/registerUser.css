@@ -11,17 +11,8 @@
     background-color: #fdfdfd;
 }
 
-li {
-    display: list-item;
-    text-align: -webkit-match-parent;
-}
-
-.join_flow li {
-    width: 130px;
-    height: 35px;
-    padding: 0 65px;
-    float: left;
-    background: url(../../img/flow_arrow.png) 0 center no-repeat;
+.join_flow ul {
+    overflow: hidden;
 }
 
 .join_flow li:first-child {
@@ -29,6 +20,40 @@ li {
     background: none;
 }
 
+.join_flow li {
+    width: 130px;
+    height: 35px;
+    padding: 0 65px;
+    float: left;
+    background: url(../img/flow_arrow.png) 0 center no-repeat;
+}
+
+.join_flow li span {
+    display: inline-block;
+    width: 130px;
+    height: 35px;
+    line-height: 35px;
+    font-size: 0;
+    background: url(../img/join_flow.png) 0 0 no-repeat;
+}
+
+.join_flow .jo_01 span {
+    background-position: 0 -113px;
+}
+
+.join_flow .jo_02 span {
+    background-position: 0 -150px;
+}
+
+.join_flow .jo_03 span {
+    background-position: 0 -185px;
+}
+
+.join_flow .jo_o3_on span {
+    background-position: 0 -81px !important;
+}
+
+*****************************
 .result-display {
   width: 500px;
   margin: 0 auto;

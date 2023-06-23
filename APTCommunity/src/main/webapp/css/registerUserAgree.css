@@ -11,9 +11,13 @@
     background-color: #fdfdfd;
 }
 
-li {
-    display: list-item;
-    text-align: -webkit-match-parent;
+.join_flow ul {
+    overflow: hidden;
+}
+
+.join_flow li:first-child {
+    padding-left: 60px;
+    background: none;
 }
 
 .join_flow li {
@@ -21,13 +25,34 @@ li {
     height: 35px;
     padding: 0 65px;
     float: left;
-    background: url(../../img/flow_arrow.png) 0 center no-repeat;
+    background: url(../img/flow_arrow.png) 0 center no-repeat;
 }
 
-.join_flow li:first-child {
-    padding-left: 60px;
-    background: none;
+.join_flow li span {
+    display: inline-block;
+    width: 130px;
+    height: 35px;
+    line-height: 35px;
+    font-size: 0;
+    background: url(../img/join_flow.png) 0 0 no-repeat;
 }
+
+.join_flow .jo_01 span {
+    background-position: 0 -113px;
+}
+
+.join_flow .jo_o1_on span {
+    background-position: 0 -7px !important;
+}
+
+.join_flow .jo_02 span {
+    background-position: 0 -150px;
+}
+
+.join_flow .jo_03 span {
+    background-position: 0 -185px;
+}
+
 
 .agreeList .agreeAll {
     padding-bottom: 15px;
@@ -44,10 +69,6 @@ p {
 }
 .agreeArea {
     margin-top: 50px;
-}
-
-div {
-    display: block;
 }
 
 .agreeArea textarea {
@@ -107,11 +128,15 @@ input[type="checkbox" i] {
 }
 
 .sbLogin .btnWrap {
-    margin: 50px 0;
-	text-align: center;
-	display: inline-block;
-	width: 200px;
-	padding: 20px 20px;
-	display: inline-block;
-	background-color: #C20025;
-	color: #fff;}
+	font-size: 18px;
+	font:bold;
+	margin: 50px 0;
+    text-align: center;
+    display: inline-block;
+    width: 200px;
+    height:auto;
+    padding: 20px 20px;
+    display: inline-block;
+    background-color: #3264bf;
+    color: #fff;
+}

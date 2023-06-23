@@ -79,11 +79,15 @@
 	<div id="wrap">
 		<div class="inner">
 			<div id="container" class="inner">
-				<!-- 상단 링크 버튼 -->
+				<!-- 상단 링크 버튼 시작-->
 				<div class="service-up">
 					<jsp:include page="/WEB-INF/views/common/up_button.jsp" />
 				</div>
+				<!-- 상단 링크 버튼 끝-->
+				
 				<!-- 내용 시작 -->
+				
+				<!-- 좌측 상단 사진 시작 -->
 				<div class="main_loling_wrap fl">
 					<ul class="slide" id="main_slider">
 						<li><img width="668" height="380"
@@ -91,9 +95,11 @@
 						</li>
 					</ul>
 				</div>
-
+				<!-- 좌측 상단 사진 끝 -->
+				
+				<!-- 우측 상단 로그인 박스 시작 -->
 				<c:if test="${empty user_auth}">
-				<div class="mLogin_box mLogout">
+				<div class="mLogin_box">
 					<p class="loginGreetingt">
 						<span>쌍용아파트</span>에 오신 것을 환영합니다.
 					</p>
@@ -119,36 +125,56 @@
 					</div>
 				</div>
 				</c:if>
-
+				<!-- 로그인 중일때 로그인 박스 시작 -->
 				<c:if test="${!empty user_auth}">
-				<div class="mLogin_box mLogout">
+				<div class="mLogging_Box">
 					<p class="loginGreetingt">
 						<span>쌍용아파트</span>에 오신 것을 환영합니다.
+						<br><br>
+						<c:if test="${user_auth == 1}">등급: <span>입주민</span></c:if>
+						<c:if test="${user_auth == 9}">등급: <span>관리자</span></c:if>
+						<br><br>
+						세대: <span>${user_dongho}</span>
 					</p>
 					<div class="LoggingBox">
 						<form id="login_form">
 							<input type="button" value="로그아웃" class="logoutBtn"
 								id="logoutBtn"
 								onclick="location.href='<c:url value="/member/logout.do" />'">
+							<c:if test="${user_auth == 1}">
 							<input type="button" value="마이페이지" class="mypageBtn"
 								id="mypageBtn"
 								onclick="location.href='<c:url value="/member/myPage.do" />'">
+							</c:if>
+							<c:if test="${user_auth == 9}">
+							<input type="button" value="관리자페이지" class="manageBtn"
+								id="manageBtn"
+								onclick="location.href='<c:url value="#" />'">
+							</c:if>
 						</form>
 					</div>
 				</div>
 				</c:if>
-
+				<!-- 로그인 중일때 로그인 박스 끝 -->
+				<!-- 우측 상단 로그인 박스 끝 -->
+				
+				<!-- 우측 상단 전화번호 박스 시작 -->
 				<div class="mphnum_box">
-					<a><span>관리사무소 전화번호</span>02)123-4567</a>
+					<a><span>관리사무소 전화번호</span> 02)123-4567</a>
 					<p>
-						<a><span>팩스 번호</span>02)123-4567</a>
+						<a><span>팩스 번호</span> 02)123-4567</a>
 				</div>
+				<!-- 우측 상단 전화번호 박스 끝 -->
+				
 
 				<p></p>
 
-				<div class="board_all">
+				<!-- 하단 게시판 시작 -->
+					<div class="board_all">
+					<!-- 좌측 공지사항 게시판 시작 -->
 					<div class="board_notice">
 						<p class="title">공지사항</p>
+						<div class="board_notice1">
 						<table>
 							<c:forEach var="notice" items="${noticelist}">
 								<tr>
@@ -159,7 +185,10 @@
 								</tr>
 							</c:forEach>
 						</table>
+						</div>
 					</div>
+					<!-- 좌측 공지사항 게시판 끝 -->
+					<!-- 우측 자유 게시판 시작 -->
 					<div class="board_board">
 						<p class="title">자유 게시판</p>
 						<table>
@@ -173,11 +202,14 @@
 							</c:forEach>
 						</table>
 					</div>
+					<!-- 우측 자유 게시판 끝 -->
 				</div>
+				<!-- 하단 게시판 끝 -->
+				
 			</div>
 		</div>
 		<!-- 내용 끝 -->
-		<jsp:include page="/WEB-INF/views/common/footer.jsp" />
 	</div>
+	<jsp:include page="/WEB-INF/views/common/footer.jsp" />
 </body>
 </html>

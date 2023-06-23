@@ -17,9 +17,6 @@ div {
 	border: 1px solid #dcdcdc;
 	float: right;
 	height: 100%;
-}
-
-.mLogout {
 	padding: 20px 20px 20px;
 	width: 269px;
 }
@@ -67,16 +64,15 @@ div {
 }
 
 /* 로그인중 */
-.mLogin_box {
+.mLogging_Box {
 	border: 1px solid #dcdcdc;
 	float: right;
 	height: 100%;
-}
-
-.mLogout {
 	padding: 20px 20px 20px;
 	width: 269px;
+	margin-bottom: 34px;
 }
+
 .LoggingBox .logoutBtn {
 	margin-top:15px;
 	width: 269px;
@@ -86,7 +82,7 @@ div {
 	border-radius: 3px;
 	color: #fff;
 	text-align: center;
-	background-color: #3264bf
+	background-color: #ff0000
 }
 
 .LoggingBox .mypageBtn {
@@ -98,6 +94,17 @@ div {
 	color: #fff;
 	text-align: center;
 	background-color: #3264bf
+}
+
+.LoggingBox .manageBtn {
+	width: 269px;
+	height: 40px;
+	margin-bottom: 15px;
+	border: none;
+	border-radius: 3px;
+	color: #fff;
+	text-align: center;
+	background-color: #c0c0c0
 }
 
 div.mphnum_box {
@@ -129,7 +136,8 @@ div.mphnum_box p {
 
 
 .board_all {
-  width: 0 auto;
+  margin-top: 30px;
+  width: 100%;
 }
 
 .board_all .title {
@@ -144,20 +152,19 @@ div.mphnum_box p {
 .board_notice {
   margin-top: 21px;
   float: left;
-  width: 600px;
+  width: 669px;
   border: none;
   border-radius: 3px;
   border: 1px solid #dcdcdc;
 }
+
 .board_board {
   border: none;
   border-radius: 3px;
-  width: 309px;
+  width: 300px;
   float: right;
   border: 1px solid #dcdcdc;
 }
-
-
 
 .board_all .board_notice table {
   width: 100%;
