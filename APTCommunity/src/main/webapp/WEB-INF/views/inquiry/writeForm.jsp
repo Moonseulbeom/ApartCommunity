@@ -1,10 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>1:1문의 글쓰기</title>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/inquiry.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/custom.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
@@ -28,40 +30,45 @@
 </script>
 </head>
 <body>
-<div class="page-main">
+<div class="write-page-main">
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 	<!-- 내용 시작 -->
-	<div class="content-main">
-		<h2>1:1문의 글쓰기</h2>
-		<form id="write_form" action="write.do"
-		        method="post" 
-		       enctype="multipart/form-data">
-			<ul>
-				<li>
-					<label for="title">제목</label>
-					<input type="text" name="title"
-					      id="title" maxlength="50">
-				</li>
-				<li>
-					<label for="content">내용</label>
-					<textarea rows="5" cols="30" name="content"
-					      id="content" maxlength="50"></textarea>
-				</li>
-				<li>
-					<label for="filename">파일</label>
-					<input type="file" name="filename"
-					      id="filename" 
-					      accept="image/gif,image/png,image/jpeg">
-				</li>
-			</ul> 
-			<div class="align-center">
-				<input type="submit" value="등록">
-				<input type="button" value="목록"
-				   onclick="location.href='list.do'">
-			</div>      
-		</form>
+	<div class="inner">
+		<div id="container" class="inner">
+			<div class="main-page">
+				<h1>1:1문의 작성</h1>
+				<div class="write-page">	
+				<form id="write_form" action="writeFix.do" method="post" enctype="multipart/form-data">
+					<ul>
+						<li>
+						</li>
+						<li>
+						<div class="write-title">
+							<c:if test="${user_auth == 1 || user_auth == 9 }">
+								<input type="text" id="title" name="title" placeholder="제목을 입력해주세요.">	
+							</c:if>
+						</div>
+						</li>
+						<li>
+							<textarea rows="5" cols="30" id="content" name="content" placeholder="하자 내용을 입력해주세요."></textarea>
+						</li>
+						<li>
+							<input type="file" id="filename" name="filename" accept="image/png, image/jpeg, image/gif" >
+						</li>
+						<li>
+						<div class="write-btn-div">
+							<input type="submit" value="등록" class="write-btn">
+							<input type="button" value="취소" onclick="location.href='list.do'" class="write-btn">
+						</div>
+						</li>
+					</ul>
+				</form>
+				</div>
+			</div>
+		</div>
 	</div>
 	<!-- 내용 끝 -->
+	<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 </div>
 </body>
 </html>

@@ -50,14 +50,10 @@ public class ListManageAction implements Action{
 			list = Collections.emptyList();
 		}
 		
-		HttpSession session = 
-				     request.getSession();
-		Integer user_num = 
-				(Integer)session.getAttribute(
-				                    "user_num");
+		HttpSession session = request.getSession();
+		Integer user_num = (Integer)session.getAttribute("user_num");
 		
-		Map<String,Object> mapAjax = 
-				new HashMap<String,Object>();
+		Map<String,Object> mapAjax = new HashMap<String,Object>();
 		mapAjax.put("count", count);
 		mapAjax.put("rowCount", rowCount);
 		mapAjax.put("list", list);

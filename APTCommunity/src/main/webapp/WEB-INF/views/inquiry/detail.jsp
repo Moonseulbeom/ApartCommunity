@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>하자보수 글 상세</title>
+<title>1:1문의 글 상세</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/inquiry.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/custom.css">
@@ -34,7 +34,7 @@
 										<a href="${pageContext.request.contextPath}/member/logout.do">로그아웃</a>
 									</div>
 								</div>
-								<h2>예약/신청</h2>
+								<h2>기타</h2>
 								<div class="menu">
 									<ul>
 										<li><a href="${pageContext.request.contextPath}/inquiry/list.do">1:1문의</a></li>

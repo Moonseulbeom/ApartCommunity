@@ -89,7 +89,7 @@ $(function(){
 		
 		//서버와 통신
 		$.ajax({
-			url:'fixWriteReply.do',
+			url:'writeManage.do',
 			type:'post',
 			data:form_data,
 			dataType:'json',
@@ -216,7 +216,7 @@ $(function(){
 		
 		//서버와 통신
 		$.ajax({
-			url:'fixUpdateReply.do',
+			url:'updateManage.do',
 			type:'post',
 			data:form_data,
 			dataType:'json',
@@ -247,7 +247,7 @@ $(function(){
 		let re_num = $(this).attr('data-renum');
 		
 		$.ajax({
-			url:'fixDeleteReply.do',
+			url:'deleteManage.do',
 			type:'post',
 			data:{re_num:re_num},
 			dataType:'json',
