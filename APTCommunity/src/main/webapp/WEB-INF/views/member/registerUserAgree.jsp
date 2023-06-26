@@ -13,43 +13,47 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/css/notice.css">
 </head>
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
+		$(document).ready(function () {
+			var $all_check     = $('#all_check');
+			var $terms_check   = $("#terms_check");
+			var $privacy_check = $("#privacy_check");
 
-   function checkAll() {
-      var allCheck = document.getElementById("all_check");
-      var privacyCheck = document.getElementById("privacy_check");
-      var termsCheck = document.getElementById("terms_check");
+			$all_check.on('change', function () { // on change of state
+				var checked = this.checked;
 
-      if (allCheck.checked) {
-         privacyCheck.checked = true;
-         termsCheck.checked = true;
-      } else {
-         privacyCheck.checked = false;
-         termsCheck.checked = false;
-      }
-   }
+				$terms_check.prop('checked', checked);
+				$privacy_check.prop('checked', checked);
+			});
 
-   function validateForm() {
-      var privacyCheck = document.getElementById("privacy_check");
-      var termsCheck = document.getElementById("terms_check");
+			$terms_check.add($privacy_check).on('change', function () { // on change of state
+				var allChecked = $terms_check.is(':checked') && $privacy_check.is(':checked');
+				$all_check.prop('checked', allChecked);
+			});
+		});
 
-      if (!privacyCheck.checked || !termsCheck.checked) {
-         alert("약관에 전체 동의해야 합니다.");
-         return false;
-      }
-   }
+		function validateForm() {
+			var privacyCheck = document.getElementById("privacy_check");
+			var termsCheck = document.getElementById("terms_check");
 
-   function goToNextPage() {
-     var privacyCheck = document.getElementById("privacy_check");
-     var termsCheck = document.getElementById("terms_check");
+			if (!privacyCheck.checked || !termsCheck.checked) {
+				alert("약관에 전체 동의해야 합니다.");
+				return false;
+			}
+			return true;
+		}
 
-     if (privacyCheck.checked && termsCheck.checked) {
-       location.href = "${pageContext.request.contextPath}/member/registerUserForm.do";
-     } else {
-       alert("약관에 전체 동의해야 합니다.");
-     }
-   }
+		function goToNextPage() {
+			var privacyCheck = document.getElementById("privacy_check");
+			var termsCheck = document.getElementById("terms_check");
 
+			if (validateForm()) {
+			    location.href = "${pageContext.request.contextPath}/member/registerUserForm.do";
+			  }
+		}
+	
 </script>
 <body>		
 	<jsp:include page="/WEB-INF/views/common/header.jsp" />
@@ -69,9 +73,10 @@
 					<li class="jo_03"><span>가입완료</span></li>
 				</ul>
 			</div>
+			<div class="agreeListAll">
 			<form class="agreeList">
 				<p class="agreeAll">
-					<input type="checkbox" name="setOpenSSL" id="all_check" onclick="checkAll();"> <label
+					<input type="checkbox" name="setOpenSSL" id="all_check"> <label
 						for="all_check" class="point_cursor">약관전체동의</label>
 				</p>
 			</form>
@@ -601,6 +606,7 @@
 					<input class="btnWrap" type="button" value="다음"
 						onclick="goToNextPage();">
 				</div>
+			</div>
 			</div>
 			<!-- 내용 끝 -->
 		</div>

@@ -99,11 +99,11 @@
 					</p>
 					<div class="loginBox">
 						<form id="login_form">
-							<p>
+							<p class="dong">
 								<input type="text" class="login_input_text" id="dong"
 									placeholder="동" maxlength="10">
 							</p>
-							<p>
+							<p class="ho">
 								<input type="text" class="login_input_text" id="ho"
 									placeholder="호" maxlength="10">
 							</p>
@@ -143,7 +143,7 @@
 							<c:if test="${user_auth == 9}">
 							<input type="button" value="관리자페이지" class="manageBtn"
 								id="manageBtn"
-								onclick="location.href='<c:url value="#" />'">
+								onclick="location.href='<c:url value="/manager/manageMain.do" />'">
 							</c:if>
 						</form>
 					</div>

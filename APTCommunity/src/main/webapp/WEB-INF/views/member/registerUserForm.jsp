@@ -83,19 +83,13 @@ $(function() {
 			if(items[i].id == 'carnum'){
 					continue;
 			} 
-			if(items[i].id == 'search_box'){
-				continue;
-			} 
 			 
-		    if(items[i].value.trim()==''){
-				let label = 
-					document.querySelector(
-				 'label[for="'+items[i].id+'"]');
-				alert(label.textContent + ' 항목 필수 입력');
+			if (items[i].value.trim() == '') {
+				alert(items[i].name + ' 항목 필수 입력');
 				items[i].value = '';
 				items[i].focus();
 				return false;
-		    }
+				}
 		    
 		    if(items[i].id == 'id' && 
 		    	 !/^[A-Za-z0-9]{3,5}$/.test(
@@ -105,6 +99,15 @@ $(function() {
 				$('#dongho').focus();
 				return false;
 			}
+		    
+		    if(items[i].id == 'passwd' && 
+			    	 !/^[A-Za-z0-9]{4,12}$/.test(
+			    	             $('#passwd').val())){
+					alert('영문 또는 숫자 사용, 최소 4자 ~ 최대 12자를 사용하세요');
+					$('#passwd').val('');
+					$('#passwd').focus();
+					return false;
+				}
 		    
 		    if(items[i].id == 'dongho' && 
 		    		            idChecked == 0){
@@ -132,52 +135,67 @@ $(function() {
 				<li class="jo_03"><span>가입완료</span></li>
 			</ul>
 		</div>
+		<div class="joinForm">
+			<p class="joinTit">정보입력</p>
 		<form id="register_form" action="registerUser.do" method="post">
-			<ul>
-				<li>
-					<label for="dong">동</label> 
-					<input type="text" name="dong" id="dong" maxlength="12" autocomplete="off">
-				</li>
-				<li>
-					<label for="ho">호</label>
-					<input type="text" name="ho" id="ho" maxlength="12" autocomplete="off">
-				</li>
-				<li>
-					<input type="button" value="동-호수 중복체크" id="dongho_check">
-					<span id="message_dongho"></span>
-				</li>
-				<li>
-					<label for="name">세대주</label>
-					<input type="text" name="name"
-					  id="name" maxlength="10">
-				</li>
-				<li>
-					<label for="passwd">비밀번호</label>
-					<input type="password" name="passwd"
-					  id="passwd" maxlength="12">
-				</li>
-				<li>
-					<label for="phone">전화번호</label>
-					<input type="text" name="phone"
-					  id="phone" maxlength="15">
-				</li>
-				<li>
-					<label for="email">이메일</label>
-					<input type="email" name="email"
-					  id="email" maxlength="50">
-				</li>
-				<li>
-					<label for="carnum">차량번호</label>
-					<input type="text" name="carnum"
-					  id="carnum" maxlength="15">
-				</li>
-			</ul> 
-			<div class="align-center">
+			<table>
+				<colgroup>
+					<col width="25%">
+					<col width="auto">
+				</colgroup>
+				<tbody>
+					<tr>
+						<th>동 <span>(필수)</span></th>
+						<td>
+							<input type="text" name="동" id="dong" maxlength="12" placeholder="숫자만 입력" autocomplete="off">
+						</td>
+					</tr>
+					<tr>
+						<th>호 <span>(필수)</span></th>
+						<td>
+							<input type="text" name="호" id="ho" maxlength="12" placeholder="숫자만 입력" autocomplete="off">
+							<input type="button" value="동-호수 중복체크" id="dongho_check" class="dongho_check">
+								<span id="message_dongho"></span>
+						</td>
+					</tr>
+					<tr>
+						<th>세대주 <span>(필수)</span></th>
+						<td>
+							<input type="text" name="세대주" id="name" placeholder="문자만 입력" maxlength="10">
+						</td>
+					</tr>
+					<tr>
+						<th>비밀번호 <span>(필수)</span></th>
+						<td>
+							<input type="password" name="비밀번호" id="passwd" placeholder="영문자 포함(4~12자리)" maxlength="12">
+						</td>
+					</tr>
+					<tr>
+						<th>전화번호 <span>(필수)</span></th>
+						<td>
+							<input type="text" name="전화번호" id="phone" placeholder="ex)000-0000-0000" maxlength="15">
+						</td>
+					</tr>
+					<tr>
+						<th>이메일 <span>(필수)</span></th>
+						<td>
+							<input type="email" name="이메일" id="email" placeholder="ex)test@test.com" maxlength="50">
+						</td>
+					</tr>
+					<tr>
+						<th>차량번호 <span class="sp_ch">(선택)</span></th>
+						<td>
+							<input type="text" name="차량번호" id="carnum" placeholder="ex)00가0000" maxlength="15">
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			
+			<div class="btnWrap">
 				<input type="submit" value="등록">
-				<input type="button" value="홈으로"
-				 onclick="location.href='${pageContext.request.contextPath}/main/main.do'">
 			</div> 
 		</form>
+		</div><!-- end of joinform -->
 	</div>
 	<!-- 내용 끝 -->
 </div>

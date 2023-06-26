@@ -1,61 +1,106 @@
-.content-main {
-  width: 378px;
-  margin: 0 auto;
-  background-color: #f5f5f5;
-  border-radius: 5px;
+.sbLogin {
+    width: 820px;
+    margin: 0 auto;
+    text-align: center;
 }
 
-h2 {
-  margin-top:20px;
-  text-align: center;
-  margin-bottom: 20px;
+.sbLogin .sbTitle {
+    margin-bottom: 50px;
 }
 
-form {
-  margin-top: 20px;
+.sbTitle {
+    margin-top: 20px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid #d9d9d9;
+    text-align: center;
+    font-size: 35px;
+    font-weight: bold;
+    color: #2e2e2e;
 }
 
-ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
+.sbLogin .login_box {
+    width: 530px;
+    margin: 0 auto;
+    overflow: hidden;
 }
 
-li {
-  margin-bottom: 10px;
+.sbLogin .login_box .login_input {
+    width: 387px;
+    margin-right: 10px;
 }
 
-label {
-  display: block;
-  margin-bottom: 5px;
-  font-weight: bold;
+.fl {
+    float: left;
 }
 
-input {
-  width: 355px;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+
+.dong {
+  float: left;
+  margin-right: 10px;
 }
 
-input[type="submit"] {
-  width: 378px;
-  height: 40px;
-  background-color: #337ab7;
-  color: white;
-  cursor: pointer;
-  border: none;
-  border-radius: 5px;
-  padding: 10px 20px;
+.ho{
+ float: right;
 }
 
-input[type="button"] {
-  width: 378px;
-  height: 40px;
-  background-color: #ccc;
-  color: black;
-  cursor: pointer;
-  border: none;
-  border-radius: 5px;
-  padding: 10px 20px;
+.sbLogin .login_box input[type=text] {
+	display: inline-block;
+	width: 175px;
+    margin-bottom: 10px;
+    border: 1px solid #dedede;
+    padding: 15px 5px;
+}
+.sbLogin .login_box input[type=password] {
+    width: 365px;
+    margin-bottom: 10px;
+    border: 1px solid #dedede;
+    padding: 15px 10px;
+}
+
+.sbLogin .login_submit .loginBtn {
+    width: 130px;
+    height: 106px;
+    background-color: #3264bf;
+    border: none;
+    color: #fff;
+    font-size: 15px;
+    cursor: pointer;
+}
+textarea, submit {
+    vertical-align: middle;
+}
+
+.sbLogin .login_info {
+    margin: 100px 0;
+    padding: 50px;
+    background-color: #f5f6f7;
+}
+
+.sbLogin .login_info .btn_wrap a {
+    display: inline-block;
+    margin: 0 5px;
+    width: 260px;
+    height: 45px;
+    line-height: 45px;
+    text-align: center;
+    color: #fff;
+    font-weight: bold;
+}
+.sbLogin .login_info .ldSearch {
+    background-color: #808080;
+}
+
+.sbLogin .login_info .join {
+    background-color: #9da2ab;
+}
+
+.sbLogin .login_info ul {
+    margin-top: 30px;
+}
+
+.sbLogin .login_info li {
+    padding-left: 30px;
+    background: url(../img/dot_ico.jpg) 20px center no-repeat;
+    text-align: left;
+    line-height: 28px;
 }

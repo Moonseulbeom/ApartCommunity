@@ -53,62 +53,110 @@
     background-position: 0 -185px;
 }
 ************************
-form {
-  width: 500px;
-  margin: 0 auto;
-  padding: 20px;
-  border: 1px solid #ccc;
-  background-color: #fff;
+p {
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
 }
 
-ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
+.joinForm .joinTit {
+    margin-bottom: 20px;
+    font-size: 15px;
+    color: #4e4e4e;
+    text-align: left;
+    font-weight: bold;
 }
 
-li {
-  margin-bottom: 10px;
+.joinForm table {
+    width: 100%;
+    text-align: left;
+    border-top: 2px solid #747474;
 }
 
-label {
-  font-size: 16px;
-  font-weight: bold;
+table {
+    border-collapse: collapse;
+    text-indent: initial;
+    border-spacing: 2px;
 }
 
-input {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  margin-bottom: 10px;
+colgroup {
+    display: table-column-group;
 }
 
-input[type="submit"] {
-  height: 40px;
-  font-size: 18px;
-  font-weight: bold;
-  background-color: #000;
-  color: #fff;
-  cursor: pointer;
+tbody {
+    display: table-row-group;
+    vertical-align: middle;
+    border-color: inherit;
 }
 
-input[type="button"] {
-  height: 40px;
-  font-size: 18px;
-  font-weight: bold;
-  background-color: #ccc;
-  color: #000;
-  cursor: pointer;
+tr {
+    display: table-row;
+    vertical-align: inherit;
+    border-color: inherit;
 }
 
-.align-center {
-  text-align: center;
+.joinForm table th {
+    padding: 20px 0 20px 30px;
+    border-bottom: 1px solid #dcdcdc;
+    background-color: #f8f8f8;
+    line-height: 40px;
+    font-size: 16px;
 }
 
+.joinForm table td {
+    padding: 20px 0 20px 30px;
+    border-bottom: 1px solid #dcdcdc;
+    line-height: 40px;
+}
 
+td {
+    display: table-cell;
+    vertical-align: inherit;
+}
 
+.joinForm table .join_input {
+    width: 250px;
+}
 
+.joinForm table input {
+    padding: 8px;
+    vertical-align: middle;
+    border: 1px solid #e1e1e1;
+    color: #333;
+    font-size: 14px;
+}
 
+.sbLogin .btnWrap {
+    margin: 50px 0;
+    text-align: center;
+}
 
+.sbLogin .btnWrap input[type=submit] {
+	font-size:15pt;
+    display: inline-block;
+    width: 200px;
+    padding: 15px 15px 35px 15px;
+    display: inline-block;
+    background-color: #3264bf;
+    color: #fff;
+}
 
+.joinForm table .dongho_check {
+    padding: 10px 10px 23px 10px;
+    background-color: #80ff80;
+    color: #fff;
+    font-size: 13px;
+    vertical-align: middle;
+}
+
+span {
+    color: #ff0000;
+    font-size: 13px;
+}
+
+.sp_ch {
+    color: #0080ff;
+    font-size: 13px;
+}
