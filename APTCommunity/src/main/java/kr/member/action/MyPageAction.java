@@ -1,5 +1,7 @@
 package kr.member.action;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -7,6 +9,8 @@ import javax.servlet.http.HttpSession;
 import kr.controller.Action;
 import kr.member.dao.MemberDAO;
 import kr.member.vo.MemberVO;
+import kr.secondhand.dao.SecondHandDAO;
+import kr.secondhand.vo.SecondHandVO;
 
 public class MyPageAction implements Action{
 
@@ -23,8 +27,15 @@ public class MyPageAction implements Action{
 		MemberDAO dao = MemberDAO.getInstance();
 		//회원정보
 		MemberVO member = dao.getMember(user_num);
-				
-		request.setAttribute("member", member);	
+		
+		
+		/* 좋아요 목록 */
+		SecondHandDAO shDao = SecondHandDAO.getinstance();
+		List<SecondHandVO> favList = shDao.getListSecondhandFav(1, 5, user_num);
+		
+		
+		request.setAttribute("member", member);
+		request.setAttribute("favList", favList);
 		
 		//JSP 경로 반환
 		return "/WEB-INF/views/member/myPage.jsp";

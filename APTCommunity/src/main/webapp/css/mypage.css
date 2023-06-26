@@ -1,0 +1,153 @@
+/* 마이페이지 화면 크기 */
+#myPage_home{
+	display: flex;
+	flex-direction: row;
+}
+.myPage_leftSide{
+	width: 37%;
+}
+.myPage_rightSide{
+	width: 63%;
+}
+
+/* 회원정보 ~~ */
+.mypage-div li{
+	width: 100%;
+	padding: 3px;
+	font-size: 15px;
+}
+.mypage-div h3{
+	margin-top: 20px;
+}
+#myPage_home h2{
+	font-size: 24px;
+	margin: 10px 0 10px 0;
+}
+#myPage_home h3{
+	font-size: 19px;
+	margin: 15px 0 10px 0;
+}
+
+/* 좋아요 목록 */
+#myChoice{
+	border-collapse: collapse;
+	width: 100%;
+}
+#myChoice th,td{
+	border: 1px solid #ccc;
+	padding: 5px;
+}
+#myChoice th{
+	background-color: #f0f0f0;
+	text-align: center;
+}
+#myChoice td{
+	text-align: left;
+}
+
+/*상단 바로가기 버튼*/
+.service-up{
+	margin-right: 30px;
+	position: fixed;
+    right: 24px;
+    bottom: 24px;
+    z-index: 50;
+}
+.link-service img{
+	width: 50px;
+	height: 50px;
+}
+
+/*메인 페이지*/
+.page-main{
+	width: 1000px;
+	margin: 50px auto;
+	border: none;
+	min-height: 400px;
+}
+.page-main li{
+	float: left;
+}
+.page-left{
+	padding-right: 50px;
+}
+.page-right{
+	width: 700px;
+}
+
+/*사이드 바*/
+.sidebar{
+	/*상우하좌*/
+	width: 250px;
+}
+.sidebar h2{
+	padding-bottom: 5px;
+	border-bottom: 2px solid #c5c6c7;
+}
+.mem-service{
+	height: 120px;
+	margin-bottom: 20px;
+	padding-bottom: 50px;
+	font-size: 1em;
+	text-align: center;
+	border-top: 2px solid #333;;
+	border-bottom: 2px solid #333;;
+}
+.mem-service p{
+	padding: 20px 0 15px 0;
+	font-size: 13px;
+	font-weight: bold;
+}
+.mem-service div{
+	width: 200px;
+	height: 30px;
+	padding-top: 10px;
+}
+.mem-service div:hover{
+	cursor: pointer;
+}
+.service-myPage-button{
+	margin: 0 auto;
+	margin-bottom: 10px;
+	background-color: #5a5a5a;
+}  
+.service-myPage-button a{
+	margin-top: 10px;  
+	height:30px;
+	color: #fff;
+}
+.service-manager-button{  
+	margin: -10px 0px 20px 25px;
+	width: 100%;
+	
+}
+.service-manager-button li{
+	float: left; 
+}
+.service-manager-button div{
+	width:96px;
+	background-color: #5a5a5a;
+	border: 1px solid #e5e5e5;
+}
+.manage-btn{
+	margin-left: 4px;
+}
+.service-manager-button a{
+	color: #fff;
+}
+.service-logout-button{
+	margin: 0 auto;
+	background-color: #fff;
+	border: 1px solid #e5e5e5;
+}
+.menu{
+	margin-top: 20px; 
+}
+.menu li{
+	margin-left: 40px;
+	width: 250px;
+	padding-bottom: 15px;
+	text-align: left;
+	font-size: 1.2em;
+	list-style: disc;
+}

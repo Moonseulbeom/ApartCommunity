@@ -10,6 +10,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/custom.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/sh.fav.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/sh.reply.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/common.js"></script>
 <script type="text/javascript"></script>
@@ -88,9 +89,13 @@
 											</c:if>
 											<p>${vo.content}</p>
 										</div>
-								<div>
-									<img src="${pageContext.request.contextPath}/img/empty_찜3.png">
+								<%-- 좋아요 버튼 시작 --%>
+								<div id="goodClick">
+									<img id="output_fav" src="${pageContext.request.contextPath}/img/HeartBin30.jpg" 
+										data-num="${vo.se_num}" style="float: left;"/>
+									<p>&nbsp;&nbsp;좋아요&nbsp;&nbsp;<span id="output_favCount"></span></p>
 								</div>
+								<%-- 좋아요 버튼 끝 --%>
 									</div>
 									<!-- detail-page -->
 								</div>

@@ -367,7 +367,7 @@ public class SecondHandDAO {
 	}
 	
 	//중고거래-판매 찜버튼
-	public void insertFav(SecondHandVO favVO) throws Exception {
+	public void insertFav(SecondhandFavVO favVO) throws Exception {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		String sql = null;
@@ -397,7 +397,7 @@ public class SecondHandDAO {
 		
 		try {
 			conn = DBUtil.getConnection();
-			sql = "SELECT COUNT(*) FROM secondhand_fav WHERE se_num";
+			sql = "SELECT COUNT(*) FROM secondhand_fav WHERE se_num=?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, se_num);
 			rs = pstmt.executeQuery();
@@ -441,7 +441,7 @@ public class SecondHandDAO {
 		
 		try {
 			conn = DBUtil.getConnection();
-			sql = "SELECT * FROM secondhand_fav WHERE se_num=? AND mem_num";
+			sql = "SELECT * FROM secondhand_fav WHERE se_num=? AND mem_num=?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, favVO.getSe_num());
 			pstmt.setInt(2, favVO.getMem_num());
@@ -451,7 +451,7 @@ public class SecondHandDAO {
 				fav.setFav_num(rs.getInt("fav_num"));
 				fav.setSe_num(rs.getInt("se_num"));
 				fav.setMem_num(rs.getInt("mem_num"));
-				fav.setDongho(rs.getString("dongho"));//회원아이디
+				
 			}
 		}catch(Exception e) {
 			throw new Exception(e);
@@ -473,8 +473,8 @@ public class SecondHandDAO {
 			conn = DBUtil.getConnection();
 			sql = "SELECT * FROM (SELECT a.*, rownum rnum"
 					+ " FROM (SELECT * FROM secondhand s JOIN member m"
-					+ " USING(mem_num) secondhand_fav f USING(se_num)"
-					+ " WHERE f.mem_num=? ORDER BY se_num DESC)a)"
+					+ " USING(mem_num) JOIN secondhand_fav f USING(se_num)"
+					+ " WHERE f.mem_num=? ORDER BY fav_num DESC)a)"
 					+ " WHERE rnum >= ? AND rnum <= ?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, mem_num);
@@ -488,7 +488,7 @@ public class SecondHandDAO {
 				vo.setTitle(StringUtil.useNoHtml(rs.getString("title")));
 				vo.setReg_date(rs.getDate("reg_date"));
 				vo.setDongho(rs.getString("dongho"));
-				
+				vo.setDivision(rs.getInt("division"));
 				list.add(vo);
 			}
 		}catch(Exception e) {

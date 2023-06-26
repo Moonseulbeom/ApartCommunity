@@ -191,6 +191,13 @@ input[type="search"]{
 	top: 2px;
 }
 
+/* 좋아요버튼 */
+#goodClick p{
+	font-size: 14px;
+	padding-top: 6px;
+}
+
+
 .detail{
 	width: 700px;
 	height: 100%;

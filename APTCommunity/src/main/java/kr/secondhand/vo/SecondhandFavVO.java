@@ -5,6 +5,13 @@ public class SecondhandFavVO {
 	private int mem_num; //회원번호
 	private int se_num;  //중고거래(게시글) 번호
 	
+	public SecondhandFavVO() {}
+	
+	public SecondhandFavVO(int se_num, int mem_num) {
+		this.se_num = se_num;
+		this.mem_num = mem_num;
+	}
+	
 	private String dongho;
 
 	public int getFav_num() {
