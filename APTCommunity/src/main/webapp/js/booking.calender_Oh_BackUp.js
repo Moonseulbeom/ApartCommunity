@@ -111,6 +111,25 @@
 	
 $(function(){
 	
+	//시간 비활성화 하는 함수
+	function timeListDisabled(time){
+		let listTimes = $('.cell-Li');
+		if (listTimes.length === 0) {
+		    return;
+	  	}
+		let cnt = 0;
+		//console.log(time.length);
+		$(listTimes).each(function(index, item) {
+		    if (cnt < time.length) {
+			    if (time[cnt] === item.innerHTML) {
+				    $(item).addClass('disable');
+				    $(item).removeClass('ytime');
+					cnt++;
+				}
+			}
+	  	});
+	}
+	
 	//예약 가능한 날짜 클릭시 주황색으로 변경하기
 	$(document).on('click','.yday',function() {
 	    $('.yday').removeClass('enable');
@@ -120,7 +139,6 @@ $(function(){
 		let room_num = $('#room_num').val();
 		$('#bk_date').val(isDate);
 		
-		//미리 시간배열을 저장해놓음
 		let test = {
 			"9:00 ~ 11:00":"<li id='9:00 ~ 11:00' class='cell-Li ytime'>9:00 ~ 11:00</li>",
 			"11:00 ~ 13:00":"<li id='11:00 ~ 13:00' class='cell-Li ytime'>11:00 ~ 13:00</li>",
@@ -141,10 +159,10 @@ $(function(){
 				output = "<h4>현재 선택한 날짜 : "+ isDate +"</h4><div class='clear'></div>"; 
 				output += "<ul id='t_L'>";
 				
-				//위에서 정의한 시간배열을 이용하여 덮어쓰기를 진행
 				if(param.list){
 					param.list.forEach(function(element,index,array){
-						test[element] = '<li id="'+element+'" class="cell-Li disable">'+element+'</li>';
+						console.log(element);
+						test[element] = '<li class="disable" id="'+element+'" class="cell-Li ytime">'+element+'</li>';
 					});
 				}
 				
@@ -169,7 +187,71 @@ $(function(){
 		});//-----.ajax
 	});// end of 예약 가능한 날짜 클릭()-----
 	
+	/*	
+	//시간 비활성화 하는 함수
+	function timeListDisabled(time){
+		let listTimes = $('.cell-Li');
+		if (listTimes.length === 0) {
+		    return;
+	  	}
+		let cnt = 0;
+		//console.log(time.length);
+		$(listTimes).each(function(index, item) {
+		    if (cnt < time.length) {
+			    if (time[cnt] === item.innerHTML) {
+				    $(item).addClass('disable');
+				    $(item).removeClass('ytime');
+					cnt++;
+				}
+			}
+	  	});
+	}
 
+	$(document).on('click','.yday',function() {
+	    $('.yday').removeClass('enable');
+	    $(this).addClass('enable');
+
+		let isDate = $(this).attr('id');
+		let room_num = $('#room_num').val();
+		$('#bk_date').val(isDate);
+		
+		$.ajax({
+			url:'bookingGetTimeList.do',
+			type:'post',
+			data:{bk_date:isDate, room_num:room_num},
+			dataType:'json',
+			success:function(param){
+				$("#timeList_content").empty();
+				let output = "";
+				output = "<h4>현재 선택한 날짜 : "+ isDate +"</h4><div class='clear'></div>"; 
+				output += "<ul id='t_L'>";
+				output += "<li id='9:00 ~ 11:00' class='cell-Li ytime'>9:00 ~ 11:00</li>";
+				output += "<li id='11:00 ~ 13:00' class='cell-Li ytime'>11:00 ~ 13:00</li>";
+				output += "<li id='14:00 ~ 16:00' class='cell-Li ytime'>14:00 ~ 16:00</li>";
+				output += "<li id='16:00 ~ 18:00' class='cell-Li ytime'>16:00 ~ 18:00</li>";
+				output += "<li id='18:00 ~ 20:00' class='cell-Li ytime'>18:00 ~ 20:00</li>";
+				output += "<li id='20:00 ~ 22:00' class='cell-Li ytime'>20:00 ~ 22:00</li>";
+				output += "</ul>";
+				$('#timeList_content').append(output);
+				output = "<input type='button' value='인원수 : ' disabled='disabled'>";
+				output += "<input type='number' id='peoples' min='0' max='99' value='0'>";
+				output += "<input type='submit' value='예약하기'>";
+				$('#timeList_content').append(output);
+				
+				//DB에 이미 예약된 데이터가 있으면 disable을 수행함.
+				if (param.result === 'success') {
+			    	timeListDisabled(param.list);
+			    }
+			},
+			error:function(){
+				alert('네트워크 오류 발생');
+				$("#timeList_content").empty();
+				let output ="<h1 class='right-text'>오류 발생</h1>";
+				$('#timeList_content').append(output);
+			}
+		});//-----.ajax
+	});// end of 예약 가능한 날짜 클릭()-----
+	*/
 	
 	//클래스선택자를 .ytime 으로 바꿀 예정 
 	$(document).on('click','.ytime',function(){

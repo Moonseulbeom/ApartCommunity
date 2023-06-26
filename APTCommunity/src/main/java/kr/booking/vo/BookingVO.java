@@ -9,6 +9,7 @@ public class BookingVO {
 	private String bk_date;		//예약한 날짜
 	private String start_time;	//시작 시간
 	private String end_time;	//끝 시간
+	private String time;
 	
 	private Room_infoVO room_info; // 시설정보모델
 	
@@ -84,5 +85,13 @@ public class BookingVO {
 
 	public void setRoom_info(Room_infoVO room_info) {
 		this.room_info = room_info;
+	}
+
+	public String getTime() {
+		return time;
+	}
+
+	public void setTime(String time) {
+		this.time = time;
 	}
 }

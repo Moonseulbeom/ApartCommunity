@@ -9,9 +9,10 @@
 <title>MY페이지</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/custom.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/mypage.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/mypageBooking.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/common.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/mypageBooking.js"></script>
 </head>
 <body>
 	<div id="wrap">
@@ -29,41 +30,96 @@
 					<!-- 왼쪽 -->
 					<li>
 					<div class="page-left">
-					<div class="sidebar">
-						<jsp:include page="/WEB-INF/views/common/sidebar.jsp" />
-					<div class="menu">
-						<h2><b>회원정보</b></h2><br>
-						<ul>
-							<li><a href="${pageContext.request.contextPath}/member/myPage.do">마이 페이지</a></li>
-							<li><a href="${pageContext.request.contextPath}/member/modifyUserForm.do">회원정보 수정</a></li>
-						</ul>
-						<h2><b>문의내역</b></h2><br>
-						<ul>
-							<li><a href="${pageContext.request.contextPath}/#">내 문의내역</a></li>
-						</ul>
-						<h2><b>예약신청현황</b></h2><br>
-						<ul>
-							<li><a href="${pageContext.request.contextPath}/member/myPagebooking.do">내 예약현황</a></li>
-						</ul>
-						<h2><b>나의 활동</b></h2><br>
-						<ul>
-							<li><a href="${pageContext.request.contextPath}/#">내가 쓴 글</a></li>
-							<li><a href="${pageContext.request.contextPath}/#">내가 쓴 댓글</a></li>
-							<li><a href="${pageContext.request.contextPath}/#">찜한 목록</a></li>
-						</ul>
-					</div>
-					</div>
+						<div class="sidebar">
+							<jsp:include page="/WEB-INF/views/common/sidebar.jsp" />
+							<div class="menu">
+								<h2><b>회원정보</b></h2><br>
+								<ul>
+									<li><a href="${pageContext.request.contextPath}/member/myPage.do">마이 페이지</a></li>
+									<li><a href="${pageContext.request.contextPath}/member/modifyUserForm.do">회원정보 수정</a></li>
+								</ul>
+								<h2><b>문의내역</b></h2><br>
+								<ul>
+									<li><a href="${pageContext.request.contextPath}/#">내 문의내역</a></li>
+								</ul>
+								<h2><b>예약신청현황</b></h2><br>
+								<ul>
+									<li><a href="${pageContext.request.contextPath}/member/myPage_booking.do">내 예약현황</a></li>
+								</ul>
+								<h2><b>나의 활동</b></h2><br>
+								<ul>
+									<li><a href="${pageContext.request.contextPath}/#">내가 쓴 글</a></li>
+									<li><a href="${pageContext.request.contextPath}/#">내가 쓴 댓글</a></li>
+									<li><a href="${pageContext.request.contextPath}/#">찜한 목록</a></li>
+								</ul>
+							</div>
+						</div>
 					</div>
 					</li>
 					<!-- 우측 메인 -->
 					<li>
-					<h1 style="font-size: 32px;">MyPage</h1><hr><br>
-					<div class="page-right">
-					<div id="myPage_home">
-					<!-- 여기에 넣어주시면 됩니다!! -->
-					</div>
-					<div class="mypage-end"></div>
-					</div>
+						<!-- 수정 해야 합니다. -->
+						<h1 style="font-size: 32px;">예약신청현황</h1>
+						<hr>
+						<br>
+						<div class="page-right">
+							<div id="myPage_home">
+							<!-- 여기에 넣어주시면 됩니다!! -->
+								<table id="myBookingList">
+									<caption>내 예약 신청 현황</caption>
+									<!-- 예약 신청 현황 없는 경우 -->
+									<c:if test="${result=='null'}">
+										<tr class="no-Booking">
+											<th>예약신청한 시설이 없습니다.</th>
+										<tr>
+									</c:if>
+									<c:if test="${result=='success'}">
+										<tr>
+											<th>예약번호</th>
+											<th>시설</th>
+											<th>타입</th>
+											<th>인원</th>
+											<th>예약날짜</th>
+											<th>시간</th>
+										</tr>
+										<c:forEach var="book" items="${list}">
+										<tr>
+											<td>${book.bk_num}</td>
+											<td>${book.room_info.room_name}</td>
+											<td>${book.room_info.room_type}</td>
+											<td>${book.book_mem}</td>
+											<td>${book.bk_date}</td>
+											<td>${book.time}</td>
+										</tr>
+										</c:forEach>
+									</c:if>
+								</table>
+								<hr id="tM" size="1" noshade="noshade">
+								<form id="beforeMyBookingListForm" method="post" action="beforeMyBookingList.do">
+									<table id="BeforeMyBookingList">
+										<caption>이전 예약 조회 <input type="month" id="search_booking" name="search_booking"><small> &nbsp;"조회하실 날짜를 선택하세요"</small></caption>
+										<tr>
+											<th>예약번호</th>
+											<th>시설</th>
+											<th>타입</th>
+											<th>인원</th>
+											<th>예약날짜</th>
+											<th>시간</th>
+										</tr>
+										<tr>
+											<td>4</td>
+											<td>회의실</td>
+											<td>201A</td>
+											<td>3명</td>
+											<td>2023-06-26</td>
+											<td>14:00 ~ 16:00</td>
+										</tr>
+									</table>
+								</form>
+							<!-- 콘텐츠 가두기 끝 -->
+							</div>
+							<div class="mypage-end"></div>
+						</div>
 					</li>
 				</ul>
 				</div>
