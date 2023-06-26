@@ -146,6 +146,34 @@
 	padding-top:25px;	
 	text-align: center;
 }
+/*회원 상세페이지 버튼*/
+#mem_detail_btn:hover{
+	cursor: pointer;
+	background-color: #f5f9ff;
+}
+/*회원 상세 페이지 폼*/
+#mem_detail_form{
+	margin-top: 15px;
+	border: 2px solid #c7c7c7;
+	border-radius: 5px;	
+	height: 413px;
+}
+.form-mem-detail{
+	margin-top: 90px;
+}
+.form-mem-detail div{
+	margin: 0 0 20px 150px;
+}
+.form-mem-detail label{
+	margin-right: 70px;
+	font-size: 1.5em;
+}
+.form-mem-detail #name{
+	margin-left: 20px;
+}
+.form-mem-detail #email{
+	margin-left: 20px;
+}
 /*관리자 페이지 공지사항 글쓰기*/	
 
 .manage-write-manage-page{
@@ -238,6 +266,43 @@
 #inquiry_output td:first-child{
 	width: 88px;
 }
+/*하자보수글 리스트*/
+#manage_fix{
+	margin-left:50px;
+}
+#fix_info th:first-child{
+	width: 69px;
+}
+#fix_info th:nth-child(2){
+	width: 311px;
+}
+#fix_info th:nth-child(3){
+	width: 139px;
+}
+#fix_info th:last-child{
+	width: 171px;
+}
+#fix_output td:first-child{
+	width: 88px;
+}
+#mem_detail{
+	margin-left:50px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

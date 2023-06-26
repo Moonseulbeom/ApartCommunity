@@ -1,6 +1,24 @@
 $(function(){
+//상세 페이지 전환
+	//1.회원관리-상세페이지
+		$('.mem-detail-btn').on('click',function(){
+			let mem_num = $('.mem_num').val();	
+			alert(mem_num);
+			 console.log(mem_num);
+			$.ajax({
+				 type:'get',
+				 url:'manage-detail.do?mem_num='+mem_num,
+				 dataType:'text',
+				 success:function(data){
+					 let plus = $('#manage_content').html(data).find('#mem_detail');
+					 $('#manage_content').html(plus);
+				 },
+				 error:function(){
+					 alert('1.통신 에러 발생');
+				 }
+			 })
+		})
 //회원 목록	
-	
 	//회원 관리 검색참
 	$('#mem_search_form').submit(function(event){
 		//submit 이벤트 제거

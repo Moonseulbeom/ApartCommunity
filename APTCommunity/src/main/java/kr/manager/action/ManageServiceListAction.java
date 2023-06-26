@@ -11,6 +11,8 @@ import javax.servlet.http.HttpSession;
 import org.codehaus.jackson.map.ObjectMapper;
 
 import kr.controller.Action;
+import kr.fix.dao.FixDAO;
+import kr.fix.vo.FixVO;
 import kr.inquiry.dao.InquiryDAO;
 import kr.inquiry.vo.InquiryVO;
 import kr.member.dao.MemberDAO;
@@ -62,7 +64,6 @@ public class ManageServiceListAction implements Action {
 		//회원 리스트
 		int count = dao.getMemberCountByAdmin(keyfield, keyword);
 		PageUtil page = new PageUtil(keyfield, keyword, Integer.parseInt(pageNum), 10, 10, count, "manageMain.do");
-		
 		List<MemberVO> list = dao.getListMemberByAdmin(page.getStartRow(), page.getEndRow(), keyfield, keyword);
 		
 		//1:1문의 리스트
@@ -71,11 +72,25 @@ public class ManageServiceListAction implements Action {
 		PageUtil in_page = new PageUtil(keyfield, keyword, Integer.parseInt(pageNum), 10, 10, in_count, "manageMain.do");	
 		List<InquiryVO> inquiry_list = in_dao.getListInquiry(in_page.getStartRow(), in_page.getEndRow(), keyfield, keyword);
 		
+		//하자보수 리스트
+		FixDAO fix_dao = FixDAO.getInstance();
+		int fix_count = fix_dao.getFixCount(keyfield, keyword);
+		PageUtil fix_page = new PageUtil(keyfield, keyword, Integer.parseInt(pageNum), 10, 10, fix_count, "manageMain.do");	
+		List<FixVO> fix_list = fix_dao.getListFix(fix_page.getStartRow(), fix_page.getEndRow(), keyfield, keyword);
+		
+		
 		request.setAttribute("count", count);
-		request.setAttribute("list", list);//회원 리스트
-		request.setAttribute("inquiry_list", inquiry_list);
-		request.setAttribute("in_count", in_count);
 		request.setAttribute("page", page.getPage());
+		request.setAttribute("list", list);//회원 리스트
+		
+		request.setAttribute("in_page", in_page.getPage());
+		request.setAttribute("in_count", in_count);
+		request.setAttribute("inquiry_list", inquiry_list);//하자보수 리스트
+		
+		request.setAttribute("fix_page", fix_page.getPage());
+		request.setAttribute("fix_count", fix_count);
+		request.setAttribute("fix_list", fix_list);//1:1문의 리스트
+		
 		return "/WEB-INF/views/manager/manage-serviceList.jsp";
 	}
 

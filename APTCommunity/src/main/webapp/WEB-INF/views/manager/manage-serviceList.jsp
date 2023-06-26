@@ -44,7 +44,10 @@
 			<table id="mem_output">
 				<c:forEach var="mem" items="${ list }">
 				<tr>
-					<td id="1">${ mem.dongho }</td>
+					<td id="mem_detail_btn" class="mem-detail-btn">
+						<input type="hidden" name="mem_num" class="mem_num" value="${ mem.mem_num }">
+						${ mem.dongho }
+					</td>
 					<td id="2">${ mem.name }</td>
 					<td id="3">${ mem.phone }</td>
 					<td id="4">${ mem.reg_date }</td>
@@ -152,7 +155,7 @@
 	</div>
 </div>	
 <!--  3. 머리 공지글 작성 끝  -->
-<!-- 1:1문의 관리 -->
+<!-- 4. 1:1문의 관리 -->
 <div id="manage_inquiry">
 	<!--  목록 검색창 -->
 	<h1>1:1문의 관리</h1>	
@@ -175,8 +178,8 @@
 		</li>
 	</ul>
 	</form>
-<!--  목록 검색참 끝 -->
-<!-- 1:1문의 목록 -->
+	<!-- 목록 검색참 끝 -->
+	<!-- 1:1문의 목록 -->
 <div class="mem-list">
 		<table id="inquiry_info">
 			<tr>
@@ -197,10 +200,65 @@
 					</tr>
 				</c:forEach>
 			</table>
-			<c:if test="${ count > 0 }">
-				<div class="mem-page">${ page }</div>
+			<c:if test="${ in_count > 0 }">
+				<div class="mem-page">${ in_page }</div>
 			</c:if>
 		</div>
 	</div>
 </div>
-<!-- 1.회원관리 끝-->
+<!-- 4. 1:1문의 목록-->
+<!-- 5. 하자보수글 관리 -->
+<div id="manage_fix">
+	<!--  목록 검색창 -->
+	<h1>회원목록조회</h1>
+	<form action="manage-serviceList.do" method="get" id="mem_search_form">
+		<ul>
+			<li>
+				<div class="mem-search">
+					<select name="mem_select" class="select-member">
+						<option value="1"
+							<c:if test="${param.mem_select==1}">selected</c:if>>세대주</option>
+						<option value="2"
+							<c:if test="${param.mem_select==2}">selected</c:if>>동</option>
+						<option value="3"
+							<c:if test="${param.mem_select==3}">selected</c:if>>호수</option>
+					</select> <input type="search" placeholder="회원 목록 조회" class="search-member"
+						name="keyword" id="keyword" value="${ param.keyword }">
+				</div>
+			</li>
+			<li>
+				<div class="mem-search-btn">
+					<input type="submit" value="검색">
+				</div>
+			</li>
+		</ul>
+	</form>
+	<!--  목록 검색참 끝 -->
+	<!-- 회원 목록 -->
+	<div class="mem-list">
+		<table id="fix_info">
+			<tr>
+				<th>동-호수</th>
+				<th>세대주</th>
+				<th>전화번호</th>
+				<th>가입일</th>
+			</tr >
+		</table>
+		<div id="change-memlist">
+			<table id="fix_output">
+				<c:forEach var="fix" items="${ fix_list }">
+				<tr>
+					<td id="1">${ fix.fix_num }</td>
+					<td id="2">${ fix.title }</td>
+					<td id="3">${ fix.dongHo }</td>
+					<td id="4">${ fix.reg_date }</td>
+				</tr>
+				</c:forEach>
+			</table>
+		<c:if test="${ count > 0 }">
+			<div class="mem-page">${ page }</div>
+		</c:if>
+		</div>
+	</div>
+</div>
+<!-- 5. 하자보수글 관리 끝 -->

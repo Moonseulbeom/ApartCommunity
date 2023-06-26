@@ -11,7 +11,6 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 	$(function(){
-
 		//1.회원관리
 		$('#mem_btn').on('click',function(){
 			 $.ajax({
@@ -20,7 +19,6 @@
 				 dataType:'text',
 				 success:function(data){
 					 let plus = $('#manage_content').html(data).find('#manage_member');
-					 console.log(plus);
 					 $('#manage_content').html(plus);
 				 },
 				 error:function(){
@@ -36,7 +34,6 @@
 				 dataType:'text',
 				 success:function(data){
 					 let plus = $('#manage_content').html(data).find('#manage_notice');
-					 console.log(plus);
 					 $('#manage_content').html(plus);
 				 },
 				 error:function(){
@@ -52,7 +49,6 @@
 				 dataType:'text',
 				 success:function(data){
 					 let plus = $('#manage_content').html(data).find('#manage_category');
-					 console.log(plus);
 					 $('#manage_content').html(plus);
 				 },
 				 error:function(){
@@ -68,7 +64,6 @@
 				 dataType:'text',
 				 success:function(data){
 					 let plus = $('#manage_content').html(data).find('#manage_inquiry');
-					 console.log(plus);
 					 $('#manage_content').html(plus);
 				 },
 				 error:function(){
@@ -77,6 +72,20 @@
 			 })
 		})
 		//5.하자 보수글 관리
+		$('#fix_btn').on('click',function(){
+			 $.ajax({
+				 type:'get',
+				 url:'manage-serviceList.do',
+				 dataType:'text',
+				 success:function(data){
+					 let plus = $('#manage_content').html(data).find('#manage_fix');
+					 $('#manage_content').html(plus);
+				 },
+				 error:function(){
+					 alert('4.통신 에러 발생');
+				 }
+			 })
+		})
 		//6.예약 관리
 	})
 </script>

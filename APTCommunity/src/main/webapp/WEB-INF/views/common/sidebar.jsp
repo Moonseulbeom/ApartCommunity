@@ -10,7 +10,7 @@ $(function(){
 		dataType:'json',
 		success:function(param){
 			let output = param.dong+'동 '+param.ho+'호 주민';
-			$('#output').append(output);
+			$('#sidebar_output').append(output);
 		},
 		error:function(){
 			alert('네트워크 오류 발생')
@@ -21,7 +21,7 @@ $(function(){
 
 	<div class="mem-service">
 		<c:if test="${ user_auth ==  1 }">
-		<p  id="output">
+		<p id="sidebar_output">
 		</p>
 		<div class="service-myPage-button">
 			<a href="${pageContext.request.contextPath}/member/myPage.do">MY 페이지</a>
