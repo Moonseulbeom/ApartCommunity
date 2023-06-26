@@ -8,51 +8,76 @@
 <title>관리자페이지</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
 <link rel="stylesheet" href="${ pageContext.request.contextPath }/css/manager.css">
-<link rel="stylesheet" href="${ pageContext.request.contextPath }/css/noticeWrite.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 	$(function(){
-		
-/* 		//회원 관리 검색참
-		$('#mem_search_form').submit(function(){
-			if($('#keyword').val().trim() == ''){
-				alert('검색할 내용을 입력하세요');
-				$('#key').val('').focus();
-				return false;
-			}
-		}) */
-		//화면 전환
-		
+
+		//1.회원관리
 		$('#mem_btn').on('click',function(){
 			 $.ajax({
 				 type:'get',
 				 url:'manage-serviceList.do',
 				 dataType:'text',
 				 success:function(data){
-					 let plus = $('#manage_content').html(data).find('#menage-member');
+					 let plus = $('#manage_content').html(data).find('#manage_member');
 					 console.log(plus);
 					 $('#manage_content').html(plus);
 				 },
 				 error:function(){
-					 alert('통신 에러 발생');
+					 alert('1.통신 에러 발생');
 				 }
 			 })
 		})
+		//2.공지사항 글쓰기
 		$('#no_btn').on('click',function(){
 			 $.ajax({
 				 type:'get',
 				 url:'manage-serviceList.do',
 				 dataType:'text',
 				 success:function(data){
-					 let plus = $('#manage_content').html(data).find('#manage-notice');
+					 let plus = $('#manage_content').html(data).find('#manage_notice');
 					 console.log(plus);
 					 $('#manage_content').html(plus);
 				 },
 				 error:function(){
-					 alert('통신 에러 발생');
+					 alert('2.통신 에러 발생');
 				 }
 			 })
 		})
+		//3.머리 공지글 작성
+		$('#ca_btn').on('click',function(){
+			 $.ajax({
+				 type:'get',
+				 url:'manage-serviceList.do',
+				 dataType:'text',
+				 success:function(data){
+					 let plus = $('#manage_content').html(data).find('#manage_category');
+					 console.log(plus);
+					 $('#manage_content').html(plus);
+				 },
+				 error:function(){
+					 alert('3.통신 에러 발생');
+				 }
+			 })
+		})
+		//4.(1:1문의) 관리
+		$('#in_btn').on('click',function(){
+			 $.ajax({
+				 type:'get',
+				 url:'manage-serviceList.do',
+				 dataType:'text',
+				 success:function(data){
+					 let plus = $('#manage_content').html(data).find('#manage_inquiry');
+					 console.log(plus);
+					 $('#manage_content').html(plus);
+				 },
+				 error:function(){
+					 alert('4.통신 에러 발생');
+				 }
+			 })
+		})
+		//5.하자 보수글 관리
+		//6.예약 관리
 	})
 </script>
 </head>
@@ -88,14 +113,14 @@
 			<!-- 왼쪽 -->
 			<li>
 			<div class="manage-page-left">
-				<a id="manage-title" href="manageMain.do">Admin</a>
+				<a id="manage_title" href="manageMain.do">Admin</a>
 					<div class="manage-menu">
 							<div id="mem_btn">회원관리</div>
 							<div id="no_btn">공지글 작성</div>
-							<div><a href="${pageContext.request.contextPath}/notice/noticeList.do?dept=3">머리 공지글 작성</a></div>
-							<div><a href="${pageContext.request.contextPath}/notice/noticeList.do?dept=4">1:1문의 관리</a></div>
-							<div><a href="${pageContext.request.contextPath}/notice/noticeList.do?dept=4">하자 보수글 관리</a></div>
-							<div><a href="${pageContext.request.contextPath}/notice/noticeList.do?dept=4">예약 관리</a></div>
+							<div id="ca_btn">머리 공지글 작성</div>
+							<div id="in_btn">1:1문의 관리</div>
+							<div id="fix_btn">하자 보수글 관리</div>
+							<div id="book_btn">예약 관리</div>
 					</div>	  
 			</div>
 			</li>

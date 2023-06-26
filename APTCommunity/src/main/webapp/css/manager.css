@@ -62,7 +62,7 @@
 	margin-top:10px;
 }
 /*관리자 페이지 오른쪽 내용*/
-#manage-title{
+#manage_title{
 	font-size: 2em;
 	font-weight: bold;
 }
@@ -71,14 +71,17 @@
 	position: absolute;
 }
 .manage-content{
-	margin-left:50px;
 	width: 100%;
 	min-height: 500px;
 }
 .manage-content h1{
-	width: 100%;
+	width: 800px;
 	padding-bottom: 5px;
 	border-bottom: 2px solid #e0e0e0;
+}
+/*회원 관리*/
+#manage_member{
+	margin-left:50px;
 }
 /*회원 검색*/
 .mem-search{
@@ -103,7 +106,7 @@
 }
 
 .mem-list table{
-	margin-top:20px;
+	margin-top:10px;
 	width: 100%;
 	border: 2px solid  #b0b0b0;
 	text-align: center;
@@ -121,6 +124,18 @@
 .mem-list table tr td{
 	border: 1px solid #b0b0b0;
 }
+#mem_info th:first-child{
+	width: 150px;
+}
+#mem_info th:nth-child(2){
+	width: 113px;
+}
+#mem_info th:nth-child(3){
+	width: 241px;
+}
+#mem_info th:last-child{
+	width: 185px;
+}
 .mem-page{
 	font-size: 14px;
 	margin-top: 10px;
@@ -131,23 +146,98 @@
 	padding-top:25px;	
 	text-align: center;
 }
-/*관리자 페이지 공지사항 글쓰기*/
+/*관리자 페이지 공지사항 글쓰기*/	
 
-.manage-write-page{
+.manage-write-manage-page{
 	width: 1000px;
 	height: 100%;
 	border-radius: 5px;
 }
-.manage-write-page form{
+.manage-write-manage-page form{
 	width: 800px;
-	margin: 0 auto;
+	margin-left: 200px;
 	height: 100%;
 }
-
-
-
-
-
+.write-title-text{
+	width: 1000px;
+	padding: 15px 100px 0 200px;
+	margin: 5px auto;		
+}
+.write-manage-page{
+	margin: 15px auto;
+	width: 1000px;
+	height: 100%;
+	border-radius: 5px;
+}
+.write-manage-page form{
+	width: 800px;
+	margin-left: 200px;
+	height: 100%;
+}
+.keyfield{
+	margin: 20px 0;
+	height: 40px;
+	width: 800px;
+}
+.wrtie-title{
+	width: 100%;
+}
+#title{
+	height:30px;
+	width:700px;
+	margin-bottom: 20px;	
+}
+.wirte-title label{
+	margin: 0 5px 0 10px;
+}
+#content{
+	width: 780px;
+	min-height: 400px; 
+}
+#filename{
+	height:25px;
+	margin: 20px 0;
+}
+/*버튼*/
+.write-btn-div{
+	padding-bottom: 40px;
+	text-align: center;
+}
+.write-btn{
+	margin-left:10px;
+	width: 100px;
+	height: 30px;
+}
+.write-btn:hover{
+	cursor: pointer;
+}
+/*파일 삭제 버튼*/
+#file_detail{
+	height: 30px;
+	padding-bottom: 10px;
+}
+#file_del{
+	height: 30px;
+}
+/*1:1문의글 리스트*/
+#manage_inquiry{
+	margin-left:50px;
+}
+#inquiry_info th:first-child{
+	width: 69px;
+}
+#inquiry_info th:nth-child(2){
+	width: 311px;
+}
+#inquiry_info th:nth-child(3){
+	width: 139px;
+}
+#inquiry_info th:last-child{
+	width: 171px;
+}
+#inquiry_output td:first-child{
+	width: 88px;
+}
 
 
 
