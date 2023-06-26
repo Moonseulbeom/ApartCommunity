@@ -27,34 +27,36 @@
 <div id="wrap">
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 	<!-- 내용 시작 -->
-	<div class="inner">
+<div class="inner">
 		<div id="container" class="inner">
-		<!-- 상단 링크 버튼 -->
-			<div class="service-up">
-				<jsp:include page="/WEB-INF/views/common/up_button.jsp"/>
-			</div>
-			<div class="page-main">
+		<!-- 상단링크버튼 -->
+		<div class="service-up">
+			<jsp:include page="/WEB-INF/views/common/up_button.jsp"/>
+		</div>
+		<div class="page-main">
+		<ul>
+			<!-- 좌측 사이드바 -->
+			<li>
+			<div class="page-left">
+			<div class="sidebar">
+				<jsp:include page="/WEB-INF/views/common/sidebar.jsp"/>
+				<h2>기타</h2>
+			<div class="menu">
 				<ul>
-				<!-- 왼쪽 -->
-					<li>
-						<div class="page-left">
-							<jsp:include page="/WEB-INF/views/inquiry/sidebar.jsp"/>
-						</div>
-					</li>
-				<!-- 오른쪽 -->
-					<li>
-				<div class="page-right">
-		
-					<div class="main-img">
+					<li><a href="${pageContext.request.contextPath}/inquiry/list.do">1:1문의</a></li>
+					<li><a href="${pageContext.request.contextPath}/inquiry/question.do">자주 묻는 질문</a></li>
+				</ul>
+			</div>
+			</div>
+			</div>
+			</li>
+			<!-- 우측메인 -->
+			<li>
+			<div class="page-right">
+			<div class="main-img">
 						<img alt="" src="${pageContext.request.contextPath}/img/sideMenuTopImg.jpg">
 					</div>
-				<div class="main-search">
-				<c:if test="${ dept == 1 }">
-					<b>1:1 문의</b>
-				</c:if>
-				<c:if test="${ dept == 2 }">
-					<b>자주묻는 질문</b>
-				</c:if>
+			<div class="main-search">
 				<!-- 검색 시작 -->
 					<form id="search_form" method="get" action="list.do">
 						<div class="inquiry-main-search">

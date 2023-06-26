@@ -19,31 +19,27 @@
 	<!-- 내용 시작 -->
 	<div class="inner">
 		<div id="container" class="inner">
-			<div class="page-main">
-				<ul>
-					<!-- 왼쪽 -->
-					<li>
-						<div class="page-left">
-							<div class="sidebar">
-								<div class="mem-service">
-									<p>000동 000호 주민</p>
-									<div class="service-myPage-button">
-										<a href="${pageContext.request.contextPath}/member/myPage.do">MY 페이지</a>
-									</div>
-									<div class="service-logout-button">
-										<a href="${pageContext.request.contextPath}/member/logout.do">로그아웃</a>
-									</div>
-								</div>
-								<h2>기타</h2>
-								<div class="menu">
-									<ul>
-										<li><a href="${pageContext.request.contextPath}/inquiry/list.do">1:1문의</a></li>
-										<li><a href="${pageContext.request.contextPath}/question/list.do">자주묻는 문의</a></li>
-									</ul>
-								</div>
-							</div>
-						</div>
-					</li>
+   		<!-- 상단링크버튼 -->
+   		<div class="service-up">
+			<jsp:include page="/WEB-INF/views/common/up_button.jsp"/>
+		</div>
+   			<div class="page-main">
+   				<ul>
+   					<!-- 좌측 사이드바 -->
+				<li>
+				<div class="page-left">
+				<div class="sidebar">
+					<jsp:include page="/WEB-INF/views/common/sidebar.jsp"/>
+					<h2>기타</h2>
+				<div class="menu">
+					<ul>
+						<li><a href="${pageContext.request.contextPath}/inquiry/list.do">1:1문의</a></li>
+						<li><a href="${pageContext.request.contextPath}/inquiry/question.do">자주 묻는 질문</a></li>
+					</ul>
+				</div>
+				</div>
+				</div>
+				</li>
 					<!-- 오른쪽 -->
 					<li>
 						<div class="page-right">
@@ -70,7 +66,6 @@
 									</div>
 								</div><!-- detail-page -->
 							</div>
-							<hr class="hLine" size="1" noshade="noshade" width="100%">
 							<!-- 댓글 목록 출력 시장 -->
 							<div id="output"></div>		
 							<div class="paging-button" style="display:none;">
@@ -86,8 +81,8 @@
 								<form id="comment_form">
 									<input type="hidden" name="in_num" value="${inquiry.in_num}" id="in_num">
 									<textarea rows="3" cols="50" name="comment_content" id="comment_content" class="rep-content"
-									<c:if test="${empty user_num}">disabled="disabled"</c:if>><c:if test="${empty user_num}">로그인해야 작성할 수 있습니다.</c:if></textarea>
-									<c:if test="${!empty user_num}"> <%-- 로그인 된 상태 --%>
+									<c:if test="${user_auth < 9}">disabled="disabled"</c:if>><c:if test="${user_auth < 9}">관리자만 작성할 수 있습니다.</c:if></textarea>
+									<c:if test="${!empty user_num || user_auth < 9}"> <%-- 로그인 된 상태 --%>
 									<div id="comment_first">
 										<span class="letter-count">300/300</span>
 									</div>

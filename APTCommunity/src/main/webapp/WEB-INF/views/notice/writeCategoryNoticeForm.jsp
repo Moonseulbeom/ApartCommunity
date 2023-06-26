@@ -67,6 +67,7 @@
 						<option value="3" <c:if test="${param.keyfield_cate==3}">selected</c:if>>중고거래</option>
 						<option value="4" <c:if test="${param.keyfield_cate==3}">selected</c:if>>하자보수</option>
 						<option value="5" <c:if test="${param.keyfield_cate==3}">selected</c:if>>예약(시설)</option>
+						<option value="6" <c:if test="${param.keyfield_cate==4}">selected</c:if>>1:1문의</option>
 				</select>
 			</li>
 			<li>

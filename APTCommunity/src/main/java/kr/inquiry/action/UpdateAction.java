@@ -17,9 +17,8 @@ public class UpdateAction implements Action{
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		HttpSession session = request.getSession();
-		Integer user_num = 
-				(Integer)session.getAttribute(
-						             "user_num");
+		Integer user_num = (Integer)session.getAttribute("user_num");
+		Integer user_auth = (Integer)session.getAttribute("user_auth");
 		if(user_num==null) {//로그인이 되지 않은 경우
 			return "redirect:/member/loginForm.do";
 		}
@@ -27,17 +26,14 @@ public class UpdateAction implements Action{
 		//로그인 된 경우
 		MultipartRequest multi = 
 				FileUtil.createFile(request);
-		int in_num = 
-		     Integer.parseInt(
-				multi.getParameter("in_num"));
-		String filename = 
-				multi.getFilesystemName("filename");
+		int in_num = Integer.parseInt(multi.getParameter("in_num"));
+		String filename = multi.getFilesystemName("filename");
 		
 		InquiryDAO dao = InquiryDAO.getInstance();
 		//수정전 데이터 반환
 		InquiryVO db_inquiry = dao.getInquiry(in_num);
 		//로그인한 회원번호와 작성자 회원번호 일치 여부 체크
-		if(user_num != db_inquiry.getMem_num()) {
+		if(user_num != db_inquiry.getMem_num() || user_auth == 9) {
 			//로그인한 회원번호와 작성자 회원번호 불일치
 			FileUtil.removeFile(request, filename);
 			return "/WEB-INF/views/common/notice.jsp";

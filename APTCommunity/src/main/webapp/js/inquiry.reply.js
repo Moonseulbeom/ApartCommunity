@@ -26,9 +26,9 @@ $(function(){
 				}
 				$(param.list).each(function(index,item){
 					let output = '<div class="comment">';
-					output += '<h2> 문의 답변 </h2>';
-					output += '<h4> 작성자 | 관리자<h4>';
-					output += '<hr size="1" width="100%" noshade="noshade" color="#e8e8e8">';
+					output += '<h3> 문의 답변<h3>';
+					output += '<h4> 작성자 : 관리자</h4>';
+					output += '<hr size="1" width="100%" noshade="noshade" color="#e8e8e8">'
 					output += '<div class="sub-item">';
 					output += '<p>'+item.content+'</p>';
 					output += '<div class="sub-down">';
@@ -38,16 +38,16 @@ $(function(){
 					}else{
 						output += '<span class="modify-date">등록일 : '+item.reg_date+'</span>';
 					}
-					output += '<div class="sub-button">';
+					
 					//수정 삭제 버튼처리
 					//로그인한 회원번호와 작성자의 회원번호가 일치 여부 체크
-					if(param.user_num == item.mem_num){
+					if(param.user_auth == 9){
 						//로그인한 회원번호와 작성자의 회원번호가 일치
 						output += ' <input type="button" data-renum="'+item.re_num+'" value="삭제" class="delete-btn">';
 						output += ' <input type="button" data-renum="'+item.re_num+'" value="수정" class="modify-btn">';
 						
 					}
-					output += '</div>';
+					
 					output += '</div>';
 					output += '</div>';
 					output += '</div>';
@@ -125,7 +125,7 @@ $(function(){
 		//댓글 번호
 		let re_num = $(this).attr('data-renum');
 		//댓글 내용
-		let content = $(this).parent().parent().parent().parent().find('p').html().replace(/<br>/gi,'\n');
+		let content = $(this).parent().parent().find('p').html().replace(/<br>/gi,'\n');
 		/* /<br>/gi,'\n' : <br>을 \n으로 바꿔라
 			g : 지정문자열 모두,
 			i : 대소문자 무시
@@ -135,10 +135,10 @@ $(function(){
 		let modifyUI = '<form id="mre_form">';
 		modifyUI += '<input type="hidden" name="re_num" id="mre_num" value="'+re_num+'">';
 										//name->서버전송, id->js나 css에 사용
-		modifyUI += '<textarea rows="3" cols="50" name="comment_content" id="comment_content" class="rep-content">'+content+'</textarea>';
+		modifyUI += '<textarea rows="3" cols="50" name="m_content" id="m_content" class="rep-content">'+content+'</textarea>';
 							 //rows="높이" cols="넓이"
-		modifyUI += '<div id="comment_first"><span class="letter-count">300/300</span></div>';
-		modifyUI += '<div id="comment_second" class="align-right">';
+		modifyUI += '<div id="m_first"><span class="letter-count">300/300</span></div>';
+		modifyUI += '<div id="m_second" class="align-right">';
 		modifyUI += ' <input type="submit" value="수정">';
 		modifyUI += ' <input type="button" value="취소" class="re-reset">';
 		modifyUI += '</div>';
@@ -195,8 +195,7 @@ $(function(){
 	//댓글 수정폼 초기화
 	function initModifyForm(){
 		$('.sub-item').parent().css({
-			"background-color":"white",
-			"margin-top":"0"
+			"background-color":"white"
 		});
 		$('.sub-item').show();
 		$('#mre_form').remove();
