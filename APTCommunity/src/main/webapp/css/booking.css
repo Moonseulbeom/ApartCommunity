@@ -67,7 +67,7 @@
 #mainContainer .rnlLi{
 	float: left;
 	text-align: center;
-	margin-top: 10px;
+	margin-top: 40px;
 	margin-right:5px;	
 	width: 33%;
 }
@@ -103,6 +103,18 @@
 .rnlBtn:hover{
 	background-color:teal;
 	color: white;
+}
+.rnlLi .disable{
+	width: 80px;
+	height: 40px;
+	margin-top: 25px;
+	background-color: #DDD;
+	border: 1px solid black;
+	border-radius: 5px;
+	font-weight: bolder;
+	font-size:12pt;
+	color: gray;
+	cursor: default;
 }
 
 /* ----------------------------------------------

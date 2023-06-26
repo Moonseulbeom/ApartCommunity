@@ -28,7 +28,7 @@
 					<div class="rnlBox rnlBoxMR">
 						<img alt="독서실" src="${pageContext.request.contextPath}/img/Study-Room.png">
 						<span class="bText">도서실</span>
-						<button type="submit" class="rnlBtn" value="2" name="lib">선택</button>
+						<button type="submit" class="rnlBtn" value="도서실" name="room_name">선택</button>
 					</div>
 				</li>
 				<li class="rnlLi">
@@ -36,14 +36,14 @@
 						
 						<img alt="회의실" src="${pageContext.request.contextPath}/img/Meeting-Room.png">
 						<span class="bText">회의실</span>
-						<button type="submit" class="rnlBtn" value="1" name="meet">선택</button>
+						<button type="submit" class="rnlBtn" value="회의실" name="room_name">선택</button>
 					</div>
 				</li>
 				<li class="rnlLi">
 					<div class="rnlBox">
 						<img alt="게스트하우스" src="${pageContext.request.contextPath}/img/Guest-House.png">
 						<span class="bText">게스트하우스</span>
-						<button type="submit" class="rnlBtn" value="3" name="house">선택</button>
+						<button type="submit" class="rnlBtn" value="게스트하우스" name="room_name">선택</button>
 					</div>
 				</li>
 			</ul>

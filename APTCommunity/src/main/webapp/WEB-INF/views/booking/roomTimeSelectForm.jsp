@@ -29,20 +29,16 @@
 			</div>
 			<hr class="Mhr" color="#edeff0" noshade="noshade">
 			<h4 class="rName">
-				현재 선택한 시설 -
-				<c:if test="${room_Name==1}">회의실</c:if>
-				<c:if test="${room_Name==2}">도서실</c:if>
-				<c:if test="${room_Name==3}">게스트하우스</c:if>
+				현재 선택한 시설 - ${room.room_name} - ${room.room_type}
 			</h4>
 			<h4 class="center">예약 날짜와 시간을 선택하세요.</h4>
-			<input type="hidden" name="top_calender_date" id="top_calender_date" value="2023-06-22">
 			<!-- 합친 div -->
 			<div id="cols_wrap">
 				<!-- 왼쪽 영역 시작 -->
 				<table id="calendar" >
 					<tr>
 						<td><label class="go-prev" onclick="prevCalendar()"> ◀ </label></td>
-						<td id="calendarTitle" colspan="5" align="center" ><label>2020년 11월</label></td>
+						<td id="calendarTitle" colspan="5" align="center" ><label>invalid</label></td>
 						<td><label class="go-next" onclick="nextCalendar()"> ▶ </label></td>
 					</tr>
 					<tr class="weeks">
@@ -57,9 +53,19 @@
 				</table>
 				<!-- 왼쪽영역 끝 -->
 				<div id="timeList">
-					<ul id="t_l">
-						<li>뚜비 껀띠뉴</li>
-					</ul>
+					<form id="roomTimeSelectForm" action="roomTimeSelect.do" method="post">
+						<div id="timeList_content">
+							<h1 class="right-text">날짜를 선택하시면 시간목록이 나옵니다</h1>
+						</div>
+						<input type="hidden" name="bk_date" id="bk_date" value="">
+						<input type="hidden" name="start_time" id="start_time" value="">
+						<input type="hidden" name="end_time" id="end_time" value="">
+						<input type="hidden" name="book_mem" id="book_mem" value="">
+						<input type="hidden" name="room_name" id="room_name" value="${room.room_name}">
+						<input type="hidden" name="room_type" id="room_type" value="${room.room_type}">
+						<input type="hidden" name="room_num" id="room_num" value="${room.room_num}">
+						<input type="hidden" id="total_mem" value="${room.total_mem}">
+					</form>
 				</div>
 				<!-- 오른쪽 시작 -->
 			</div>

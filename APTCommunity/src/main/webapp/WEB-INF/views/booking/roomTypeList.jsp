@@ -22,22 +22,24 @@
 		</div>
 		<hr class="Mhr" color="#edeff0" noshade="noshade">
 		<h4 class="rName">
-			현재 선택한 시설 -  <c:if test="${room_Name=='1'}">회의실</c:if>
-								<c:if test="${room_Name=='2'}">도서실</c:if>
-								<c:if test="${room_Name=='3'}">게스트하우스</c:if>
+			현재 선택한 시설 -  ${room_name}
 		</h4>
 		<h4 class="center">예약하실 방 타입을 선택하세요.</h4>
 		<form id="roomType_form" action="roomTimeSelectForm.do" method="get">
-		<input type="hidden" name="room_Name" value="${room_Name}">
 		<!-- 회의실 일 경우 -->
 			<ul>
-				<c:forEach var="list" items="${list}">
+				<c:forEach var="room" items="${list}">
 					<li class="rnlLi">
 						<div class="rnlBox rnlBoxMR">
-							<img alt="${list.room_type}" src="${pageContext.request.contextPath}/img/meetingRoom.jpeg">
-							<span class="bText">${list.room_type}</span>
-							<p class="pCnt">(최대 인원 수 : ${list.total_mem}명)</p>
-							<button type="submit" name="room_Type" class="rnlBtn" value="${list.room_type}">선택</button>
+							<img alt="${room.room_type}" src="${pageContext.request.contextPath}/img/meetingRoom.jpeg">
+							<span class="bText">${room.room_type}</span>
+							<p class="pCnt">(최대 인원 수 : ${room.total_mem}명)</p>
+							<c:if test="${room.room_status==1}">
+								<button type="submit" name="room_num" class="disable" value="${room.room_num}" disabled="disabled">선택불가</button>
+							</c:if>
+							<c:if test="${room.room_status==0}">
+								<button type="submit" name="room_num" class="rnlBtn" value="${room.room_num}">선택</button>
+							</c:if>
 						</div>
 					</li>
 				</c:forEach>

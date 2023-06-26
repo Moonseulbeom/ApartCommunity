@@ -7,7 +7,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import kr.booking.dao.BookingDAO;
-import kr.booking.vo.BookingVO;
 import kr.booking.vo.Room_infoVO;
 import kr.controller.Action;
 
@@ -24,27 +23,19 @@ public class RoomTypeListAction implements Action{
 			return "/WEB-INF/views/common/alert_singleView.jsp";
 		}
 		// 3개의 버튼을 모두 비교해서 값을 넣음, 이상한 값일 경우, 예약/신청 메인으로 이동
-		String room_Name = request.getParameter("meet");
-		while (true) {
-			if (room_Name!= null && !"".equals(room_Name))
-				break;
-			room_Name = request.getParameter("lib");
-			if (room_Name!= null && !"".equals(room_Name))
-				break;
-			room_Name = request.getParameter("house");
-			if (room_Name!= null && !"".equals(room_Name))
-				break;
+		String room_name = request.getParameter("room_name");
+		if (room_name== null && "".equals(room_name)) {
 			request.setAttribute("notice_msg", "잘못된 경로입니다");
 			request.setAttribute("notice_url", request.getContextPath()+"/booking/main.do");
 			return "/WEB-INF/views/common/alert_singleView.jsp";
-		}// end of while
-		System.out.println("시설타입 값 확인용 : "+room_Name);
+		}
+		
 		BookingDAO dao = BookingDAO.getInstance();
-		List<Room_infoVO> list = dao.getRoomInfoList(room_Name);
+		List<Room_infoVO> list = dao.getRoomInfoList(room_name);
 		
 		//모두 비교해서 세션에 값 저장
-		request.setAttribute("room_Name", room_Name);
 		request.setAttribute("list", list);
+		request.setAttribute("room_name", room_name);
 		
 		//JSP 경로 반환
 		return "/WEB-INF/views/booking/roomTypeList.jsp";

@@ -2,9 +2,9 @@ package kr.booking.vo;
 
 public class Room_infoVO {
 	private int room_num;		//시설정보 번호
-	private String room_type;	//방 타입(ex:독서실, 회의실)
-	private String room_name;	//방 이름(ex:A101)
-	private int bk_status;		//예약상태
+	private String room_type;	//방 타입(ex:A101)
+	private String room_name;	//방 이름(ex:독서실 = 2, 회의실 = 1)
+	private int room_status;	//(관리자용)시설이 수리 or 이용불가일 경우
 	private int total_mem;		//최대 예약 가능 인원
 	
 	public int getRoom_num() {
@@ -25,16 +25,17 @@ public class Room_infoVO {
 	public void setRoom_name(String room_name) {
 		this.room_name = room_name;
 	}
-	public int getBk_status() {
-		return bk_status;
-	}
-	public void setBk_status(int bk_status) {
-		this.bk_status = bk_status;
-	}
 	public int getTotal_mem() {
 		return total_mem;
 	}
 	public void setTotal_mem(int total_mem) {
 		this.total_mem = total_mem;
 	}
+	public int getRoom_status() {
+		return room_status;
+	}
+	public void setRoom_status(int room_status) {
+		this.room_status = room_status;
+	}
+	
 }

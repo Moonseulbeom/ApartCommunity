@@ -4,6 +4,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import kr.booking.dao.BookingDAO;
+import kr.booking.vo.Room_infoVO;
 import kr.controller.Action;
 
 public class RoomTimeSelectFormAction implements Action{
@@ -18,12 +20,11 @@ public class RoomTimeSelectFormAction implements Action{
 			request.setAttribute("notice_url", request.getContextPath()+"/member/loginForm.do");
 			return "/WEB-INF/views/common/alert_singleView.jsp";
 		}
-		//방선택에서 이름, 타입 가져와서 넘겨주고, 시간선택 Form에서 ajax 처리를 진행 하면 된다.
-		String room_Name = request.getParameter("room_Name");
-		String room_Type = request.getParameter("room_Type");
+		int room_num = Integer.parseInt(request.getParameter("room_num"));
+		BookingDAO dao = BookingDAO.getInstance();
+		Room_infoVO room = dao.getOneRoomInfo(room_num);
 		
-		request.setAttribute("room_Name", room_Name);
-		request.setAttribute("room_Type", room_Type);
+		request.setAttribute("room", room);
 		
 		return "/WEB-INF/views/booking/roomTimeSelectForm.jsp";
 	}

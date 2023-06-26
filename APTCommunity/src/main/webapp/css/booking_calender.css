@@ -137,9 +137,11 @@ tr{
     background-size: 7px 7px;
     background-repeat: repeat;
     color: gray;
+    cursor: default;
 }
 .yday{
 	font-weight: bold;
+	cursor: pointer;
 }
 
 .enable {
@@ -150,17 +152,94 @@ tr{
 /* 
 ------ 오른쪽 타임 리스트 ---- */
 #timeList{
-	width: 498px;
-	height: 100%;
-	float:right;
-	border: 1px solid black;
-	text-align:center;
+	width: 400px;
+	height: 359px;
+	float: right;
+	border-bottom: 1px solid black;
+	border-top: 2px solid #DDD;
+	text-align: center;
+}
+#timeList_content{
+	margin: 0 auto;
+	height: 350px;
+}
+#timeList .right-text{
+	margin-top: 150px;
+}
+#timeList h4{
+	color: #ed2a61;
+	float:left;
+	margin-top: 10px;
+	font-size: 14px;
 }
 #timeList ul{
 	margin: 0 auto;
+	text-align: center;
 }
 
 #timeList li{
-	font-weight:bold;
+	width: 199px;
+	height: 51px;
+	line-height: 51px;
+	font-weight:600;
 	font-size: 20pt;
+	display: inline-block;
+	margin-top: 30px;
+	border-top: 1px solid black;
+	border-bottom: 1px solid black;
+	cursor: pointer;
+}
+#timeList li:first-child, #timeList li:nth-child(2){
+	margin-top: 22px;
+}
+#timeList li:nth-child(2n-1){
+	border-right:1px solid #DDD; 
+}
+
+#timeList input{
+	display:inline-block;
+	border: 1px solid #DDD;
+	margin-top:25px;
+	width: 80px;
+	height: 40px;
+	font-size: 12pt;
+	font-weight: 700; 
+	color: #3c6ffa;
+}
+#timeList input[type='button']{
+	border: none;
+}
+#timeList input[type='number']{
+	text-align: center;
+}
+
+.enable-Li{
+	border-top: 1px solid #ee8542;
+	border-bottom: 1px solid #ee8542;
+	background-color: #ee8542;
+    color: #FFF !important;
+}
+#timeList .disable{
+	background-image: linear-gradient(-45deg, rgba(80, 80, 80, 0) 0%, rgba(80, 80, 80, 0) 44%, rgba(80, 80, 80, 0.3) 45%, rgba(80, 80, 80, 0.3) 55%, rgba(80, 80, 80, 0) 56%, rgba(80, 80, 80, 0) 100%);
+    background-size: 7px 7px;
+    background-repeat: repeat;
+    color: white;
+    cursor: default;
+}
+
+#timeList label{
+	display:inline-block;
+    margin-top: 25px;
+    width: 80px;
+    height: 50px;
+    font-size: 12pt;
+    font-weight: 700;
+    color: #3c6ffa;
+    line-height: 50px;
+}
+
+#timeList #peoples{
+	width: 72px;
+    height: 32px;
+    margin: 25px 10px 0px 10px;
 }
