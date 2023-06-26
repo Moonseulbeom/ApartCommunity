@@ -43,7 +43,7 @@
 						</ul>
 						<h2><b>예약신청현황</b></h2><br>
 						<ul>
-							<li><a href="${pageContext.request.contextPath}/member/myPagebooking.do">내 예약현황</a></li>
+							<li><a href="${pageContext.request.contextPath}/member/myPage_booking.do">내 예약현황</a></li>
 						</ul>
 						<h2><b>나의 활동</b></h2><br>
 						<ul>
