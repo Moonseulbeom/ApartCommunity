@@ -41,7 +41,7 @@ public class BuyListAction implements Action{
 			dept : 분류번호(4:기타)
 			category_status : 분류번호(2:자유게시판,3:중고거래)
 		 */
-		List<NoticeVO> fixedList = ndao.getFixedList(4, 3, 1, 5);
+		List<NoticeVO> fixedList = ndao.getFixedList(4, 3, 1, 3);
 		for(NoticeVO no : fixedList) {
 			no.setTitle(StringUtil.useNoHtml(no.getTitle()));
 		}

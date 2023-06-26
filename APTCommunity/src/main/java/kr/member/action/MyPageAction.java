@@ -31,7 +31,9 @@ public class MyPageAction implements Action{
 		
 		/* 좋아요 목록 */
 		SecondHandDAO shDao = SecondHandDAO.getinstance();
-		List<SecondHandVO> favList = shDao.getListSecondhandFav(1, 5, user_num);
+		List<SecondHandVO> favList = shDao.getListSecondhandFav(1, 3, user_num);
+		/* 내가 쓴 글 목록(자유게시판,중고거래,하자보수,1:1문의) */
+		
 		
 		
 		request.setAttribute("member", member);
