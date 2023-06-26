@@ -482,6 +482,7 @@ public class SecondHandDAO {
 			pstmt.setInt(3, end);
 			rs = pstmt.executeQuery();
 			list = new ArrayList<SecondHandVO>();
+			
 			while(rs.next()) {
 				SecondHandVO vo = new SecondHandVO();
 				vo.setSe_num(rs.getInt("se_num"));
@@ -489,6 +490,7 @@ public class SecondHandDAO {
 				vo.setReg_date(rs.getDate("reg_date"));
 				vo.setDongho(rs.getString("dongho"));
 				vo.setDivision(rs.getInt("division"));
+
 				list.add(vo);
 			}
 		}catch(Exception e) {

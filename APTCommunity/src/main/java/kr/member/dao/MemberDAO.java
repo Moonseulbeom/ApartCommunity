@@ -114,7 +114,7 @@ public class MemberDAO {
 		}
 		return member;
 	}
-	//회원상세 정보(MY페이지
+	//회원상세 정보(MY페이지)
 	public MemberVO getMember(int mem_num) throws Exception {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -159,22 +159,30 @@ public class MemberDAO {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		String sql = null;
+		String sub_sql ="";
+		int cnt = 0;
 		try {
 			//커넥션풀로부터 커넥션 할당
 			conn = DBUtil.getConnection();
-			//SQL문 작성
-			sql = "UPDATE member_detail SET name=?," + "phone=?,email=?,carnum=?,"
-					+ "modify_date=SYSDATE " + "WHERE mem_num=?";
-			//PreparedStatement 객체 생성
-			pstmt = conn.prepareStatement(sql);
-			//?에 데이터 바인딩
-			pstmt.setString(1, member.getName());
-			pstmt.setString(2, member.getPhone());
-			pstmt.setString(3, member.getEmail());
-			pstmt.setString(4, member.getCarnum());
-			pstmt.setInt(5, member.getMem_num());
-			//SQL문 실행
-			pstmt.executeUpdate();
+	         //SQL문 작성
+	         if(member.getPasswd() != null) {
+	            sub_sql = "passwd = ?,";
+	         }
+	         sql = "UPDATE member_detail SET name=?," +sub_sql+ "phone=?,email=?,carnum=?,"
+	               + "modify_date=SYSDATE " + "WHERE mem_num=?";
+	         //PreparedStatement 객체 생성
+	         pstmt = conn.prepareStatement(sql);
+	         //?에 데이터 바인딩
+	         pstmt.setString(++cnt, member.getName());
+	         if(member.getPasswd() != null) {
+	            pstmt.setString(++cnt, member.getPasswd());
+	         }
+	         pstmt.setString(++cnt, member.getPhone());
+	         pstmt.setString(++cnt, member.getEmail());
+	         pstmt.setString(++cnt, member.getCarnum());
+	         pstmt.setInt(++cnt, member.getMem_num());
+	         //SQL문 실행
+	         pstmt.executeUpdate();
 		} catch (Exception e) {
 			throw new Exception(e);
 		} finally {
@@ -210,6 +218,35 @@ public class MemberDAO {
 		}
 	}
 	//회원탈퇴(회원정보 삭제)
+	public void deleteMember(int mem_num) throws Exception {
+		Connection conn = null;
+		PreparedStatement pstmt1 = null;//자식 레코드
+		PreparedStatement pstmt2 = null;//부모 레코드
+		String sql = null;
+		
+		try {
+			conn = DBUtil.getConnection();
+			conn.setAutoCommit(false);
+			
+			sql = "DELETE FROM member_detail WHERE mem_num=?";
+			pstmt1 = conn.prepareStatement(sql);
+			pstmt1.setInt(1, mem_num);
+			pstmt1.executeUpdate();
+			
+			sql = "DELETE FROM member WHERE mem_num=?";
+			pstmt2 = conn.prepareStatement(sql);
+			pstmt2.setInt(1, mem_num);
+			pstmt2.executeUpdate();
+			
+			conn.commit();
+		}catch(Exception e) {
+			conn.rollback();
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(null, pstmt2, null);
+			DBUtil.executeClose(null, pstmt1, conn);
+		}
+	}
 	//관리자
 	//전체글 개수, 검색글 개수
 	public int getMemberCountByAdmin(String keyfield,String keyword) throws Exception{
@@ -309,7 +346,5 @@ public class MemberDAO {
 			}	
 			return list;
 		}
-	
-	//회원정보 수정
 	
 }

@@ -1,77 +1,4 @@
-/* 마이페이지 화면 크기 */
-#title_id{
-	 font-size: 32px;
-}
-
-#myPage_home{
-	display: flex;
-	flex-direction: row;
-	height: 700px;
-}
-.myPage_leftSide{
-	width: 37%;
-	height: 100%;
-}
-.myPage_rightSide{
-	width: 63%;
-	height: 100%;
-}
-
-/* 회원정보 ~~ */
-.mypage-div{
-	height: 30%;
-}
-
-.mypage-div li{
-	width: 100%;
-	padding: 3px;
-	font-size: 15px;
-}
-.mypage-div h3{
-	margin-top: 20px;
-}
-#myPage_home h2{
-	font-size: 24px;
-	margin: 10px 0 10px 0;
-}
-#myPage_home h3{
-	font-size: 19px;
-	margin: 15px 0 10px 0;
-}
-/* 버튼들 */
-#click_memInfo{
-	height: 25px;
-}
-/* 좋아요 목록 */
-#myChoice{
-	border-collapse: collapse;
-	width: 100%;
-}
-#myChoice th,td{
-	border: 1px solid #ccc;
-	padding: 5px;
-}
-#myChoice th{
-	background-color: #f0f0f0;
-	text-align: center;
-}
-#myChoice td{
-	text-align: left;
-}
-
-/*상단 바로가기 버튼*/
-.service-up{
-	margin-right: 30px;
-	position: fixed;
-    right: 24px;
-    bottom: 24px;
-    z-index: 50;
-}
-.link-service img{
-	width: 50px;
-	height: 50px;
-}
-
+@charset "UTF-8";
 /*메인 페이지*/
 .page-main{
 	width: 1000px;
@@ -87,6 +14,27 @@
 }
 .page-right{
 	width: 700px;
+}
+.myPage_leftSide{
+	width: 37%;
+	height: 100%;
+}
+.myPage_rightSide{
+	width: 63%;
+	height: 100%;
+}
+
+/*상단 바로가기 버튼*/
+.service-up{
+	margin-right: 30px;
+	position: fixed;
+    right: 24px;
+    bottom: 24px;
+    z-index: 50;
+}
+.link-service img{
+	width: 50px;
+	height: 50px;
 }
 
 /*사이드 바*/

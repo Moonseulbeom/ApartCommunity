@@ -9,7 +9,7 @@
 <title>MY페이지</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/custom.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/mypage.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/mypagefav.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/common.js"></script>
 </head>
@@ -49,7 +49,7 @@
 						<ul>
 							<li><a href="${pageContext.request.contextPath}/#">내가 쓴 글</a></li>
 							<li><a href="${pageContext.request.contextPath}/#">내가 쓴 댓글</a></li>
-							<li><a href="${pageContext.request.contextPath}/#">찜한 목록</a></li>
+							<li><a href="${pageContext.request.contextPath}/member/myPageFav.do">찜한 목록</a></li>
 						</ul>
 					</div>
 					</div>
@@ -57,12 +57,25 @@
 					</li>
 					<!-- 우측 메인 -->
 					<li>
-					<h1 style="font-size: 32px;">MyPage</h1><hr><br>
+					<h1 style="font-size: 32px;">찜한 목록</h1><hr><br>
 					<div class="page-right">
-					<div id="myPage_home">
-					<!-- 여기에 넣어주시면 됩니다!! -->
-					</div>
-					<div class="mypage-end"></div>
+						<table id="myFav">
+							<tr>
+								<th>글 번호</th>
+								<th>제목</th>
+								<th>작성자</th>
+								<th>작성일</th>
+							</tr>
+							<c:forEach var="vo" items="${favList}">
+								<tr>
+									<td>${vo.se_num}</td>
+									<td>${vo.title}</td>
+									<td>${vo.dongho}</td>
+									<td>${vo.reg_date}</td>
+								</tr>
+							</c:forEach>
+						</table>
+						<div class="mypage-end"></div>
 					</div>
 					</li>
 				</ul>

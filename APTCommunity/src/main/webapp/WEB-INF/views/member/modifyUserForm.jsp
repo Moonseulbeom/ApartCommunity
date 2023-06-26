@@ -5,10 +5,11 @@
 <head>
 <meta charset="UTF-8">
 <title>회원정보 수정</title>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/modify.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/custom.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/modifyUserForm.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/common.js"></script>
 <script type="text/javascript">
 	$(function(){
 		//회원 정보 등록 유효성 체크
@@ -36,39 +37,48 @@
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 	<!-- 내용 시작 -->
 	<div class="content-main">
-		<h2>회원정보 수정</h2>
-		<form id="modify_form" 
-		  action="modifyUser.do" method="post">
-			<ul>
-				<li>
+		<h2 class="content_h2">회원정보 수정</h2>
+		<form id="modify_form" action="modifyUser.do" method="post">
+			<ul id="modify_ul">
+				<li id="modify_li">
 					<label for="name">세대주</label>
 					<input type="text" name="name"
 					  value="${member.name}"
-					  id="name" maxlength="10">
+					  id="name" maxlength="10" class="modify_inp">
 				</li>
-				<li>
+				<li id="modify_li">
 					<label for="phone">전화번호</label>
 					<input type="text" name="phone"
 					  value="${member.phone}"
-					  id="phone" maxlength="15">
+					  id="phone" maxlength="15" class="modify_inp">
 				</li>
-				<li>
+				<li id="modify_li">
 					<label for="email">이메일</label>
 					<input type="email" name="email"
 					  value="${member.email}"
-					  id="email" maxlength="50">
+					  id="email" maxlength="50" class="modify_inp">
 				</li>
-				<li>
+				<li id="modify_li">
 					<label for="carnum">우편번호</label>
 					<input type="text" name="carnum"
 					  value="${member.carnum}"
-					  id="carnum" maxlength="10">
+					  id="carnum" maxlength="10" class="modify_inp">
 				</li>
 			</ul> 
 			<div class="align-center">
-				<input type="submit" value="수정">
+				<input type="submit" value="수정" id="modify_info">
 				<input type="button" value="취소"
 				 onclick="location.href='${pageContext.request.contextPath}/member/myPage.do'">
+				<script type="text/javascript">
+					let modify_info = document.getElementById('modify_info');
+					//이벤트 연결
+					modify_info.onclick=function(){
+						let choice = confirm('회원 정보를 수정하시겠습니까?');
+						if(choice){
+							location.replace('modifyUserForm.do');
+						}
+					};
+				</script>
 			</div> 
 		</form>
 	</div>

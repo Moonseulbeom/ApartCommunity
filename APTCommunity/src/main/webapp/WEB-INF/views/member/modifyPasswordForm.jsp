@@ -5,9 +5,11 @@
 <head>
 <meta charset="UTF-8">
 <title>비밀번호 수정</title>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/modify.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/custom.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/common.js"></script>
 <script type="text/javascript">
 	$(function(){		
 		//비밀번호 수정 유효성 체크
@@ -42,36 +44,45 @@
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 	<!-- 내용 시작 -->
 	<div class="content-main">
-		<h2>비밀번호 수정</h2>
-		<form id="password_form" 
-		  action="modifyPassword.do" method="post">
-			<ul>
-				<li>
+		<h2 class="content_h2">비밀번호 수정</h2>
+		<form id="password_form" action="modifyPassword.do" method="post">
+			<ul id="modify_ul">
+				<li id="modify_li">
 					<label for="dongho">동-호수</label>
 					<input type="text" name="dongho"
 					   id="dongho" maxlength="12"
-					   autocomplete="off">
+					   autocomplete="off" class="modify_inp">
 				</li>
-				<li>
+				<li id="modify_li">
 					<label for="origin_passwd">현재 비밀번호</label>
 					<input type="password" name="origin_passwd"
-					  id="origin_passwd" maxlength="12">
+					  id="origin_passwd" maxlength="12" class="modify_inp">
 				</li>
-				<li>
+				<li id="modify_li">
 					<label for="passwd">새비밀번호</label>
 					<input type="password" name="passwd"
-					  id="passwd" maxlength="12">
+					  id="passwd" maxlength="12" class="modify_inp">
 				</li>
-				<li>
+				<li id="modify_li">
 					<label for="cpasswd">새비밀번호 확인</label>
 					<input type="password" name="cpasswd"
-					  id="cpasswd" maxlength="12">
+					  id="cpasswd" maxlength="12" class="modify_inp">
 				</li>
 			</ul> 
 			<div class="align-center">
-				<input type="submit" value="비밀번호 수정">
-				<input type="button" value="MY페이지"
-				 onclick="location.href='myPage.do'">
+				<input type="submit" value="수정" id="modify_passwd">
+				<input type="button" value="취소"
+				 onclick="location.href='${pageContext.request.contextPath}/member/myPage.do'">
+				<script type="text/javascript">	
+					let modify_passwd = document.getElementById('modify_passwd');
+						//이벤트 연결
+						modify_passwd.onclick=function(){
+							let choice = confirm('비밀번호를 수정하시겠습니까?');
+							if(choice){
+								location.replace('modifyPasswordForm.do');
+							}
+						};
+				</script>
 			</div> 
 		</form>
 	</div>
