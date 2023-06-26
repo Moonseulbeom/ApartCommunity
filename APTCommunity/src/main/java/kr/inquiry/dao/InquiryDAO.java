@@ -482,7 +482,6 @@ public class InquiryDAO {
 				manage = new InquiryManageVO();
 				manage.setRe_num(rs.getInt("re_num"));
 				manage.setMem_num(rs.getInt("mem_num"));
-				manage.setAuth(rs.getInt("auth"));
 			}
 		}catch(Exception e) {
 			throw new Exception(e);

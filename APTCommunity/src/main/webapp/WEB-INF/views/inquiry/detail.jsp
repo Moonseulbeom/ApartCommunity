@@ -71,11 +71,20 @@
 								</div><!-- detail-page -->
 							</div>
 							<hr class="hLine" size="1" noshade="noshade" width="100%">
+							<!-- 댓글 목록 출력 시장 -->
+							<div id="output"></div>		
+							<div class="paging-button" style="display:none;">
+								<input type="button" value="다음글 보기">
+							</div>
+							<div id="loading" style="display: none;">
+								<img src="${pageContext.request.contextPath}/images/loading.gif" width="50" height="50">
+							</div>
+							<!-- 댓글 끝 -->
 							<!-- 댓글시작 -->
 							<div id="comment">
-								<span class="comment-title">댓글 달기</span>
+								<span class="comment-title">문의 답변</span>
 								<form id="comment_form">
-									<input type="hidden" name="fix_num" value="${inquiry.in_num}" id="fix_num">
+									<input type="hidden" name="in_num" value="${inquiry.in_num}" id="in_num">
 									<textarea rows="3" cols="50" name="comment_content" id="comment_content" class="rep-content"
 									<c:if test="${empty user_num}">disabled="disabled"</c:if>><c:if test="${empty user_num}">로그인해야 작성할 수 있습니다.</c:if></textarea>
 									<c:if test="${!empty user_num}"> <%-- 로그인 된 상태 --%>
@@ -88,15 +97,6 @@
 									</c:if>
 								</form>
 							</div>
-							<!-- 댓글 목록 출력 시장 -->
-							<div id="output"></div>		
-							<div class="paging-button" style="display:none;">
-								<input type="button" value="다음글 보기">
-							</div>
-							<div id="loading" style="display: none;">
-								<img src="${pageContext.request.contextPath}/images/loading.gif" width="50" height="50">
-							</div>
-							<!-- 댓글 끝 -->
 							<div class="detail-btn">
 								<div class="detail-btn-div2">
 									<input type="button" value="목록" class="bottom-btn" onclick="location.href='list.do'" id="fixList_btn">
