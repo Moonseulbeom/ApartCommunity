@@ -13,6 +13,44 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/css/notice.css">
 </head>
+<script type="text/javascript">
+
+   function checkAll() {
+      var allCheck = document.getElementById("all_check");
+      var privacyCheck = document.getElementById("privacy_check");
+      var termsCheck = document.getElementById("terms_check");
+
+      if (allCheck.checked) {
+         privacyCheck.checked = true;
+         termsCheck.checked = true;
+      } else {
+         privacyCheck.checked = false;
+         termsCheck.checked = false;
+      }
+   }
+
+   function validateForm() {
+      var privacyCheck = document.getElementById("privacy_check");
+      var termsCheck = document.getElementById("terms_check");
+
+      if (!privacyCheck.checked || !termsCheck.checked) {
+         alert("약관에 전체 동의해야 합니다.");
+         return false;
+      }
+   }
+
+   function goToNextPage() {
+     var privacyCheck = document.getElementById("privacy_check");
+     var termsCheck = document.getElementById("terms_check");
+
+     if (privacyCheck.checked && termsCheck.checked) {
+       location.href = "${pageContext.request.contextPath}/member/registerUserForm.do";
+     } else {
+       alert("약관에 전체 동의해야 합니다.");
+     }
+   }
+
+</script>
 <body>		
 	<jsp:include page="/WEB-INF/views/common/header.jsp" />
 	<!-- 상단 링크 버튼 시작-->
@@ -33,7 +71,7 @@
 			</div>
 			<form class="agreeList">
 				<p class="agreeAll">
-					<input type="checkbox" name="setOpenSSL" id="all_check"> <label
+					<input type="checkbox" name="setOpenSSL" id="all_check" onclick="checkAll();"> <label
 						for="all_check" class="point_cursor">약관전체동의</label>
 				</p>
 			</form>
@@ -561,7 +599,7 @@
 
 				<div>
 					<input class="btnWrap" type="button" value="다음"
-						onclick="location.href='registerUserForm.do';">
+						onclick="goToNextPage();">
 				</div>
 			</div>
 			<!-- 내용 끝 -->
