@@ -183,13 +183,13 @@ $(function() {
 					<tr>
 						<th>동 <span>(필수)</span></th>
 						<td>
-							<input type="text" name="동" id="dong" maxlength="12" placeholder="숫자만 입력" autocomplete="off">
+							<input type="text" name="dong" id="dong" maxlength="12" placeholder="숫자만 입력" autocomplete="off">
 						</td>
 					</tr>
 					<tr>
 						<th>호 <span>(필수)</span></th>
 						<td>
-							<input type="text" name="호" id="ho" maxlength="12" placeholder="숫자만 입력" autocomplete="off">
+							<input type="text" name="ho" id="ho" maxlength="12" placeholder="숫자만 입력" autocomplete="off">
 							<input type="button" value="동-호수 중복체크" id="dongho_check" class="dongho_check">
 								<span id="message_dongho"></span>
 						</td>
@@ -197,31 +197,31 @@ $(function() {
 					<tr>
 						<th>세대주 <span>(필수)</span></th>
 						<td>
-							<input type="text" name="세대주" id="name" placeholder="문자만 입력" maxlength="10">
+							<input type="text" name="name" id="name" placeholder="문자만 입력" maxlength="30">
 						</td>
 					</tr>
 					<tr>
 						<th>비밀번호 <span>(필수)</span></th>
 						<td>
-							<input type="password" name="비밀번호" id="passwd" placeholder="영문자 포함(4~12자리)" maxlength="12">
+							<input type="password" name="passwd" id="passwd" placeholder="영문자 포함(4~12자리)" maxlength="12">
 						</td>
 					</tr>
 					<tr>
 						<th>전화번호 <span>(필수)</span></th>
 						<td>
-							<input type="text" name="전화번호" id="phone" placeholder="ex)000-0000-0000" maxlength="15">
+							<input type="text" name="phone" id="phone" placeholder="ex)000-0000-0000" maxlength="15">
 						</td>
 					</tr>
 					<tr>
 						<th>이메일 <span>(필수)</span></th>
 						<td>
-							<input type="email" name="이메일" id="email" placeholder="ex)test@test.com" maxlength="50">
+							<input type="email" name="email" id="email" placeholder="ex)test@test.com" maxlength="50">
 						</td>
 					</tr>
 					<tr>
 						<th>차량번호 <span class="sp_ch">(선택)</span></th>
 						<td>
-							<input type="text" name="차량번호" id="carnum" placeholder="ex)00가0000" maxlength="15">
+							<input type="text" name="carnum" id="carnum" placeholder="ex)00가0000" maxlength="15">
 						</td>
 					</tr>
 				</tbody>
