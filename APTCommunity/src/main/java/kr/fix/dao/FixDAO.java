@@ -87,8 +87,6 @@ public class FixDAO {
 				+ "f.fix_num DESC)a) "
 				+ "WHERE rnum>=? AND rnum<=? ";
 			
-			System.out.println("하자보수 글목록 확인용 " + sql);
-			
 			//PreparedStatement 객체 생성
 			pstmt = conn.prepareStatement(sql);
 			//?에 데이터 바인딩
