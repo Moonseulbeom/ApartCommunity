@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
-<script src="${pageContext.request.contextPath}/js/booking.calender.js"></script>
+<script src="${pageContext.request.contextPath}/js/manage_calender.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/manage.js"></script>
 
 <!-- 1.회원관리 -->
@@ -126,8 +126,9 @@
 				<select name="category_status" class="keyfield">
 						<option value="2" <c:if test="${param.keyfield_cate==2}">selected</c:if>>자유게시판</option>
 						<option value="3" <c:if test="${param.keyfield_cate==3}">selected</c:if>>중고거래</option>
-						<option value="4" <c:if test="${param.keyfield_cate==3}">selected</c:if>>하자보수</option>
-						<option value="5" <c:if test="${param.keyfield_cate==3}">selected</c:if>>예약(시설)</option>
+						<option value="4" <c:if test="${param.keyfield_cate==4}">selected</c:if>>하자보수</option>
+						<option value="5" <c:if test="${param.keyfield_cate==5}">selected</c:if>>예약(시설)</option>
+						<option value="6" <c:if test="${param.keyfield_cate==6}">selected</c:if>>1:1문의</option>
 				</select>
 			</li>
 			<li>
@@ -217,7 +218,7 @@
 <!-- 5. 하자보수글 관리 -->
 <div id="manage_fix">
 	<!--  목록 검색창 -->
-	<h1>회원목록조회</h1>
+	<h1>하자보수글 조회</h1>
 	<form action="manage-serviceList.do" method="get" id="mem_search_form">
 		<ul>
 			<li>
@@ -262,7 +263,7 @@
 				</tr>
 				</c:forEach>
 			</table>
-		<c:if test="${ count > 0 }">
+		<c:if test="${ fix_count > 0 }">
 			<div class="mem-page">${ page }</div>
 		</c:if>
 		</div>
@@ -271,33 +272,36 @@
 <!-- 5. 하자보수글 관리 끝 -->
 <!-- 6. 예약 관리 -->
 <div id="manage_book">
-	<!--  목록 검색창 -->
+	<!--  예약 선택 시작 -->
 	<h1>예약 관리</h1>
 	<form action="manage-serviceList.do" method="get" id="mem_search_form">
 		<ul>
 			<li>
-				<div class="mem-search">
-					<select name="mem_select" class="select-member">
-						<option value="1"
-							<c:if test="${param.mem_select==1}">selected</c:if>>세대주</option>
-						<option value="2"
-							<c:if test="${param.mem_select==2}">selected</c:if>>동</option>
-						<option value="3"
-							<c:if test="${param.mem_select==3}">selected</c:if>>호수</option>
-					</select> <input type="search" placeholder="회원 목록 조회" class="search-member"
-						name="keyword" id="keyword" value="${ param.keyword }">
+				<div class="room-search">
+					<select name="room_select" class="select-member" id="room_select">
+						<option value="선택"
+							<c:if test="${param.room_select=='선택'}">selected</c:if>>--시설 선택--</option>
+						<option value="도서실"
+							<c:if test="${param.room_select=='도서실'}">selected</c:if>>도서실</option>
+						<option value="회의실"
+							<c:if test="${param.room_select=='회의실'}">selected</c:if>>회의실</option>
+						<option value="게스트하우스"
+							<c:if test="${param.room_select=='게스트하우스'}">selected</c:if>>게스트하우스</option>
+					</select>
 				</div>
 			</li>
-			<li>
-				<div class="mem-search-btn">
-					<input type="submit" value="검색">
+			<li id="room_type" style="display: none;">
+				<div class="room-search">
+					<select name="room_select2" class="select-member" id="room_select2">
+					
+					</select>
 				</div>
 			</li>
 		</ul>
 	</form>
-	<!--  목록 검색참 끝 -->
+	<!-- 예약 선택 끝 -->
 	<!-- 달력 -->
-	<div class="book-cal">
+	<div class="book-cal" style="display: none; ">
 	<table id="calendar" >
 		<tr>
 			<td><label class="go-prev" onclick="prevCalendar()"> ◀ </label></td>
@@ -314,6 +318,24 @@
 			<td class="saturday">토</td>
 		</tr>
 	</table>
+	</div>
+	<div class="book-list" style="display: none;">
+		<h2 id="book_title">날짜</h2>
+		<input type="button" value="임시 휴관" id="noBook_btn">
+		<table id="book_info">
+			<tr>
+				<th>동-호수</th>
+				<th>시설</th>
+				<th>방</th>
+				<th>예약 인원</th>
+				<th>예약시간</th>
+			</tr >
+		</table>
+		<div id="change-booklist">
+			<table id="book_output">
+			<!-- 선택한 시설/날짜의 예약 현황 -->
+			</table>
+		</div>
 	</div>
 </div>
 <!-- 5. 예약 관리 끝 -->

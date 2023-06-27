@@ -1,6 +1,5 @@
 package kr.manager.action;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -11,6 +10,9 @@ import javax.servlet.http.HttpSession;
 
 import org.codehaus.jackson.map.ObjectMapper;
 
+import kr.booking.dao.BookingDAO;
+import kr.booking.vo.BookingVO;
+import kr.booking.vo.Room_infoVO;
 import kr.controller.Action;
 import kr.fix.dao.FixDAO;
 import kr.fix.vo.FixVO;
@@ -72,9 +74,6 @@ public class ManageServiceListAction implements Action {
 		int in_count = in_dao.getInquiryCount(keyfield, keyword);
 		PageUtil in_page = new PageUtil(keyfield, keyword, Integer.parseInt(pageNum), 10, 10, in_count, "manageMain.do");	
 		List<InquiryVO> inquiry_list = in_dao.getListInquiry(in_page.getStartRow(), in_page.getEndRow(), keyfield, keyword);
-		for(InquiryVO vo: inquiry_list) {
-			System.out.println(vo.getCheck());
-		}
 		
 		//하자보수 리스트
 		FixDAO fix_dao = FixDAO.getInstance();
@@ -82,10 +81,34 @@ public class ManageServiceListAction implements Action {
 		PageUtil fix_page = new PageUtil(keyfield, keyword, Integer.parseInt(pageNum), 10, 10, fix_count, "manageMain.do");	
 		List<FixVO> fix_list = fix_dao.getListFix(fix_page.getStartRow(), fix_page.getEndRow(), keyfield, keyword);
 		
-		//예약 리스트
-		
-		
-		
+		//예약 리스트 선택
+		String room_name = request.getParameter("room_name");
+		if(room_name != null) {
+			BookingDAO book_dao = BookingDAO.getInstance();
+			List<Room_infoVO> bookinfo_list = book_dao.getRoomInfoList(room_name);
+			mapAjax.put("bookinfo_list", bookinfo_list);
+			ObjectMapper mapper = new ObjectMapper();
+			String ajaxData = mapper.writeValueAsString(mapAjax);
+			
+			request.setAttribute("ajaxData", ajaxData);
+			//JSP 경로 반환
+			return "/WEB-INF/views/common/ajax_view.jsp";
+		}
+		//예약 리스트 확인
+		String room_type = request.getParameter("room_type");
+		String bk_date = request.getParameter("bk_date");
+		if(room_type != null) {
+			BookingDAO book_dao = BookingDAO.getInstance();
+			List<BookingVO> book_list = book_dao.getManageBookList(Integer.parseInt(room_type),bk_date);
+			mapAjax.put("book_list", book_list);
+			ObjectMapper mapper = new ObjectMapper();
+			String ajaxData = mapper.writeValueAsString(mapAjax);
+			
+			request.setAttribute("ajaxData", ajaxData);
+			//JSP 경로 반환
+			return "/WEB-INF/views/common/ajax_view.jsp";
+		}
+		//
 		request.setAttribute("count", count);
 		request.setAttribute("page", page.getPage());
 		request.setAttribute("list", list);//회원 리스트
@@ -97,6 +120,8 @@ public class ManageServiceListAction implements Action {
 		request.setAttribute("fix_page", fix_page.getPage());
 		request.setAttribute("fix_count", fix_count);
 		request.setAttribute("fix_list", fix_list);//1:1문의 리스트
+		
+		//예약 리스트
 		
 		return "/WEB-INF/views/manager/manage-serviceList.jsp";
 	}

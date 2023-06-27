@@ -67,7 +67,7 @@
 	font-weight: bold;
 }
 .manage-page-right{
-	width: 60%;
+	width: 75%;
 	position: absolute;
 }
 .manage-content{
@@ -105,23 +105,23 @@
 	clear:both;	
 }
 
-.mem-list table{
+.mem-list table, .book-list table{
 	margin-top:10px;
 	width: 100%;
 	border: 2px solid  #b0b0b0;
 	text-align: center;
 	font-size: 1.2em;
 }
-.mem-list table tr{
+.mem-list table tr, .book-list table tr{
 	height:40px;
 	border: 1px solid #b0b0b0;
 }
-.mem-list table th{
+.mem-list table th, .book-list table th{
 	border: 1px solid #b0b0b0;
 	background-color: #e0e0e0;
 	font-weight: bold;
 }
-.mem-list table tr td{
+.mem-list table tr td, .book-list table tr td{
 	border: 1px solid #b0b0b0;
 }
 #mem_info th:first-child, #mem_output td:first-child{
@@ -252,16 +252,19 @@
 	margin-left:50px;
 }
 #inquiry_info th:first-child, #inquiry_output td:first-child{
-	width: 69px;
+	width: 68px;
 }
 #inquiry_info th:nth-child(2), #inquiry_output td:nth-child(2){
-	width: 311px;
+	width: 308px;
 }
 #inquiry_info th:nth-child(3), #inquiry_output td:nth-child(3){
-	width: 130px;
+	width: 154px;
+}
+#inquiry_info th:nth-child(4), #inquiry_output td:nth-child(4){
+	width: 103px;
 }
 #inquiry_info th:last-child, #inquiry_output td:last-child{
-	width: 171px;
+	width: 100px;
 }
 /*하자보수글 리스트*/
 #manage_fix{
@@ -297,16 +300,60 @@
 .book-cal{
 	clear:both;		
 }
+.room-search{
+	margin: 15px 0 10px 0;	
+}
+#room_type div{
+	margin-left: 10px;
+}
+#room_type select{
+	width: 107px;
+}
+/*예약 리스트*/
+.book-list{
+	margin: 10px 0 0 10px;
+	float: right;
+}
+.book-list table{
+	width: 550px;
+}
 
-
-
-
-
-
-
-
-
-
+#book_info th:first-child, #book_output td:first-child{
+	width: 100px;
+}
+#book_info th:nth-child(2), #book_output td:nth-child(2){
+	width: 100px;
+}
+#book_info th:nth-child(3), #book_output td:nth-child(3){
+	width: 100px;
+}
+#book_info th:nth-child(4), #book_output td:nth-child(4){
+	width: 100px;
+}
+#book_info th:last-child, #book_output td:last-child{
+	width: 150px;
+}
+#book_title{
+	float: left;
+}
+#noBook_btn{
+	margin-left: 10px;
+	height: 40px;
+    width: 100px;
+    background-color: #cc3f35;
+    color: white;
+    font-weight: bold;
+}
+/*임시 휴관 버튼*/
+#noBook_btn:hover{
+	cursor: pointer;
+	background-color: #a12920;
+}
+.success-block{
+	border: solid 1px #ee8542;
+    background-color: #ee8542;
+    color: #FFF !important;
+}
 
 
 

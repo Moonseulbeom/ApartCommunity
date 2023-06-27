@@ -379,7 +379,7 @@ public class BookingDAO {
 		
 		try {
 			conn = DBUtil.getConnection();
-			sql = "DELETE FROM room_info WHERE bk_date=? AND room_num=? ";
+			sql = "DELETE FROM booking WHERE bk_date=? AND room_num=? ";
 			
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, bk_date);
@@ -398,7 +398,39 @@ public class BookingDAO {
 	
 	
 	
-	
+	//관리자 예약 현황 가져오기
+	public List<BookingVO> getManageBookList(int room_type, String bk_date) throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
+		List<BookingVO> list = null;
+		
+		try {
+			conn = DBUtil.getConnection();
+			sql = "SELECT * FROM booking b JOIN member m ON b.mem_num = m.mem_num WHERE room_num = ? AND bk_date = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, room_type);
+			pstmt.setString(2, bk_date);
+			rs = pstmt.executeQuery();
+			list = new ArrayList<BookingVO>();
+			while(rs.next()) {
+				BookingVO book = new BookingVO();
+				book.setDongho(rs.getString("dongho"));
+				book.setBook_mem(rs.getInt("book_mem"));
+				book.setStart_time(rs.getString("start_time"));
+				book.setEnd_time(rs.getString("end_time"));
+				
+				list.add(book);
+			}
+		} catch (Exception e) {
+			throw new Exception(e);
+		} finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		
+		return list;
+	}
 	
 	
 	

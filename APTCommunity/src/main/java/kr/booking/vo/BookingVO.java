@@ -13,8 +13,17 @@ public class BookingVO {
 	
 	private Room_infoVO room_info; // 시설정보모델
 	
+	private String dongho;
 	
+	public String getDongho() {
+		return dongho;
+	}
 
+	public void setDongho(String dongho) {
+		this.dongho = dongho;
+	}
+
+	
 	public int getBk_status() {
 		return bk_status;
 	}

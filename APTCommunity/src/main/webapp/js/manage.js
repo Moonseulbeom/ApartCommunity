@@ -70,11 +70,38 @@ $(function(){
 		}
 	})
 //회원목록 검색 끝		
-		
-//캘린더 호출
-buildCalendar();
-
-			
+//예약 목록 선택		
+	$('#room_select').change(function(){
+		let room_num = $('select[name=room_select] > option:selected').val();
+		$('#book_output').empty();
+		$('.book-cal').hide();
+		$('.book-list').hide();
+		$('#room_type').show();
+		$('select[name=room_select2] > option').remove();
+			$.ajax({
+				url:'manage-serviceList.do',
+				data:{room_name:room_num, room_type:'0'},
+				type:'post',
+				dataType:'json',
+				success:function(param){
+					let output = '<option>--방 선택--</option>'
+					$(param.bookinfo_list).each(function(index,item){
+						//alert(item.room_num);
+						output += '<option value="'+item.room_num+'">'+item.room_type+'</option>';
+					})
+					$('#room_select2').append(output);
+				},
+				error:function(){
+					alert('예약 네트워크 오류');
+				}
+			})
+		$('.room-search').on('change','#room_select2',function(){
+			//캘린더 호출
+			$('.book-cal').show();
+			buildCalendar();
+			//
+		})
+	})
 //---------------------------------- 조건 체크 --------------------------------------------//		
 	$('#write_manage_form').submit(function(){
 			if($('#title').val().trim()==''){
