@@ -57,7 +57,7 @@
 						</li>
 						<!-- 우측 메인 -->
 						<li>
-						<h1 style="font-size: 32px;">찜한 목록</h1><hr><br>
+						<h1 style="font-size: 32px;">내가 작성한 글 목록</h1><hr><br>
 						<div class="page-right">
 							<div id="myPagd_fav">
 								<table id="myFavList">
@@ -71,8 +71,16 @@
 										<th>글 번호</th>
 										<th>제목</th>
 										<th>작성자</th>
-										<th>작성일</th>
 									</tr>
+									<!-- 자유게시판 -->
+									<c:forEach var="board" items="${boardList}">
+									<tr>
+										<td>${board.board_num}</td>
+										<td><a href="${pageContext.request.contextPath}/board/boardDetail.do?board_num=${board.board_num}">${board.title}</a></td>
+										<td>${board.reg_dage}</td>
+									</tr>
+									</c:forEach>
+									<!-- 중고거래 --><%--
 									<c:forEach var="vo" items="${favList}">
 									<tr>
 										<td>${vo.se_num}</td>
@@ -81,6 +89,24 @@
 										<td>${vo.reg_date}</td>
 									</tr>
 									</c:forEach>
+									<!-- 1:1문의 -->
+									<c:forEach var="vo" items="${favList}">
+									<tr>
+										<td>${vo.se_num}</td>
+										<td><a href="${pageContext.request.contextPath}/secondhand/seBuyDetail.do?se_num=${vo.se_num}">${vo.title}</a></td>
+										<td>${vo.dongho}</td>
+										<td>${vo.reg_date}</td>
+									</tr>
+									</c:forEach>
+									<!-- 하자보수신청 -->
+									<c:forEach var="vo" items="${favList}">
+									<tr>
+										<td>${vo.se_num}</td>
+										<td><a href="${pageContext.request.contextPath}/secondhand/seBuyDetail.do?se_num=${vo.se_num}">${vo.title}</a></td>
+										<td>${vo.dongho}</td>
+										<td>${vo.reg_date}</td>
+									</tr>
+									</c:forEach>  --%>
 								</table>
 								<div class="paging-button" style="display: none;">
 									<input type="button" value="더보기">
