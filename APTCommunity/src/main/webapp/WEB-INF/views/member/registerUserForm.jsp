@@ -18,14 +18,26 @@ $(function() {
 	//동-호수 중복 체크
 	$('#dongho_check').click(function(){
 		
-		if(!/^[0-9]{3,10}$/.test(
+		if(!/^[0-9]{3}$/.test(
 				            $('#dong').val())){
-			alert('숫자 사용');
+			alert('동 (101동 ~ 115동)이 유효하지 않습니다.');
 			$('#dong').val('');
 			$('#dong').focus();
 			return false;
 		}
-		if(!/^[0-9]{3,10}$/.test(
+		
+		// 동이 101동~115동 사이인지 확인합니다.
+		if (101 <= +$('#dong').val() && +$('#dong').val() <= 115) {
+			// 유효합니다.
+		} else {
+			alert('동 (101동 ~ 115동)이 유효하지 않습니다.');
+			$('#dong').val('');
+			$('#dong').focus();
+			return false;
+		}
+		
+		
+		if(!/^[0-9]{3,4}$/.test(
 				            $('#ho').val())){
 			alert('숫자 사용');
 			$('#ho').val('');

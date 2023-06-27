@@ -13,6 +13,7 @@
 	href="${pageContext.request.contextPath}/css/loginform.css">
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/common.js"></script>
 <script type="text/javascript">
 	$(function(){
 		$('#login_form').submit(function(){
