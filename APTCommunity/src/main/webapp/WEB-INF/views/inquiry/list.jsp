@@ -125,7 +125,7 @@
 													<a class="article" href="detail.do?in_num=${inquiry.in_num}">${inquiry.title}</a>
 												</div>
 											</td>
-											<td class="board-name">${inquiry.dongho}</td>
+											<td class="board-name" >${inquiry.dongho}</td>
 											<td class="board-date">${inquiry.reg_date}</td>
 										</tr>
 									</c:forEach>

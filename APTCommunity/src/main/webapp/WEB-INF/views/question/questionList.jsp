@@ -116,20 +116,22 @@
 						<!-- 게시글 목록 끝 -->
 					</div>
 						<!-- 글작성버튼 -->
+						
 					<div class="list-write-btn">
-						<span>
-						<c:if test="${user_auth != 9}">disabled="disabled"</c:if>
+						<c:if test="${user_auth == 9}">
+						<span>						
 							<a href="questionWriteForm.do">
 							<img alt="" src="${pageContext.request.contextPath}/img/write_btn.png">글쓰기
-							</a>
-							
+							</a>							
 						</span>
+						</c:if>
 						<!-- 자유게시판목록버튼 -->
 						<span>
 							<c:if test="${empty user_num}">disabled="disabled"</c:if>
 							<a href="questionList.do">목록</a>
 						</span>
 					</div>
+					
 				</div>
 			</div>
 				</li>

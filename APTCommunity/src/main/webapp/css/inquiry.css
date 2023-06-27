@@ -469,6 +469,10 @@ form .rep-content{
 /*상세 댓글리스트 스타일 ---------------------------------------------*/
 
 #output {
+	clear:both;
+	
+}
+.outputmain{
 	width: 700px;
 	height: 220px;
 	border: 1px solid #c5c6c7;

@@ -14,8 +14,12 @@ public class WriteFormAction implements Action{
 		HttpSession session = request.getSession();
 	Integer user_num = (Integer)session.getAttribute("user_num");
 	Integer user_auth = (Integer)session.getAttribute("user_auth");
-	if(user_num==null && user_auth !=9) {//로그인 되지 않은 경우,관리자가 아닌경우
+	if(user_num==null) {//로그인 되지 않은 경우
 		return "redirect:/member/loginForm.do";
+	}  
+	if(user_auth != 9) {
+		request.setAttribute("notice_msg", "관리자만 작성이 가능합니다.");
+		request.setAttribute("notice_url", request.getContextPath()+"/question/questionList.do");
 	}
 	//JSP 경로 반환
 	return "/WEB-INF/views/question/questionWriteForm.jsp";

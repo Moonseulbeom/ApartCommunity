@@ -25,7 +25,8 @@ $(function(){
 					$('#output').empty();
 				}
 				$(param.list).each(function(index,item){
-					let output = '<div class="comment">';
+					let output = '<div class="outputmain">';
+					output += '<div class="comment">';
 					output += '<h3> 문의 답변<h3>';
 					output += '<h4> 작성자 : 관리자</h4>';
 					output += '<hr size="1" width="100%" noshade="noshade" color="#e8e8e8">'
@@ -48,6 +49,7 @@ $(function(){
 						
 					}
 					
+					output += '</div>';
 					output += '</div>';
 					output += '</div>';
 					output += '</div>';

@@ -15,6 +15,7 @@ public class InquiryVO {
 	
 	private int check;//댓글 존재 확인
 	
+
 	
 	public int getCheck() {
 		return check;

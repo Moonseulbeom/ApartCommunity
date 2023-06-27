@@ -183,6 +183,46 @@ public class QuestionDAO {
 	}	
 		
 		//글 상세
+		public QuestionVO getQuestion(int que_num)throws Exception{
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			QuestionVO question = null;
+			String sql = null;
+			
+			try {
+				//커넥션풀로부터 커넥션을 할당
+				conn = DBUtil.getConnection();
+				//SQL작성
+				sql = "SELECT * FROM question q "
+						+ "JOIN member m USING(mem_num) "
+						+ "LEFT OUTER JOIN member_detail d "
+						+ "USING(mem_num) WHERE q.que_num=?";
+				//PreparedStatement 객체 생성
+				pstmt = conn.prepareStatement(sql);
+				//?에 데이터를 바인딩
+				pstmt.setInt(1, que_num);
+				//SQL문을 실행해서 결과행을 ResultSet에 담음
+				rs = pstmt.executeQuery();
+				
+				if(rs.next()) {
+					question = new QuestionVO();
+					question.setQue_num(rs.getInt("que_num"));
+					question.setTitle(rs.getString("title"));
+					question.setContent(rs.getString("content"));
+					question.setReg_date(rs.getDate("reg_date"));
+					question.setModify_date(rs.getDate("modify_date"));
+					question.setFilename(rs.getString("filename"));
+					question.setMem_num(rs.getInt("mem_num"));					
+				}
+			}catch(Exception e) {
+				throw new Exception(e);
+			}finally {
+				//자원정리
+				DBUtil.executeClose(rs, pstmt, conn);
+			}
+			return question;
+		}
 		
 		//파일 삭제
 		

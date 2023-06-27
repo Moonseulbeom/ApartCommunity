@@ -44,9 +44,7 @@
 						</li>
 						<li>
 						<div class="write-title">
-							<c:if test="${user_auth == 9 }">
 								<input type="text" id="title" name="title" value="Q. " placeholder="질문을 입력해주세요.">	
-							</c:if>
 						</div>
 						</li>
 						<li>
