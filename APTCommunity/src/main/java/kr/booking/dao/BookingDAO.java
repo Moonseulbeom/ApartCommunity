@@ -122,6 +122,7 @@ public class BookingDAO {
 		}
 		return list;
 	}
+	
 	//(유저) 시설 예약 하기
 	public void insertMemberBooking(BookingVO booking) throws Exception {
 		Connection conn = null;
@@ -150,7 +151,7 @@ public class BookingDAO {
 		}
 	}
 	
-	//(유저-마이페이지) 내가 예약한 시설 목록 불러오기
+	//(유저-마이페이지) [현재예약중] 내가 예약한 시설 목록 불러오기
 	public List<BookingVO> getMyBooking(int mem_num) throws Exception{
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -193,7 +194,7 @@ public class BookingDAO {
 		return list;
 	}
 
-	//(유저-마이페이지) 내가 예약 했었던 시설들 갯수 불러오기
+	//(유저-마이페이지) [yyyy-mm 기준] 내가 예약 했었던 시설들 갯수 불러오기
 	public int getBeforeMyBookingListCount(int mem_num, String bk_date) throws Exception {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -204,7 +205,7 @@ public class BookingDAO {
 		try {
 			conn = DBUtil.getConnection();
 			sql = "SELECT COUNT(*) FROM booking "
-				+ "WHERE mem_num=? AND bk_status=0 AND substr(B.bk_date,0,7)=? ";
+				+ "WHERE mem_num=? AND bk_status=0 AND substr(bk_date,0,7)=? ";
 			
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, mem_num);
@@ -223,7 +224,7 @@ public class BookingDAO {
 		return count;
 	}
 
-	//(유저-마이페이지) 내가 예약 했었던 시설들 목록 불러오기
+	//(유저-마이페이지) [yyyy-mm 기준] 내가 예약 했었던 시설들 목록 불러오기
 	public List<BookingVO> getBeforeMyBookingList(int startRow, int endRow, String bk_date, Integer mem_num) throws Exception {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -241,6 +242,10 @@ public class BookingDAO {
 				+ "WHERE rnum >= ? AND rnum <= ? ";
 
 			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, mem_num);
+			pstmt.setString(2, bk_date);
+			pstmt.setInt(3, startRow);
+			pstmt.setInt(4, endRow);
 			
 			rs = pstmt.executeQuery();
 			
@@ -330,7 +335,7 @@ public class BookingDAO {
 		}
 	}
 	
-	
+	//(관리자) [yyyy-mm 기준] 
 	
 	
 	

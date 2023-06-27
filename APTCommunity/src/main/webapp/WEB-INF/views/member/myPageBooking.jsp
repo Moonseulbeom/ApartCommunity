@@ -96,9 +96,11 @@
 								</table>
 								<hr id="tM" size="1" noshade="noshade">
 								<form id="beforeMyBookingListForm" method="post" action="beforeMyBookingList.do">
+									<input type="month" id="search_booking" name="search_booking"><small> " 조회하실 날짜를 선택하세요 "</small>
+									<hr>
 									<table id="BeforeMyBookingList">
-										<caption>이전 예약 조회 <input type="month" id="search_booking" name="search_booking"><small> &nbsp;"조회하실 날짜를 선택하세요"</small></caption>
-										<tr>
+										<caption>이전 예약 조회 </caption>
+<!-- 										<tr>
 											<th>예약번호</th>
 											<th>시설</th>
 											<th>타입</th>
@@ -113,8 +115,14 @@
 											<td>3명</td>
 											<td>2023-06-26</td>
 											<td>14:00 ~ 16:00</td>
-										</tr>
+										</tr> -->
 									</table>
+									<div class="paging-button" style="display:none;">
+										<input type="button" value="더보기">
+									</div>
+									<div id="loading" style="display: none;">
+										<img src="${pageContext.request.contextPath}/images/loading.gif" width="50" height="50">
+									</div>
 								</form>
 							<!-- 콘텐츠 가두기 끝 -->
 							</div>

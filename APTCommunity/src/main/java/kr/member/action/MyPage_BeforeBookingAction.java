@@ -39,14 +39,18 @@ public class MyPage_BeforeBookingAction implements Action{
 		PageUtil page = new PageUtil(Integer.parseInt(pageNum), count, rowCount);
 		
 		List<BookingVO> list = null;
+		String isEmp = null;
 		if (count > 0) {
 			list = dao.getBeforeMyBookingList(page.getStartRow(), page.getEndRow(), bk_date, mem_num);
+			isEmp = "yes";
 		}else {
 			list = Collections.emptyList();
+			isEmp = "no";
 		}
 		Map<String, Object> mapAjax = new HashMap<String, Object>();
 		mapAjax.put("count", count);
 		mapAjax.put("rowCount", rowCount);
+		mapAjax.put("isEmp", isEmp);
 		mapAjax.put("list", list);
 		
 		//JSON 데이터 생성
