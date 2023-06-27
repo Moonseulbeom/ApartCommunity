@@ -9,7 +9,6 @@ import java.util.List;
 import kr.booking.vo.BookingVO;
 import kr.booking.vo.Room_infoVO;
 import kr.util.DBUtil;
-import kr.util.StringUtil;
 
 public class BookingDAO {
 	//싱글턴 패턴
@@ -123,7 +122,7 @@ public class BookingDAO {
 		return list;
 	}
 	
-	//(유저) 시설 예약 하기
+	//(관리자,유저) 시설 예약 하기
 	public void insertMemberBooking(BookingVO booking) throws Exception {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -335,7 +334,68 @@ public class BookingDAO {
 		}
 	}
 	
-	//(관리자) [yyyy-mm 기준] 
+	//(관리자) 시설 상태 수정하기 (3개 for 문)
+	public void updateRoomType_Info(List<Room_infoVO> list) throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		PreparedStatement pstmt2 = null;
+		PreparedStatement pstmt3 = null;
+		String sql = null;
+		
+		try {
+			conn = DBUtil.getConnection();
+			conn.setAutoCommit(false);
+			PreparedStatement[] pst = {pstmt,pstmt2,pstmt3};
+			
+			for (int i = 0; i < list.size(); i++) {
+				Room_infoVO info = list.get(i);
+				sql = "UPDATE room_info SET room_status=? "
+					+ "WHERE room_num=? ";
+				
+				pst[i] = conn.prepareStatement(sql);
+				pst[i] .setInt(1, info.getRoom_status());
+				pst[i] .setInt(2, info.getRoom_num());
+				pst[i] .executeUpdate();
+			}
+			//모두 완료시
+			conn.commit();
+		} catch (Exception e) {
+			conn.rollback();
+			throw new Exception(e);
+		} finally {
+			DBUtil.executeClose(null, pstmt3, null);
+			DBUtil.executeClose(null, pstmt2, null);
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+	}
+	
+		
+	//-------------------비활성화 하기-----------------------------------------------------------------------
+	//(관리자) 해당 날짜 예약 모두취소하기 (시설번호, 해당날짜)
+	public void deleteBookingFromDate(int room_num, String bk_date) throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+		
+		try {
+			conn = DBUtil.getConnection();
+			sql = "DELETE FROM room_info WHERE bk_date=? AND room_num=? ";
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, bk_date);
+			pstmt.setInt(2, room_num);
+			
+			pstmt.executeUpdate();
+
+		} catch (Exception e) {
+			throw new Exception(e);
+		} finally {
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+	}
+	
+	//(관리자) 해당 날짜 시간대 모두 비활성화 하기 (125번째줄 수행)
+	
 	
 	
 	
