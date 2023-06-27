@@ -130,3 +130,43 @@
 #roomType_form button[type='submit']{
 	margin-top: 10px;
 }
+#adminRoomTypeListForm{
+	display: inline;
+}
+#adminRoomTypeListForm button{
+	float: right;
+	border: 0.1px solid black;
+	border-radius: 5px;
+	font-weight:800;
+	background-color:white; 
+	color:teal;
+	width: 75px;
+	
+}
+#adminRoomTypeListForm button:hover {
+	background-color: teal;
+	color: white;
+}
+.rnlBox div{
+	height:17px;
+	line-height: 17px;
+}
+.bottom-btn{
+	text-align: center;
+}
+.bottom-btn button{
+	margin-top: 30px !important;
+	border: 0.1px solid black;
+	border-radius: 5px;
+	font-weight:800;
+	font-size: 1.1em;
+	background-color:white; 
+	color:teal;
+	width: 75px;
+	height: 30px; 
+}
+.bottom-btn button:hover{
+	background-color: teal;
+	color: white;
+}
+
