@@ -1,5 +1,6 @@
 package kr.manager.action;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -71,12 +72,18 @@ public class ManageServiceListAction implements Action {
 		int in_count = in_dao.getInquiryCount(keyfield, keyword);
 		PageUtil in_page = new PageUtil(keyfield, keyword, Integer.parseInt(pageNum), 10, 10, in_count, "manageMain.do");	
 		List<InquiryVO> inquiry_list = in_dao.getListInquiry(in_page.getStartRow(), in_page.getEndRow(), keyfield, keyword);
+		for(InquiryVO vo: inquiry_list) {
+			System.out.println(vo.getCheck());
+		}
 		
 		//하자보수 리스트
 		FixDAO fix_dao = FixDAO.getInstance();
 		int fix_count = fix_dao.getFixCount(keyfield, keyword);
 		PageUtil fix_page = new PageUtil(keyfield, keyword, Integer.parseInt(pageNum), 10, 10, fix_count, "manageMain.do");	
 		List<FixVO> fix_list = fix_dao.getListFix(fix_page.getStartRow(), fix_page.getEndRow(), keyfield, keyword);
+		
+		//예약 리스트
+		
 		
 		
 		request.setAttribute("count", count);
