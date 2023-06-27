@@ -120,53 +120,68 @@ $(function(){
 		let room_num = $('#room_num').val();
 		$('#bk_date').val(isDate);
 		
-		//미리 시간배열을 저장해놓음
-		let test = {
-			"9:00 ~ 11:00":"<li id='9:00 ~ 11:00' class='cell-Li ytime'>9:00 ~ 11:00</li>",
-			"11:00 ~ 13:00":"<li id='11:00 ~ 13:00' class='cell-Li ytime'>11:00 ~ 13:00</li>",
-			"14:00 ~ 16:00":"<li id='14:00 ~ 16:00' class='cell-Li ytime'>14:00 ~ 16:00</li>",
-			"16:00 ~ 18:00":"<li id='16:00 ~ 18:00' class='cell-Li ytime'>16:00 ~ 18:00</li>",
-			"18:00 ~ 20:00":"<li id='18:00 ~ 20:00' class='cell-Li ytime'>18:00 ~ 20:00</li>",
-			"20:00 ~ 22:00":"<li id='20:00 ~ 22:00' class='cell-Li ytime'>20:00 ~ 22:00</li>"
-		};
+		let auth = $('#is_Auth').val();
 		
-		$.ajax({
-			url:'bookingGetTimeList.do',
-			type:'post',
-			data:{bk_date:isDate, room_num:room_num},
-			dataType:'json',
-			success:function(param){
-				$("#timeList_content").empty();
-				let output = "";
-				output = "<h4>현재 선택한 날짜 : "+ isDate +"</h4><div class='clear'></div>"; 
-				output += "<ul id='t_L'>";
-				
-				//위에서 정의한 시간배열을 이용하여 덮어쓰기를 진행
-				if(param.list){
-					param.list.forEach(function(element,index,array){
-						test[element] = '<li id="'+element+'" class="cell-Li disable">'+element+'</li>';
-					});
+		if(auth!=9){ //유저 일 경우
+			//미리 시간배열을 저장해놓음
+			let test = {
+				"9:00 ~ 11:00":"<li id='9:00 ~ 11:00' class='cell-Li ytime'>9:00 ~ 11:00</li>",
+				"11:00 ~ 13:00":"<li id='11:00 ~ 13:00' class='cell-Li ytime'>11:00 ~ 13:00</li>",
+				"14:00 ~ 16:00":"<li id='14:00 ~ 16:00' class='cell-Li ytime'>14:00 ~ 16:00</li>",
+				"16:00 ~ 18:00":"<li id='16:00 ~ 18:00' class='cell-Li ytime'>16:00 ~ 18:00</li>",
+				"18:00 ~ 20:00":"<li id='18:00 ~ 20:00' class='cell-Li ytime'>18:00 ~ 20:00</li>",
+				"20:00 ~ 22:00":"<li id='20:00 ~ 22:00' class='cell-Li ytime'>20:00 ~ 22:00</li>"
+			};
+			$.ajax({
+				url:'bookingGetTimeList.do',
+				type:'post',
+				data:{bk_date:isDate, room_num:room_num},
+				dataType:'json',
+				success:function(param){
+					$("#timeList_content").empty();
+					let output = "";
+					output = "<h4>현재 선택한 날짜 : "+ isDate +"</h4><div class='clear'></div>"; 
+					output += "<ul id='t_L'>";
+					
+					//위에서 정의한 시간배열을 이용하여 덮어쓰기를 진행
+					if(param.list){
+						param.list.forEach(function(element,index,array){
+							test[element] = '<li id="'+element+'" class="cell-Li disable">'+element+'</li>';
+						});
+					}
+					
+					for(let item in test){
+						output += test[item];
+					}
+					
+					output += "</ul>";
+					$('#timeList_content').append(output);
+					output = "<input type='button' value='인원수 : ' disabled='disabled'>";
+					output += "<input type='number' id='peoples' min='0' max='"+$('#total_mem').val()+"' value='0'>";
+					output += "<input type='submit' value='예약하기'>";
+					$('#timeList_content').append(output);
+					
+				},
+				error:function(){
+					alert('네트워크 오류 발생');
+					$("#timeList_content").empty();
+					let output ="<h1 class='right-text'>오류 발생</h1>";
+					$('#timeList_content').append(output);
 				}
-				
-				for(let item in test){
-					output += test[item];
-				}
-				
-				output += "</ul>";
-				$('#timeList_content').append(output);
-				output = "<input type='button' value='인원수 : ' disabled='disabled'>";
-				output += "<input type='number' id='peoples' min='0' max='"+$('#total_mem').val()+"' value='0'>";
-				output += "<input type='submit' value='예약하기'>";
-				$('#timeList_content').append(output);
-				
-			},
-			error:function(){
-				alert('네트워크 오류 발생');
-				$("#timeList_content").empty();
-				let output ="<h1 class='right-text'>오류 발생</h1>";
-				$('#timeList_content').append(output);
-			}
-		});//-----.ajax
+			});//-----.ajax
+		}else{//관리자 인 경우---adminRoomTimeSelectForm
+			$("#timeList_content").empty();
+			let output = "";
+			output = "<h1>현재 선택한 날짜 : "+ isDate +"</h1><div class='clear'></div>"; 
+			output += "<ul id='t_L'>";
+			output += "<li id='9:00 ~ 22:00' class='cell-Li ytime enable-Li'>9:00 ~ 22:00</li>";
+			output += "</ul>";
+			output += "<div id='rds'><input type='radio' name='status' value='1'>활성화 <input type='radio' name='status' value='0'>비활성화 </div>";
+			output += "<input type='submit' value='수정하기'>";
+			$('#timeList_content').append(output);
+			$('#start_time').val("9:00");
+			$('#end_time').val("22:00");
+		}
 	});// end of 예약 가능한 날짜 클릭()-----
 	
 
@@ -198,4 +213,23 @@ $(function(){
 		$('#book_mem').val($(this).val());
 		
 	});
+	
+	
+	//관리자--------------------------------------------------------------
+	$(document).on('submit','#adminRoomTimeSelectForm',function(){
+		let check = false;
+		radios = document.querySelectorAll('input[type=radio]');
+		for (var i = 0; i < radios.length; i++) {
+		  	if (!radios[i].checked) {
+				alert('활성화 또는 비활성화 체크를 해주세요');
+				check = true;
+		    	return;
+			}
+		}
+		if(check){
+			return;
+		}
+	});// end of submit()---
+	
+	
 });

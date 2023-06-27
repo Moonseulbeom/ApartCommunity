@@ -1,7 +1,5 @@
 package kr.booking.action;
 
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -10,8 +8,7 @@ import kr.booking.dao.BookingDAO;
 import kr.booking.vo.Room_infoVO;
 import kr.controller.Action;
 
-public class AdminRoomTypeListFormAction implements Action{
-
+public class AdminRoomTimeSelectFormAction implements Action{
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		//로그인 되어있는지 체크, 아닐시 로그인폼으로 이동
@@ -30,15 +27,12 @@ public class AdminRoomTypeListFormAction implements Action{
 		}
 		request.setCharacterEncoding("utf-8");
 		
-		String room_name = request.getParameter("room_name");
+		int room_num = Integer.parseInt(request.getParameter("room_num"));
 		BookingDAO dao = BookingDAO.getInstance();
-		List<Room_infoVO> list = dao.getRoomInfoList(room_name);
+		Room_infoVO room = dao.getOneRoomInfo(room_num);
 		
-		request.setAttribute("list", list);
-		request.setAttribute("room_name", room_name);
+		request.setAttribute("room", room);
 		
-		//JSP 경로 반환
-		return "/WEB-INF/views/booking/adminRoomTypeListForm.jsp";
+		return "/WEB-INF/views/booking/adminRoomTimeSelectForm.jsp";
 	}
-
 }

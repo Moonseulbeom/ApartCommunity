@@ -45,7 +45,7 @@
 
 /* 년 월 스타일 */
 #calendar tr:first-child{
-	font-size: 14pt;
+	font-size: 16pt;
 	font-weight: bold;
 }
 
@@ -62,6 +62,9 @@
 #calendar tr:first-child td:last-child{
 	text-align: left;
 	width: 200px;
+}
+#calendar td{
+	font-size:1.2em;
 }
 .go-prev,
 .go-next {
@@ -242,4 +245,69 @@ tr{
 	width: 72px;
     height: 32px;
     margin: 25px 10px 0px 10px;
+}
+
+/*
+---------관리자 전용----------------------*/
+#rnlTop div{
+	display:inline;
+}
+#go_back{
+	float: right;
+    border: 0.1px solid black;
+    border-radius: 5px;
+    font-weight: 800;
+    background-color: white;
+    color: teal;
+    width: 75px;
+    height: 21px;
+    padding: 0px;
+}
+#go_back:hover{
+	color: white;
+	background-color: teal;
+}
+
+#adminRoomTimeSelectForm h1{
+	color: #ed2a61;
+	float:center;
+	margin-top: 30px;
+	font-size: 25px;
+}
+#adminRoomTimeSelectForm li{
+	width: 300px;
+	height: 102px;
+	line-height: 102px;
+	font-weight:600;
+	font-size: 32pt;
+	display: inline-block;
+	margin-top: 30px;
+	border-top: 1px solid black;
+	border-bottom: 1px solid black;
+	cursor: pointer;
+}
+#rds{
+	height: 60px;
+	line-height: 60px;
+	font-size:1.1em;
+}
+#adminRoomTimeSelectForm input[type='radio']{
+	display:inline-block;
+	border: 1px solid #DDD;
+	margin-top:0px;
+	width: 30px;
+	height: 20px;
+	font-size: 12pt;
+	font-weight: 700; 
+	color: #3c6ffa;
+}
+#adminRoomTimeSelectForm input[type='submit']{
+	background-color: white;
+	color: #3c6ffa;
+	cursor: pointer;
+	margin-top: 10px;
+}
+#adminRoomTimeSelectForm input[type='submit']:hover {
+	background-color:#3c6ffa;
+	color: white; 
 }

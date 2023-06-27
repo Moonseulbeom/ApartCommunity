@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>시설 날짜 선택 </title>
+<title>관리자 시설 날짜 수정 </title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/custom.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/booking.css">
@@ -24,20 +24,18 @@
 		<jsp:include page="/WEB-INF/views/common/header.jsp" />
 		<!-- 내용 시작 -->
 		<div id="mainContainer">
-		<input type="hidden" id="is_Auth" value="1">
+		<input type="hidden" id="is_Auth" value="${user_auth}">
 			<div id="rnlTop">
-				<span id="rnlTopMenu">시설예약 &nbsp;&nbsp;>&nbsp;&nbsp;타입선택&nbsp;&nbsp;>&nbsp;&nbsp;날짜선택&nbsp;&nbsp;></span>
-				<c:if test="${user_auth==9}">
-					<form id="adminRoomTimeSelectForm" action="adminRoomTimeSelectForm.do" method="post">
-						<button type="submit" name="room_num" value="${room.room_num}">수정하기</button>
-					</form>
-				</c:if>
+				<span id="rnlTopMenu">시설예약 &nbsp;&nbsp;>&nbsp;&nbsp;타입선택&nbsp;&nbsp;>&nbsp;&nbsp;관리자날짜수정&nbsp;&nbsp;></span>
+				<div>
+					<input type="button" id="go_back" value="돌아가기" onclick="location.href='${pageContext.request.contextPath}/booking/roomTimeSelectForm.do?room_num=${room.room_num}'">
+				</div>
 			</div>
 			<hr class="Mhr" color="#edeff0" noshade="noshade">
 			<h4 class="rName">
 				현재 선택한 시설 - ${room.room_name} - ${room.room_type}
 			</h4>
-			<h4 class="center">예약 날짜와 시간을 선택하세요.</h4>
+			<h4 class="center">수정할 예약날짜를 선택하세요.</h4>
 			<!-- 합친 div -->
 			<div id="cols_wrap">
 				<!-- 왼쪽 영역 시작 -->
@@ -59,7 +57,7 @@
 				</table>
 				<!-- 왼쪽영역 끝 -->
 				<div id="timeList">
-					<form id="roomTimeSelectForm" action="roomTimeSelect.do" method="post">
+					<form id="adminRoomTimeSelectForm" action="adminRoomTimeSelect.do" method="post">
 						<div id="timeList_content">
 							<h1 class="right-text">날짜를 선택하시면 <br><br>시간목록이 나옵니다</h1>
 						</div>
