@@ -17,28 +17,21 @@ public class WriteAction implements Action{
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		//로그인 여부 체크
-				HttpSession session = 
-						      request.getSession();
-				Integer user_num = 
-						(Integer)session.getAttribute(
-								            "user_num");
+				HttpSession session = request.getSession();
+				
+				Integer user_num = (Integer)session.getAttribute("user_num");
 				if(user_num==null) {//로그인 되지 않은 경우
 					return "redirect:/member/loginForm.do";
 				}
 		
 		//로그인 된 경우
-				MultipartRequest multi = 
-						FileUtil.createFile(request);
+				MultipartRequest multi = FileUtil.createFile(request);
 				//자바빈(VO) 생성
 				InquiryVO inquiry = new InquiryVO();
-				inquiry.setTitle(
-						multi.getParameter("title"));
-				inquiry.setContent(
-					  multi.getParameter("content"));
+				inquiry.setTitle(multi.getParameter("title"));
+				inquiry.setContent(multi.getParameter("content"));
 				inquiry.setIp(request.getRemoteAddr());
-				inquiry.setFilename(
-						multi.getFilesystemName(
-								        "filename"));
+				inquiry.setFilename(multi.getFilesystemName("filename"));
 				inquiry.setMem_num(user_num);//작성자(회원번호)
 				
 				InquiryDAO dao = InquiryDAO.getInstance();

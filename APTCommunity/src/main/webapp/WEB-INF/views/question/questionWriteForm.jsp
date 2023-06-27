@@ -5,8 +5,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>1:1문의 글쓰기</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/inquiry.css">
+<title>자주묻는 질문 글쓰기</title>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/question.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/custom.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
@@ -36,21 +36,21 @@
 	<div class="inner">
 		<div id="container" class="inner">
 			<div class="main-page">
-				<h1>1:1문의 작성</h1>
+				<h1>자주묻는 질문 작성</h1>
 				<div class="write-page">	
-				<form id="write_form" action="write.do" method="post" enctype="multipart/form-data">
+				<form id="write_form" action="questionWrite.do" method="post" enctype="multipart/form-data">
 					<ul>
 						<li>
 						</li>
 						<li>
 						<div class="write-title">
-							<c:if test="${user_auth == 1 || user_auth == 9 }">
-								<input type="text" id="title" name="title" placeholder="제목을 입력해주세요.">	
+							<c:if test="${user_auth == 9 }">
+								<input type="text" id="title" name="title" value="Q. " placeholder="질문을 입력해주세요.">	
 							</c:if>
 						</div>
 						</li>
 						<li>
-							<textarea rows="5" cols="30" id="content" name="content" placeholder="내용을 입력해주세요."></textarea>
+							<textarea rows="5" cols="30" id="content" name="content" placeholder="답변을 입력해주세요.">A. </textarea>
 						</li>
 						<li>
 							<input type="file" id="filename" name="filename" accept="image/png, image/jpeg, image/gif" >
@@ -58,7 +58,7 @@
 						<li>
 						<div class="write-btn-div">
 							<input type="submit" value="등록" class="write-btn">
-							<input type="button" value="취소" onclick="location.href='list.do'" class="write-btn">
+							<input type="button" value="취소" onclick="location.href='questionList.do'" class="write-btn">
 						</div>
 						</li>
 					</ul>

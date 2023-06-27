@@ -29,6 +29,7 @@ public class ListAction implements Action{
 		
 		//게시글 목록
 		String pageNum = request.getParameter("pageNum");
+		
 		if(pageNum==null) pageNum = "1";
 		
 		String keyfield = request.getParameter("keyfield");

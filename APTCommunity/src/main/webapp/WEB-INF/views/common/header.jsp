@@ -94,7 +94,7 @@
 							<dd>
 								<ul>
 									<li><a href="${pageContext.request.contextPath}/inquiry/list.do"> 1:1문의 </a></li>
-									<li><a href="${pageContext.request.contextPath}/question/list.do"> 자주묻는 질문 </a></li>
+									<li><a href="${pageContext.request.contextPath}/question/questionList.do"> 자주묻는 질문 </a></li>
 								</ul>
 							</dd>
 						</dl>
@@ -132,10 +132,10 @@
 							<li class="sub_dropdown"><a href="${pageContext.request.contextPath}/secondhand/seSaleList.do"> 중고판매 </a></li>
 						</ul>
 					</li>
-					<li class="dropdown"><a href="#">기타</a>
+					<li class="dropdown"><a href="${pageContext.request.contextPath}/inquiry/list.do">기타</a>
 						<ul class="lnb_dp2">
 							<li class="sub_dropdown"><a href="${pageContext.request.contextPath}/inquiry/list.do"> 1:1문의 </a></li>
-							<li class="sub_dropdown"><a href="${pageContext.request.contextPath}/question/list.do"> 자주묻는 질문 </a></li>
+							<li class="sub_dropdown"><a href="${pageContext.request.contextPath}/question/questionList.do"> 자주묻는 질문 </a></li>
 						</ul>
 					</li>
 				</ul>

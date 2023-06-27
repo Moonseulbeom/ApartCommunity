@@ -11,6 +11,7 @@ public class InquiryVO {
 	private Date modify_date; //수정일
 	private String filename; //파일명
 	private String ip; //ip주소
+	private String dongho;//회원 아이디
 	
 	private int check;//댓글 존재 확인
 	
@@ -21,8 +22,6 @@ public class InquiryVO {
 	public void setCheck(int check) {
 		this.check = check;
 	}
-	
-	private String dongho;//회원 아이디
 	
 	public String getDongho() {
 		return dongho;

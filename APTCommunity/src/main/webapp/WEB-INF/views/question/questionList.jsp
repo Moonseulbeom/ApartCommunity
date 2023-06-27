@@ -1,22 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>1:1문의</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/inquiry.css">
+<title>자주 묻는 질문</title>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/question.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/custom.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/common.js"></script>
 <script type="text/javascript">
 	$(function(){
-		$('#search_form').on('submit',function(){
+		$('#search_form').submit(function(){
 			if($('#keyword').val().trim()==''){
 				alert('검색어를 입력하세요');
-				$('#keyword').val('').focus();
+				$('#keyword').val().focus();
 				return false;
 			}
 		});
@@ -58,9 +58,9 @@
 					</div>
 			<div class="main-search">
 				<!-- 검색 시작 -->
-					<form id="search_form" method="get" action="list.do">
-						<div class="inquiry-main-search">
-							<b> 1:1문의 목록 </b>
+					<form id="search_form" method="get" action="questionList.do">
+						<div class="question-main-search">
+							<b> 자주 묻는 질문 </b>
 							<ul>
 								<li>
 									<select name="keyfield" style="height: 30px;">
@@ -76,7 +76,7 @@
 						</div>
 					</form>
 					<!-- 검색 끝 -->
-					<div class="inquiry-main-list">
+					<div class="question-main-list">
 						<ul>
 							<li>글번호</li>
 							<li>제목</li>
@@ -84,26 +84,6 @@
 							<li>작성일</li>
 						</ul>
 						<hr color="#edeff0" noshade="noshade">
-						<!-- 상단 고정 시작 -->
-						<div class="board-article-fixed">
-						<table class="list-fixed">
-						<c:forEach var="fixed" items="${ fixedList }">
-							<tr>
-								<td colspan="2" class="td-article">
-									<div class="board-number-fixed">
-										<span>공지</span>
-									</div>
-									<div class="board-list">
-										<a class="article-fixed" href="${pageContext.request.contextPath}/notice/noticeDetail.do?no_num=${ fixed.no_num }">${ fixed.title }</a>
-									</div>
-								</td>
-								<td class="board-name">관리자</td>
-								<td class="board-date">${ fixed.reg_date }</td>
-							</tr>
-						</c:forEach>
-						</table>
-						</div>
-						<!-- 상단 고정 끝 -->
 						<!-- 게시글 없는 경우 -->
 						<c:if test="${ count < 1 || empty count }">
 							<div class="result-fix-display">
@@ -115,18 +95,18 @@
 						<c:if test="${ count > 0 }">
 							<div class="board-article">
 								<table class="list">
-									<c:forEach var="inquiry" items="${list}">
+									<c:forEach var="question" items="${list}">
 										<tr>
 											<td colspan="2" class="td-article">
 												<div class="board-number">
-													${inquiry.in_num}
+													${question.que_num}
 												</div>
 												<div class="board-list">
-													<a class="article" href="detail.do?in_num=${inquiry.in_num}">${inquiry.title}</a>
+													<a class="article" href="questionDetail.do?que_num=${question.que_num}">${question.title}</a>
 												</div>
 											</td>
-											<td class="board-name">${inquiry.dongho}</td>
-											<td class="board-date">${inquiry.reg_date}</td>
+											<td class="board-name">${question.dongho}</td><!-- 작성자명 관리자로 변경해야됨 -->
+											<td class="board-date">${question.reg_date}</td>
 										</tr>
 									</c:forEach>
 								</table>
@@ -138,14 +118,16 @@
 						<!-- 글작성버튼 -->
 					<div class="list-write-btn">
 						<span>
-							<a href="writeForm.do">
+						<c:if test="${user_auth != 9}">disabled="disabled"</c:if>
+							<a href="questionWriteForm.do">
 							<img alt="" src="${pageContext.request.contextPath}/img/write_btn.png">글쓰기
 							</a>
+							
 						</span>
 						<!-- 자유게시판목록버튼 -->
 						<span>
 							<c:if test="${empty user_num}">disabled="disabled"</c:if>
-							<a href="list.do">목록</a>
+							<a href="questionList.do">목록</a>
 						</span>
 					</div>
 				</div>

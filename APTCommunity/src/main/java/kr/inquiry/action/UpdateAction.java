@@ -33,7 +33,7 @@ public class UpdateAction implements Action{
 		//수정전 데이터 반환
 		InquiryVO db_inquiry = dao.getInquiry(in_num);
 		//로그인한 회원번호와 작성자 회원번호 일치 여부 체크
-		if(user_num != db_inquiry.getMem_num() || user_auth == 9) {
+		if(user_num !=  db_inquiry.getMem_num() && user_auth != 9) {
 			//로그인한 회원번호와 작성자 회원번호 불일치
 			FileUtil.removeFile(request, filename);
 			return "/WEB-INF/views/common/notice.jsp";

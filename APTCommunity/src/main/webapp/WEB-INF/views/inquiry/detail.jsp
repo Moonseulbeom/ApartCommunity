@@ -34,7 +34,7 @@
 				<div class="menu">
 					<ul>
 						<li><a href="${pageContext.request.contextPath}/inquiry/list.do">1:1문의</a></li>
-						<li><a href="${pageContext.request.contextPath}/inquiry/question.do">자주 묻는 질문</a></li>
+						<li><a href="${pageContext.request.contextPath}/question/questionList.do">자주 묻는 질문</a></li>
 					</ul>
 				</div>
 				</div>

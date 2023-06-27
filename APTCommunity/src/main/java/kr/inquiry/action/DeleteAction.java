@@ -15,20 +15,18 @@ public class DeleteAction implements Action{
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		HttpSession session = request.getSession();
-		Integer user_num = 
-				(Integer)session.getAttribute(
-						             "user_num");
+		Integer user_num = (Integer)session.getAttribute("user_num");
+		Integer user_auth = (Integer)session.getAttribute("user_auth");
+		
 		if(user_num==null) {//로그인이 되지 않은 경우
 			return "redirect:/member/loginForm.do";
 		}
 		//로그인 된 경우
-		int in_num = Integer.parseInt(
-				         request.getParameter(
-				        		     "in_num"));
+		int in_num = Integer.parseInt(request.getParameter("in_num"));
 		InquiryDAO dao = InquiryDAO.getInstance();
 		InquiryVO db_inquiry = dao.getInquiry(in_num);
 		//로그인한 회원번호와 작성자 회원번호 일치 여부 체크
-		if(user_num !=  db_inquiry.getMem_num()) {
+		if(user_num !=  db_inquiry.getMem_num() && user_auth != 9) {
 			//로그인한 회원번호와 작성자 회원번호가 불일치
 			return "/WEB-INF/views/common/notice.jsp";
 		}
@@ -37,8 +35,7 @@ public class DeleteAction implements Action{
 		dao.deleteInquiry(in_num);
 		
 		//파일 삭제
-		FileUtil.removeFile(request, 
-				      db_inquiry.getFilename());
+		FileUtil.removeFile(request,db_inquiry.getFilename());
 		
 		return "redirect:/inquiry/list.do";
 	}

@@ -1,4 +1,5 @@
 @charset "UTF-8";
+
 /*메인 페이지*/
 .page-main{
 	width: 1000px;
@@ -93,13 +94,12 @@
 	font-size: 1.2em;
 	list-style: disc;
 }
-
-/*게시글리스트 상단*/
+/*게시글리스트 상단---------------------------------------------------*/
 .main-img img{
 	width: 700px;
 	height: 285px;
 }
-.inquiry-main-search{
+.question-main-search{
 	margin-top:30px;
 	border-top: 2px solid #c5c6c7;
 	border-bottom: 2px solid #c5c6c7;
@@ -109,7 +109,7 @@
 	align-items: center;
 	justify-content: space-between;
 }
-.inquiry-main-search b{
+.question-main-search b{
 	width: 200px;
 }
 #keyword{
@@ -125,60 +125,19 @@
 	height: 30px;
 }
 /*공지사항 게시글 상단*/
-.inquiry-main-list ul{
+.question-main-list ul{
 	margin: 10px 0;
 }
 
-.inquiry-main-list li{
+.question-main-list li{
 	width: 100px;
 	height: 30px;	
 	text-align: center;
 	font-size: 1.1em;
 }
-.inquiry-main-list li:nth-child(2){
+.question-main-list li:nth-child(2){
 	width: 400px;
 }
-
-/*공지사항 고정 게시글*/
-.list-fixed td{
-	display: table-cell;
-    vertical-align: inherit;
-    background-color: #f7f7f7;
-} 
-.board-article-fixed td{
-	height: 28px;
-    padding: 4px 7px;
-    border-bottom: 1px solid #f2f2f2;
-} 
-.list-fixed{
-	width: 100%;
-}
-.list-fixed td{
-	padding-left: 5px;
-    padding-right: 18px;
-}
-.article-fixed{
-	line-height: 18px;
-    color: #ff4e59;;
-    font-weight: bold;
-}
-.list-fixed .board-number-fixed{
-	width: 60px;
-	color: #ff4e59;;
-    font-weight: bold;
-	display: table-cell;
- 	padding: 0 13px;
- 	vertical-align: middle;
- 	text-align: center;
-}
-.list-fixed .board-number-fixed span{
-	color: #ff4e59;;
-	border: 1px solid #ffc6c9;
-	padding: 1px 14px;
-	background-color: #ffe3e4;
-	border-radius: 5px;
-}
-
 /* 게시글 리스트----------------------------*/
 .list td{
 	display: table-cell;
@@ -221,14 +180,13 @@
 	text-align:center;
 }
 
-
 /*게시글이 없을 경우---------------------------------------*/
 .result-fix-display{
 	height: 50px;
 	padding-top:25px;	
 	text-align: center;
 }
-/*버튼----------------------------------------------------*/
+/*리스트 하단 버튼----------------------------------------------------*/
 .list-write-btn{
 	margin: 20px 15px 0 0;
 	text-align: right;
@@ -241,6 +199,19 @@
 .list-write-btn span img{
 	width: 18px;
 	height: 18px;
+}
+
+/*상단 바로가기 버튼-------------------------------------------------------*/
+.service-up{
+	margin-right: 30px;
+	position: fixed;
+    right: 24px;
+    bottom: 24px;
+    z-index: 50;
+}
+.link-service img{
+	width: 50px;
+	height: 50px;
 }
 
 /*글 상세 페이지-----------------------------------------------*/
@@ -317,20 +288,6 @@
 	height: 25px;
 }
 
-/*상단 바로가기 버튼*/
-.service-up{
-	margin-right: 30px;
-	position: fixed;
-    right: 24px;
-    bottom: 24px;
-    z-index: 50;
-}
-.link-service img{
-	width: 50px;
-	height: 50px;
-}
-
-
 /*글 작성 페이지-------------------------------------------*/
 
 .write-page-main{
@@ -405,125 +362,6 @@
 .write-btn:hover{
 	cursor: pointer;
 }
-
-
-/*상세 댓글 작성 스타일 ---------------------------------------------*/
-#comment{
-	padding: 5px 10px 40px 10px;
-   	margin-top: 10px;
-   	background-color: #EEEEEE;
-}
-
-#mre_form{
-	padding: 5px 10px 40px 10px;
-   	margin-top: 10px;
-   	background-color: #EEEEEE;
-}
-
-#mre_form{
-	padding-top: 10px;
-	width: 640px;
-}
-#comment_form{
-	width: 660px;
- 	border: none;
-}
-#comment .comment-title{
-   color: #000000;
-   font-size: 12pt;
-   line-height: 200%;
-}
-#comment .letter-count{
-   font-size: 10pt;
-   color: #999999;
-}
-form .rep-content{
-   width: 100%;
-   height: 50px;
-   margin: 10px 0px;
-}
-#comment_first, div#m_first{
-   float:left; 
-   width: 70%;
-   margin-bottom: 10px;
-}
-#comment_second, div#m_second{
-   float: right;
-   width: 30%;
-   margin-bottom: 10px;
-}
-#comment_second input, #m_second input{
-	width: 40px;
-	height: 28px; 
-	border: 1px solid #c7c9cc;
-}
-.align-right{
-	text-align: right;
-}
-#loading{
-   text-align: center;
-}
-
-
-
-/*상세 댓글리스트 스타일 ---------------------------------------------*/
-
-#output {
-	width: 700px;
-	height: 220px;
-	border: 1px solid #c5c6c7;
-	border-radius: 5px;
-	margin: 30px 0 0 0; 
-}
-.comment{
-	margin: 20px 20px 0 20px ;
-}
-
-.comment h3{
-	margin: 0 0 0 20px;
-}
-
-.comment h4{
-	text-align: right;
-	margin: 0 20px 0 0;
-}
-.sub-item{
-	padding: 20px 0 0 0;
-    width: 100%;
-}
-
-.sub-item p{
-	margin: 10px 0 20px 10px;
-	padding: 0 0 0 0;
-    width: 100%;
-    font-size: 1.3em;
-    text-align: left;
-}
-
-.sub-item span{
-	display:inline-block;
-	margin: 10px 0 0 20px;
-}
-
-.sub-down{
-	width: 100%;
-    height: 40px;
-    padding: 0 0 0 0;
-}
-
-.sub-down span{
-	text-align: right;
-}
-
-.sub-down input[type="button"]{
-	border: none;
-	float:right;
-	font-size:8pt;
-}
-
-
-
-
 
 
 

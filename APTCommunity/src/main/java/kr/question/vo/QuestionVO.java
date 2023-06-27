@@ -11,7 +11,14 @@ public class QuestionVO {
 	private Date modify_date; //수정일
 	private String filename; //파일명
 	private String ip; //IP주소
+	private String dongho; //회원 아이디
 	
+	public String getDongho() {
+		return dongho;
+	}
+	public void setDongho(String dongho) {
+		this.dongho = dongho;
+	}
 	public int getQue_num() {
 		return que_num;
 	}

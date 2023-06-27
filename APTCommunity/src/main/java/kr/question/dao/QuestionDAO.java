@@ -18,6 +18,30 @@ public class QuestionDAO {
 		}
 		private QuestionDAO() {}
 		
+	    //회원 아이디?불러오기
+	    public String getDongho(int mem_num) throws Exception{
+	    	Connection conn = null;
+	    	PreparedStatement pstmt = null;
+	    	ResultSet rs = null;
+	    	String sql = null;
+	    	String dongho = null;
+	    	try {
+				conn = DBUtil.getConnection();
+				sql = "SELECT dongho FROM member WHERE mem_num = ?";
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, mem_num);
+				rs = pstmt.executeQuery();
+				if(rs.next()) {
+					dongho = rs.getString(1);
+				}
+			} catch (Exception e) {
+				throw new  Exception(e);
+			} finally {
+				DBUtil.executeClose(rs, pstmt, conn);
+			}
+	    	return dongho;
+	    }
+		
 		//글 등록
 		public void insertQuestion(QuestionVO question)
 										throws Exception{
@@ -29,7 +53,7 @@ public class QuestionDAO {
 				//커넥션풀로부터 커넥션을 할당
 				conn = DBUtil.getConnection();
 				//SQL문 작성
-				sql = "INSERT INTO question (in_num,"
+				sql = "INSERT INTO question (que_num,"
 						+ "title,content,filename,ip,mem_num) "
 						+ "VALUES (question_seq.nextval,?,?,?,?,?)";
 				//PreparedStatement 객체 생성
