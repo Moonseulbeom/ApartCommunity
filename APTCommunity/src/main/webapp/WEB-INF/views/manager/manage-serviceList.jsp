@@ -2,7 +2,9 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/booking.calender.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/manage.js"></script>
+
 <!-- 1.회원관리 -->
 <div id="manage_member">
 	<!--  목록 검색창 -->
@@ -42,10 +44,10 @@
 		</table>
 		<div id="change-memlist">
 			<table id="mem_output">
-				<c:forEach var="mem" items="${ list }">
+				<c:forEach var="mem" items="${ list }" varStatus="status">
 				<tr>
 					<td id="mem_detail_btn" class="mem-detail-btn">
-						<input type="hidden" name="mem_num" class="mem_num" value="${ mem.mem_num }">
+						<input type="hidden" name="mem_num" id="mem_num" value="${ mem.mem_num }">
 						${ mem.dongho }
 					</td>
 					<td id="2">${ mem.name }</td>
@@ -187,6 +189,7 @@
 				<th>제목</th>
 				<th>동-호수</th>
 				<th>작성일</th>
+				<th>답변여부</th>
 			</tr>
 		</table>
 		<div id="change-inquirylist">
@@ -197,6 +200,10 @@
 						<td id="2">${ inquiry.title }</td>
 						<td id="3">${ inquiry.dongho }</td>
 						<td id="4">${ inquiry.reg_date }</td>
+						<td>
+							<c:if test="${ inquiry.check > 0 }">답변완료</c:if>
+							<c:if test="${ inquiry.check == 0 }">미답변</c:if>
+						</td> 
 					</tr>
 				</c:forEach>
 			</table>
@@ -234,14 +241,14 @@
 		</ul>
 	</form>
 	<!--  목록 검색참 끝 -->
-	<!-- 회원 목록 -->
+	<!-- 글 목록 -->
 	<div class="mem-list">
 		<table id="fix_info">
 			<tr>
+				<th>글 번호</th>
+				<th>제목</th>
 				<th>동-호수</th>
-				<th>세대주</th>
-				<th>전화번호</th>
-				<th>가입일</th>
+				<th>작성일</th>
 			</tr >
 		</table>
 		<div id="change-memlist">
@@ -262,3 +269,51 @@
 	</div>
 </div>
 <!-- 5. 하자보수글 관리 끝 -->
+<!-- 6. 예약 관리 -->
+<div id="manage_book">
+	<!--  목록 검색창 -->
+	<h1>예약 관리</h1>
+	<form action="manage-serviceList.do" method="get" id="mem_search_form">
+		<ul>
+			<li>
+				<div class="mem-search">
+					<select name="mem_select" class="select-member">
+						<option value="1"
+							<c:if test="${param.mem_select==1}">selected</c:if>>세대주</option>
+						<option value="2"
+							<c:if test="${param.mem_select==2}">selected</c:if>>동</option>
+						<option value="3"
+							<c:if test="${param.mem_select==3}">selected</c:if>>호수</option>
+					</select> <input type="search" placeholder="회원 목록 조회" class="search-member"
+						name="keyword" id="keyword" value="${ param.keyword }">
+				</div>
+			</li>
+			<li>
+				<div class="mem-search-btn">
+					<input type="submit" value="검색">
+				</div>
+			</li>
+		</ul>
+	</form>
+	<!--  목록 검색참 끝 -->
+	<!-- 달력 -->
+	<div class="book-cal">
+	<table id="calendar" >
+		<tr>
+			<td><label class="go-prev" onclick="prevCalendar()"> ◀ </label></td>
+			<td id="calendarTitle" colspan="5" align="center" ><label>invalid</label></td>
+			<td><label class="go-next" onclick="nextCalendar()"> ▶ </label></td>
+		</tr>
+		<tr class="weeks">
+			<td class="holiday">일</td>
+			<td>월</td>
+			<td>화</td>
+			<td>수</td>
+			<td>목</td>
+			<td>금</td>
+			<td class="saturday">토</td>
+		</tr>
+	</table>
+	</div>
+</div>
+<!-- 5. 예약 관리 끝 -->
