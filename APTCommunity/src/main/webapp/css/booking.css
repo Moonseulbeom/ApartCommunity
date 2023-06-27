@@ -123,3 +123,10 @@
 	font-size: 11pt;
 	margin-bottom: 5px;
 }
+#roomType_form span{
+	margin-bottom: 5px;
+}
+
+#roomType_form button[type='submit']{
+	margin-top: 10px;
+}

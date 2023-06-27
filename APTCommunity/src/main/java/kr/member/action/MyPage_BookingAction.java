@@ -25,7 +25,13 @@ public class MyPage_BookingAction implements Action{
 		BookingDAO dao = BookingDAO.getInstance();
 		List<BookingVO> list = dao.getMyBooking(user_num);
 		
+		String result = "success";
+		if (list == null) {
+			result = "null";
+		}
+		
 		request.setAttribute("list", list);
+		request.setAttribute("result", result);
 		
 		return "/WEB-INF/views/member/myPageBooking.jsp";
 	}
