@@ -186,10 +186,10 @@
 						<table>
 							<c:forEach var="notice" items="${noticelist}">
 								<tr>
+									<td>${notice.no_num}</td>
 									<td>
-										<a href="${pageContext.request.contextPath}/notice/noticeDetail.do?no_num=${notice.no_num}">${notice.no_num}</a>
+										<a href="${pageContext.request.contextPath}/notice/noticeDetail.do?no_num=${notice.no_num}">${notice.title}</a>									
 									</td>
-									<td>${notice.title}</td>
 									<td>${notice.reg_date}</td>
 								</tr>
 							</c:forEach>
@@ -203,16 +203,11 @@
 						<table>
 							<c:forEach var="vo" items="${boardList}">
 								<tr>
+									<td>${vo.board_num}</td>
 									<td>
 										<c:if test="${!empty user_auth}">
-											<a href="${pageContext.request.contextPath}/board/boardDetail.do?board_num=${vo.board_num}">${vo.board_num}</a>
+										<a href="${pageContext.request.contextPath}/board/boardDetail.do?board_num=${vo.board_num}">${vo.title}</a>
 										</c:if>
-										<c:if test="${empty user_auth}">
-											${vo.board_num}
-										</c:if>
-									<td>
-									<td>
-										<c:if test="${!empty user_auth}">${vo.title}</c:if>
 										<c:if test="${empty user_auth}">로그인 후 열람 가능합니다.</c:if>
 									</td>
 									<td>${vo.reg_date}</td>
