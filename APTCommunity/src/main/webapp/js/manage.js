@@ -1,23 +1,22 @@
 $(function(){
 //상세 페이지 전환
-	//1.회원관리-상세페이지
-		$('.mem-detail-btn').on('click',function(){
-			let mem_num = $('.mem_num').val();	
-			alert(mem_num);
-			 console.log(mem_num);
+	//1.회원관리-상세페이지/*
+		$('#change-memlist').on('click','.mem-detail-btn',function(){
+			mem_num = $(this).find('#mem_num').val();
 			$.ajax({
 				 type:'get',
 				 url:'manage-detail.do?mem_num='+mem_num,
 				 dataType:'text',
 				 success:function(data){
 					 let plus = $('#manage_content').html(data).find('#mem_detail');
-					 $('#manage_content').html(plus);
+					 $('#ma	nage_content').html(plus);
 				 },
 				 error:function(){
 					 alert('1.통신 에러 발생');
 				 }
 			 })
 		})
+
 //회원 목록	
 	//회원 관리 검색참
 	$('#mem_search_form').submit(function(event){
@@ -32,7 +31,6 @@ $(function(){
 			data:form_data,
 			dataType:'json',
 			success:function(param){
-				console.log(param.list);
 				$('#change-memlist').empty();
 				
 				let output = '';
@@ -47,7 +45,9 @@ $(function(){
 					output += '<table id="mem_output">';
 					$(param.list).each(function(index,item){
 						output += '<tr>';
-						output += '<td>'+item.dongho+'</td>';
+						output += '<td id="mem_detail_btn" class="mem-detail-btn">';
+						output += '<input type="hidden" name="mem_num" id="mem_num" value="'+item.mem_num+'">';
+						output += item.dongho+'</td>'
 						output += '<td>'+item.name+'</td>';
 						output += '<td>'+item.phone+'</td>';
 						output += '<td>'+item.reg_date+'</td>';
@@ -62,10 +62,6 @@ $(function(){
 				alert('오류발생');
 			}
 		})
-		
-		
-		
-//---------------------------------- 조건 체크 --------------------------------------------//		
 		//빈 글자 검색 막기
 		if($('#keyword').val().trim() == ''){
 			alert('검색할 내용을 입력하세요');
@@ -73,6 +69,13 @@ $(function(){
 			return false;
 		}
 	})
+//회원목록 검색 끝		
+		
+//캘린더 호출
+buildCalendar();
+
+			
+//---------------------------------- 조건 체크 --------------------------------------------//		
 	$('#write_manage_form').submit(function(){
 			if($('#title').val().trim()==''){
 				alert('제목을 입력하세요');
@@ -100,4 +103,41 @@ $(function(){
 				$('#re_first .letter-count').text(remain);
 			}
 		})
+//----------------------------------회원 상세 수정 조건 체크 --------------------------------------------//	
+
+	$('#mem_detail_form').submit(function(){
+		if($('#name').val().trim()==''){
+				alert('세대주를 입력하세요');
+				$('#title').val('').focus();
+				return false;
+			}
+			if($('#passwd').val().trim()==''){
+				alert('비밀번호를 입력하세요');
+				$('#content').val('').focus();
+				return false;
+			}
+			if($('#phone').val().trim()==''){
+				alert('전화번호를 입력하세요');
+				$('#content').val('').focus();
+				return false;
+			}
+			if($('#email').val().trim()==''){
+				alert('이메일를 입력하세요');
+				$('#content').val('').focus();
+				return false;
+			}
+	})
+
+
+
+
+
+
+
+
+
+
+
+
+
 })

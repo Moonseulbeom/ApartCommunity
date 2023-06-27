@@ -7,6 +7,7 @@
 <meta charset="UTF-8">
 <title>관리자페이지</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/booking_calender.css">
 <link rel="stylesheet" href="${ pageContext.request.contextPath }/css/manager.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
@@ -87,6 +88,20 @@
 			 })
 		})
 		//6.예약 관리
+		$('#book_btn').on('click',function(){
+			 $.ajax({
+				 type:'get',
+				 url:'manage-serviceList.do',
+				 dataType:'text',
+				 success:function(data){
+					 let plus = $('#manage_content').html(data).find('#manage_book');
+					 $('#manage_content').html(plus);
+				 },
+				 error:function(){
+					 alert('4.통신 에러 발생');
+				 }
+			 })
+		})
 	})
 </script>
 </head>

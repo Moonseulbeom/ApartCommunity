@@ -34,6 +34,14 @@ public class ModifyUserAction implements Action{
 			  request.getParameter("email"));
 		member.setCarnum(
 			request.getParameter("carnum"));
+		if(request.getParameter("passwd") != null) {//관리자 페이지 수정
+			System.out.println(request.getParameter("passwd"));
+			member.setPasswd(request.getParameter("passwd"));
+			MemberDAO dao = MemberDAO.getInstance();
+			dao.updateMember(member);	
+			//JSP 경로 반환
+			return"redirect:/manager/manageMain.do";
+		}
 		
 		MemberDAO dao = MemberDAO.getInstance();
 		dao.updateMember(member);		
