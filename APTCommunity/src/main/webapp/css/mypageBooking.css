@@ -172,7 +172,7 @@
 	margin-bottom: 10px;
 }
 #myBookingList tr:first-child{
-	border-top: 1px solid #c5c6c7;
+	border: 1px solid #c5c6c7;
 	background-color: #bfd0ff;
 	font-size:1.2em;
 }
@@ -207,7 +207,7 @@
 	line-height: 20px;
 }
 #BeforeMyBookingList tr:first-child{
-	border-top: 1px solid #c5c6c7;;
+	border: 1px solid #c5c6c7;;
 	background-color: #ffcb82;
 	font-size:1.2em;
 }
@@ -221,4 +221,25 @@
 
 #BeforeMyBookingList input[type='month']{
 	margin-left:20px;
+}
+#beforeMyBookingListForm hr{
+	margin: 10px 0px;
+}
+.paging-button{
+	text-align: right;
+}
+.paging-button input[type='button']{
+	width: 80px;
+	height: 40px;
+	margin-top:20px;
+	border: 1px solid #ccc;
+	background-color: white;
+	color: teal;
+}
+#loading {
+	text-align: center;
+}
+#loading img{
+	width: 50px;
+	height: 50px; 
 }
