@@ -50,7 +50,7 @@ public class MemberDAO {
 			
 			//member_detail 테이블에 데이터 저장
 			sql = "INSERT INTO member_detail (mem_num,"
-					+ "name,passwd,phone,email,carnum,reg_date"
+					+ "name,passwd,phone,email,carnum,reg_date "
 					+ ") VALUES(?,?,?,?,?,?,SYSDATE)";
 			pstmt3 = conn.prepareStatement(sql);
 			pstmt3.setInt(1, num);

@@ -15,9 +15,21 @@ $(function() {
 	//1:동-호수 미중복
 	let idChecked = 0;
 	
+	$('#dong').keyup(function(){
+ 		if($(this).val() == 0){
+ 			$(this).val('');
+ 		}
+ 	});
+	
+	$('#ho').keyup(function(){
+ 		if($(this).val() == 0){
+ 			$(this).val('');
+ 		}
+ 	});
+	
 	//동-호수 중복 체크
 	$('#dongho_check').click(function(){
-		
+	 		
 		if(!/^[0-9]{3}$/.test(
 				            $('#dong').val())){
 			alert('동 (101동 ~ 115동)이 유효하지 않습니다.');
@@ -39,11 +51,24 @@ $(function() {
 		
 		if(!/^[0-9]{3,4}$/.test(
 				            $('#ho').val())){
-			alert('숫자 사용');
+			alert('호가 유효하지 않습니다.(호수는 101호~2506호까지)');
 			$('#ho').val('');
 			$('#ho').focus();
 			return false;
 			}
+		
+ 		if($('#ho').val().length==3 && ($('#ho').val().substring(0,1)==0 || $('#ho').val().substring(1) == 0 || $('#ho').val().substring(1)>6)){
+ 			alert('호가 유효하지 않습니다.(호수는 101호~2506호까지)');
+ 			$('#ho').val('');
+			$('#ho').focus();
+			return false;
+ 		}
+ 		if($('#ho').val().length==4 && ($('#ho').val().substring(0,2)==0 || $('#ho').val().substring(0,2)>25 || $('#ho').val().substring(2) == 0 || $('#ho').val().substring(2)>6)){
+ 			alert('호가 유효하지 않습니다.(호수는 101호~2506호까지)');
+ 			$('#ho').val('');
+			$('#ho').focus();
+ 			return false;
+ 		}
 		
 		// dong과 ho 값을 연결
 		let dongho = $('#dong').val() + '-' + $('#ho').val();
@@ -102,16 +127,16 @@ $(function() {
 				items[i].focus();
 				return false;
 				}
-		    
-		    if(items[i].id == 'id' && 
-		    	 !/^[A-Za-z0-9]{3,5}$/.test(
-		    	             $('#id').val())){
-				alert('숫자 사용, 최소 3자 ~ 최대 5자를 사용하세요');
-				$('#dongho').val('');
-				$('#dongho').focus();
-				return false;
-			}
-		    
+			
+			if(items[i].id == 'id' && 
+			    	 !/^[A-Za-z0-9]{3,5}$/.test(
+			    	             $('#id').val())){
+					alert('숫자 사용, 최소 3자 ~ 최대 5자를 사용하세요');
+					$('#dongho').val('');
+					$('#dongho').focus();
+					return false;
+				}
+			
 		    if(items[i].id == 'passwd' && 
 			    	 !/^[A-Za-z0-9]{4,12}$/.test(
 			    	             $('#passwd').val())){
@@ -121,11 +146,10 @@ $(function() {
 					return false;
 				}
 		    
-		    if(items[i].id == 'dongho' && 
-		    		            idChecked == 0){
+		    if(items[i].id == 'dongho' && idChecked == 0){
 				alert('동-호수 중복 체크 필수');
 				return false;
-		    }
+			}
 		}
 		
 		
