@@ -252,6 +252,38 @@ public class SecondHandDAO {
 		return list;
 	}
 	
+	//내가 쓴 글
+	public List<SecondHandVO> myListSecondhand(int mem_num) throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<SecondHandVO> list = null;
+		String sql = null;
+		
+		try {
+			conn = DBUtil.getConnection();
+			sql = "SELECT * FROM secondhand WHERE mem_num=?"
+					+ " ORDER BY se_num DESC";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, mem_num);
+			rs = pstmt.executeQuery();
+			list = new ArrayList<SecondHandVO>();
+			while(rs.next()) {
+				SecondHandVO vo = new SecondHandVO();
+				vo.setTitle(rs.getString("title"));
+				vo.setReg_date(rs.getDate("reg_date"));
+				vo.setSe_num(rs.getInt("se_num"));
+				
+				list.add(vo);
+			}
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		return list;
+	}
+	
 	//동,호 불러오기 -> 사이드바에 사용
 	public String getDongho(int mem_num) throws Exception {
 		Connection conn = null;

@@ -8,6 +8,7 @@ import java.util.List;
 
 import kr.board.vo.BoardReplyVO;
 import kr.board.vo.BoardVO;
+import kr.secondhand.vo.SecondHandVO;
 import kr.util.DBUtil;
 import kr.util.StringUtil;
 
@@ -154,7 +155,8 @@ public class BoardDAO {
 		
 		try {
 			conn = DBUtil.getConnection();
-			sql = "SELECT * FROM board where mem_num=?";
+			sql = "SELECT * FROM board where mem_num=?"
+					+ " ORDER BY board_num DESC";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, mem_num);
 			rs = pstmt.executeQuery();
@@ -162,8 +164,8 @@ public class BoardDAO {
 			while(rs.next()) {
 				BoardVO vo = new BoardVO();
 				vo.setBoard_num(rs.getInt("board_num"));
-				//vo.setMem_num(mem_num);
 				vo.setTitle(rs.getString("title"));
+				vo.setReg_date(rs.getDate("reg_date"));
 				
 				list.add(vo);
 			}
@@ -477,4 +479,5 @@ public class BoardDAO {
 			DBUtil.executeClose(null, pstmt, conn);
 		}
 	}
+	
 }

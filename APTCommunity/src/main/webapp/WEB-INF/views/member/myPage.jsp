@@ -39,7 +39,7 @@
 						</ul>
 						<h2><b>문의내역</b></h2><br>
 						<ul>
-							<li><a href="${pageContext.request.contextPath}/#">내 문의내역</a></li>
+							<li><a href="${pageContext.request.contextPath}/member/myPageInquiryList.do">내 문의내역</a></li>
 						</ul>
 						<h2><b>예약신청현황</b></h2><br>
 						<ul>
@@ -48,8 +48,8 @@
 						<h2><b>나의 활동</b></h2><br>
 						<ul>
 							<li><a href="${pageContext.request.contextPath}/member/myPageList.do">내가 쓴 글</a></li>
-							<li><a href="${pageContext.request.contextPath}/#">내가 쓴 댓글</a></li>
-							<li><a href="${pageContext.request.contextPath}/member/myPageFav.do">찜한 목록</a></li>
+							<li><a href="${pageContext.request.contextPath}/member/myPageReplyList.do">내가 쓴 댓글</a></li>
+							<li><a href="${pageContext.request.contextPath}/member/myPageFavList.do">찜한 목록</a></li>
 						</ul>
 					</div>
 					</div>

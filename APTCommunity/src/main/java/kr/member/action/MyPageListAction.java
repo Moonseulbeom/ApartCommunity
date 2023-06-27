@@ -9,8 +9,12 @@ import javax.servlet.http.HttpSession;
 import kr.board.dao.BoardDAO;
 import kr.board.vo.BoardVO;
 import kr.controller.Action;
-import kr.member.dao.MemberDAO;
-import kr.member.vo.MemberVO;
+import kr.fix.dao.FixDAO;
+import kr.fix.vo.FixVO;
+import kr.inquiry.dao.InquiryDAO;
+import kr.inquiry.vo.InquiryVO;
+import kr.secondhand.dao.SecondHandDAO;
+import kr.secondhand.vo.SecondHandVO;
 
 public class MyPageListAction implements Action{
 
@@ -21,20 +25,23 @@ public class MyPageListAction implements Action{
 		if(user_num==null) {//로그인이 되지 않은 경우
 			return "redirect:/member/loginForm.do";			
 		}
-		//로그인이 된 경우
-		MemberDAO dao = MemberDAO.getInstance();
-		//회원정보
-		MemberVO member = dao.getMember(user_num);
 
 		/* 내가 쓴 글 목록(자유게시판,중고거래,하자보수,1:1문의) */
 		BoardDAO boardDao = BoardDAO.getinstance();
 		List<BoardVO> boardList = boardDao.myListBoard(user_num);
+		SecondHandDAO secondhandDao = SecondHandDAO.getinstance();
+		List<SecondHandVO> secondhandList = secondhandDao.myListSecondhand(user_num);
+		InquiryDAO inquiryDao = InquiryDAO.getInstance();
+		List<InquiryVO> inquiryList = inquiryDao.myListInquiry(user_num);
+		FixDAO fixDao = FixDAO.getInstance();
 		
-		request.setAttribute("member", member);
 		request.setAttribute("boardList", boardList);
+		request.setAttribute("secondhandList", secondhandList);
+		request.setAttribute("inquiryList", inquiryList);
+		//request.setAttribute("fixList", fixList);
 		
 		
-		return null;
+		return "/WEB-INF/views/member/myPageList.jsp";
 	}
 
 }

@@ -68,43 +68,47 @@
 										</tr>
 									</c:if>
 									<tr>
-										<th>글 번호</th>
-										<th>제목</th>
-										<th>작성자</th>
+										<th width="20%">카테고리</th>
+										<th width="15%">글 번호</th>
+										<th width="30%">제목</th>
+										<th width="20%">작성일</th>
+										<th width="15%">비고</th>
 									</tr>
 									<!-- 자유게시판 -->
 									<c:forEach var="board" items="${boardList}">
 									<tr>
+										<td>자유게시판</td>
 										<td>${board.board_num}</td>
 										<td><a href="${pageContext.request.contextPath}/board/boardDetail.do?board_num=${board.board_num}">${board.title}</a></td>
-										<td>${board.reg_dage}</td>
+										<td>${board.reg_date}</td>
 									</tr>
 									</c:forEach>
-									<!-- 중고거래 --><%--
-									<c:forEach var="vo" items="${favList}">
+									<!-- 중고거래 -->
+									<c:forEach var="secondhand" items="${secondhandList}">
 									<tr>
-										<td>${vo.se_num}</td>
-										<td><a href="${pageContext.request.contextPath}/secondhand/seBuyDetail.do?se_num=${vo.se_num}">${vo.title}</a></td>
-										<td>${vo.dongho}</td>
-										<td>${vo.reg_date}</td>
+										<td>중고거래</td>
+										<td>${secondhand.se_num}</td>
+										<td><a href="${pageContext.request.contextPath}/secondhand/seBuyDetail.do?se_num=${secondhand.se_num}">${secondhand.title}</a></td>
+										<td>${secondhand.reg_date}</td>
 									</tr>
 									</c:forEach>
 									<!-- 1:1문의 -->
-									<c:forEach var="vo" items="${favList}">
+									<c:forEach var="inquiry" items="${inquiryList}">
 									<tr>
-										<td>${vo.se_num}</td>
-										<td><a href="${pageContext.request.contextPath}/secondhand/seBuyDetail.do?se_num=${vo.se_num}">${vo.title}</a></td>
-										<td>${vo.dongho}</td>
-										<td>${vo.reg_date}</td>
+										<td>1 : 1 문의</td>
+										<td>${inquiry.in_num}</td>
+										<td><a href="${pageContext.request.contextPath}/inquiry/detail.do?in_num=${inquiry.in_num}">${inquiry.title}</a></td>
+										<td>${inquiry.reg_date}</td>
 									</tr>
 									</c:forEach>
+									<%--
 									<!-- 하자보수신청 -->
-									<c:forEach var="vo" items="${favList}">
+									<c:forEach var="fix" items="${fixList}">
 									<tr>
-										<td>${vo.se_num}</td>
-										<td><a href="${pageContext.request.contextPath}/secondhand/seBuyDetail.do?se_num=${vo.se_num}">${vo.title}</a></td>
-										<td>${vo.dongho}</td>
-										<td>${vo.reg_date}</td>
+										<td>하자보수 문의/신청</td>
+										<td>${fix.fix_num}</td>
+										<td><a href="${pageContext.request.contextPath}/fix/fixDetail.do?fix_num=${fix.fix_num}">${fix.title}</a></td>
+										<td>${fix.reg_date}</td>
 									</tr>
 									</c:forEach>  --%>
 								</table>

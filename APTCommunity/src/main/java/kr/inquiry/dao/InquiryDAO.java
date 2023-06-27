@@ -573,4 +573,64 @@ public class InquiryDAO {
 		}
 		return check;
 	}
+	
+	//내가 쓴 글(1:1문의)-염유진
+	public List<InquiryVO> myListInquiry(int mem_num) throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<InquiryVO> list = null;
+		String sql = null;
+		
+		try {
+			conn = DBUtil.getConnection();
+			sql = "SELECT * FROM inquiry WHERE mem_num=?"
+					+ " ORDER BY in_num DESC";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, mem_num);
+			rs = pstmt.executeQuery();
+			list = new ArrayList<InquiryVO>();
+			while(rs.next()) {
+				InquiryVO vo = new InquiryVO();
+				vo.setIn_num(rs.getInt("in_num"));
+				vo.setTitle(rs.getString("title"));
+				vo.setReg_date(rs.getDate("reg_date"));
+
+				list.add(vo);
+			}
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		return list;
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+}

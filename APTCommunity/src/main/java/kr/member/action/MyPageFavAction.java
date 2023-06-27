@@ -35,7 +35,7 @@ public class MyPageFavAction implements Action{
 		request.setAttribute("favList", favList);
 		
 		//JSP 경로 반환
-		return "/WEB-INF/views/member/myPageFav.jsp";
+		return "/WEB-INF/views/member/myPageFavList.jsp";
 	}
 
 }
