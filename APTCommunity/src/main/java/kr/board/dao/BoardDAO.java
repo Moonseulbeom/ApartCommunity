@@ -130,6 +130,7 @@ public class BoardDAO {
 				vo.setTitle(StringUtil.useNoHtml(rs.getString("title")));
 				vo.setReg_date(rs.getDate("reg_date"));
 				vo.setDongho(rs.getString("dongho"));
+				vo.setMem_num(rs.getInt("mem_num"));
 	            
 	            //자바빈을 ArrayList에 저장
 				list.add(vo);
@@ -143,8 +144,38 @@ public class BoardDAO {
 			return list;
 	}
 	
-	//상단 고정 게시글????
-	//동,호 불러오기???
+	//내가 쓴 글
+	public List<BoardVO> myListBoard(int mem_num) throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<BoardVO> list = null;
+		String sql = null;
+		
+		try {
+			conn = DBUtil.getConnection();
+			sql = "SELECT * FROM board where mem_num=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, mem_num);
+			rs = pstmt.executeQuery();
+			list = new ArrayList<BoardVO>();
+			while(rs.next()) {
+				BoardVO vo = new BoardVO();
+				vo.setBoard_num(rs.getInt("board_num"));
+				//vo.setMem_num(mem_num);
+				vo.setTitle(rs.getString("title"));
+				
+				list.add(vo);
+			}
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		return list;
+	}
+	
+	//동,호 불러오기
 	public String getDongho(int mem_num) throws Exception {
 		Connection conn = null;
     	PreparedStatement pstmt = null;

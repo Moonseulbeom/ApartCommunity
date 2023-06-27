@@ -47,7 +47,7 @@
 						</ul>
 						<h2><b>나의 활동</b></h2><br>
 						<ul>
-							<li><a href="${pageContext.request.contextPath}/#">내가 쓴 글</a></li>
+							<li><a href="${pageContext.request.contextPath}/member/myPageList.do">내가 쓴 글</a></li>
 							<li><a href="${pageContext.request.contextPath}/#">내가 쓴 댓글</a></li>
 							<li><a href="${pageContext.request.contextPath}/member/myPageFav.do">찜한 목록</a></li>
 						</ul>

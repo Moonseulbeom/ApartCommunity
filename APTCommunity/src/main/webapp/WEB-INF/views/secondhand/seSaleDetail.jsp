@@ -91,8 +91,7 @@
 								<div id="goodClick">
 									<img id="output_fav" src="${pageContext.request.contextPath}/img/HeartBin30.jpg" 
 										data-num="${vo.se_num}" style="float: left;"/>
-									<p>&nbsp;&nbsp;좋아요</p>
-									<span id="output_favCount"></span>
+									<p>&nbsp;&nbsp;좋아요&nbsp;&nbsp;<span id="output_favCount"></span></p>
 								</div>
 								<%-- 좋아요 버튼 끝 --%>
 									</div>

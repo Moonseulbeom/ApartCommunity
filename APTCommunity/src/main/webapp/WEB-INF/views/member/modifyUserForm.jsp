@@ -59,7 +59,7 @@
 					  id="email" maxlength="50" class="modify_inp">
 				</li>
 				<li id="modify_li">
-					<label for="carnum">우편번호</label>
+					<label for="carnum">차량 번호</label>
 					<input type="text" name="carnum"
 					  value="${member.carnum}"
 					  id="carnum" maxlength="10" class="modify_inp">
