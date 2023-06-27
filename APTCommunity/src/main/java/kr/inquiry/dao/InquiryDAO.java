@@ -174,6 +174,8 @@ public class InquiryDAO {
 					rs.getDate("reg_date"));
 			inquiry.setDongho(rs.getString("dongho"));
 			
+			int check = getcheck(rs.getInt("in_num"));
+			inquiry.setCheck(check);
 			//자바빈을 ArrayList에 저장
 			list.add(inquiry);
 		}
@@ -547,5 +549,28 @@ public class InquiryDAO {
 			DBUtil.executeClose(null, pstmt, conn);
 		}
 	}
-
+	//답변 여부 확인
+	public int getcheck(int in_num) throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
+		int check = 0;
+		try {
+			conn = DBUtil.getConnection();
+			sql = "SELECT COUNT(*) FROM inquiry_manage m JOIN inquiry i ON m.in_num = i.in_num WHERE i.in_num = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, in_num);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				check = rs.getInt(1);
+			}
+			
+		} catch (Exception e) {
+			throw new Exception(e);
+		} finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		return check;
+	}
 	}

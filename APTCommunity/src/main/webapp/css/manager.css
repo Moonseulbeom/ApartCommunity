@@ -124,17 +124,17 @@
 .mem-list table tr td{
 	border: 1px solid #b0b0b0;
 }
-#mem_info th:first-child{
+#mem_info th:first-child, #mem_output td:first-child{
+	width: 135px;
+}
+#mem_info th:nth-child(2), #mem_output td:nth-child(2){
 	width: 150px;
 }
-#mem_info th:nth-child(2){
-	width: 113px;
+#mem_info th:nth-child(3), #mem_output td:nth-child(3){
+	width: 210px;
 }
-#mem_info th:nth-child(3){
-	width: 241px;
-}
-#mem_info th:last-child{
-	width: 185px;
+#mem_info th:last-child, #mem_output td:last-child{
+	width: 165px;
 }
 .mem-page{
 	font-size: 14px;
@@ -251,47 +251,52 @@
 #manage_inquiry{
 	margin-left:50px;
 }
-#inquiry_info th:first-child{
+#inquiry_info th:first-child, #inquiry_output td:first-child{
 	width: 69px;
 }
-#inquiry_info th:nth-child(2){
+#inquiry_info th:nth-child(2), #inquiry_output td:nth-child(2){
 	width: 311px;
 }
-#inquiry_info th:nth-child(3){
-	width: 139px;
+#inquiry_info th:nth-child(3), #inquiry_output td:nth-child(3){
+	width: 130px;
 }
-#inquiry_info th:last-child{
+#inquiry_info th:last-child, #inquiry_output td:last-child{
 	width: 171px;
-}
-#inquiry_output td:first-child{
-	width: 88px;
 }
 /*하자보수글 리스트*/
 #manage_fix{
 	margin-left:50px;
 }
-#fix_info th:first-child{
+#fix_info th:first-child, #fix_output td:first-child{
 	width: 69px;
 }
-#fix_info th:nth-child(2){
+#fix_info th:nth-child(2), #fix_output td:nth-child(2){
 	width: 311px;
 }
-#fix_info th:nth-child(3){
+#fix_info th:nth-child(3), #fix_output td:nth-child(3){
 	width: 139px;
 }
-#fix_info th:last-child{
+#fix_info th:last-child, #fix_output td:last-child{
 	width: 171px;
-}
-#fix_output td:first-child{
-	width: 88px;
 }
 #mem_detail{
 	margin-left:50px;
 }
-
-
-
-
+#detail_member_btn{
+	text-align: right;
+	margin-right: 50px;
+}
+#detail_member_btn input{
+	width: 100px;
+	height: 30px;
+}
+/*예약 관린*/
+#manage_book{
+	margin-left: 50px;
+}
+.book-cal{
+	clear:both;		
+}
 
 
 

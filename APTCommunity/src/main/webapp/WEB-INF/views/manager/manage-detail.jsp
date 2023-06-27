@@ -6,28 +6,33 @@
 <!-- 회원 관리 상세 페이지 -->
 <div id="mem_detail">
 	<h1>회원 상세 페이지</h1>
-	<form action="${ pageContext.request.contextPath }/member/modifyUserForm.do" method="post" id="mem_detail_form">
+	<form action="${ pageContext.request.contextPath }/member/modifyUser.do" method="post" id="mem_detail_form">
 		<div class="form-mem-detail">  
 			<div>
 			<label for="name">세대주</label>
-			<input type="text" id="name" class="name" value="${ member.name }">
+			<input type="text" id="name" name="name" value="${ member.name }">
 			</div>
 			<div>
-			<label for="passws">비밀번호</label>
-			<input type="password" id="passwd" class="passwd" value="${ member.passwd }">
+			<label for="passwd">비밀번호</label>
+			<input type="password" id="passwd" name="passwd" value="${ member.passwd }">
 			</div>
 			<div>
 			<label for="phone">전화번호</label>
-			<input type="text" id="phone" class="phone" value="${ member.phone }">
+			<input type="text" id="phone" name="phone" value="${ member.phone }">
 			</div>
 			<div>
 			<label for="email">이메일</label>
-			<input type="email" id="email" class="email" value="${ member.email }">
+			<input type="email" id="email" name="email" value="${ member.email }">
 			</div>
 			<div>
 			<label for="carnum">차량번호</label>
-			<input type="text" id="carnum" class="carnum" value="${ member.carnum }">								
+			<input type="text" id="carnum" name="carnum" value="${ member.carnum }">								
 			</div>
+		</div>
+		<div id="detail_member_btn">
+			<input type="submit" value="수정">
+			<input type="button" value="삭제" onclick="location.href='${ pageContext.request.contextPath}'">
+			<input type="button" value="이전" onclick="history.go(0)">
 		</div>
 	</form>
 </div>

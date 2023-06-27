@@ -12,6 +12,16 @@ public class InquiryVO {
 	private String filename; //파일명
 	private String ip; //ip주소
 	
+	private int check;//댓글 존재 확인
+	
+	
+	public int getCheck() {
+		return check;
+	}
+	public void setCheck(int check) {
+		this.check = check;
+	}
+	
 	private String dongho;//회원 아이디
 	
 	public String getDongho() {
