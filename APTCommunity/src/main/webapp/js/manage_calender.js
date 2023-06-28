@@ -1,4 +1,5 @@
 	var today = new Date();
+	let ajaxRequest = null;//ajax 중복 실행 방지
 	
 	//달력 생성하는 함수
 	function buildCalendar(){
@@ -110,7 +111,10 @@
 	
 	
 $(function(){
-	
+	let isDate;
+	let room_name;//시설이름
+	let room_num;//룸 넘버
+	let room_type_name;//룸 이름
 	//예약 가능한 날짜 클릭시 주황색으로 변경하기
 	$(document).on('click','.yday',function() {
 		$('.book-list').hide();//목록 숨기기
@@ -120,10 +124,11 @@ $(function(){
 	    $('.yday').removeClass('enable');
 	    $(this).addClass('enable');
 
-		let isDate = $(this).attr('id');
-		let room_name = $('select[name=room_select] > option:selected').val();
-		let room_type = $('select[name=room_select2] > option:selected').val();
-		let room_type_name = $('select[name=room_select2] > option:selected').text();
+		isDate = $(this).attr('id');
+		room_name = $('select[name=room_select] > option:selected').val();
+		room_num = $('select[name=room_select2] > option:selected').val();
+		room_type_name = $('select[name=room_select2] > option:selected').text();
+
 		//console.log(room_name);
 		//console.log(room_type);
 		//console.log(isDate);
@@ -131,10 +136,16 @@ $(function(){
 		//h1 글씨 바꾸기
 		$('#book_title').html(isDate);
 		
-		$.ajax({
+	
+		if(ajaxRequest != null){
+			ajaxRequest.abort();
+		}
+	
+		
+		ajaxRequest = $.ajax({
 			url:'manage-serviceList.do',
 			type:'post',
-			data:{room_type:room_type, bk_date:isDate},
+			data:{room_num:room_num, bk_date:isDate},
 			dataType:'json',
 			success:function(param){
 				let output = '';
@@ -154,39 +165,54 @@ $(function(){
 						output += '<td>'+item.book_mem+'</td>';
 						output += '<td>'+item.start_time+'-'+item.end_time+'</td>';
 						output += '</tr>';
-					})	
+					})
+					if(param.check_auth == 9){
+						
+					}	
 					$("#book_output").append(output); // index가 끝날때까지
 					$('.book-list').show(); 
 				}
 			},
 			error:function(){
-				alert('네트워크 오류 발생');
+				alert('!네트워크 오류 발생!');
 				$("#timeList_content").empty();
 				let output ="<h1 class='right-text'>오류 발생</h1>";
 				$('#timeList_content').append(output);
 			}
 		});//-----.ajax
-	
+
+
+	});// end of 예약 가능한 날짜 클릭()-----
 	//임시 휴관 버튼 누를시
 	$('.book-list').on('click','#noBook_btn',function(){
-		//alert(room_type);
-		$.ajax({
-			url:'manage-serviceList.do',
-			type:'post',
-			data:{room_type:room_type, bk_date:isDate, book_check:'1'},
-			dataType:'json',
-			success:function(param){
-				//휴관 완료한 날짜 색 변경
-				$(this).addClass('success-block');
-			},
-			error:function(){
-				alert('휴관 버튼 네트워크 오류 발생');
-			}
-		})
+		//alert(isDate);
+		$('.book-list').hide();//목록 숨기기
+		$('#book_output').empty();//table 내용 비우기
+		$('#book_non').remove();
+		$('#book_non_hr').remove();
+		ajaxRequest = $.ajax({
+					url:'manage-serviceList.do',
+					type:'post',
+					data:{room_num:room_num, bk_date:isDate, book_check:'1'},
+					dataType:'json',
+					success:function(param){
+						alert('성공');
+						let output = '';
+						output += '<div class="result-display" id="book_non">예약 불가능.</div>';
+						output += '<hr color="#edeff0" noshade="noshade" id="book_non_hr">';
+						$("#change-booklist").append(output);
+						$('.book-list').show(); 
+						
+						//휴관 완료한 날짜 색 변경
+						$('#'+isDate).addClass('success-block');
+						//$('#'+isDate).setAttribute('class', 'success-block');
+						//$('#'+isDate).className = 'success-block';
+					},
+					error:function(){
+						alert('휴관 버튼 네트워크 오류 발생');
+					}
+				})//ajax 끝
 	})
-		
-	});// end of 예약 가능한 날짜 클릭()-----
-	
 	//클래스선택자를 .ytime 으로 바꿀 예정 
 	$(document).on('click','.ytime',function(){
 		$('.ytime').removeClass('enable-Li');

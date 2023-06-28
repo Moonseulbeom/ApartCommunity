@@ -42,6 +42,7 @@ public class ManageServiceListAction implements Action {
         if (pageNum == null) {
             pageNum = "1";
         }
+        
 		String keyfield = request.getParameter("mem_select");
 		String keyword = request.getParameter("keyword");
 		
@@ -94,12 +95,45 @@ public class ManageServiceListAction implements Action {
 			//JSP 경로 반환
 			return "/WEB-INF/views/common/ajax_view.jsp";
 		}
-		//예약 리스트 확인
-		String room_type = request.getParameter("room_type");
+		String room_num = request.getParameter("room_num");
 		String bk_date = request.getParameter("bk_date");
-		if(room_type != null) {
+   
+		//예약 삭제&예약 막기
+		String book_check = request.getParameter("book_check");
+		if(book_check != null) {
+			//System.out.println(bk_date);
+			//System.out.println(room_type);
+			//System.out.println(book_check);
 			BookingDAO book_dao = BookingDAO.getInstance();
-			List<BookingVO> book_list = book_dao.getManageBookList(Integer.parseInt(room_type),bk_date);
+			book_dao.deleteBookingFromDate(Integer.parseInt(room_num), bk_date);
+			//관리자 예약으로 시설 막기
+			BookingVO book = new BookingVO();
+			book.setRoom_num(Integer.parseInt(room_num));
+			book.setMem_num(user_num);
+			book.setBook_mem(1);
+			book.setBk_status(1);
+			book.setBk_date(bk_date);
+			book.setStart_time("9:00");
+			book.setEnd_time("22:00");
+			
+			book_dao.insertMemberBooking(book);
+		}
+		
+		//예약 리스트 확인
+		if(room_num != null) {
+			//System.out.println(room_type);
+			BookingDAO book_dao = BookingDAO.getInstance();
+			List<BookingVO> book_list = book_dao.getManageBookList(Integer.parseInt(room_num),bk_date);
+			int check_auth = 1;
+			for(BookingVO book : book_list) {
+				String dongho = book.getDongho();
+				MemberVO mem = dao.checkMember(dongho);
+				if(mem.getAuth() == 9) {
+					check_auth = 9;
+				}
+			}
+			
+			mapAjax.put("check_auth", check_auth);
 			mapAjax.put("book_list", book_list);
 			ObjectMapper mapper = new ObjectMapper();
 			String ajaxData = mapper.writeValueAsString(mapAjax);
@@ -107,8 +141,8 @@ public class ManageServiceListAction implements Action {
 			request.setAttribute("ajaxData", ajaxData);
 			//JSP 경로 반환
 			return "/WEB-INF/views/common/ajax_view.jsp";
-		}
-		//
+		}   
+		
 		request.setAttribute("count", count);
 		request.setAttribute("page", page.getPage());
 		request.setAttribute("list", list);//회원 리스트

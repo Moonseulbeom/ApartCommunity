@@ -192,7 +192,7 @@
 	margin: 5px auto;		
 }
 .write-manage-page{
-	margin: 15px auto;
+	margin: 15px 0 15px 0px;
 	width: 1000px;
 	height: 100%;
 	border-radius: 5px;
@@ -350,8 +350,8 @@
 	background-color: #a12920;
 }
 .success-block{
-	border: solid 1px #ee8542;
-    background-color: #ee8542;
+	border: solid 1px #a12920 !important;
+    background-color: #a12920 !important;
     color: #FFF !important;
 }
 

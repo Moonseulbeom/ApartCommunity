@@ -458,7 +458,6 @@ public class BookingDAO {
 		} finally {
 			DBUtil.executeClose(rs, pstmt, conn);
 		}
-		
 		return list;
 	}
 	
