@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>회원탈퇴</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/modify.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/deleteUserForm.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/custom.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
@@ -34,52 +34,66 @@
 		});//end of submit
 	});
 </script>
+<script type="text/javascript">
+	let delete_account = document.getElementById('delete_account');
+	//이벤트 연결
+	delete_account.onclick=function(){
+		let choice = confirm('회원을 탈퇴하시겠습니까?');
+		if(choice){
+			location.href = 'deleteUser.do';
+		}
+	};
+</script>
 </head>
 <body>
 <div class="page-main">
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 	<!-- 내용 시작 -->
 	<div class="content-main">
-		<h2 class="content_h2">회원탈퇴</h2>
+		<h2 class="sbTitle">회원탈퇴</h2>
+		<div class="deleteForm">
+			<p class="deleteTit">정보입력</p>
 		<form id="delete_form" action="deleteUser.do" method="post">
-			<ul>
-				<li id="delete_li">
-					<label for="id">아이디</label>
-					<input type="text" name="id"
-					   id="id" maxlength="12"
-					   autocomplete="off" class="delete_inp">
-				</li>
-				<li id="delete_li">
-					<label for="email">이메일</label>
-					<input type="email" name="email"
-					   id="email" maxlength="50" class="delete_inp">
-				</li>
-				<li id="delete_li">
-					<label for="passwd">비밀번호</label>
-					<input type="password" name="passwd"
-					  id="passwd" maxlength="12" class="delete_inp">
-				</li>
-				<li id="delete_li">
-					<label for="cpasswd">비밀번호 확인</label>
-					<input type="password" name="cpasswd"
-					  id="cpasswd" maxlength="12" class="delete_inp">
-				</li>
-			</ul> 
-			<div class="align-center">
-				<input type="submit" value="회원탈퇴" id="delete_account">
-				<input type="button" value="MY페이지" onclick="location.href='myPage.do'">
-				<script type="text/javascript">
-					let delete_account = document.getElementById('delete_account');
-					//이벤트 연결
-					delete_account.onclick=function(){
-						let choice = confirm('회원을 탈퇴하시겠습니까?');
-						if(choice){
-							location.href = 'deleteUser.do';
-						}
-					};
-				</script>
+			<table>
+				<colgroup>
+					<col width="25%">
+					<col width="auto">
+				</colgroup>
+				<tbody>
+					<tr>
+						<th>동-호수</th>
+						<td>
+							<input type="text" name="dongho" id="dongho" maxlength="12" autocomplete="off">
+						</td>
+					</tr>
+					<tr>
+						<th>이메일</th>
+						<td>
+							<input type="email" name="email" id="email" maxlength="50">
+						</td>
+					</tr>
+					<tr>
+						<th>비밀번호</th>
+						<td>
+							<input type="password" name="passwd" id="passwd" maxlength="12">
+						</td>
+					</tr>
+					<tr>
+						<th>비밀번호 확인</th>
+						<td>
+							<input type="password" name="cpasswd" id="cpasswd" maxlength="12">
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			
+			<div class="btnWrap">
+				<input type="submit" value="회원 탈퇴">
+				<input type="button" value="MY페이지"
+				 onclick="location.href='${pageContext.request.contextPath}/member/myPage.do'">
 			</div> 
 		</form>
+		</div>
 	</div>
 	<!-- 내용 끝 -->
 </div>

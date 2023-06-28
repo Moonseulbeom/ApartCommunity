@@ -24,10 +24,12 @@
 		</div>
 		<div class="result-display">
 			<div class="align-center">
-				<span>"<b>회원가입</b>이 완료되었습니다."</span>
+				<span class="rsdp">"<b>회원가입</b>이 완료되었습니다."</span>
 				<p>
+				<div class="btnWrap">
 				<input type="button" value="홈으로"
 				 onclick="location.href='${pageContext.request.contextPath}/main/main.do'">
+				 </div>
 			</div>
 		</div>
 	</div>

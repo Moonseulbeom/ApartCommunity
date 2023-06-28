@@ -1,4 +1,4 @@
-.sbLogin {
+.content-main {
     width: 820px;
     margin: 0 auto;
     text-align: center;
@@ -9,48 +9,6 @@
     padding: 30px 20px;
     border: 1px solid #d9d9d9;
     background-color: #fdfdfd;
-}
-
-.join_flow ul {
-    overflow: hidden;
-}
-
-.join_flow li:first-child {
-    padding-left: 60px;
-    background: none;
-}
-
-.join_flow li {
-    width: 130px;
-    height: 35px;
-    padding: 0 65px;
-    float: left;
-    background: url(../img/flow_arrow.png) 0 center no-repeat;
-}
-
-.join_flow li span {
-    display: inline-block;
-    width: 130px;
-    height: 35px;
-    line-height: 35px;
-    font-size: 0;
-    background: url(../img/join_flow.png) 0 0 no-repeat;
-}
-
-.join_flow .jo_01 span {
-    background-position: 0 -113px;
-}
-
-.join_flow .jo_02 span {
-    background-position: 0 -150px;
-}
-
-.join_flow .jo_03 span {
-    background-position: 0 -185px;
-}
-
-.join_flow .jo_o3_on span {
-    background-position: 0 -81px !important;
 }
 
 *****************************

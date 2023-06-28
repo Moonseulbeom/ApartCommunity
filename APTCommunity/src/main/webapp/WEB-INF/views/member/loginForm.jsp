@@ -56,7 +56,7 @@
 				<div class="login_info">
 					<div class="btn_wrap">
 						<a href="${pageContext.request.contextPath}/member/registerUserAgree.do" class="join">회원가입</a>
-						<a href="#" class="ldSearch">아이디/비밀번호 찾기</a>
+						<a href="${pageContext.request.contextPath}/main/main.do" class="ldSearch">메인 페이지</a>
 					</div>
 					<ul>
 						<li>쌍용 아파트에 오신 것을 환영합니다.</li>
