@@ -10,6 +10,7 @@ import kr.member.vo.MemberVO;
 import kr.mypage.vo.MyPageVO;
 import kr.util.DBUtil;
 
+
 public class MyPageDAO {
 	//싱글톤 패턴
 		private static MyPageDAO instance = new MyPageDAO();
