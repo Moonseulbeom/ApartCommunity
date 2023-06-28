@@ -1,4 +1,4 @@
-package kr.inquiry.action;
+package kr.question.action;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -6,10 +6,9 @@ import javax.servlet.http.HttpSession;
 
 import com.oreilly.servlet.MultipartRequest;
 
-
 import kr.controller.Action;
-import kr.inquiry.dao.InquiryDAO;
-import kr.inquiry.vo.InquiryVO;
+import kr.question.dao.QuestionDAO;
+import kr.question.vo.QuestionVO;
 import kr.util.FileUtil;
 
 public class UpdateAction implements Action{
@@ -25,41 +24,36 @@ public class UpdateAction implements Action{
 		
 		//로그인 된 경우
 		MultipartRequest multi = FileUtil.createFile(request);
-		int in_num = Integer.parseInt(multi.getParameter("in_num"));
+		int que_num = Integer.parseInt(multi.getParameter("que_num"));
 		String filename = multi.getFilesystemName("filename");
 		
-		InquiryDAO dao = InquiryDAO.getInstance();
-		//수정전 데이터 반환
-		InquiryVO db_inquiry = dao.getInquiry(in_num);
-		//로그인한 회원번호와 작성자 회원번호 일치 여부 체크
-		if(user_num !=  db_inquiry.getMem_num() && user_auth != 9) {
-			//로그인한 회원번호와 작성자 회원번호 불일치
+		QuestionDAO dao = QuestionDAO.getInstance();
+		//수정 전 데이터 반환
+		QuestionVO db_question = dao.getQuestion(que_num);
+		//로그인한 회원이 관리자인지 확인
+		if(user_num !=  db_question.getMem_num() && user_auth != 9) {
+			//로그인한 회원이 관리자가 아니라면
 			FileUtil.removeFile(request, filename);
 			return "/WEB-INF/views/common/notice.jsp";
 		}
 		
-		//로그인한 회원번호와 작성자 회원번호가 일치
-		InquiryVO inquiry = new InquiryVO();
-		inquiry.setIn_num(in_num);
-		inquiry.setTitle(multi.getParameter("title"));
-		inquiry.setContent(multi.getParameter("content"));
-		inquiry.setIp(request.getRemoteAddr());
-		inquiry.setFilename(filename);
+		//로그인한 회원이 관리자일 경우
+		QuestionVO question = new QuestionVO();
+		question.setQue_num(que_num);
+		question.setTitle(multi.getParameter("title"));
+		question.setContent(multi.getParameter("content"));
+		question.setIp(request.getRemoteAddr());
+		question.setFilename(filename);
 		
-		dao.updateInquiry(inquiry);
+		dao.updateQuestion(question);
 		
-		//새 파일로 교체할 때 원래 파일 제거
+		//새 파일로 교체할 때 원래 파일제거
 		if(filename!=null) {
 			FileUtil.removeFile(request, 
-					    db_inquiry.getFilename());
+					    db_question.getFilename());
 		}
 		
-		return "redirect:/inquiry/detail.do?in_num="+in_num;
+		return "redirect:/question/questionDetail.do?que_num="+que_num;
 	}
 
 }
-
-
-
-
-

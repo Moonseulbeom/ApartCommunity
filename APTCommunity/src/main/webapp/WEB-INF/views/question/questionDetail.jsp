@@ -48,7 +48,7 @@
 									<div class="detail-page-title">
 										<ul>
 											<li>
-												<a href="list.do">1:1문의</a>
+												<a href="questionList.do">Q & A</a>
 											</li>
 											<li><b>${ question.title }</b></li>
 											<li>

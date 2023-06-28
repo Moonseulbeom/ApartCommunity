@@ -226,19 +226,45 @@ public class QuestionDAO {
 		
 		//파일 삭제
 		
+		
 		//글 수정
+		public void updateQuestion(QuestionVO question)throws Exception{
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			String sql = null;
+			String sub_sql = "";
+			int cnt = 0;
+			
+			try {
+				conn = DBUtil.getConnection();
+				
+				if(question.getFilename()!=null) {
+					sub_sql += ",filename=?";
+				}
+				
+				sql = "UPDATE question SET title=?, content=?, modify_date=SYSDATE, "
+						+ sub_sql + "ip=? WHERE que_num=?";
+				
+				pstmt = conn.prepareStatement(sql);
+				
+				pstmt.setString(++cnt, question.getTitle());
+				pstmt.setString(++cnt, question.getContent());
+				if(question.getFilename()!=null) {
+					pstmt.setString(++cnt, question.getFilename());
+				}
+				pstmt.setString(++cnt, question.getIp());
+				pstmt.setInt(++cnt, question.getQue_num());
+				
+				pstmt.executeUpdate();
+				
+			}catch(Exception e) {
+				throw new Exception(e);
+			}finally {
+				DBUtil.executeClose(null, pstmt, conn);
+			}
+		}
 		
+		//글 삭제
 		
-		//댓글 등록
-		
-		//댓글 갯수
-		
-		//댓글 목록
-		
-		//댓글 상세
-		
-		//댓글 수정
-		
-		//댓글 삭제
 	}
 

@@ -1,12 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>  
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>1:1문의 수정</title>
-<link rel="stylesheet" href="${ pageContext.request.contextPath }/css/inquiry.css">
+<title>자주 묻는 질문 수정</title>
+<link rel="stylesheet" href="${ pageContext.request.contextPath }/css/question.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/custom.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
@@ -35,27 +35,25 @@
 	<div class="inner">
 		<div id="container" class="inner">
 			<div class="main-page">
-				<h1>1:1문의 수정</h1>
+				<h1>자주 묻는 질문 수정</h1>
 				<div class="write-page">	
-				<form id="update_form" action="update.do" method="post" enctype="multipart/form-data">
-					<input type="hidden" name="in_num" value="${inquiry.in_num}">
+				<form id="update_form" action="questionUpdate.do" method="post" enctype="multipart/form-data">
+					<input type="hidden" name="que_num" value="${question.que_num}">
 					<ul>
 						<li>
 						</li>
 						<li>
 						<div class="write-title">
-							<c:if test="${user_auth==1 || user_auth== 9}">
-								<input type="text" id="title" name="title" maxlength="20" placeholder="제목을 입력해주세요." value="${inquiry.title}">	
-							</c:if>
+							<input type="text" id="title" name="title" maxlength="20" placeholder="질문을 입력해주세요." value="${question.title}">	
 						</div>
 						</li>
 						<li>
-							<textarea rows="5" cols="30" id="content" name="content" placeholder="내용을 입력해주세요.">${inquiry.content}</textarea>
+							<textarea rows="5" cols="30" id="content" name="content" placeholder="답변을 입력해주세요.">${question.content}</textarea>
 						</li>
 						<li>
 							<input type="file" id="filename" name="filename" accept="image/png, image/jpeg, image/gif" >
-							<c:if test="${!empty inquiry.filename}">
-							<div id="file_detail"> &nbsp;(${inquiry.filename}) 파일이 등록되어 있습니다.&nbsp;
+							<c:if test="${!empty question.filename}">
+							<div id="file_detail"> &nbsp;(${question.filename}) 파일이 등록되어 있습니다.&nbsp;
 								<input type="button" value="파일삭제" id="file_del">
 							</div>
 							<script type="text/javascript">
@@ -66,7 +64,7 @@
 											$.ajax({
 												url:'deleteFile.do',
 												type:'post',
-												data:{in_num:${inquiry.in_num}},
+												data:{que_num:${question.que_num}},
 												dataType:'json',
 												success:function(param){
 													if(param.result == 'logout'){
@@ -92,7 +90,7 @@
 						<li>
 						<div class="write-btn-div">
 							<input type="submit" value="수정" class="write-btn">
-							<input type="button" value="취소" onclick="location.href='detail.do?in_num=${inquiry.in_num}'" class="write-btn">
+							<input type="button" value="취소" onclick="location.href='questionDetail.do?que_num=${question.que_num}'" class="write-btn">
 						</div>
 						</li>
 					</ul>

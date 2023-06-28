@@ -105,7 +105,7 @@
 													<a class="article" href="questionDetail.do?que_num=${question.que_num}">${question.title}</a>
 												</div>
 											</td>
-											<td class="board-name">${question.dongho}</td><!-- 작성자명 관리자로 변경해야됨 -->
+											<td class="board-name">관리자</td><!-- 작성자명 관리자로 변경해야됨 -->
 											<td class="board-date">${question.reg_date}</td>
 										</tr>
 									</c:forEach>
