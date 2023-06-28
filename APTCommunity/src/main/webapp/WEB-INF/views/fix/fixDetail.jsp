@@ -19,31 +19,27 @@
 	<!-- 내용 시작 -->
 	<div class="inner">
 		<div id="container" class="inner">
+			<!-- 상단 링크 버튼 -->
+			<div class="service-up">
+				<jsp:include page="/WEB-INF/views/common/up_button.jsp"/>
+			</div>
 			<div class="page-main">
-				<ul>
-					<!-- 왼쪽 -->
-					<li>
-						<div class="page-left">
-							<div class="sidebar">
-								<div class="mem-service">
-									<p>000동 000호 주민</p>
-									<div class="service-myPage-button">
-										<a href="${pageContext.request.contextPath}/member/myPage.do">MY 페이지</a>
-									</div>
-									<div class="service-logout-button">
-										<a href="${pageContext.request.contextPath}/member/logout.do">로그아웃</a>
-									</div>
-								</div>
-								<h2>예약/신청</h2>
-								<div class="menu">
-									<ul>
-										<li><a href="${pageContext.request.contextPath}/booking/roomNameList.do">시설예약</a></li>
-										<li><a href="${pageContext.request.contextPath}/fix/fixList.do">하자보수 신청</a></li>
-									</ul>
-								</div>
-							</div>
+			<ul>
+				<!-- 왼쪽 -->
+				<li>
+				<div class="page-left">
+					<div class="sidebar">
+						<jsp:include page="/WEB-INF/views/common/sidebar.jsp"/>
+						<h2>예약/신청</h2>
+						<div class="menu">
+							<ul>
+								<li><a href="${pageContext.request.contextPath}/booking/roomNameList.do">시설예약</a></li>
+								<li><a href="${pageContext.request.contextPath}/fix/fixList.do">하자보수 신청</a></li>
+							</ul>
 						</div>
-					</li>
+					</div>
+				</div>
+				</li>
 					<!-- 오른쪽 -->
 					<li>
 						<div class="page-right">

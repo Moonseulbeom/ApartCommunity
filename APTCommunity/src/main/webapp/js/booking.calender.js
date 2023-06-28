@@ -244,6 +244,10 @@ $(function(){
 			alert("인원수를 입력하세요");
 			return false;
 		}
+		if($('#book_mem').val()==0){
+			alert("인원수는 1명 이상 입력하세요");
+			return false;
+		}
 	});
 	
 	//관리자-adminRoomTimeSelectForm.jsp-------------------------------------------------------------

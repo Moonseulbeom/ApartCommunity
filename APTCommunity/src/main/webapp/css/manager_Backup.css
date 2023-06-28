@@ -1,0 +1,360 @@
+@charset "UTF-8";
+/*관리자 페이지 상단*/
+.manage-header{
+	margin: 10px 20px 10px 10px;
+	height: 50px;
+	width:100%;
+	border-bottom: 2px solid #bababa;
+}
+.manage-header img{
+	height: 50px;
+}
+.manage-header a{
+	color: black;
+	text-decoration: none;
+	font-weight: bold;
+	padding-right: 10px;
+}
+.manage-header ul li{
+	float: left;
+	list-style: none;
+}
+.manage-header ul li:last-child{
+	float: right;
+}
+.manage-header-btn{
+	padding-right: 20px;
+	padding-top: 20px;
+	text-align: right;
+	width: 200px;
+}
+.manage-page-main{
+	width: 100%;
+	margin: 30px 50px;
+	height: 20px;	
+}
+.manage-page-main ul li{
+	float: left;
+}
+/*관리자 페이지 왼쪽 메뉴*/
+.manage-menu{
+	margin-top:10px;
+	width:200px;
+	height: 374px;
+	border: 3px solid #e0e0e0;
+}
+.manage-page-left h1{
+	margin: 0 0 5px 5px;
+}
+.manage-menu div{
+	margin: 2px 2px;
+	background-color: #e0e0e0;
+	height: 30px;
+	padding: 15px 0 15px 15px;
+	font-size: 1.3em;
+	font-weight: bold;
+}
+.manage-menu div:hover{
+	cursor: pointer;
+	background-color: #bababa;
+}
+.manage-menu div a{
+	margin-top:10px;
+}
+/*관리자 페이지 오른쪽 내용*/
+#manage_title{
+	font-size: 2em;
+	font-weight: bold;
+}
+.manage-page-right{
+	width: 75%;
+	position: absolute;
+}
+.manage-content{
+	width: 100%;
+	min-height: 500px;
+}
+.manage-content h1{
+	width: 800px;
+	padding-bottom: 5px;
+	border-bottom: 2px solid #e0e0e0;
+}
+/*회원 관리*/
+#manage_member{
+	margin-left:50px;
+}
+/*회원 검색*/
+.mem-search{
+	margin-top: 15px; 
+}
+.select-member{
+	height: 30px;
+}	
+.search-member{
+	height: 30px;
+}
+.mem-search-btn{
+	margin-top: 15px;
+	height	: 40px;
+}
+.mem-search-btn input{
+	height: 30px;
+}
+/*회원 리스트*/
+.mem-list{
+	clear:both;	
+}
+
+.mem-list table, .book-list table{
+	margin-top:10px;
+	width: 100%;
+	border: 2px solid  #b0b0b0;
+	text-align: center;
+	font-size: 1.2em;
+}
+.mem-list table tr, .book-list table tr{
+	height:40px;
+	border: 1px solid #b0b0b0;
+}
+.mem-list table th, .book-list table th{
+	border: 1px solid #b0b0b0;
+	background-color: #e0e0e0;
+	font-weight: bold;
+}
+.mem-list table tr td, .book-list table tr td{
+	border: 1px solid #b0b0b0;
+}
+#mem_info th:first-child, #mem_output td:first-child{
+	width: 135px;
+}
+#mem_info th:nth-child(2), #mem_output td:nth-child(2){
+	width: 150px;
+}
+#mem_info th:nth-child(3), #mem_output td:nth-child(3){
+	width: 210px;
+}
+#mem_info th:last-child, #mem_output td:last-child{
+	width: 165px;
+}
+.mem-page{
+	font-size: 14px;
+	margin-top: 10px;
+	text-align: center;
+}
+.result-display{
+	height: 50px;
+	padding-top:25px;	
+	text-align: center;
+}
+/*회원 상세페이지 버튼*/
+#mem_detail_btn:hover{
+	cursor: pointer;
+	background-color: #f5f9ff;
+}
+/*회원 상세 페이지 폼*/
+#mem_detail_form{
+	margin-top: 15px;
+	border: 2px solid #c7c7c7;
+	border-radius: 5px;	
+	height: 413px;
+}
+.form-mem-detail{
+	margin-top: 90px;
+}
+.form-mem-detail div{
+	margin: 0 0 20px 150px;
+}
+.form-mem-detail label{
+	margin-right: 70px;
+	font-size: 1.5em;
+}
+.form-mem-detail #name{
+	margin-left: 20px;
+}
+.form-mem-detail #email{
+	margin-left: 20px;
+}
+/*관리자 페이지 공지사항 글쓰기*/	
+
+.manage-write-manage-page{
+	width: 1000px;
+	height: 100%;
+	border-radius: 5px;
+}
+.manage-write-manage-page form{
+	width: 800px;
+	margin-left: 200px;
+	height: 100%;
+}
+.write-title-text{
+	width: 1000px;
+	padding: 15px 100px 0 200px;
+	margin: 5px auto;		
+}
+.write-manage-page{
+	margin: 15px 0 15px 0px;
+	width: 1000px;
+	height: 100%;
+	border-radius: 5px;
+}
+.write-manage-page form{
+	width: 800px;
+	margin-left: 200px;
+	height: 100%;
+}
+.keyfield{
+	margin: 20px 0;
+	height: 40px;
+	width: 800px;
+}
+.wrtie-title{
+	width: 100%;
+}
+#title{
+	height:30px;
+	width:700px;
+	margin-bottom: 20px;	
+}
+.wirte-title label{
+	margin: 0 5px 0 10px;
+}
+#content{
+	width: 780px;
+	min-height: 400px; 
+}
+#filename{
+	height:25px;
+	margin: 20px 0;
+}
+/*버튼*/
+.write-btn-div{
+	padding-bottom: 40px;
+	text-align: center;
+}
+.write-btn{
+	margin-left:10px;
+	width: 100px;
+	height: 30px;
+}
+.write-btn:hover{
+	cursor: pointer;
+}
+/*파일 삭제 버튼*/
+#file_detail{
+	height: 30px;
+	padding-bottom: 10px;
+}
+#file_del{
+	height: 30px;
+}
+/*1:1문의글 리스트*/
+#manage_inquiry{
+	margin-left:50px;
+}
+#inquiry_info th:first-child, #inquiry_output td:first-child{
+	width: 68px;
+}
+#inquiry_info th:nth-child(2), #inquiry_output td:nth-child(2){
+	width: 308px;
+}
+#inquiry_info th:nth-child(3), #inquiry_output td:nth-child(3){
+	width: 154px;
+}
+#inquiry_info th:nth-child(4), #inquiry_output td:nth-child(4){
+	width: 103px;
+}
+#inquiry_info th:last-child, #inquiry_output td:last-child{
+	width: 100px;
+}
+/*하자보수글 리스트*/
+#manage_fix{
+	margin-left:50px;
+}
+#fix_info th:first-child, #fix_output td:first-child{
+	width: 69px;
+}
+#fix_info th:nth-child(2), #fix_output td:nth-child(2){
+	width: 311px;
+}
+#fix_info th:nth-child(3), #fix_output td:nth-child(3){
+	width: 139px;
+}
+#fix_info th:last-child, #fix_output td:last-child{
+	width: 171px;
+}
+#mem_detail{
+	margin-left:50px;
+}
+#detail_member_btn{
+	text-align: right;
+	margin-right: 50px;
+}
+#detail_member_btn input{
+	width: 100px;
+	height: 30px;
+}
+/*예약 관린*/
+#manage_book{
+	margin-left: 50px;
+}
+.book-cal{
+	clear:both;		
+}
+.room-search{
+	margin: 15px 0 10px 0;	
+}
+#room_type div{
+	margin-left: 10px;
+}
+#room_type select{
+	width: 107px;
+}
+/*예약 리스트*/
+.book-list{
+	margin: 10px 0 0 10px;
+	float: right;
+}
+.book-list table{
+	width: 550px;
+}
+
+#book_info th:first-child, #book_output td:first-child{
+	width: 100px;
+}
+#book_info th:nth-child(2), #book_output td:nth-child(2){
+	width: 100px;
+}
+#book_info th:nth-child(3), #book_output td:nth-child(3){
+	width: 100px;
+}
+#book_info th:nth-child(4), #book_output td:nth-child(4){
+	width: 100px;
+}
+#book_info th:last-child, #book_output td:last-child{
+	width: 150px;
+}
+#book_title{
+	float: left;
+}
+#noBook_btn{
+	margin-left: 10px;
+	height: 40px;
+    width: 100px;
+    background-color: #cc3f35;
+    color: white;
+    font-weight: bold;
+}
+/*임시 휴관 버튼*/
+#noBook_btn:hover{
+	cursor: pointer;
+	background-color: #a12920;
+}
+.success-block{
+	border: solid 1px #a12920 !important;
+    background-color: #a12920 !important;
+    color: #FFF !important;
+}
+
+
+
+
