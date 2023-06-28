@@ -88,6 +88,9 @@
 	object-fit: cover;
 	border-radius: 10px;
 }
+#roomName_form img{
+	object-fit: contain;
+}
 .rnlLi .rnlBtn{
 	width: 80px;
 	height: 40px;

@@ -126,6 +126,7 @@ $(function(){
 		$('#bk_date').val(isDate);
 		
 		let auth = $('#is_Auth').val();
+		console.log("room_name의 값 : " + $('#room_name').val());
 		
 		if(auth!=9){ //유저 일 경우
 			//미리 시간배열을 저장해놓음
@@ -137,6 +138,13 @@ $(function(){
 				"18:00 ~ 20:00":"<li id='18:00 ~ 20:00' class='cell-Li ytime'>18:00 ~ 20:00</li>",
 				"20:00 ~ 22:00":"<li id='20:00 ~ 22:00' class='cell-Li ytime'>20:00 ~ 22:00</li>"
 			};
+			
+			//현재 선택한 시설이 게스트하우스면 바꿈
+			if($('#room_name').val()==="게스트하우스"){
+				console.log("현재 게스트하우스 작동");
+				test={"9:00 ~ 22:00":"<li id='9:00 ~ 22:00' class='cell-Li ytime gh'>9:00 ~ 22:00</li>"};
+			}
+			
 			$.ajax({
 				url:'bookingGetTimeList.do',
 				type:'post',
@@ -155,7 +163,8 @@ $(function(){
 							for (let item in test) {
 						      test[item] = '<li id="' + item + '" class="cell-Li disable">' + item + '</li>';
 						    }
-						}else{
+							test={"9:00 ~ 22:00":"<li id='9:00 ~ 22:00' class='cell-Li canT'>예약 불가능</li>"};
+						}else{//비활성화 아닐경우
 							param.list.forEach(function(element,index,array){
 								test[element] = '<li id="'+element+'" class="cell-Li disable">'+element+'</li>';
 							});
@@ -169,11 +178,13 @@ $(function(){
 					
 					output += "</ul>";
 					$('#timeList_content').append(output);
-					output = "<input type='button' value='인원수 : ' disabled='disabled'>";
-					output += "<input type='number' id='peoples' min='0' max='"+$('#total_mem').val()+"' value='0'>";
-					output += "<input type='submit' value='예약하기'>";
-					$('#timeList_content').append(output);
 					
+					if($('#room_name').val()==="게스트하우스" || Object.keys(test).length!==1){
+						output = "<input type='button' value='인원수 : ' disabled='disabled'>";
+						output += "<input type='number' id='peoples' min='0' max='"+$('#total_mem').val()+"' value='0'>";
+						output += "<input type='submit' value='예약하기'>";
+						$('#timeList_content').append(output);
+					}
 				},
 				error:function(){
 					alert('네트워크 오류 발생');

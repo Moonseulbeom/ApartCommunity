@@ -47,14 +47,7 @@
 						</li>
 						<li>
 						<div class="write-title">
-							<c:if test="${user_auth==1}">
-								<input type="text" id="title" name="title" maxlength="20" placeholder="제목을 입력해주세요.">	
-							</c:if>
-							<c:if test="${user_auth==9}">
-								<input type="text" id="adminTitle" name="title" maxlength="20" placeholder="제목을 입력해주세요.">
-								<label for="checkbox">상단고정</label>			
-								<input type="checkbox" id="check" name="check" value="1">
-							</c:if>
+							<input type="text" id="title" name="title" maxlength="20" placeholder="제목을 입력해주세요.">	
 						</div>
 						</li>
 						<li>
