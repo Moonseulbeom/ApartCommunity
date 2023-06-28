@@ -29,10 +29,13 @@ public class MyPageListAction implements Action{
 		/* 내가 쓴 글 목록(자유게시판,중고거래,하자보수,1:1문의) */
 		BoardDAO boardDao = BoardDAO.getinstance();
 		List<BoardVO> boardList = boardDao.myListBoard(user_num);
+		
 		SecondHandDAO secondhandDao = SecondHandDAO.getinstance();
 		List<SecondHandVO> secondhandList = secondhandDao.myListSecondhand(user_num);
+		
 		InquiryDAO inquiryDao = InquiryDAO.getInstance();
 		List<InquiryVO> inquiryList = inquiryDao.myListInquiry(user_num);
+		
 		FixDAO fixDao = FixDAO.getInstance();
 		List<FixVO> fixList = fixDao.myListFix(user_num);
 		

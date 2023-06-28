@@ -67,14 +67,24 @@
 											<th>찜한 물품 및 게시글이 없습니다.</th>
 										</tr>
 									</c:if>
+									
 									<tr>
 										<th width="20%">카테고리</th>
 										<th width="10%">글 번호</th>
 										<th width="40%">제목</th>
 										<th width="20%">작성일</th>
-										<th width="10%">비고</th>
+										<th width="10%">댓글 수</th>
 									</tr>
-									<!-- 자유게시판 -->
+									<c:forEach var="al" items="${list}">
+									<tr>
+										<td>${al.category}</td>
+										<td>${al.num}</td>
+										<td>${al.title}</td>
+										<td>${al.reg_date}</td>
+										<td>${al.mem_num}</td>
+									</tr>
+									</c:forEach>
+									<!-- 자유게시판 --><%-- 
 									<c:forEach var="board" items="${boardList}">
 									<tr>
 										<td>자유게시판</td>
@@ -110,7 +120,7 @@
 										<td><a href="${pageContext.request.contextPath}/fix/fixDetail.do?fix_num=${fix.fix_num}">${fix.title}</a></td>
 										<td>${fix.reg_date}</td>
 									</tr>
-									</c:forEach>
+									</c:forEach>--%>
 								</table>
 								<div class="paging-button" style="display: none;">
 									<input type="button" value="더보기">
