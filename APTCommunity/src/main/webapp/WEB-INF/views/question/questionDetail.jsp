@@ -80,6 +80,7 @@
 						               	delete_btn.onclick=function(){
 						                	let choice = confirm('삭제하겠습니까?');
 						               		if(choice){
+						               			alert('삭제 완료!');
 						                		location.replace('questionDelete.do?que_num=${question.que_num}');
 						                  	}
 						               }

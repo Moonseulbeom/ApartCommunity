@@ -44,7 +44,7 @@
 						</li>
 						<li>
 						<div class="write-title">
-							<input type="text" id="title" name="title" maxlength="20" placeholder="질문을 입력해주세요." value="${question.title}">	
+							<input type="text" id="title" name="title" maxlength="80" placeholder="질문을 입력해주세요." value="${question.title}">	
 						</div>
 						</li>
 						<li>

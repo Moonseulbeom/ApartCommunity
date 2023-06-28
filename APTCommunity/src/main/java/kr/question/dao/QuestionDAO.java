@@ -225,7 +225,27 @@ public class QuestionDAO {
 		}
 		
 		//파일 삭제
-		
+		public void deleteFile(int que_num)throws Exception{
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			String sql = null;
+			
+			try {
+				conn = DBUtil.getConnection();
+				
+				sql = "UPDATE question SET filename='' WHERE que_num=?";
+				
+				pstmt = conn.prepareStatement(sql);
+				
+				pstmt.setInt(1, que_num);
+				
+				pstmt.executeUpdate();
+			}catch(Exception e) {
+				throw new Exception(e);
+			}finally {
+				DBUtil.executeClose(null, pstmt, conn);
+			}
+		}
 		
 		//글 수정
 		public void updateQuestion(QuestionVO question)throws Exception{
@@ -242,8 +262,9 @@ public class QuestionDAO {
 					sub_sql += ",filename=?";
 				}
 				
-				sql = "UPDATE question SET title=?, content=?, modify_date=SYSDATE, "
-						+ sub_sql + "ip=? WHERE que_num=?";
+				sql = "UPDATE question SET title=?,"
+						+ "content=?,modify_date=SYSDATE"
+						+ sub_sql + ",ip=? WHERE que_num=?";
 				
 				pstmt = conn.prepareStatement(sql);
 				
@@ -265,6 +286,52 @@ public class QuestionDAO {
 		}
 		
 		//글 삭제
+		public void deleteQuestion(int que_num)throws Exception{
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			String sql = null;
+			
+			try {
+				conn = DBUtil.getConnection();
+				
+				sql = "DELETE FROM question WHERE que_num=?";
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, que_num);
+				pstmt.executeUpdate();
+				
+			}catch(Exception e) {
+				throw new Exception(e);
+			}finally {
+				DBUtil.executeClose(null, pstmt, conn);
+			}
+		}
 		
 	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
