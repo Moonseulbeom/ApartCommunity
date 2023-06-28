@@ -17,7 +17,7 @@ public class MemberVO {
 
 	// 비밀번호 일치 여부 체크
 	public boolean isCheckedPassword(String userPasswd) {
-		// 회원등급(auth): 2일반회원,9관리자
+		// 회원등급(auth): 1일반회원,9관리자
 		if (auth > 0 && passwd.equals(userPasswd)) {
 			return true;
 		}
