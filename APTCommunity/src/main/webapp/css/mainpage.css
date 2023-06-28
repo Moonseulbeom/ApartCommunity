@@ -61,6 +61,8 @@ div {
 }
 
 .mLogin_box .loginBtn {
+	font-weight:bold;
+	font-size:15px;
 	margin-top:13px;
 	width: 269px;
 	height: 50px;
@@ -69,10 +71,12 @@ div {
 	border-radius: 3px;
 	color: #fff;
 	text-align: center;
-	background-color: #00ff80; 
+	background-color: #03c75a;
 }
 
 .mLogin_box .registerBtn {
+	font-weight:bold;
+	font-size:15px;
 	width: 269px;
 	height: 50px;
 	margin-bottom: 20px;
@@ -93,6 +97,8 @@ div {
 }
 
 .LoggingBox .logoutBtn {
+	font-weight:bold;
+	font-size:15px;
 	margin-top:15px;
 	width: 269px;
 	height: 50px;
@@ -105,6 +111,8 @@ div {
 }
 
 .LoggingBox .mypageBtn {
+	font-weight:bold;
+	font-size:15px;
 	width: 269px;
 	height: 50px;
 	margin-bottom: 15px;
@@ -116,6 +124,8 @@ div {
 }
 
 .LoggingBox .manageBtn {
+	font-weight:bold;
+	font-size:15px;
 	width: 269px;
 	height: 50px;
 	margin-bottom: 15px;

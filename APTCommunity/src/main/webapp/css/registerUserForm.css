@@ -145,9 +145,10 @@ td {
 
 .joinForm table .dongho_check {
     padding: 10px 10px 23px 10px;
-    background-color: #80ff80;
+    background-color: #b5413e;
     color: #fff;
     font-size: 13px;
+    font-weight:bold;
     vertical-align: middle;
 }
 

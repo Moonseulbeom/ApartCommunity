@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>관리사무소 조직도</title>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/introduce.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/custom.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/notice.css">
@@ -22,9 +23,9 @@
 			</div>
 			<!-- 상단 링크 버튼 끝-->
 			<!-- 내용 시작 -->
-			<h1>관리사무소 조직도</h1>
+			<h1 class="sbTitle">관리사무소 조직도</h1>
 			<div class="text-align">
-				<img src="../images/manageoffice.png">
+				<img class="introduceimg" src="../images/manageoffice3.jpg">
 			</div>
 			<!-- 내용 끝 -->
 		</div>
