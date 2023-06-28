@@ -37,6 +37,8 @@ public class AdminRoomTypeListFormAction implements Action{
 		request.setAttribute("list", list);
 		request.setAttribute("room_name", room_name);
 		
+		System.out.println("여기까지 잘됨");
+		
 		//JSP 경로 반환
 		return "/WEB-INF/views/booking/adminRoomTypeListForm.jsp";
 	}

@@ -268,13 +268,13 @@ tr{
 	background-color: teal;
 }
 
-#adminRoomTimeSelectForm h1{
+#adminRoomTimeUpdateForm h1{
 	color: #ed2a61;
 	float:center;
 	margin-top: 30px;
 	font-size: 25px;
 }
-#adminRoomTimeSelectForm li{
+#adminRoomTimeUpdateForm li{
 	width: 300px;
 	height: 102px;
 	line-height: 102px;
@@ -291,7 +291,7 @@ tr{
 	line-height: 60px;
 	font-size:1.1em;
 }
-#adminRoomTimeSelectForm input[type='radio']{
+#adminRoomTimeUpdateForm input[type='radio']{
 	display:inline-block;
 	border: 1px solid #DDD;
 	margin-top:0px;
@@ -301,13 +301,13 @@ tr{
 	font-weight: 700; 
 	color: #3c6ffa;
 }
-#adminRoomTimeSelectForm input[type='submit']{
+#adminRoomTimeUpdateForm input[type='submit']{
 	background-color: white;
 	color: #3c6ffa;
 	cursor: pointer;
 	margin-top: 10px;
 }
-#adminRoomTimeSelectForm input[type='submit']:hover {
+#adminRoomTimeUpdateForm input[type='submit']:hover {
 	background-color:#3c6ffa;
 	color: white; 
 }

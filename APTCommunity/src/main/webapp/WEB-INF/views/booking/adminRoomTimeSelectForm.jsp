@@ -57,14 +57,14 @@
 				</table>
 				<!-- 왼쪽영역 끝 -->
 				<div id="timeList">
-					<form id="adminRoomTimeSelectForm" action="adminRoomTimeSelect.do" method="post">
+					<form id="adminRoomTimeUpdateForm" action="adminRoomTimeUpdateAction.do" method="post">
 						<div id="timeList_content">
 							<h1 class="right-text">날짜를 선택하시면 <br><br>시간목록이 나옵니다</h1>
 						</div>
 						<input type="hidden" name="bk_date" id="bk_date" value="">
 						<input type="hidden" name="start_time" id="start_time" value="">
 						<input type="hidden" name="end_time" id="end_time" value="">
-						<input type="hidden" name="book_mem" id="book_mem" value="">
+						<input type="hidden" name="book_mem" id="book_mem" value="1">
 						<input type="hidden" name="room_name" id="room_name" value="${room.room_name}">
 						<input type="hidden" name="room_type" id="room_type" value="${room.room_type}">
 						<input type="hidden" name="room_num" id="room_num" value="${room.room_num}">

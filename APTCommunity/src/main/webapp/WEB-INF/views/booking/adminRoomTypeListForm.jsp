@@ -16,7 +16,7 @@
 <div id="wrap">
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 	<!-- 내용 시작 -->
-	<div id="mainContainer">
+	<div id="mainContainer"> 
 		<div id="rnlTop">
 			<span id="rnlTopMenu">시설예약 &nbsp;&nbsp;> &nbsp;&nbsp;관리자수정페이지&nbsp;&nbsp;></span>
 		</div>

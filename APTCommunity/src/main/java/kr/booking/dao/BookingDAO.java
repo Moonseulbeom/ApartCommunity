@@ -396,7 +396,36 @@ public class BookingDAO {
 	
 	//(관리자) 해당 날짜 시간대 모두 비활성화 하기 (125번째줄 수행)
 	
-	
+	//(관리자) 해당 날짜 예약 활성화 잘못 눌렀을 경우 유저 예약 카운트 가져오기
+	public int getTimeCount(int room_num, String bk_date) throws Exception {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
+		int count = 0;
+		
+		try {
+			conn = DBUtil.getConnection();
+			sql = "SELECT COUNT(*) "
+				+ "FROM booking b JOIN member m ON b.mem_num = m.mem_num "
+				+ "WHERE b.bk_status = 1 AND b.room_num=? AND b.bk_date=? AND m.auth=1 ";
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, room_num);
+			pstmt.setString(2, bk_date);
+			
+			rs = pstmt.executeQuery();
+			
+			if (rs.next()) {
+				count = rs.getInt(1);
+			}
+		} catch (Exception e) {
+			throw new Exception(e);
+		} finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		return count;
+	}
 	
 	//관리자 예약 현황 가져오기
 	public List<BookingVO> getManageBookList(int room_type, String bk_date) throws Exception{

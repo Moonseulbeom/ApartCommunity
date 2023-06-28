@@ -290,6 +290,37 @@ public class FixDAO {
 	
 	
 	//하자보수 내가 쓴 글목록
+	//내가 쓴 글 - 염유진
+	public List<FixVO> myListFix(int mem_num) throws Exception{
+	      Connection conn = null;
+	      PreparedStatement pstmt = null;
+	      ResultSet rs = null;
+	      List<FixVO> list = null;
+	      String sql = null;
+	      
+	      try {
+	         conn = DBUtil.getConnection();
+	         sql = "SELECT * FROM fix where mem_num=?"
+	               + " ORDER BY fix_num DESC";
+	         pstmt = conn.prepareStatement(sql);
+	         pstmt.setInt(1, mem_num);
+	         rs = pstmt.executeQuery();
+	         list = new ArrayList<FixVO>();
+	         while(rs.next()) {
+	            FixVO vo = new FixVO();
+	            vo.setFix_num(rs.getInt("fix_num"));
+	            vo.setTitle(rs.getString("title"));
+	            vo.setReg_date(rs.getDate("reg_date"));
+	            
+	            list.add(vo);
+	         }
+	      }catch(Exception e) {
+	         throw new Exception(e);
+	      }finally {
+	         DBUtil.executeClose(rs, pstmt, conn);
+	      }
+	      return list;
+	}
 	//하자보수 글목록(관리자)
 	/*
 	 * ==================================================================

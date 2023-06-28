@@ -1,230 +1,180 @@
--- 멤버 테이블
-CREATE TABLE member (
-  mem_num number NOT NULL,
-  dongho varchar2(10) NOT NULL,
-  auth number DEFAULT 1 NOT NULL ,
-  CONSTRAINT PK_MEMBER PRIMARY KEY (mem_num)
+-- DDL for Table BOARD
+
+CREATE TABLE BOARD (
+  BOARD_NUM NUMBER NOT NULL,
+  MEM_NUM NUMBER NOT NULL,
+  TITLE VARCHAR2(255) NOT NULL,
+  CONTENT VARCHAR2(255) NOT NULL,
+  REG_DATE DATE NOT NULL,
+  IP VARCHAR2(255) NOT NULL,
+  CONSTRAINT PK_BOARD PRIMARY KEY (BOARD_NUM)
 );
 
-create SEQUENCE member_seq;
+-- DDL for Table BOARD_REPLY
 
--- 멤버 상세 테이블
-CREATE TABLE member_detail (
-  mem_num number NOT NULL,
-  name varchar2(30) NOT NULL,
-  passwd varchar2(30) NOT NULL,
-  phone varchar2(15) NOT NULL,
-  email varchar2(50) NOT NULL,
-  carnum varchar2(15),
-  reg_date date DEFAULT SYSDATE NOT NULL,
-  modify_date date,
-  CONSTRAINT PK_MEMBER_DETAIL PRIMARY KEY (mem_num)
+CREATE TABLE BOARD_REPLY (
+  RE_NUM NUMBER NOT NULL,
+  BOARD_NUM NUMBER NOT NULL,
+  MEM_NUM NUMBER NOT NULL,
+  CONTENT VARCHAR2(255) NOT NULL,
+  REG_DATE DATE NOT NULL,
+  IP VARCHAR2(255) NOT NULL,
+  CONSTRAINT PK_BOARD_REPLY PRIMARY KEY (RE_NUM)
 );
 
--- 공지사항 테이블
-CREATE TABLE notice (
-  no_num number NOT NULL,
-  dept number NOT NULL,
-  title varchar2(100) NOT NULL,
-  content varchar2(2000) NOT NULL,
-  reg_date date DEFAULT SYSDATE NOT NULL ,
-  modify_date date,
-  filename varchar2(150),
-  ip varchar2(40) NOT NULL,
-  category_Status number NOT NULL,
-  status number NOT NULL,
-  CONSTRAINT PK_NOTICE PRIMARY KEY (no_num)
-);
-create SEQUENCE notice_seq;
+-- DDL for Table BOOKING
 
--- 게시판 테이블
-CREATE TABLE board (
-  board_num number NOT NULL,
-  mem_num number NOT NULL,
-  title varchar2(100) NOT NULL,
-  content varchar2(2000) NOT NULL,
-  reg_date date DEFAULT SYSDATE NOT NULL,
-  modify_date date,
-  filename varchar2(150),
-  ip varchar2(40) NOT NULL,
-  CONSTRAINT PK_BOARD PRIMARY KEY (board_num)
-);
-create SEQUENCE board_seq;
-
--- 게시판 댓글 테이블
-CREATE TABLE board_reply (
-  re_num number NOT NULL,
-  mem_num number NOT NULL,
-  board_num number NOT NULL,
-  content varchar2(1000) NOT NULL,
-  reg_date date DEFAULT SYSDATE NOT NULL,
-  modify_date date,
-  ip varchar2(40) NOT NULL,
-  CONSTRAINT PK_BOARD_REPLY PRIMARY KEY (re_num)
-);
-create SEQUENCE board_reply_seq;
-
--- 중고거래 게시판 테이블
-CREATE TABLE secondhand (
-  se_num number NOT NULL,
-  mem_num number NOT NULL,
-  division number NOT NULL,
-  title varchar2(100) NOT NULL,
-  content varchar2(2000) NOT NULL,
-  reg_date date DEFAULT SYSDATE NOT NULL,
-  modify_date date,
-  filename varchar2(150),
-  ip varchar2(40) NOT NULL,
-  CONSTRAINT PK_SECONDHAND PRIMARY KEY (se_num)
-);
-create SEQUENCE secondhand_seq;
-
--- 중고거래 게시판 댓글테이블
-CREATE TABLE secondhand_reply (
-  re_num number NOT NULL,
-  mem_num number NOT NULL,
-  se_num number NOT NULL,
-  content varchar2(1000) NOT NULL,
-  reg_date date DEFAULT SYSDATE NOT NULL,
-  modify_date date,
-  ip varchar2(40) NOT NULL,
-  CONSTRAINT PK_SECONDHAND_REPLY PRIMARY KEY (re_num)
-);
-create SEQUENCE secondhand_reply_seq;
-
--- 중고거래 게시판 찜하기 테이블
-CREATE TABLE secondhand_fav (
-  fav_num number NOT NULL,
-  mem_num number NOT NULL,
-  se_num number NOT NULL,
-  CONSTRAINT PK_SECONDHAND_FAV PRIMARY KEY (fav_num)
-);
-create SEQUENCE secondhand_fav_seq;
-
--- 1:1문의 테이블
-CREATE TABLE inquiry (
-  in_num number NOT NULL,
-  mem_num number NOT NULL,
-  title varchar2(100) NOT NULL,
-  content varchar2(2000) NOT NULL,
-  reg_date date DEFAULT SYSDATE NOT NULL,
-  modify_date date,
-  filename varchar2(150),
-  ip varchar2(40) NOT NULL,
-  CONSTRAINT PK_INQUIRY PRIMARY KEY (in_num)
-);
-create SEQUENCE inquiry_seq;
-
--- 1:1문의 답변 테이블
-CREATE TABLE inquiry_manage (
-  re_num number NOT NULL,
-  in_num number NOT NULL,
-  content varchar2(1000) NOT NULL,
-  reg_date date DEFAULT SYSDATE NOT NULL,
-  modify_date date,
-  ip varchar2(40) NOT NULL,
-  CONSTRAINT PK_INQUIRY_MANAGE PRIMARY KEY (re_num)
-);
-create SEQUENCE inquiry_manage_seq;
-
--- 하자보수 게시판 테이블
-CREATE TABLE fix (
-  fix_num number NOT NULL,
-  mem_num number NOT NULL,
-  mem_auth number NOT NULL,
-  title varchar2(100) NOT NULL,
-  content varchar2(2000) NOT NULL,
-  reg_date date DEFAULT SYSDATE NOT NULL,
-  modify_date date,
-  filename varchar2(150),
-  ip varchar2(40) NOT NULL,
-  CONSTRAINT PK_FIX PRIMARY KEY (fix_num)
-);
-create SEQUENCE fix_seq;
-
--- 예약 테이블 
-CREATE TABLE booking (
-  bk_num number NOT NULL,
-  room_num number NOT NULL,
-  mem_num number NOT NULL,
-  book_mem number NOT NULL,
-  bk_date date DEFAULT SYSDATE NOT NULL,
-  start_time varchar2(20) NOT NULL,
-  end_time varchar2(20) NOT NULL,
-  CONSTRAINT PK_BOOKING PRIMARY KEY (bk_num)
-);
-create SEQUENCE booking_seq;
-
--- 시설 정보 테이블
-CREATE TABLE room_info (
-  room_num number NOT NULL,
-  room_type varchar2(10) NOT NULL,
-  room_name varchar2(100) NOT NULL,
-  bk_status number NOT NULL,
-  total_mem number NOT NULL,
-  CONSTRAINT PK_ROOM_INFO PRIMARY KEY (room_num)
-);
-create SEQUENCE room_info_seq;
-
-ALTER TABLE member_detail ADD CONSTRAINT FK_member_TO_member_detail_1 FOREIGN KEY (
-  mem_num
-)
-REFERENCES member (
-  mem_num
+CREATE TABLE BOOKING (
+  BK_NUM NUMBER NOT NULL,
+  ROOM_NUM NUMBER NOT NULL,
+  MEM_NUM NUMBER NOT NULL,
+  BOOK_MEM VARCHAR2(255) NOT NULL,
+  BK_STATUS VARCHAR2(255) NOT NULL,
+  BK_DATE DATE NOT NULL,
+  START_TIME DATE NOT NULL,
+  END_TIME DATE NOT NULL,
+  CONSTRAINT PK_BOOKING PRIMARY KEY (BK_NUM)
 );
 
-ALTER TABLE board ADD CONSTRAINT FK_member_TO_board_1 FOREIGN KEY (
-  mem_num
-)
-REFERENCES member (
-  mem_num
+-- DDL for Table FIX
+
+CREATE TABLE FIX (
+  FIX_NUM NUMBER NOT NULL,
+  MEM_NUM NUMBER NOT NULL,
+  MEM_AUTH VARCHAR2(255) NOT NULL,
+  TITLE VARCHAR2(255) NOT NULL,
+  CONTENT VARCHAR2(255) NOT NULL,
+  REG_DATE DATE NOT NULL,
+  IP VARCHAR2(255) NOT NULL,
+  CONSTRAINT PK_FIX PRIMARY KEY (FIX_NUM)
 );
 
-ALTER TABLE board_reply ADD CONSTRAINT FK_board_TO_board_reply_1 FOREIGN KEY (
-  board_num
-)
-REFERENCES board (
-  board_num
+-- DDL for Table FIX_REPLY
+
+CREATE TABLE FIX_REPLY (
+  RE_NUM NUMBER NOT NULL,
+  FIX_NUM NUMBER NOT NULL,
+  MEM_NUM NUMBER NOT NULL,
+  CONTENT VARCHAR2(255) NOT NULL,
+  REG_DATE DATE NOT NULL,
+  IP VARCHAR2(255) NOT NULL,
+  CONSTRAINT PK_FIX_REPLY PRIMARY KEY (RE_NUM)
 );
 
-ALTER TABLE secondhand ADD CONSTRAINT FK_member_TO_secondhand_1 FOREIGN KEY (
-  mem_num
-)
-REFERENCES member (
-  mem_num
+-- DDL for Table INQUIRY
+
+CREATE TABLE INQUIRY (
+  IN_NUM NUMBER NOT NULL,
+  MEM_NUM NUMBER NOT NULL,
+  TITLE VARCHAR2(255) NOT NULL,
+  CONTENT VARCHAR2(255) NOT NULL,
+  REG_DATE DATE NOT NULL,
+  IP VARCHAR2(255) NOT NULL,
+  CONSTRAINT PK_INQUIRY PRIMARY KEY (IN_NUM)
 );
 
-ALTER TABLE secondhand_reply ADD CONSTRAINT FK_secondhand_TO_secondhand_reply_1 FOREIGN KEY (
-  se_num
-)
-REFERENCES secondhand (
-  se_num
+-- DDL for Table INQUIRY_MANAGE
+
+CREATE TABLE INQUIRY_MANAGE (
+  RE_NUM NUMBER NOT NULL,
+  IN_NUM NUMBER NOT NULL,
+  MEM_NUM NUMBER NOT NULL,
+  CONTENT VARCHAR2(255) NOT NULL,
+  REG_DATE DATE NOT NULL,
+  IP VARCHAR2(255) NOT NULL,
+  CONSTRAINT PK_INQUIRY_MANAGE PRIMARY KEY (RE_NUM)
 );
 
-ALTER TABLE inquiry ADD CONSTRAINT FK_member_TO_inquiry_1 FOREIGN KEY (
-  mem_num
-)
-REFERENCES member (
-  mem_num
+-- DDL for Table MEMBER
+
+CREATE TABLE MEMBER (
+  MEM_NUM NUMBER NOT NULL,
+  DONGHO VARCHAR2(255) NOT NULL,
+  AUTH VARCHAR2(255) NOT NULL,
+  CONSTRAINT PK_MEMBER PRIMARY KEY (MEM_NUM)
 );
 
-ALTER TABLE inquiry_manage ADD CONSTRAINT FK_inquiry_TO_inquiry_manage_1 FOREIGN KEY (
-  in_num
-)
-REFERENCES inquiry (
-  in_num
+-- DDL for Table MEMBER_DETAIL
+
+CREATE TABLE MEMBER_DETAIL (
+  MEM_NUM NUMBER NOT NULL,
+  NAME VARCHAR2(255) NOT NULL,
+  PASSWD VARCHAR2(255) NOT NULL,
+  PHONE VARCHAR2(255) NOT NULL,
+  EMAIL VARCHAR2(255) NOT NULL,
+  REG_DATE DATE NOT NULL,
+  CONSTRAINT PK_MEMBER_DETAIL PRIMARY KEY (MEM_NUM)
 );
 
-ALTER TABLE fix ADD CONSTRAINT FK_member_TO_fix_1 FOREIGN KEY (
-  mem_num
-)
-REFERENCES member (
-  mem_num
+-- DDL for Table NOTICE
+
+CREATE TABLE NOTICE (
+  NO_NUM NUMBER NOT NULL,
+  DEPT VARCHAR2(255) NOT NULL,
+  TITLE VARCHAR2(255) NOT NULL,
+  CONTENT VARCHAR2(255) NOT NULL,
+  REG_DATE DATE NOT NULL,
+  IP VARCHAR2(255) NOT NULL,
+  CATEGORY_STATUS VARCHAR2(255) NOT NULL,
+  STATUS VARCHAR2(255) NOT NULL,
+  CONSTRAINT PK_NOTICE PRIMARY KEY (NO_NUM)
 );
 
-ALTER TABLE booking ADD CONSTRAINT FK_room_info_TO_booking_1 FOREIGN KEY (
-  room_num
-)
-REFERENCES room_info (
-  room_num
+-- DDL for Table QUESTION
+
+CREATE TABLE QUESTION (
+  QUE_NUM NUMBER NOT NULL,
+  MEM_NUM NUMBER NOT NULL,
+  TITLE VARCHAR2(255) NOT NULL,
+  CONTENT VARCHAR2(255) NOT NULL,
+  REG_DATE DATE NOT NULL,
+  IP VARCHAR2(255) NOT NULL,
+  CONSTRAINT PK_QUESTION PRIMARY KEY (QUE_NUM)
+);
+
+-- DDL for Table ROOM_INFO
+
+CREATE TABLE ROOM_INFO (
+  ROOM_NUM NUMBER NOT NULL,
+  ROOM_TYPE VARCHAR2(255) NOT NULL,
+  ROOM_NAME VARCHAR2(255) NOT NULL,
+  ROOM_STATUS VARCHAR2(255) NOT NULL,
+  TOTAL_MEM VARCHAR2(255) NOT NULL,
+  CONSTRAINT PK_ROOM_INFO PRIMARY KEY (ROOM_NUM)
+);
+
+-- DDL for Table SECONDHAND
+
+CREATE TABLE SECONDHAND (
+  SE_NUM NUMBER NOT NULL,
+  MEM_NUM NUMBER NOT NULL,
+  DIVISION VARCHAR2(255) NOT NULL,
+  TITLE VARCHAR2(255) NOT NULL,
+  CONTENT VARCHAR2(255) NOT NULL,
+  REG_DATE DATE NOT NULL,
+  IP VARCHAR2(255) NOT NULL,
+  CONSTRAINT PK_SECONDHAND PRIMARY KEY (SE_NUM)
+);
+
+-- DDL for Table SECONDHAND_FAV
+
+CREATE TABLE SECONDHAND_FAV (
+  FAV_NUM NUMBER NOT NULL,
+  MEM_NUM NUMBER NOT NULL,
+  SE_NUM NUMBER NOT NULL,
+  CONSTRAINT PK_SECONDHAND_FAV PRIMARY KEY (FAV_NUM)
+);
+
+-- DDL for Table SECONDHAND_REPLY
+
+CREATE TABLE SECONDHAND_REPLY (
+  RE_NUM NUMBER NOT NULL,
+  MEM_NUM NUMBER NOT NULL,
+  SE_NUM NUMBER NOT NULL,
+  CONTENT VARCHAR2(255) NOT NULL,
+  REG_DATE DATE NOT NULL,
+  IP VARCHAR2(255) NOT NULL,
+  CONSTRAINT PK_SECONDHAND_REPLY PRIMARY KEY (RE_NUM),
+  CONSTRAINT FK_SECONDHAND_TO_SECONDHAND_REPLY_1 FOREIGN KEY (SE_NUM) REFERENCES SECONDHAND (SE_NUM),
+  CONSTRAINT FK_SECONDHAND_REPLY_MEMBER_NUM FOREIGN KEY (MEM_NUM) REFERENCES MEMBER (MEM_NUM)
 );

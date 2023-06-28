@@ -145,11 +145,19 @@ $(function(){
 					
 					//위에서 정의한 시간배열을 이용하여 덮어쓰기를 진행
 					if(param.list){
-						param.list.forEach(function(element,index,array){
-							test[element] = '<li id="'+element+'" class="cell-Li disable">'+element+'</li>';
-						});
+						//관리자가 모든시간을 비활성화했을때
+						if(param.list[0]==="9:00 ~ 22:00"){
+							for (let item in test) {
+						      test[item] = '<li id="' + item + '" class="cell-Li disable">' + item + '</li>';
+						    }
+						}else{
+							param.list.forEach(function(element,index,array){
+								test[element] = '<li id="'+element+'" class="cell-Li disable">'+element+'</li>';
+							});
+						}
 					}
 					
+					//output에 시간표 적재
 					for(let item in test){
 						output += test[item];
 					}
@@ -215,19 +223,18 @@ $(function(){
 	});
 	
 	
-	//관리자--------------------------------------------------------------
-	$(document).on('submit','#adminRoomTimeSelectForm',function(){
+	//관리자-adminRoomTimeSelectForm.jsp-------------------------------------------------------------
+	$(document).on('submit','#adminRoomTimeUpdateForm',function(){
 		let check = false;
-		radios = document.querySelectorAll('input[type=radio]');
-		for (var i = 0; i < radios.length; i++) {
-		  	if (!radios[i].checked) {
-				alert('활성화 또는 비활성화 체크를 해주세요');
+		let radios = document.querySelectorAll('input[type=radio]');
+		for (let i = 0; i < radios.length; i++) {
+		  	if (radios[i].checked) {//체크했으면 true
 				check = true;
-		    	return;
 			}
 		}
-		if(check){
-			return;
+		if(!check){//하나라도 체크 안했으면 submit 안함
+			alert('활성화 또는 비활성화 체크를 해주세요');
+			return false;
 		}
 	});// end of submit()---
 	

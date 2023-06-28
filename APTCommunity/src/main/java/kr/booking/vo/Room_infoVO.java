@@ -6,7 +6,15 @@ public class Room_infoVO {
 	private String room_name;	//방 이름(ex:독서실 = 2, 회의실 = 1)
 	private int room_status;	//(관리자용)시설이 수리 or 이용불가일 경우
 	private int total_mem;		//최대 예약 가능 인원
+	private String filename;	//이미지 전용
 	
+	
+	public String getFilename() {
+		return filename;
+	}
+	public void setFilename(String filename) {
+		this.filename = filename;
+	}
 	public int getRoom_num() {
 		return room_num;
 	}
