@@ -69,10 +69,10 @@
 									</c:if>
 									<tr>
 										<th width="20%">카테고리</th>
-										<th width="15%">글 번호</th>
-										<th width="30%">제목</th>
+										<th width="10%">글 번호</th>
+										<th width="40%">제목</th>
 										<th width="20%">작성일</th>
-										<th width="15%">비고</th>
+										<th width="10%">비고</th>
 									</tr>
 									<!-- 자유게시판 -->
 									<c:forEach var="board" items="${boardList}">
@@ -99,9 +99,9 @@
 										<td>${inquiry.in_num}</td>
 										<td><a href="${pageContext.request.contextPath}/inquiry/detail.do?in_num=${inquiry.in_num}">${inquiry.title}</a></td>
 										<td>${inquiry.reg_date}</td>
+										<td>${inquiry.cnt}</td>
 									</tr>
 									</c:forEach>
-									<%--
 									<!-- 하자보수신청 -->
 									<c:forEach var="fix" items="${fixList}">
 									<tr>
@@ -110,7 +110,7 @@
 										<td><a href="${pageContext.request.contextPath}/fix/fixDetail.do?fix_num=${fix.fix_num}">${fix.title}</a></td>
 										<td>${fix.reg_date}</td>
 									</tr>
-									</c:forEach>  --%>
+									</c:forEach>
 								</table>
 								<div class="paging-button" style="display: none;">
 									<input type="button" value="더보기">

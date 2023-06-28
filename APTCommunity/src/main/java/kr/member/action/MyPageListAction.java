@@ -34,11 +34,12 @@ public class MyPageListAction implements Action{
 		InquiryDAO inquiryDao = InquiryDAO.getInstance();
 		List<InquiryVO> inquiryList = inquiryDao.myListInquiry(user_num);
 		FixDAO fixDao = FixDAO.getInstance();
+		List<FixVO> fixList = fixDao.myListFix(user_num);
 		
 		request.setAttribute("boardList", boardList);
 		request.setAttribute("secondhandList", secondhandList);
 		request.setAttribute("inquiryList", inquiryList);
-		//request.setAttribute("fixList", fixList);
+		request.setAttribute("fixList", fixList);
 		
 		
 		return "/WEB-INF/views/member/myPageList.jsp";

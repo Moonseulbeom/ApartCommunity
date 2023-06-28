@@ -10,7 +10,7 @@
 			data:{user_num:${user_num}},
 			dataType:'json',
 			success:function(param){
-				let out = param.dong+'동 '+param.ho+'호';
+				let out = param.dong+'동 '+param.ho+'호 주민';
 				$('#out').append(out);
 			},
 			error:function(){
@@ -22,7 +22,7 @@
 
 	<div class="mem-service">
 		<c:if test="${ user_auth ==  1 }">
-		<p  id="out">
+		<p id="out">
 		</p>
 		<div class="service-myPage-button">
 			<a href="${pageContext.request.contextPath}/member/myPage.do">MY 페이지</a>

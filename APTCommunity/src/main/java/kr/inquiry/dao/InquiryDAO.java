@@ -584,7 +584,7 @@ public class InquiryDAO {
 		
 		try {
 			conn = DBUtil.getConnection();
-			sql = "SELECT * FROM inquiry WHERE mem_num=?"
+			sql = "SELECT * FROM inquiry LEFT OUTER JOIN (SELECT in_num, COUNT(*) cnt FROM inquiry_manage GROUP BY in_num) USING(in_num) WHERE mem_num=?"
 					+ " ORDER BY in_num DESC";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, mem_num);
@@ -595,6 +595,7 @@ public class InquiryDAO {
 				vo.setIn_num(rs.getInt("in_num"));
 				vo.setTitle(rs.getString("title"));
 				vo.setReg_date(rs.getDate("reg_date"));
+				vo.setCnt(rs.getInt("cnt"));
 
 				list.add(vo);
 			}

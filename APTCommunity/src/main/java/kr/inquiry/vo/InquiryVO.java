@@ -15,8 +15,16 @@ public class InquiryVO {
 	
 	private int check;//댓글 존재 확인
 	
+	private int cnt;
+	
 
 	
+	public int getCnt() {
+		return cnt;
+	}
+	public void setCnt(int cnt) {
+		this.cnt = cnt;
+	}
 	public int getCheck() {
 		return check;
 	}
