@@ -336,18 +336,27 @@
 #book_title{
 	float: left;
 }
-#noBook_btn{
+/*임시 휴관 버튼*/
+#noBook_btn, #yesBook_btn{
 	margin-left: 10px;
 	height: 40px;
     width: 100px;
-    background-color: #cc3f35;
     color: white;
     font-weight: bold;
 }
-/*임시 휴관 버튼*/
+#noBook_btn{
+    background-color: #cc3f35;
+}
+#yesBook_btn{
+	background-color: #03c75a;
+}
 #noBook_btn:hover{
 	cursor: pointer;
 	background-color: #a12920;
+}
+#yesBook_btn:hover{
+	cursor: pointer;
+	background-color: #029e65;
 }
 .success-block{
 	border: solid 1px #a12920 !important;

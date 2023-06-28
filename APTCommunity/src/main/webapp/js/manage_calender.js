@@ -165,10 +165,14 @@ $(function(){
 						output += '<td>'+item.book_mem+'</td>';
 						output += '<td>'+item.start_time+'-'+item.end_time+'</td>';
 						output += '</tr>';
-					})
-					if(param.check_auth == 9){
-						
-					}	
+					})  
+					console.log(param.check_auth != null);
+					
+					if(param.check_auth == 9){//활성화 버튼
+						$('#yesBook_btn').hide();
+						$('#noBook_btn').show();
+					}
+					
 					$("#book_output").append(output); // index가 끝날때까지
 					$('.book-list').show(); 
 				}
@@ -196,15 +200,15 @@ $(function(){
 					data:{room_num:room_num, bk_date:isDate, book_check:'1'},
 					dataType:'json',
 					success:function(param){
-						alert('성공');
+						alert('비활성화 성공');
 						let output = '';
 						output += '<div class="result-display" id="book_non">예약 불가능.</div>';
 						output += '<hr color="#edeff0" noshade="noshade" id="book_non_hr">';
 						$("#change-booklist").append(output);
+						$('#noBook_btn').hide();
+						$('#yesBook_btn').show();
 						$('.book-list').show(); 
 						
-						//휴관 완료한 날짜 색 변경
-						$('#'+isDate).addClass('success-block');
 						//$('#'+isDate).setAttribute('class', 'success-block');
 						//$('#'+isDate).className = 'success-block';
 					},
@@ -213,6 +217,38 @@ $(function(){
 					}
 				})//ajax 끝
 	})
+	//활성 버튼 누를시
+	$('.book-list').on('click','#yesBook_btn',function(){
+		//alert(isDate);
+		$('.book-list').hide();//목록 숨기기
+		$('#book_output').empty();//table 내용 비우기
+		$('#book_non').remove();
+		$('#book_non_hr').remove();
+		
+		ajaxRequest = $.ajax({
+					url:'manage-serviceList.do',
+					type:'post',
+					data:{room_num:room_num, bk_date:isDate, book_check:'0'},
+					dataType:'json',
+					success:function(param){
+						
+						alert('활성화 성공');
+						let output = '';
+						output += '<div class="result-display" id="book_non">예약 가능</div>';
+						output += '<hr color="#edeff0" noshade="noshade" id="book_non_hr">';
+						$("#change-booklist").append(output);
+						$('#noBook_btn').show();
+						$('#yesBook_btn').hide();
+						$('.book-list').show(); 
+						//$('#'+isDate).setAttribute('class', 'success-block');
+						//$('#'+isDate).className = 'success-block';
+					},
+					error:function(){
+						alert('휴관 버튼 네트워크 오류 발생');
+					}
+				})//ajax 끝
+	})
+	
 	//클래스선택자를 .ytime 으로 바꿀 예정 
 	$(document).on('click','.ytime',function(){
 		$('.ytime').removeClass('enable-Li');

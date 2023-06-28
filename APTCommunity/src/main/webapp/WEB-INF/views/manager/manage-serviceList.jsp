@@ -321,7 +321,8 @@
 	</div>
 	<div class="book-list" style="display: none;">
 		<h2 id="book_title">날짜</h2>
-		<input type="button" value="임시 휴관" id="noBook_btn">
+		<input type="button" value="비활성화" id="noBook_btn">
+		<input type="button" value="활성화" id="yesBook_btn">
 		<table id="book_info">
 			<tr>
 				<th>동-호수</th>

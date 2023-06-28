@@ -84,7 +84,10 @@ public class ManageServiceListAction implements Action {
 		
 		//예약 리스트 선택
 		String room_name = request.getParameter("room_name");
-		if(room_name != null) {
+		String room_num = request.getParameter("room_num");
+		String bk_date = request.getParameter("bk_date");
+
+		if(room_name != null && bk_date == null) {
 			BookingDAO book_dao = BookingDAO.getInstance();
 			List<Room_infoVO> bookinfo_list = book_dao.getRoomInfoList(room_name);
 			mapAjax.put("bookinfo_list", bookinfo_list);
@@ -95,8 +98,6 @@ public class ManageServiceListAction implements Action {
 			//JSP 경로 반환
 			return "/WEB-INF/views/common/ajax_view.jsp";
 		}
-		String room_num = request.getParameter("room_num");
-		String bk_date = request.getParameter("bk_date");
    
 		//예약 삭제&예약 막기
 		String book_check = request.getParameter("book_check");
@@ -105,18 +106,27 @@ public class ManageServiceListAction implements Action {
 			//System.out.println(room_type);
 			//System.out.println(book_check);
 			BookingDAO book_dao = BookingDAO.getInstance();
-			book_dao.deleteBookingFromDate(Integer.parseInt(room_num), bk_date);
-			//관리자 예약으로 시설 막기
-			BookingVO book = new BookingVO();
-			book.setRoom_num(Integer.parseInt(room_num));
-			book.setMem_num(user_num);
-			book.setBook_mem(1);
-			book.setBk_status(1);
-			book.setBk_date(bk_date);
-			book.setStart_time("9:00");
-			book.setEnd_time("22:00");
-			
-			book_dao.insertMemberBooking(book);
+				book_dao.deleteBookingFromDate(Integer.parseInt(room_num), bk_date);
+			if(book_check.equals("1")) {
+				//관리자 예약으로 시설 막기
+				BookingVO book = new BookingVO();
+				book.setRoom_num(Integer.parseInt(room_num));
+				book.setMem_num(user_num);
+				book.setBook_mem(1);
+				book.setBk_status(1);
+				book.setBk_date(bk_date);
+				book.setStart_time("9:00");
+				book.setEnd_time("22:00");
+				
+				book_dao.insertMemberBooking(book);
+				mapAjax.put("reuslt", "success");
+				ObjectMapper mapper = new ObjectMapper();
+				String ajaxData = mapper.writeValueAsString(mapAjax);
+				
+				request.setAttribute("ajaxData", ajaxData);
+				//JSP 경로 반환
+				return "/WEB-INF/views/common/ajax_view.jsp";
+			}
 		}
 		
 		//예약 리스트 확인
@@ -132,7 +142,7 @@ public class ManageServiceListAction implements Action {
 					check_auth = 9;
 				}
 			}
-			
+			System.out.println(check_auth);
 			mapAjax.put("check_auth", check_auth);
 			mapAjax.put("book_list", book_list);
 			ObjectMapper mapper = new ObjectMapper();
@@ -141,7 +151,8 @@ public class ManageServiceListAction implements Action {
 			request.setAttribute("ajaxData", ajaxData);
 			//JSP 경로 반환
 			return "/WEB-INF/views/common/ajax_view.jsp";
-		}   
+		}  
+		
 		
 		request.setAttribute("count", count);
 		request.setAttribute("page", page.getPage());
