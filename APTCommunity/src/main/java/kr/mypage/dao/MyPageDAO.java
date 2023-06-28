@@ -29,24 +29,7 @@ public class MyPageDAO {
 		
 		try {
 			conn = DBUtil.getConnection();
-		/*	sql = "SELECT * FROM (SELECT a.*, rownum rnum FROM"
-				+ " (SELECT '일대일문의' category, in_num, title, reg_date, cnt"
-				+ " FROM inquiry LEFT OUTER JOIN (SELECT in_num, COUNT(*) cnt"
-				+ " FROM inquiry_manage GROUP BY in_num) USING(in_num)"
-				+ " UNION ALL"
-				+ " SELECT '중고거래' category, se_num, title, reg_date, cnt"
-				+ " FROM secondhand LEFT OUTER JOIN (SELECT se_num, COUNT(*) cnt"
-				+ " FROM secondhand_reply GROUP BY se_num) USING(se_num)"
-				+ " UNION ALL"
-				+ " SELECT '하자보수' category, fix_num, title, reg_date, cnt"
-				+ " FROM fix LEFT OUTER JOIN (SELECT fix_num, COUNT(*) cnt"
-				+ " FROM fix_reply GROUP BY fix_num) USING(fix_num)"
-				+ " UNION ALL"
-				+ " SELECT '자유게시판' category, board_num, title, reg_date, cnt"
-				+ " FROM board LEFT OUTER JOIN (SELECT board_num, COUNT(*) cnt"
-				+ " FROM board_reply GROUP BY board_num) USING(board_num)"
-				+ " ORDER BY reg_date DESC)a) WHERE rnum >= ? AND rnum <= ?";
-			*/
+		
 			sql = "SELECT * FROM(SELECT a.*, rownum rnum FROM "
 			+ "(SELECT '일대일문의' category, in_num, mem_num, title, reg_date, cnt FROM inquiry LEFT OUTER JOIN "
 			+ "(SELECT in_num, COUNT(*) cnt FROM inquiry_manage GROUP BY in_num) USING(in_num) "
