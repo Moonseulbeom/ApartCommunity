@@ -28,7 +28,7 @@ public class MyPageListAction implements Action{
 			return "";
 		}
 		MyPageDAO dao = MyPageDAO.getinstance();
-		List<MyPageVO> list = dao.myListMyPage(user_num);
+		List<MyPageVO> list = dao.myListMyPage(user_num,1,100);
 		
 		request.setAttribute("list", list);
 		request.setAttribute("member", member);

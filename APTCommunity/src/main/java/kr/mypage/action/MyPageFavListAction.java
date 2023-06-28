@@ -1,4 +1,4 @@
-package kr.member.action;
+package kr.mypage.action;
 
 import java.util.List;
 
@@ -12,7 +12,7 @@ import kr.member.vo.MemberVO;
 import kr.secondhand.dao.SecondHandDAO;
 import kr.secondhand.vo.SecondHandVO;
 
-public class MyPageAction implements Action{
+public class MyPageFavListAction implements Action{
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -29,13 +29,13 @@ public class MyPageAction implements Action{
 		
 		/* 좋아요 목록 */
 		SecondHandDAO shDao = SecondHandDAO.getinstance();
-		List<SecondHandVO> favList = shDao.getListSecondhandFav(1, 3, user_num);		
+		List<SecondHandVO> favList = shDao.getListSecondhandFav(1, 10, user_num);
 		
 		request.setAttribute("member", member);
 		request.setAttribute("favList", favList);
 		
 		//JSP 경로 반환
-		return "/WEB-INF/views/member/myPage.jsp";
+		return "/WEB-INF/views/member/myPageFavList.jsp";
 	}
 
 }

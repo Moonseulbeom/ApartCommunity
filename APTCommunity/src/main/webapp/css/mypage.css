@@ -16,7 +16,6 @@
 	width: 63%;
 	height: 100%;
 }
-
 /* 회원정보 ~~ */
 .mypage-div{
 	height: 30%;
@@ -42,6 +41,14 @@
 #click_memInfo{
 	height: 25px;
 }
+#more_btn{
+	height: 25px;
+	border: none;
+	color: black;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
 /* 좋아요 목록 */
 #myChoice{
 	border-collapse: collapse;
@@ -58,6 +65,10 @@
 #myChoice td{
 	text-align: left;
 }
+#myChoice {
+	margin-bottom: 25px;
+}
+
 
 /*상단 바로가기 버튼*/
 .service-up{
@@ -164,4 +175,9 @@
 	text-align: left;
 	font-size: 1.2em;
 	list-style: disc;
+}
+
+#myPage_write_list1 td{
+	padding: 3px;
+	font-size: 16px;
 }

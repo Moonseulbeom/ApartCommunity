@@ -1,4 +1,4 @@
-package kr.member.action;
+package kr.mypage.action;
 
 import java.util.List;
 
@@ -7,12 +7,16 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import kr.controller.Action;
+import kr.fix.dao.FixDAO;
+import kr.fix.vo.FixVO;
 import kr.member.dao.MemberDAO;
 import kr.member.vo.MemberVO;
+import kr.mypage.dao.MyPageDAO;
+import kr.mypage.vo.MyPageVO;
 import kr.secondhand.dao.SecondHandDAO;
 import kr.secondhand.vo.SecondHandVO;
 
-public class MyPageFavAction implements Action{
+public class MyPageAction implements Action{
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -29,13 +33,23 @@ public class MyPageFavAction implements Action{
 		
 		/* 좋아요 목록 */
 		SecondHandDAO shDao = SecondHandDAO.getinstance();
-		List<SecondHandVO> favList = shDao.getListSecondhandFav(1, 10, user_num);
+		List<SecondHandVO> favList = shDao.getListSecondhandFav(1, 3, user_num);		
+		/* 내가 쓴 글 목록 */
+		MyPageDAO myDao = MyPageDAO.getinstance();
+		List<MyPageVO> myList = myDao.myListMyPage(user_num,1,3);
+		/* 내가 쓴 댓글 목록 */
+		/* 예약 목록 */
+		FixDAO fixDao = FixDAO.getInstance();
+		List<FixVO> fixList = fixDao.myListFix(user_num);
 		
 		request.setAttribute("member", member);
 		request.setAttribute("favList", favList);
+		request.setAttribute("myList", myList);
+		
+		request.setAttribute("fixList", fixList);
 		
 		//JSP 경로 반환
-		return "/WEB-INF/views/member/myPageFavList.jsp";
+		return "/WEB-INF/views/member/myPage.jsp";
 	}
 
 }

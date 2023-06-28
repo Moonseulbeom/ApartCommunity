@@ -21,7 +21,7 @@ public class MyPageDAO {
 		//싱글톤 패턴 끝
 	
 	//내가 쓴 글
-	public List<MyPageVO> myListMyPage(int mem_num) throws Exception{
+	public List<MyPageVO> myListMyPage(int mem_num, int start, int end) throws Exception{
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -42,8 +42,8 @@ public class MyPageDAO {
 			+ "(SELECT board_num, COUNT(*) cnt FROM board_reply GROUP BY board_num) USING(board_num) "
 			+ "ORDER BY reg_date DESC)a) WHERE rnum >= ? AND rnum <= ? and mem_num=?";
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, 1);
-			pstmt.setInt(2, 100);
+			pstmt.setInt(1, start);
+			pstmt.setInt(2, end);
 			pstmt.setInt(3, mem_num);
 			
 			rs = pstmt.executeQuery();

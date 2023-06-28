@@ -97,7 +97,8 @@
 					<!-- 마이페이지 좌측 끝 -->
 					<!-- 마이페이지 우측 시작 -->
 					<form class="myPage_rightSide">
-						<h2>찜 목록</h2>
+						<h2>찜 목록&nbsp;&nbsp;&nbsp;<input type="button" value="더보기" id="more_btn" 
+							onclick="location.href='myPageFavList.do'"></h2>
 						<table id="myChoice">
 							<tr>
 								<th>글 번호</th>
@@ -114,47 +115,50 @@
 								</tr>
 							</c:forEach>
 						</table>
-						<h2>내가 쓴 글</h2>
+						<h2>내가 쓴 글&nbsp;&nbsp;&nbsp;<input type="button" value="더보기" id="more_btn" 
+							onclick="loaction.href='${pageContext.request.contextPath}/member/myPageList.do'"></h2>
 						<table id="myChoice">
 							<tr>
 								<th>글 번호</th>
 								<th>제목</th>
 								<th>등록일</th>
-								<th>작성자</th>
+								<th>뭘넣지</th>
 							</tr>
-							<c:forEach var="vo" items="${favList}">
+							<c:forEach var="hohohoho" items="${myList}">
 								<tr>
-									<td>1</td>
-									<td><a href="#">1</a></td>
-									<td>1</td>
+									<td>${hohohoho.num}</td>
+									<td><a href="#">${hohohoho.title}</a></td>
+									<td>${hohohoho.reg_date}</td>
 									<td>1</td>
 								</tr>
 							</c:forEach>
 						</table>
-						<h2>예약 현황</h2>
+						<h2>예약 현황&nbsp;&nbsp;&nbsp;<input type="button" value="더보기" id="more_btn" 
+							onclick="loaction.href='#'"></h2>
 						<table id="myChoice">
 							<tr>
 								<th>글 번호</th>
 								<th>제목</th>
 								<th>등록일</th>
-								<th>작성자</th>
+								<th>뭘넣지</th>
 							</tr>
-							<c:forEach var="vo" items="${favList}">
+							<c:forEach var="fix" items="${fixList}">
 								<tr>
-									<td>1</td>
-									<td><a href="#">1</a></td>
-									<td>1</td>
+									<td>${fix.fix_num}</td>
+									<td><a href="#">${fix.title}</a></td>
+									<td>${fix.reg_date}</td>
 									<td>1</td>
 								</tr>
 							</c:forEach>
 						</table>
-						<h2>지난 예약현황</h2>
+						<h2>나의 문의사항&nbsp;&nbsp;&nbsp;<input type="button" value="더보기" id="more_btn" 
+							onclick="loaction.href='#'"></h2>
 						<table id="myChoice">
 							<tr>
 								<th>글 번호</th>
 								<th>제목</th>
 								<th>등록일</th>
-								<th>작성자</th>
+								<th>뭘넣지</th>
 							</tr>
 							<c:forEach var="vo" items="${favList}">
 								<tr>
