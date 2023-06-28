@@ -30,10 +30,8 @@ public class FixDeleteAction implements Action{
 		FixVO db_fix = dao.getFix(fix_num);
 		
 		//로그인한 회원번호와 작성자 회원번호 일치 여부 체크
-		if (user_num != db_fix.getMem_num()) {
+		if (user_num != db_fix.getMem_num() && user_auth != 9) {
 			//로그인한 회원번호와 작성자 회원번호가 불일치
-			return "/WEB-INF/views/common/notice.jsp";
-		}else if (user_num != db_fix.getMem_num() && user_auth != 9) {
 			return "/WEB-INF/views/common/notice.jsp";
 		}
 		

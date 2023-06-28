@@ -32,6 +32,7 @@ public class FixDeleteReplyAction implements Action{
 		HttpSession session = request.getSession();
 		
 		Integer user_num = (Integer)session.getAttribute("user_num");
+		Integer user_auth = (Integer)session.getAttribute("user_auth");
 		
 		if (user_num==null) {
 			mapAjax.put("result", "logout");
@@ -39,7 +40,12 @@ public class FixDeleteReplyAction implements Action{
 		//로그인 되어있고, 로그인한 회원번호와 작성자 회원번호가 일치하는 경우
 			dao.deleteFixReply(re_num);
 			mapAjax.put("result", "success");
-		}else {
+		}else if(user_num!=null && user_auth==9) {
+		//관리자인 경우
+			dao.deleteFixReply(re_num);
+			mapAjax.put("result", "success");
+		}
+		else {
 		//로그인이 되어있고, 로그인한 회원번호와 작성자 회원번호가 "불"일치하는 경우
 			mapAjax.put("result", "wrongAccess");
 		}

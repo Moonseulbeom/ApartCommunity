@@ -43,7 +43,7 @@ public class AdminRoomTimeUpdateAction implements Action{
 			BookingVO booking = new BookingVO();
 			booking.setMem_num(user_num);
 			booking.setRoom_num(room_num);
-			booking.setBook_mem(Integer.parseInt(request.getParameter("book_mem")));
+			booking.setBook_mem(1);
 			booking.setBk_status(1);
 			booking.setBk_date(bk_date);
 			booking.setStart_time(request.getParameter("start_time"));
@@ -61,7 +61,7 @@ public class AdminRoomTimeUpdateAction implements Action{
 			}
 		}
 		
-		request.setAttribute("notice_url", request.getContextPath()+"/booking/roomTimeSelectForm.do?room_num="+room_num);
+		request.setAttribute("notice_url", request.getContextPath()+"/booking/roomTimeSelectForm.do?room_num="+String.valueOf(room_num));
 		
 		//JSP반환
 		return "/WEB-INF/views/common/alert_singleView.jsp";
