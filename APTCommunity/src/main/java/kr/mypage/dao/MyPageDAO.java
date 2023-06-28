@@ -84,6 +84,51 @@ public class MyPageDAO {
 	}
 	
 	//내가 쓴 댓글
+	
+	public List<MyPageVO> MyPageReplyList(int mem_num) throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<MyPageVO> list = null;
+		String sql = null;
+		
+		try {
+			conn = DBUtil.getConnection();
+	
+			sql = "SELECT * FROM(SELECT a.*, rownum rnum FROM "
+			+ "(SELECT '일대일문의' category, re_num, mem_num, content, reg_date FROM inquiry_manage UNION ALL "
+			+ "SELECT '중고거래' category, re_num, mem_num, content, reg_dat, FROM secondhand_reply UNION ALL "
+			+ "SELECT '하자보수' category, re_num, mem_num, content, reg_dateFROM fix_reply UNION ALL "
+			+ "SELECT '자유게시판' category, RE_num, mem_num, content, reg_dateFROM board_reply UNION ALL "
+			+ "ORDER BY reg_date DESC)a) WHERE rnum >= ? AND rnum <= ? and mem_num=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, 1);
+			pstmt.setInt(2, 20);
+			pstmt.setInt(3, mem_num);
+			
+			rs = pstmt.executeQuery();
+			list = new ArrayList<MyPageVO>();
+			while(rs.next()) {
+				MyPageVO vo = new MyPageVO();
+				vo.setCategory(rs.getString("category"));
+				vo.setNum(rs.getInt("in_num"));
+				vo.setMem_num(mem_num);
+				vo.setTitle(rs.getString("title"));
+				vo.setReg_date(rs.getDate("reg_date"));
+				vo.setCnt(rs.getInt("cnt"));
+				
+				list.add(vo);
+			}
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		return list;
+	}
+	
+	
+	
 }
 /*
  SELECT * FROM
