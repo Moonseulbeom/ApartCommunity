@@ -36,7 +36,7 @@
 				<c:forEach var="room" items="${list}">
 					<li class="rnlLi">
 						<div class="rnlBox rnlBoxMR">
-							<img alt="${room.room_type}" src="${pageContext.request.contextPath}/img/meetingRoom.jpeg">
+							<img alt="${room.room_type}" src="${pageContext.request.contextPath}/img/${room.filename}">
 							<span class="bText">${room.room_type}</span>
 							<p class="pCnt">(최대 인원 수 : ${room.total_mem}명)</p>
 							<c:if test="${room.room_status==1}">

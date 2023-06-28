@@ -1,4 +1,4 @@
-	var today = new Date();
+	let today = new Date();
 	
 	//달력 생성하는 함수
 	function buildCalendar(){
@@ -115,6 +115,11 @@ $(function(){
 	$(document).on('click','.yday',function() {
 	    $('.yday').removeClass('enable');
 	    $(this).addClass('enable');
+		
+		//날짜를 클릭하면 hidden 값에 저장된 데이터들 리셋
+		$('#start_time').val('');
+		$('#end_time').val('');
+		$('#book_mem').val('');
 
 		let isDate = $(this).attr('id');
 		let room_num = $('#room_num').val();
@@ -192,25 +197,20 @@ $(function(){
 		}
 	});// end of 예약 가능한 날짜 클릭()-----
 	
-
 	
-	//클래스선택자를 .ytime 으로 바꿀 예정 
+	//HIDDEN 에 start_time, end_time 벨류값 집어넣기
 	$(document).on('click','.ytime',function(){
 		$('.ytime').removeClass('enable-Li');
 		$(this).addClass('enable-Li');
 		let time = $(this).attr('id');
 		let start = "";
-		let end = "";
 		if(time.length==12){
 			start = time.substr(0,4);
 		}else{
 			start = time.substr(0,5);
 		}
-		end = time.slice(-5);
-		//console.log("앞자리 자르기 : "+time.substr(0,5));
-		//console.log("뒷자리 자르기 : "+time.slice(-5));
-		//time.substr(0,5);
-		//time.slice(-5)
+		let end = time.slice(-5);
+
 		$('#start_time').val(start);
 		$('#end_time').val(end);
 	});
@@ -222,6 +222,18 @@ $(function(){
 		
 	});
 	
+	
+	//유저 시점 예약하기 폼 정합성 검사
+	$(document).on('submit','#roomTimeSelectForm',function(){
+		if($('#start_time').val().trim()==''){
+			alert("시간을 선택하세요");
+			return false;
+		}
+		if($('#book_mem').val().trim()==''){
+			alert("인원수를 입력하세요");
+			return false;
+		}
+	});
 	
 	//관리자-adminRoomTimeSelectForm.jsp-------------------------------------------------------------
 	$(document).on('submit','#adminRoomTimeUpdateForm',function(){

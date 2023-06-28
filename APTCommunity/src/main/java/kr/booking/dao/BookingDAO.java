@@ -44,6 +44,7 @@ public class BookingDAO {
 				room.setRoom_name(rs.getString("room_Name"));
 				room.setRoom_status(rs.getInt("room_status"));
 				room.setTotal_mem(rs.getInt("total_mem"));
+				room.setFilename(rs.getString("filename"));
 				
 				list.add(room);
 			}
