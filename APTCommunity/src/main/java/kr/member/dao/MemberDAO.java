@@ -220,31 +220,21 @@ public class MemberDAO {
 	//회원탈퇴(회원정보 삭제)
 	public void deleteMember(int mem_num) throws Exception {
 		Connection conn = null;
-		PreparedStatement pstmt1 = null;//자식 레코드
-		PreparedStatement pstmt2 = null;//부모 레코드
+		PreparedStatement pstmt = null;
 		String sql = null;
 		
 		try {
 			conn = DBUtil.getConnection();
-			conn.setAutoCommit(false);
-			
-			sql = "DELETE FROM member_detail WHERE mem_num=?";
-			pstmt1 = conn.prepareStatement(sql);
-			pstmt1.setInt(1, mem_num);
-			pstmt1.executeUpdate();
 			
 			sql = "DELETE FROM member WHERE mem_num=?";
-			pstmt2 = conn.prepareStatement(sql);
-			pstmt2.setInt(1, mem_num);
-			pstmt2.executeUpdate();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, mem_num);
+			pstmt.executeUpdate();
 			
-			conn.commit();
 		}catch(Exception e) {
-			conn.rollback();
 			throw new Exception(e);
 		}finally {
-			DBUtil.executeClose(null, pstmt2, null);
-			DBUtil.executeClose(null, pstmt1, conn);
+			DBUtil.executeClose(null, pstmt, conn);
 		}
 	}
 	//관리자

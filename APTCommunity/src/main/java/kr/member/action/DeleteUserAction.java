@@ -38,12 +38,11 @@ public class DeleteUserAction implements Action{
 			check = db_member.isCheckedPassword(passwd);
 		}
 		
-		if(!check) {//인증 성공
+		if(check) {//인증 성공
 			//회원탈퇴
 			dao.deleteMember(user_num);
 			System.out.println("탈퇴 성공");
 			session.invalidate();
-			
 		}
 		
 		request.setAttribute("check", check);

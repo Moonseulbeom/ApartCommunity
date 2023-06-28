@@ -175,7 +175,10 @@
 	height: 50px; 
 }
 
-
+#myPage_write_list1 td{
+	padding: 3px;
+	font-size: 16px;
+}
 
 
 

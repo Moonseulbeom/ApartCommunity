@@ -47,9 +47,9 @@
 							</ul>
 							<h2><b>나의 활동</b></h2><br>
 							<ul>
-								<li><a href="${pageContext.request.contextPath}/#">내가 쓴 글</a></li>
+								<li><a href="${pageContext.request.contextPath}/member/myPageList.do">내가 쓴 글</a></li>
 								<li><a href="${pageContext.request.contextPath}/#">내가 쓴 댓글</a></li>
-								<li><a href="${pageContext.request.contextPath}/member/myPageFav.do">찜한 목록</a></li>
+								<li><a href="${pageContext.request.contextPath}/member/myPageFavList.do">찜한 목록</a></li>
 							</ul>
 						</div>
 						</div>
@@ -76,56 +76,31 @@
 										<th width="10%">댓글 수</th>
 									</tr>
 									<c:forEach var="al" items="${list}">
-									<tr>
+									<tr id="myPage_write_list1">
 										<td>${al.category}</td>
 										<td>${al.num}</td>
-										<td>${al.title}</td>
+										<c:if test="${al.category=='하자보수'}">
+											<td><a href="${pageContext.request.contextPath}/fix/fixDetail.do?fix_num=${al.num}">${al.title}</a></td>
+										</c:if>
+										<c:if test="${al.category=='자유게시판'}">
+											<td><a href="${pageContext.request.contextPath}/board/boardDetail.do?board_num=${al.num}">${al.title}</a></td>
+										</c:if>
+										<c:if test="${al.category=='일대일문의'}">
+											<td><a href="${pageContext.request.contextPath}/inquiry/detail.do?in_num=${al.num}">${al.title}</a></td>
+										</c:if>
+										<c:if test="${al.category=='중고거래'}">
+											<td><a href="${pageContext.request.contextPath}/secondhand/seBuyDetail.do?se_num=${al.num}">${al.title}</a></td>
+										</c:if>
 										<td>${al.reg_date}</td>
-										<td>${al.mem_num}</td>
+										<td>${al.cnt}</td>
 									</tr>
 									</c:forEach>
-									<!-- 자유게시판 --><%-- 
-									<c:forEach var="board" items="${boardList}">
-									<tr>
-										<td>자유게시판</td>
-										<td>${board.board_num}</td>
-										<td><a href="${pageContext.request.contextPath}/board/boardDetail.do?board_num=${board.board_num}">${board.title}</a></td>
-										<td>${board.reg_date}</td>
-									</tr>
-									</c:forEach>
-									<!-- 중고거래 -->
-									<c:forEach var="secondhand" items="${secondhandList}">
-									<tr>
-										<td>중고거래</td>
-										<td>${secondhand.se_num}</td>
-										<td><a href="${pageContext.request.contextPath}/secondhand/seBuyDetail.do?se_num=${secondhand.se_num}">${secondhand.title}</a></td>
-										<td>${secondhand.reg_date}</td>
-									</tr>
-									</c:forEach>
-									<!-- 1:1문의 -->
-									<c:forEach var="inquiry" items="${inquiryList}">
-									<tr>
-										<td>1 : 1 문의</td>
-										<td>${inquiry.in_num}</td>
-										<td><a href="${pageContext.request.contextPath}/inquiry/detail.do?in_num=${inquiry.in_num}">${inquiry.title}</a></td>
-										<td>${inquiry.reg_date}</td>
-										<td>${inquiry.cnt}</td>
-									</tr>
-									</c:forEach>
-									<!-- 하자보수신청 -->
-									<c:forEach var="fix" items="${fixList}">
-									<tr>
-										<td>하자보수 문의/신청</td>
-										<td>${fix.fix_num}</td>
-										<td><a href="${pageContext.request.contextPath}/fix/fixDetail.do?fix_num=${fix.fix_num}">${fix.title}</a></td>
-										<td>${fix.reg_date}</td>
-									</tr>
-									</c:forEach>--%>
 								</table>
+								<div class="page-count">${page}</div>
 								<div class="paging-button" style="display: none;">
 									<input type="button" value="더보기">
 								</div>
-								<div id="loading" style="display: none;">염
+								<div id="loading" style="display: none;">
 									<img src="${pageContext.request.contextPath}/images/loading.gif" width="50" height="50">
 								</div>
 								<!--  콘텐츠 가두기 끝 -->
