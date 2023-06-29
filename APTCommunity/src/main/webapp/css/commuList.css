@@ -103,9 +103,6 @@
 	width: 700px;
 }
 
-
-
-
 /*공지사항 상단*/
 .main-img img{
 	width: 700px;
@@ -219,7 +216,7 @@ input[type="search"]{
 	float: none;
 }
 .detail-page-title #st{
-	padding: 3px 20px 0px 0px;
+	padding: 3px 0px 0px 0px;
 }
 .detail-page-title input{
 	height: 27px;
@@ -406,9 +403,6 @@ input[type="search"]{
 	margin: 50px auto;
 	border: none;
 	min-height: 400px;
-}
-.page-main li{
-	float: left;
 }
 .page-left{
 	padding-right: 50px;
