@@ -56,7 +56,7 @@
 										'<span class="loading">로그인 중...</span>');
 					} else if (param.result == 'failure') {
 						alert('아이디 또는 비밀번호가 틀렸습니다.');
-						history.go(-1);
+						location.href='${pageContext.request.contextPath}/member/loginForm.do';
 					}
 				},
 				error : function() {
