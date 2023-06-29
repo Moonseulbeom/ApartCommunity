@@ -30,8 +30,9 @@
 </script>
 </head>
 <body>
+<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 <div class="write-page-main">
-	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
+	
 	<!-- 내용 시작 -->
 	<div class="inner">
 		<div id="container" class="inner">
