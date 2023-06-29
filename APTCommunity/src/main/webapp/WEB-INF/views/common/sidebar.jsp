@@ -17,6 +17,7 @@ $(function(){
 		}
 	})
 })
+
 </script>
 
 	<div class="mem-service">
@@ -33,7 +34,7 @@ $(function(){
 			<ul>
 				<li>
 					<div>
-					<a href="${pageContext.request.contextPath}/member/memberList.do">회원관리	</a>
+					<a href="${pageContext.request.contextPath}/main/main.do">홈으로	</a>
 					</div>
 				</li>
 				<li>
