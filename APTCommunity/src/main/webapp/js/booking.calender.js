@@ -1,13 +1,15 @@
+	//오늘 날짜를 가져옵니다.
 	let today = new Date();
 	
 	//달력 생성하는 함수
 	function buildCalendar(){
+		
 		let row = null;
 		let cnt = 0;
 		let realDate = new Date();
 		//현재 날짜 숫자형태 (yyyymm)
 		let realYM = realDate.getFullYear()*100 + (realDate.getMonth()+1);
-		//선택한 날짜 숫자형태 (yyyymm)
+		//유저가 선택한 날짜 숫자형태 (yyyymm)
 		let currentYM = today.getFullYear()*100 + (today.getMonth()+1);
 		//id값에 yyyy-mm-dd 형식을 집어넣기 위함.
 		let fmM = (today.getMonth()+1);
@@ -18,7 +20,7 @@
 		//캘린더 테이블 불러오기
 		let calendar = document.getElementById("calendar");
 		let calendarTitle = document.getElementById("calendarTitle");
-		//년 월 삽입하기 
+		//년 월 삽입하기  
 		calendarTitle.innerHTML = "<label>"+today.getFullYear()+"년 "+(today.getMonth()+1)+"월</label>";
 		
 		//현 달력의 첫째날
@@ -77,16 +79,16 @@
 			}
 		}
 		
-		
+		// nextCalendar, prevCalendar 함수 관련 활성화/비활성화 하기
 		let currentDays = document.getElementsByClassName("current");
-		//현재 날짜보다 선택한 날짜가 더 크면 모두 활성화
+		//오늘 날짜보다 선택한 날짜가 더 크면 모두 활성화
 		if(realYM < currentYM){
 			for(let i=0; i<currentDays.length; i++){
 				currentDays[i].className = "current yday";
 			}
 		}else if(realYM === currentYM){//같은 연도+ 같은 달 이면 아무것도 안함.
 		}else{
-			//현재 날짜보다 선택한 날짜가 더 낮으면 모두 비활성화
+			//오늘 날짜보다 선택한 날짜가 더 낮으면 모두 비활성화
 			for(let i=0; i<currentDays.length; i++){
 				currentDays[i].className = "current disable";
 			}
