@@ -73,7 +73,7 @@
 			<li>
 				<textarea rows="5" cols="30" id="content" name="content" placeholder="내용을 입력해주세요."></textarea>
 				<div id="re_first">
-						<span class="letter-count">700/700</span>
+						<span class="letter-count">650/650</span>
 				</div>
 			</li>
 			<li>

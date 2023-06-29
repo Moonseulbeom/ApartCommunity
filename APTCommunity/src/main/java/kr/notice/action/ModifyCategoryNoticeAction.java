@@ -11,7 +11,7 @@ import kr.notice.dao.NoticeDAO;
 import kr.notice.vo.NoticeVO;
 import kr.util.FileUtil;
 
-public class ModifyNoticeAction implements Action {
+public class ModifyCategoryNoticeAction implements Action {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -25,7 +25,7 @@ public class ModifyNoticeAction implements Action {
 		}
 		MultipartRequest multi = FileUtil.createFile(request);
 		
-		int dept = Integer.parseInt(multi.getParameter("keyfield_dept"));
+		int category_status = Integer.parseInt(multi.getParameter("category_status"));
 		int no_num = Integer.parseInt(multi.getParameter("no_num"));
 		String filename = multi.getFilesystemName("filename");
 		
@@ -33,8 +33,8 @@ public class ModifyNoticeAction implements Action {
 		NoticeVO vo = dao.getNoticeVO(no_num);
 		
 		NoticeVO notice = new NoticeVO();
-		notice.setCategory_status(1);
-		notice.setDept(dept);
+		notice.setCategory_status(category_status);
+		notice.setDept(4);
 		notice.setTitle(multi.getParameter("title"));
 		notice.setContent(multi.getParameter("content"));
 		notice.setFilename(filename);
@@ -45,7 +45,7 @@ public class ModifyNoticeAction implements Action {
 		}
 		dao.modifyNotice(notice);
 		request.setAttribute("no_num", no_num);
-		return "/WEB-INF/views/notice/modifyNotice.jsp";
+		return "/WEB-INF/views/notice/modifyCategoryNotice.jsp";
 	}
 
 }

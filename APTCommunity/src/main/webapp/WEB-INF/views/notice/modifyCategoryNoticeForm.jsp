@@ -46,6 +46,9 @@
 				$('#re_first .letter-count').text(remain);
 			}
 		})
+		if($('#status').val() == 0){
+			$('input[type=checkbox]').prop('checked',false);
+		}
 	});
 </script>
 </head>
@@ -58,41 +61,76 @@
 				<h1>공지사항 글쓰기</h1>
 			</div>
 			<div class="write-page">
-				<form id="write_form" action="writeNotice.do" method="post"
+				<form id="write_form" action="modifyCatedoryNotice.do" method="post"
 					enctype="multipart/form-data">
-					<input type="hidden" name="keyfield_dept" value="4"> <input
-						type="hidden" name="status" id="status" value="0">
+					<input type="hidden" name="keyfield_dept" value="4"> 
+					<input type="hidden" name="status" id="status" value="${ notice.status }">
+					<input type="hidden" name="no_num" value="${ notice.no_num }">
 					<ul>
 						<li><select name="category_status" class="keyfield">
 								<option value="2"
-									<c:if test="${param.keyfield_cate==2}">selected</c:if>>자유게시판</option>
+									<c:if test="${notice.category_status==2}">selected</c:if>>자유게시판</option>
 								<option value="3"
-									<c:if test="${param.keyfield_cate==3}">selected</c:if>>중고거래</option>
+									<c:if test="${notice.category_status==3}">selected</c:if>>중고거래</option>
 								<option value="4"
-									<c:if test="${param.keyfield_cate==3}">selected</c:if>>하자보수</option>
+									<c:if test="${notice.category_status==4}">selected</c:if>>하자보수</option>
 								<option value="5"
-									<c:if test="${param.keyfield_cate==3}">selected</c:if>>예약(시설)</option>
+									<c:if test="${notice.category_status==5}">selected</c:if>>예약(시설)</option>
 								<option value="6"
-									<c:if test="${param.keyfield_cate==4}">selected</c:if>>1:1문의</option>
+									<c:if test="${notice.category_status==6}">selected</c:if>>1:1문의</option>
 						</select></li>
 						<li>
 							<div class="wirte-title">
-								<input type="text" id="title" name="title"
-									placeholder="제목을 입력해주세요." maxlength="20"> <label
-									for="checkbox">상단고정</label> <input type="checkbox" id="check"
-									name="check" value="1">
+								<input type="text" id="title" name="title" placeholder="제목을 입력해주세요." maxlength="20" value="${ notice.title }">
+								<label for="checkbox">상단고정</label>
+								<input type="checkbox" id="check" name="check" value="1" checked="checked">
 							</div>
 						</li>
 						<li><textarea rows="5" cols="30" id="content" name="content"
-								placeholder="내용을 입력해주세요."></textarea>
+								placeholder="내용을 입력해주세요.">${ notice.content }</textarea>
 							<div id="re_first">
 								<span class="letter-count">650/650</span>
 							</div></li>
-						<li><input type="file" id="filename" name="filename"
-							accept="image/png, image/jpeg, image/gif"></li>
+						<li>
+							<input type="file" id="filename" name="filename"
+							accept="image/png, image/jpeg, image/gif">
+					<c:if test="${!empty notice.filename}">
+					<div id="file_detail">
+						(${notice.filename})파일이 등록되어 있습니다.
+						<input type="button" value="파일삭제" id="file_del">
+					</div>
+					<script type="text/javascript">
+						$(function(){
+							$('#file_del').click(function(){
+								let choice = confirm('삭제하시겠습니까?');
+								if(choice){
+									$.ajax({
+										url:'deleteFile.do',
+										type:'post',
+										data:{no_num:${notice.no_num}},
+										dataType:'json',
+										success:function(param){
+											if(param.result == 'logout'){
+												alert('로그인 후 사용하세요');
+											}else if(param.result == 'success'){
+												$('#file_detail').hide();
+											}else{
+												alert('파일 삭제 오류 발생');
+											}
+										},
+										error:function(){
+											alert('네트워크 오류 발생');
+										}
+									});
+								}
+							});
+						});
+					</script>
+					</c:if>
+							</li>
 						<li>
 							<div class="write-btn-div">
-								<input type="submit" value="등록" class="write-btn"> <input
+								<input type="submit" value="수정" class="write-btn"> <input
 									type="button" value="취소" class="write-btn"
 									onclick="history.go(-1)">
 							</div>

@@ -92,7 +92,10 @@
 		<div class="detail-btn">
 			<div class="detail-btn-div2">
 			<c:if test="${user_auth == 9 }">
-				<form action="modifyNoticeForm.do" method="post">
+				
+				<form action="<c:if test="${ notice.dept < 4 }" > modifyNoticeForm.do</c:if>
+				<c:if test="${ notice.dept >= 4 }" >modifyCategoryNoticeForm.do</c:if>"
+				method="post">
 				<input type="hidden" name="no_num" value="${ notice.no_num }">
 				<input type="submit" value="수정" class="bottom-btn">
 				<input type="button" value="삭제" class="bottom-btn" id="delete_btn">

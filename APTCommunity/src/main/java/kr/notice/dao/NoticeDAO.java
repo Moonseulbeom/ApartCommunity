@@ -227,8 +227,9 @@ public class NoticeDAO
     			sub_sql += ",filename = ?";
     		}
     		
-    		sql = "UPDATE notice SET dept = ?, title = ?, content = ?, status = ?"+sub_sql+", modify_date = SYSDATE WHERE no_num = ?";
+    		sql = "UPDATE notice SET category_status = ?, dept = ?, title = ?, content = ?, status = ?"+sub_sql+", modify_date = SYSDATE WHERE no_num = ?";
     		pstmt = conn.prepareStatement(sql);
+    		pstmt.setInt(++cnt, notice.getCategory_status());
     		pstmt.setInt(++cnt, notice.getDept());
     		pstmt.setString(++cnt, notice.getTitle());
     		pstmt.setString(++cnt, notice.getContent());
