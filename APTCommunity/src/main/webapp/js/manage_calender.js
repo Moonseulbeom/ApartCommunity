@@ -143,7 +143,7 @@ $(function(){
 	
 		
 		ajaxRequest = $.ajax({
-			url:'manage-serviceList.do',
+			url:'manage-serviceList.do?manage_select=6',
 			type:'post',
 			data:{room_num:room_num, bk_date:isDate},
 			dataType:'json',
@@ -154,7 +154,6 @@ $(function(){
 					output += '<div class="result-display" id="book_non">현재 예약이 없습니다.</div>';
 					output += '<hr color="#edeff0" noshade="noshade" id="book_non_hr">';
 					$("#change-booklist").append(output);
-					$('.book-list').show(); 
 				}else{
 					$(param.book_list).each(function(index,item){
 						//console.log(param.book_list);
@@ -166,16 +165,21 @@ $(function(){
 						output += '<td>'+item.start_time+'-'+item.end_time+'</td>';
 						output += '</tr>';
 					})  
-					console.log(param.check_auth != null);
+					//console.log(param.check_auth != null);
 					
-					if(param.check_auth == 9){//활성화 버튼
+					$("#book_output").append(output); // index가 끝날때까지
+				}
+					//lert(param.check_auth);//버튼 활성화/비활성화
+					
+					if(param.check_auth == 9){//활성화 버튼 보이기
+						$('#yesBook_btn').show();
+						$('#noBook_btn').hide();
+					}else if(param.check_auth == 1){//비활성화 버튼 보이기
 						$('#yesBook_btn').hide();
 						$('#noBook_btn').show();
 					}
 					
-					$("#book_output").append(output); // index가 끝날때까지
 					$('.book-list').show(); 
-				}
 			},
 			error:function(){
 				alert('!네트워크 오류 발생!');
@@ -194,8 +198,13 @@ $(function(){
 		$('#book_output').empty();//table 내용 비우기
 		$('#book_non').remove();
 		$('#book_non_hr').remove();
+		
+		if(ajaxRequest != null){
+			ajaxRequest.abort();
+		}
+		
 		ajaxRequest = $.ajax({
-					url:'manage-serviceList.do',
+					url:'manage-serviceList.do?manage_select=6',
 					type:'post',
 					data:{room_num:room_num, bk_date:isDate, book_check:'1'},
 					dataType:'json',
@@ -205,12 +214,12 @@ $(function(){
 						output += '<div class="result-display" id="book_non">예약 불가능.</div>';
 						output += '<hr color="#edeff0" noshade="noshade" id="book_non_hr">';
 						$("#change-booklist").append(output);
-						$('#noBook_btn').hide();
-						$('#yesBook_btn').show();
+						
+						$('#noBook_btn').hide();//비활동화 off
+						$('#yesBook_btn').show();//활동화 on
+						
 						$('.book-list').show(); 
 						
-						//$('#'+isDate).setAttribute('class', 'success-block');
-						//$('#'+isDate).className = 'success-block';
 					},
 					error:function(){
 						alert('휴관 버튼 네트워크 오류 발생');
@@ -225,8 +234,12 @@ $(function(){
 		$('#book_non').remove();
 		$('#book_non_hr').remove();
 		
+		if(ajaxRequest != null){
+			ajaxRequest.abort();
+		}
+		
 		ajaxRequest = $.ajax({
-					url:'manage-serviceList.do',
+					url:'manage-serviceList.do?manage_select=6',
 					type:'post',
 					data:{room_num:room_num, bk_date:isDate, book_check:'0'},
 					dataType:'json',
@@ -237,11 +250,9 @@ $(function(){
 						output += '<div class="result-display" id="book_non">예약 가능</div>';
 						output += '<hr color="#edeff0" noshade="noshade" id="book_non_hr">';
 						$("#change-booklist").append(output);
-						$('#noBook_btn').show();
-						$('#yesBook_btn').hide();
+						$('#noBook_btn').show(); //비활동화 on
+						$('#yesBook_btn').hide(); //활동화 off
 						$('.book-list').show(); 
-						//$('#'+isDate).setAttribute('class', 'success-block');
-						//$('#'+isDate).className = 'success-block';
 					},
 					error:function(){
 						alert('휴관 버튼 네트워크 오류 발생');

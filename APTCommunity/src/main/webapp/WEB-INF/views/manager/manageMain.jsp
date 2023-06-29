@@ -16,7 +16,7 @@
 		$('#mem_btn').on('click',function(){
 			 $.ajax({
 				 type:'get',
-				 url:'manage-serviceList.do',
+				 url:'manage-serviceList.do?manage_select=1',
 				 dataType:'text',
 				 success:function(data){
 					 let plus = $('#manage_content').html(data).find('#manage_member');
@@ -31,7 +31,7 @@
 		$('#no_btn').on('click',function(){
 			 $.ajax({
 				 type:'get',
-				 url:'manage-serviceList.do',
+				 url:'manage-serviceList.do?manage_select=2',
 				 dataType:'text',
 				 success:function(data){
 					 let plus = $('#manage_content').html(data).find('#manage_notice');
@@ -46,7 +46,7 @@
 		$('#ca_btn').on('click',function(){
 			 $.ajax({
 				 type:'get',
-				 url:'manage-serviceList.do',
+				 url:'manage-serviceList.do?manage_select=3',
 				 dataType:'text',
 				 success:function(data){
 					 let plus = $('#manage_content').html(data).find('#manage_category');
@@ -61,7 +61,7 @@
 		$('#in_btn').on('click',function(){
 			 $.ajax({
 				 type:'get',
-				 url:'manage-serviceList.do',
+				 url:'manage-serviceList.do?manage_select=4',
 				 dataType:'text',
 				 success:function(data){
 					 let plus = $('#manage_content').html(data).find('#manage_inquiry');
@@ -76,7 +76,7 @@
 		$('#fix_btn').on('click',function(){
 			 $.ajax({
 				 type:'get',
-				 url:'manage-serviceList.do',
+				 url:'manage-serviceList.do?manage_select=5',
 				 dataType:'text',
 				 success:function(data){
 					 let plus = $('#manage_content').html(data).find('#manage_fix');
@@ -91,7 +91,7 @@
 		$('#book_btn').on('click',function(){
 			 $.ajax({
 				 type:'get',
-				 url:'manage-serviceList.do',
+				 url:'manage-serviceList.do?manage_select=6',
 				 dataType:'text',
 				 success:function(data){
 					 let plus = $('#manage_content').html(data).find('#manage_book');

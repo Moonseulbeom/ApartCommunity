@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
+
 <script src="${pageContext.request.contextPath}/js/manage_calender.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/manage.js"></script>
 
@@ -12,8 +12,8 @@
 	<form action="manage-serviceList.do" method="get" id="mem_search_form">
 		<ul>
 			<li>
-				<div class="mem-search">
-					<select name="mem_select" class="select-member">
+				<div class="manage-search">
+					<select name="mem_select" class="manage-member">
 						<option value="1"
 							<c:if test="${param.mem_select==1}">selected</c:if>>세대주</option>
 						<option value="2"
@@ -46,7 +46,7 @@
 			<table id="mem_output">
 				<c:forEach var="mem" items="${ list }" varStatus="status">
 				<tr>
-					<td id="mem_detail_btn" class="mem-detail-btn">
+					<td id="mem_detail_btn" class="manage-detail-btn">
 						<input type="hidden" name="mem_num" id="mem_num" value="${ mem.mem_num }">
 						${ mem.dongho }
 					</td>
@@ -112,7 +112,7 @@
 	</div>
 </div>
 <!--  2.공지사항 글 작성 폼 -->
-<!--  3. 머리 공지글 작성 폼 -->
+<!--  3. 머리 공지글 작성 폼 -->	
 <div class="main-main" id="manage_category">
 	<div class="write-title-text">
 		<h1>머리글 공지사항 글쓰기</h1>
@@ -162,29 +162,17 @@
 <div id="manage_inquiry">
 	<!--  목록 검색창 -->
 	<h1>1:1문의 관리</h1>	
-	<form action="manage-serviceList.do" method="get" id="mem_search_form">
-	<ul>
-		<li>
-			<div class="mem-search">
-				<select name="mem_select" class="select-member">
-					<option value="1" <c:if test="${param.mem_select==1}">selected</c:if>>세대주</option>
-					<option value="2" <c:if test="${param.mem_select==2}">selected</c:if>>동</option>
-					<option value="3" <c:if test="${param.mem_select==3}">selected</c:if>>호수</option>
+			<div class="manage-search">
+				<select name="inquiry_select" class="manage-member" id="inquiry_select">
+					<option value="2">--선택--</option>
+					<option value="1" <c:if test="${inquiry_select==1}">selected</c:if>>답변완료</option>
+					<option value="0" <c:if test="${inquiry_select==0}">selected</c:if>>미답변</option>
 				</select>
-				<input type="search" placeholder="회원 목록 조회" class="search-member" name="keyword" id="keyword" value="${ param.keyword }">
 			</div>
-		</li>
-		<li>
-			<div class="mem-search-btn">
-				<input type="submit" value="검색">
-			</div>
-		</li>
-	</ul>
-	</form>
 	<!-- 목록 검색참 끝 -->
 	<!-- 1:1문의 목록 -->
 <div class="mem-list">
-		<table id="inquiry_info">
+		<table id="inquiry_info" class="manage_info">
 			<tr>
 				<th>글 번호</th>
 				<th>제목</th>
@@ -194,11 +182,14 @@
 			</tr>
 		</table>
 		<div id="change-inquirylist">
-			<table id="inquiry_output">
+			<table id="inquiry_output" class="manage_contentList">
 				<c:forEach var="inquiry" items="${ inquiry_list }">
 					<tr>
 						<td id="1">${ inquiry.in_num }</td>
-						<td id="2">${ inquiry.title }</td>
+						<td id="2" class="manage-detail-btn" 
+						onclick="location.href='${ pageContext.request.contextPath}/inquiry/detail.do?in_num=${ inquiry.in_num }'">
+							${ inquiry.title }
+						</td>
 						<td id="3">${ inquiry.dongho }</td>
 						<td id="4">${ inquiry.reg_date }</td>
 						<td>
@@ -219,47 +210,40 @@
 <div id="manage_fix">
 	<!--  목록 검색창 -->
 	<h1>하자보수글 조회</h1>
-	<form action="manage-serviceList.do" method="get" id="mem_search_form">
-		<ul>
-			<li>
-				<div class="mem-search">
-					<select name="mem_select" class="select-member">
-						<option value="1"
-							<c:if test="${param.mem_select==1}">selected</c:if>>세대주</option>
-						<option value="2"
-							<c:if test="${param.mem_select==2}">selected</c:if>>동</option>
-						<option value="3"
-							<c:if test="${param.mem_select==3}">selected</c:if>>호수</option>
-					</select> <input type="search" placeholder="회원 목록 조회" class="search-member"
-						name="keyword" id="keyword" value="${ param.keyword }">
-				</div>
-			</li>
-			<li>
-				<div class="mem-search-btn">
-					<input type="submit" value="검색">
-				</div>
-			</li>
-		</ul>
-	</form>
+			<div class="manage-search">
+				<select name="fix_select" class="manage-member" id="fix_select">
+					<option value="2">--선택--</option>
+					<option value="1" <c:if test="${fix_select==1}">selected</c:if>>답변완료</option>
+					<option value="0" <c:if test="${fix_select==0}">selected</c:if>>미답변</option>
+				</select>
+			</div>
 	<!--  목록 검색참 끝 -->
 	<!-- 글 목록 -->
 	<div class="mem-list">
-		<table id="fix_info">
+		<table id="fix_info" class="manage_info">
 			<tr>
 				<th>글 번호</th>
 				<th>제목</th>
 				<th>동-호수</th>
 				<th>작성일</th>
+				<th>답변여부</th>
 			</tr >
 		</table>
 		<div id="change-memlist">
-			<table id="fix_output">
+			<table id="fix_output" class="manage_contentList">
 				<c:forEach var="fix" items="${ fix_list }">
 				<tr>
 					<td id="1">${ fix.fix_num }</td>
-					<td id="2">${ fix.title }</td>
+					<td id="2" class="manage-detail-btn" 
+					onclick="location.href='${ pageContext.request.contextPath}/fix/fixDetail.do?fix_num=${ fix.fix_num }'" >
+					${ fix.title }
+					</td>
 					<td id="3">${ fix.dongHo }</td>
 					<td id="4">${ fix.reg_date }</td>
+					<td>
+						<c:if test="${ fix.check > 0 }">답변완료</c:if>
+						<c:if test="${ fix.check == 0 }">미답변</c:if>
+					</td> 
 				</tr>
 				</c:forEach>
 			</table>
@@ -278,8 +262,8 @@
 		<ul>
 			<li>
 				<div class="room-search">
-					<select name="room_select" class="select-member" id="room_select">
-						<option value="선택"
+					<select name="room_select" class="manage-member" id="room_select">
+						<option value="선택" 
 							<c:if test="${param.room_select=='선택'}">selected</c:if>>--시설 선택--</option>
 						<option value="도서실"
 							<c:if test="${param.room_select=='도서실'}">selected</c:if>>도서실</option>
@@ -292,7 +276,7 @@
 			</li>
 			<li id="room_type" style="display: none;">
 				<div class="room-search">
-					<select name="room_select2" class="select-member" id="room_select2">
+					<select name="room_select2" class="manage-member" id="room_select2">
 					
 					</select>
 				</div>

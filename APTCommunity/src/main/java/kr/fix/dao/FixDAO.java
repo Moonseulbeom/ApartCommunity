@@ -106,6 +106,10 @@ public class FixDAO {
 				fix.setMem_num(rs.getInt("mem_num"));
 				fix.setReg_date(rs.getDate("reg_date"));
 				fix.setDongHo(rs.getString("dongho"));
+				
+				int check = getcheck(rs.getInt("fix_num"));
+				fix.setCheck(check);
+				
 				//자바빈을 ArrayList에 저장
 				list.add(fix);
 			}
@@ -527,7 +531,80 @@ public class FixDAO {
 			DBUtil.executeClose(null, pstmt, conn);
 		}
 	}
-	
+	//댓글 존재 여부 확인
+	public int getcheck(int fix_num) throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
+		int check = 0;
+		try {
+			conn = DBUtil.getConnection();
+			sql = "SELECT COUNT(*) FROM fix_reply m JOIN fix f ON m.fix_num = f.fix_num WHERE f.fix_num = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, fix_num);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				check = rs.getInt(1);
+			}
+			
+		} catch (Exception e) {
+			throw new Exception(e);
+		} finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		return check;
+	}
+	//답변 미답변 처리
+		public List<FixVO> A_check(int A_select,int start, int end) throws Exception{
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			String sql = null;
+			String sub_sql = null;
+			List<FixVO> list = null;
+			int check = 0;
+			try {
+				conn = DBUtil.getConnection();
+				if(A_select < 1) {
+					sub_sql = "IS NULL";
+				}else {
+					sub_sql = "IS NOT NULL";
+					check = 1;
+				}
+				sql = "SELECT * FROM (SELECT a.*, rownum rnum FROM"
+						+ " (SELECT * FROM  fix f LEFT OUTER JOIN fix_reply re ON f.fix_num = re.fix_num JOIN member m ON m.mem_num = f.mem_num WHERE re_num "
+						+sub_sql+ " ORDER BY f.fix_num DESC)a)"
+						+ " WHERE rnum>=? AND rnum<=?";
+				//sql = "SELECT * FROM fix_reply m RIGHT OUTER JOIN fix f ON m.fix_num = f.fix_num WHERE re_num ";
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, start);
+				pstmt.setInt(2, end);
+				rs = pstmt.executeQuery();
+				list = new ArrayList<FixVO>();
+				while(rs.next()) {
+					FixVO fix = new FixVO();
+					fix.setFix_num(rs.getInt("fix_num"));
+					fix.setTitle(StringUtil.useNoHtml(rs.getString("title")));
+					fix.setMem_num(rs.getInt("mem_num"));
+					fix.setReg_date(rs.getDate("reg_date"));
+					fix.setDongHo(rs.getString("dongho"));
+					
+					fix.setCheck(check);
+					
+					//자바빈을 ArrayList에 저장
+					list.add(fix);
+				}
+				
+			} catch (Exception e) {
+				throw new Exception(e);
+			} finally {
+				DBUtil.executeClose(rs, pstmt, conn);
+			}
+			
+			return list;
+		}
+		
 
 	
 	

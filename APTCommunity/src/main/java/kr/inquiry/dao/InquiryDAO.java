@@ -573,6 +573,58 @@ public class InquiryDAO {
 		}
 		return check;
 	}
+	//답변 미답변 처리
+	public List<InquiryVO> A_check(int A_select,int start, int end) throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
+		String sub_sql = null;
+		List<InquiryVO> list = null;
+		int check = 0;
+		try {
+			conn = DBUtil.getConnection();
+			if(A_select < 1) {
+				sub_sql = "IS NULL";
+			}else {
+				sub_sql = "IS NOT NULL";
+				check = 1;
+			}
+			sql = "SELECT * FROM (SELECT a.*, rownum rnum FROM"
+					+ "	(SELECT * FROM  inquiry i LEFT OUTER JOIN inquiry_manage im ON im.in_num = i.in_num JOIN member m ON m.mem_num = i.mem_num WHERE re_num "
+					+sub_sql+ "	ORDER BY i.in_num DESC)a)"
+					+ " WHERE rnum>=? AND rnum<=?";
+			//sql = "SELECT * FROM fix_reply m RIGHT OUTER JOIN fix f ON m.fix_num = f.fix_num WHERE re_num ";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, start);
+			pstmt.setInt(2, end);
+			rs = pstmt.executeQuery();
+			list = new ArrayList<InquiryVO>();
+			while(rs.next()) {
+				InquiryVO inquiry = new InquiryVO();
+				inquiry.setIn_num(
+						rs.getInt("in_num"));
+				inquiry.setTitle(
+						StringUtil.useNoHtml(
+							rs.getString("title")));
+				inquiry.setReg_date(
+						rs.getDate("reg_date"));
+				inquiry.setDongho(rs.getString("dongho"));
+				
+				inquiry.setCheck(check);
+				
+				//자바빈을 ArrayList에 저장
+				list.add(inquiry);
+			}
+			
+		} catch (Exception e) {
+			throw new Exception(e);
+		} finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		
+		return list;
+	}
 	
 	//내가 쓴 글(1:1문의)-염유진
 	public List<InquiryVO> myListInquiry(int mem_num) throws Exception{

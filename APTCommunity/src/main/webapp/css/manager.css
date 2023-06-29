@@ -84,10 +84,10 @@
 	margin-left:50px;
 }
 /*회원 검색*/
-.mem-search{
+.manage-search{
 	margin-top: 15px; 
 }
-.select-member{
+.manage-member{
 	height: 30px;
 }	
 .search-member{
@@ -147,7 +147,7 @@
 	text-align: center;
 }
 /*회원 상세페이지 버튼*/
-#mem_detail_btn:hover{
+.manage-detail-btn:hover{
 	cursor: pointer;
 	background-color: #f5f9ff;
 }
@@ -251,36 +251,25 @@
 #manage_inquiry{
 	margin-left:50px;
 }
-#inquiry_info th:first-child, #inquiry_output td:first-child{
+/*1:1리스트 & 하자보수 테이블*/
+.manage_info th:first-child, .manage_contentList td:first-child{
 	width: 68px;
 }
-#inquiry_info th:nth-child(2), #inquiry_output td:nth-child(2){
+.manage_info th:nth-child(2), .manage_contentList td:nth-child(2){
 	width: 308px;
 }
-#inquiry_info th:nth-child(3), #inquiry_output td:nth-child(3){
+.manage_info th:nth-child(3), .manage_contentList td:nth-child(3){
 	width: 154px;
 }
-#inquiry_info th:nth-child(4), #inquiry_output td:nth-child(4){
+.manage_info th:nth-child(4), .manage_contentList td:nth-child(4){
 	width: 103px;
 }
-#inquiry_info th:last-child, #inquiry_output td:last-child{
+.manage_info th:last-child, .manage_contentList td:last-child{
 	width: 100px;
 }
-/*하자보수글 리스트*/
+/*하자보수 리스트*/
 #manage_fix{
-	margin-left:50px;
-}
-#fix_info th:first-child, #fix_output td:first-child{
-	width: 69px;
-}
-#fix_info th:nth-child(2), #fix_output td:nth-child(2){
-	width: 311px;
-}
-#fix_info th:nth-child(3), #fix_output td:nth-child(3){
-	width: 139px;
-}
-#fix_info th:last-child, #fix_output td:last-child{
-	width: 171px;
+	margin-left: 50px;
 }
 #mem_detail{
 	margin-left:50px;

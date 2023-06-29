@@ -32,6 +32,10 @@ public class ManageServiceListAction implements Action {
 		
 		Map<String,Object> mapAjax = new HashMap<String,Object>();
 		
+		int manage_select = Integer.parseInt(request.getParameter("manage_select"));
+		//String manage_select = request.getParameter("manage_select");
+		//System.out.println(manage_select);
+		
 		if(user_num == null || user_auth < 9) {
 			request.setAttribute("notice_msg", "잘못된 접근입니다.");
 			request.setAttribute("notice_url", request.getContextPath()+"/main/main.do");
@@ -48,7 +52,7 @@ public class ManageServiceListAction implements Action {
 		
 		MemberDAO dao = MemberDAO.getInstance();
 		
-		if(keyword != null) {//search한 경우
+		if(keyword != null && manage_select==1) {//search한 경우
 			request.setCharacterEncoding("utf-8");
 			
 			int count = dao.getMemberCountByAdmin(keyfield, keyword);
@@ -66,28 +70,73 @@ public class ManageServiceListAction implements Action {
 		}
 		
 		//회원 리스트
-		int count = dao.getMemberCountByAdmin(keyfield, keyword);
-		PageUtil page = new PageUtil(keyfield, keyword, Integer.parseInt(pageNum), 10, 10, count, "manageMain.do");
-		List<MemberVO> list = dao.getListMemberByAdmin(page.getStartRow(), page.getEndRow(), keyfield, keyword);
-		
+		if(manage_select == 1) {
+			int count = dao.getMemberCountByAdmin(keyfield, keyword);
+			PageUtil page = new PageUtil(keyfield, keyword, Integer.parseInt(pageNum), 10, 10, count, "manageMain.do");
+			List<MemberVO> list = dao.getListMemberByAdmin(page.getStartRow(), page.getEndRow(), keyfield, keyword);
+			request.setAttribute("count", count);
+			request.setAttribute("page", page.getPage());
+			request.setAttribute("list", list);//회원 리스트
+		}
 		//1:1문의 리스트
-		InquiryDAO in_dao = InquiryDAO.getInstance(); 
-		int in_count = in_dao.getInquiryCount(keyfield, keyword);
-		PageUtil in_page = new PageUtil(keyfield, keyword, Integer.parseInt(pageNum), 10, 10, in_count, "manageMain.do");	
-		List<InquiryVO> inquiry_list = in_dao.getListInquiry(in_page.getStartRow(), in_page.getEndRow(), keyfield, keyword);
-		
+		if(manage_select == 4) {
+			String A = request.getParameter("A_select");
+			//System.out.println(A);
+			if(A != null) {//검색 시
+				int A_select = Integer.parseInt(A);
+				InquiryDAO in_dao = InquiryDAO.getInstance(); 
+				int in_count = in_dao.getInquiryCount(keyfield, keyword);
+				PageUtil in_page = new PageUtil(keyfield, keyword, Integer.parseInt(pageNum), 10, 10, in_count, "manageMain.do");
+				List<InquiryVO> inquiry_list = in_dao.A_check(A_select, in_page.getStartRow(), in_page.getEndRow());
+				request.setAttribute("in_page", in_page.getPage());
+				request.setAttribute("in_count", in_count);
+				request.setAttribute("inquiry_select", A_select);
+				request.setAttribute("inquiry_list", inquiry_list);//하자보수 리스트
+			}else {
+				InquiryDAO in_dao = InquiryDAO.getInstance(); 
+				int in_count = in_dao.getInquiryCount(keyfield, keyword);
+				PageUtil in_page = new PageUtil(keyfield, keyword, Integer.parseInt(pageNum), 10, 10, in_count, "manageMain.do");	
+				List<InquiryVO> inquiry_list = in_dao.getListInquiry(in_page.getStartRow(), in_page.getEndRow(), keyfield, keyword);
+				request.setAttribute("in_page", in_page.getPage());
+				request.setAttribute("in_count", in_count);
+				request.setAttribute("inquiry_list", inquiry_list);//하자보수 리스트
+			}
+		}
 		//하자보수 리스트
-		FixDAO fix_dao = FixDAO.getInstance();
-		int fix_count = fix_dao.getFixCount(keyfield, keyword);
-		PageUtil fix_page = new PageUtil(keyfield, keyword, Integer.parseInt(pageNum), 10, 10, fix_count, "manageMain.do");	
-		List<FixVO> fix_list = fix_dao.getListFix(fix_page.getStartRow(), fix_page.getEndRow(), keyfield, keyword);
+		if(manage_select == 5) {
+			String A = request.getParameter("A_select");
+			if(A != null) {//검색 시
+				int A_select = Integer.parseInt(A);
+				FixDAO fix_dao = FixDAO.getInstance();
+				int fix_count = fix_dao.getFixCount(keyfield, keyword);
+				PageUtil fix_page = new PageUtil(keyfield, keyword, Integer.parseInt(pageNum), 10, 10, fix_count, "manageMain.do");	
+				List<FixVO> fix_list = fix_dao.A_check(A_select, fix_page.getStartRow(), fix_page.getEndRow());
+				request.setAttribute("fix_page", fix_page.getPage());
+				request.setAttribute("fix_count", fix_count);
+				request.setAttribute("fix_select", A_select);
+				request.setAttribute("fix_list", fix_list);
+				
+			}else {
+			//하자보수 리스트
+				FixDAO fix_dao = FixDAO.getInstance();
+				int fix_count = fix_dao.getFixCount(keyfield, keyword);
+				PageUtil fix_page = new PageUtil(keyfield, keyword, Integer.parseInt(pageNum), 10, 10, fix_count, "manageMain.do");	
+				List<FixVO> fix_list = fix_dao.getListFix(fix_page.getStartRow(), fix_page.getEndRow(), keyfield, keyword);
+				request.setAttribute("fix_page", fix_page.getPage());
+				request.setAttribute("fix_count", fix_count);
+				request.setAttribute("fix_list", fix_list);
+			}
+		}
 		
-		//예약 리스트 선택
+		//예약 리스트
+		if(manage_select == 6) {
+			
 		String room_name = request.getParameter("room_name");
 		String room_num = request.getParameter("room_num");
 		String bk_date = request.getParameter("bk_date");
 
-		if(room_name != null && bk_date == null) {
+		//예약 리스트 선택
+		if(room_name != null && bk_date == null ) {
 			BookingDAO book_dao = BookingDAO.getInstance();
 			List<Room_infoVO> bookinfo_list = book_dao.getRoomInfoList(room_name);
 			mapAjax.put("bookinfo_list", bookinfo_list);
@@ -131,6 +180,7 @@ public class ManageServiceListAction implements Action {
 		
 		//예약 리스트 확인
 		if(room_num != null) {
+			
 			//System.out.println(room_type);
 			BookingDAO book_dao = BookingDAO.getInstance();
 			List<BookingVO> book_list = book_dao.getManageBookList(Integer.parseInt(room_num),bk_date);
@@ -142,7 +192,7 @@ public class ManageServiceListAction implements Action {
 					check_auth = 9;
 				}
 			}
-			System.out.println(check_auth);
+			//System.out.println("활성화"+check_auth);
 			mapAjax.put("check_auth", check_auth);
 			mapAjax.put("book_list", book_list);
 			ObjectMapper mapper = new ObjectMapper();
@@ -152,22 +202,7 @@ public class ManageServiceListAction implements Action {
 			//JSP 경로 반환
 			return "/WEB-INF/views/common/ajax_view.jsp";
 		}  
-		
-		
-		request.setAttribute("count", count);
-		request.setAttribute("page", page.getPage());
-		request.setAttribute("list", list);//회원 리스트
-		
-		request.setAttribute("in_page", in_page.getPage());
-		request.setAttribute("in_count", in_count);
-		request.setAttribute("inquiry_list", inquiry_list);//하자보수 리스트
-		
-		request.setAttribute("fix_page", fix_page.getPage());
-		request.setAttribute("fix_count", fix_count);
-		request.setAttribute("fix_list", fix_list);//1:1문의 리스트
-		
-		//예약 리스트
-		
+	}	
 		return "/WEB-INF/views/manager/manage-serviceList.jsp";
 	}
 

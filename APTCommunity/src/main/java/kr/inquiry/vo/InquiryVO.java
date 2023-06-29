@@ -17,8 +17,6 @@ public class InquiryVO {
 	
 	private int cnt;
 	
-
-	
 	public int getCnt() {
 		return cnt;
 	}

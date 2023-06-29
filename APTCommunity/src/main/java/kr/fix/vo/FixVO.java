@@ -14,7 +14,20 @@ public class FixVO {
 	private String ip;
 	private String dongho;
 	
+	private int check;//댓글 존재 확인
 	
+	public String getDongho() {
+		return dongho;
+	}
+	public void setDongho(String dongho) {
+		this.dongho = dongho;
+	}
+	public int getCheck() {
+		return check;
+	}
+	public void setCheck(int check) {
+		this.check = check;
+	}
 	public String getDongHo() {
 		return dongho;
 	}

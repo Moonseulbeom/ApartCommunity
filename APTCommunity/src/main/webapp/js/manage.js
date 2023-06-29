@@ -26,7 +26,7 @@ $(function(){
 		let form_data = $(this).serialize();
 		//ajax 통신
 		$.ajax({
-			url:'manage-serviceList.do',
+			url:'manage-serviceList.do?manage_select=1',
 			type:'post',
 			data:form_data,
 			dataType:'json',
@@ -79,7 +79,7 @@ $(function(){
 		$('#room_type').show();
 		$('select[name=room_select2] > option').remove();
 			$.ajax({
-				url:'manage-serviceList.do',
+				url:'manage-serviceList.do?manage_select=6',
 				data:{room_name:room_num, room_type:'0'},
 				type:'post',
 				dataType:'json',
@@ -102,8 +102,45 @@ $(function(){
 			//
 		})
 	})
-	
-
+//1:1문의 검색
+$('#inquiry_select').change(function(){
+	$('#manage_content').load(location.href+' #manage_content');
+	let A_select = $(this).val();
+	$.ajax({
+			type:'get',
+			 url:'manage-serviceList.do?manage_select=4',
+			 data:{A_select:A_select},
+			 success:function(param){
+				//alert('성공');
+				//$('#manage_content').load('manage-serviceList.do #manage_inquiry', {"manage_select" : "4"})--오류
+				
+				 let plus = $('#manage_content').html(param).find('#manage_inquiry');
+				 $('#manage_content').html(plus);--실행됨
+				
+				 //$('#manage_inquiry').replaceWith(param);
+			 },
+			 error:function(){
+				 alert('1:1문의 통신 에러 발생');
+			 }
+	})
+})	
+//하자보수 검색
+$('#fix_select').change(function(){
+	$('#manage_content').load(location.href+' #manage_content');
+	let A_select = $(this).val();
+	$.ajax({
+			type:'get',
+			 url:'manage-serviceList.do?manage_select=5',
+			 data:{A_select:A_select},
+			 success:function(param){
+				 let plus = $('#manage_content').html(param).find('#manage_fix');
+				 $('#manage_content').html(plus);--실행됨
+			 },
+			 error:function(){
+				 alert('하자보수 통신 에러 발생');
+			 }
+	})
+})	
 //---------------------------------- 조건 체크 --------------------------------------------//		
 	$('#write_manage_form').submit(function(){
 			if($('#title').val().trim()==''){
