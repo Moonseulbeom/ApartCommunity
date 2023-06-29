@@ -27,8 +27,6 @@ public class GetDonghoAction implements Action{
 		String [] name = dao.getDongho(user_num).split("-");
 		String dong = name[0];
 		String ho = name[1];
-		System.out.println("작동");
-		System.out.println(dong);
 		Map<String, String>map = new HashMap<String, String>();
 		map.put("dong", dong);
 		map.put("ho", ho);

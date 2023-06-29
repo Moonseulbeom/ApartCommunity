@@ -33,8 +33,6 @@ public class MyPageListAction implements Action{
 		request.setAttribute("list", list);
 		request.setAttribute("member", member);
 
-		System.out.println(member.getMem_num());
-		
 		return "/WEB-INF/views/member/myPageList.jsp";
 	}
 
