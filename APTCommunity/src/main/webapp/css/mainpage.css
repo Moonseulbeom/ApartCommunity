@@ -174,17 +174,17 @@ div.mphnum_box p {
 .mboard_notice {
   margin-top: 21px;
   float: left;
-  width: 669px;
+  width: 50%;
   border: none;
   border-radius: 3px;
   border: 1px solid #dcdcdc;
 }
 
 .mboard_board {
-  margin-top: 23px;
+  margin-top: 21px;
   border: none;
   border-radius: 3px;
-  width: 310.46px;;
+  width: 49%;;
   float: right;
   border: 1px solid #dcdcdc;
 }
