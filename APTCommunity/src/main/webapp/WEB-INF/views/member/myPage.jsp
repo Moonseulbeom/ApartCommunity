@@ -104,14 +104,14 @@
 								<th>글 번호</th>
 								<th>제목</th>
 								<th>등록일</th>
-								<th>작성자</th>
+								<th>비고</th>
 							</tr>
 							<c:forEach var="vo" items="${favList}">
 								<tr>
 									<td>${vo.se_num}</td>
 									<td><a href="${pageContext.request.contextPath}/secondhand/seBuyDetail.do?se_num=${vo.se_num}">${fn:substring(vo.title,0,12)}</a></td>
 									<td>${vo.reg_date}</td>
-									<td>${vo.dongho}</td>
+									<td></td>
 								</tr>
 							</c:forEach>
 						</table>
@@ -122,14 +122,14 @@
 								<th>글 번호</th>
 								<th>제목</th>
 								<th>등록일</th>
-								<th>뭘넣지</th>
+								<th>비고</th>
 							</tr>
 							<c:forEach var="hohohoho" items="${myList}">
 								<tr>
 									<td>${hohohoho.num}</td>
 									<td><a href="#">${hohohoho.title}</a></td>
 									<td>${hohohoho.reg_date}</td>
-									<td>1</td>
+									<td></td>
 								</tr>
 							</c:forEach>
 						</table>
@@ -140,14 +140,14 @@
 								<th>글 번호</th>
 								<th>제목</th>
 								<th>등록일</th>
-								<th>뭘넣지</th>
+								<th>비고</th>
 							</tr>
 							<c:forEach var="fix" items="${fixList}">
 								<tr>
 									<td>${fix.fix_num}</td>
 									<td><a href="#">${fix.title}</a></td>
 									<td>${fix.reg_date}</td>
-									<td>1</td>
+									<td></td>
 								</tr>
 							</c:forEach>
 						</table>
