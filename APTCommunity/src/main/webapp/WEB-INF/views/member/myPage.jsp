@@ -116,7 +116,7 @@
 							</c:forEach>
 						</table>
 						<h2>내가 쓴 글&nbsp;&nbsp;&nbsp;<input type="button" value="더보기" id="more_btn" 
-							onclick="loaction.href='${pageContext.request.contextPath}/member/myPageList.do'"></h2>
+							onclick="loaction.href='myPageList.do'"></h2>
 						<table id="myChoice">
 							<tr>
 								<th>글 번호</th>
@@ -134,7 +134,7 @@
 							</c:forEach>
 						</table>
 						<h2>예약 현황&nbsp;&nbsp;&nbsp;<input type="button" value="더보기" id="more_btn" 
-							onclick="loaction.href='#'"></h2>
+							onclick="loaction.href='myPage_booking.do'"></h2>
 						<table id="myChoice">
 							<tr>
 								<th>글 번호</th>
@@ -152,7 +152,7 @@
 							</c:forEach>
 						</table>
 						<h2>나의 문의사항&nbsp;&nbsp;&nbsp;<input type="button" value="더보기" id="more_btn" 
-							onclick="loaction.href='#'"></h2>
+							onclick="location.href='myPageInquiryList.do'"></h2>
 						<table id="myChoice">
 							<tr>
 								<th>글 번호</th>
