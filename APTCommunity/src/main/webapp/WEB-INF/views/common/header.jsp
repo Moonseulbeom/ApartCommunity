@@ -7,19 +7,16 @@
 		<div class="inner">
 			<ul class="fr">
 				<!--소유주 권한 추가-->
-				<c:if test="${!empty user_num && user_auth == 9}">
-				<li>
-					<a href="${pageContext.request.contextPath}/member/memberList.do">회원관리</a>
-				</li>
-				</c:if>
 				<c:if test="${!empty user_num}">
 				<li class="menu-logout">
+					<c:if test="${!empty user_num && user_auth == 1}">
 					[<span>${user_dongho}</span>]
 					<a href="${pageContext.request.contextPath}/member/logout.do">로그아웃</a>
-					<c:if test="${!empty user_num && user_auth == 1}">
 					<li><a href="${pageContext.request.contextPath}/member/myPage.do">마이페이지</a></li>
 					</c:if>
 					<c:if test="${!empty user_num && user_auth == 9}">
+					[<span>관리자</span>]
+					<a href="${pageContext.request.contextPath}/member/logout.do">로그아웃</a>
 					<li><a href="${pageContext.request.contextPath}/manager/manageMain.do">관리자페이지</a></li>
 					</c:if>
 				</li>

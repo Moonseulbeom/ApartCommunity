@@ -14,84 +14,89 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/common.js"></script>
 <script type="text/javascript">
 	$(function() {
-		$('#login_form')
-				.submit(
-						function(event) {
-							event.preventDefault();
-
-							if ($('#dong').val().trim() == '') {
-								alert('동을 입력하세요');
-								$('#dong').val('').focus();
-								return false;
-							}
-							if ($('#ho').val().trim() == '') {
-								alert('호를 입력하세요');
-								$('#ho').val('').focus();
-								return false;
-							}
-							if ($('#passwd').val().trim() == '') {
-								alert('비밀번호를 입력하세요');
-								$('#passwd').val('').focus();
-								return false;
-							}
-
-							// dong과 ho 값을 연결
-							let dongho = $('#dong').val() + '-'
-									+ $('#ho').val();
-
-							//서버와의 통신
-							$
-									.ajax({
-										type : 'post',
-										url : '${pageContext.request.contextPath}/member/ajaxlogin.do',
-										data : {
-											dongho : dongho,
-											passwd : $('#passwd').val()
-										},
-										dataType : 'json',
-										success : function(param) {
-											if (param.result == 'success') {
-												location.href = 'main.do';
-												$('#login_form')
-														.append(
-																'<span class="loading">로그인 중...</span>');
-											} else if (param.result == 'failure') {
-												alert('아이디 또는 비밀번호가 틀렸습니다.');
-												history.go(-1);
-											}
-										},
-										error : function() {
-											alert('네트워크 오류 발생');
-										}
-									});
-						});//end of submit
+		$('#login_form').submit(function(event) {
+			event.preventDefault();
+	
+			if ($('#dong').val().trim() == '') {
+				alert('동을 입력하세요');
+				$('#dong').val('').focus();
+				return false;
+			}
+			
+			if ($('#ho').val().trim() == '') {
+				alert('호를 입력하세요');
+				$('#ho').val('').focus();
+				return false;
+			}
+			
+			if ($('#passwd').val().trim() == '') {
+				alert('비밀번호를 입력하세요');
+				$('#passwd').val('').focus();
+				return false;
+			}
+	
+			// dong과 ho 값을 연결
+			let dongho = $('#dong').val() + '-'
+					+ $('#ho').val();
+	
+			//서버와의 통신
+			$.ajax({
+				type : 'post',
+				url : '${pageContext.request.contextPath}/member/ajaxlogin.do',
+				data : {
+					dongho : dongho,
+					passwd : $('#passwd').val()
+				},
+				dataType : 'json',
+				success : function(param) {
+					if (param.result == 'success') {
+						location.href = 'main.do';
+						$('#login_form')
+								.append(
+										'<span class="loading">로그인 중...</span>');
+					} else if (param.result == 'failure') {
+						alert('아이디 또는 비밀번호가 틀렸습니다.');
+						history.go(-1);
+					}
+				},
+				error : function() {
+					alert('네트워크 오류 발생');
+				}
+				
+			});//end of ajax
+		
+		});//end of submit
+		
 	});
 </script>
 </head>
 <body>
+	<!-- header 시작 -->
 	<jsp:include page="/WEB-INF/views/common/header.jsp" />
+	<!-- header 끝 -->
+	
+	<!-- 내용 시작 -->
 	<div id="wrap">
 		<div class="inner">
-			<div id="container" class="inner">
+			<div id="container" class="container">
+				
 				<!-- 상단 링크 버튼 시작-->
 				<div class="service-up">
 					<jsp:include page="/WEB-INF/views/common/up_button.jsp" />
 				</div>
 				<!-- 상단 링크 버튼 끝-->
 				
-				<!-- 내용 시작 -->
-				
-				<!-- 좌측 상단 사진 시작 -->
+				<!-- 좌측 사진 시작 -->
 				<div class="main_loling_wrap fl">
 					<ul class="slide" id="main_slider">
-						<li><img width="668" height="380"
-							src="${pageContext.request.contextPath}/images/mainpageapt.jpg">
+						<li>
+							<img width="668" height="380" src="${pageContext.request.contextPath}/images/mainpageapt.jpg">
 						</li>
 					</ul>
 				</div>
-				<!-- 좌측 상단 사진 끝 -->
+				<!-- 좌측 사진 끝 -->
 				
-				<!-- 우측 상단 로그인 박스 시작 -->
+				<!-- 우측 로그인 박스(로그인 OFF) 시작 -->
 				<c:if test="${empty user_auth}">
 				<div class="mLogin_box">
 					<p class="loginGreetingt">
@@ -99,11 +104,11 @@
 					</p>
 					<div class="loginBox">
 						<form id="login_form">
-							<p class="dong">
+							<p class="mdong">
 								<input type="text" class="login_input_text" id="dong"
 									placeholder="동" maxlength="10">
 							</p>
-							<p class="ho">
+							<p class="mho">
 								<input type="text" class="login_input_text" id="ho"
 									placeholder="호" maxlength="10">
 							</p>
@@ -119,7 +124,10 @@
 					</div>
 				</div>
 				</c:if>
-				<!-- 로그인 중일때 로그인 박스 시작 -->
+				<!-- 우측 로그인 박스(로그인 OFF) 끝 -->
+				
+				
+				<!-- 우측 로그인 박스(로그인 ON) 시작 -->
 				<c:if test="${!empty user_auth}">
 				<div class="mLogging_Box">
 					<p class="loginGreetingt">
@@ -149,25 +157,24 @@
 					</div>
 				</div>
 				</c:if>
-				<!-- 로그인 중일때 로그인 박스 끝 -->
-				<!-- 우측 상단 로그인 박스 끝 -->
+				<!-- 우측 로그인 박스(로그인 ON) 끝 -->
 				
-				<!-- 우측 상단 전화번호 박스 시작 -->
+				<!-- 우측 전화번호 박스 시작 -->
 				<div class="mphnum_box">
 					<a><span>관리사무소 전화번호</span> 02)123-4567</a>
 					<p>
-						<a><span>팩스 번호</span> 02)123-4567</a>
+					<a><span>팩스 번호</span> 02)123-4567</a>
 				</div>
-				<!-- 우측 상단 전화번호 박스 끝 -->
+				<!-- 우측 전화번호 박스 끝 -->
 				
-
 				<p></p>
 
-				<!-- 게시판 시작 -->
-				<div class="board_all">
+				<!-- 하단 게시판 시작 -->
+				<div class="mboard_all">
+				
 					<!-- 좌측 공지사항 게시판 시작 -->
 					<c:if test="${empty user_auth}">
-					<div class="board_notice">
+					<div class="mboard_notice">
 						<p class="title">공지사항</p>
 						<table>
 							<c:forEach var="notice" items="${noticelist}">
@@ -180,8 +187,9 @@
 						</table>
 					</div>
 					</c:if>
+					<%-- 공지사항 게시판 2개인 이유 : class 구분해서 css 추가로 걸음 --%>
 					<c:if test="${!empty user_auth}">
-					<div class="board_notice1">
+					<div class="mboard_notice1">
 						<p class="title">공지사항</p>
 						<table>
 							<c:forEach var="notice" items="${noticelist}">
@@ -197,8 +205,9 @@
 					</div>
 					</c:if>
 					<!-- 좌측 공지사항 게시판 끝 -->
+					
 					<!-- 우측 자유 게시판 시작 -->
-					<div class="board_board">
+					<div class="mboard_board">
 						<p class="title">자유 게시판</p>
 						<table>
 							<c:forEach var="vo" items="${boardList}">
@@ -217,12 +226,18 @@
 					</div>
 					<!-- 우측 자유 게시판 끝 -->
 				</div>
-				<!-- 게시판 끝 -->
+				<!-- 하단 게시판 끝 -->
 				
-			</div>
-		</div>
-		<!-- 내용 끝 -->
-	</div>
+			</div> <!-- end of container -->
+			
+		</div> <!-- end of inner -->
+	
+	</div><!-- end of wrap -->
+	<!-- 내용 끝 -->
+	
+	<!-- footer 시작 -->
 	<jsp:include page="/WEB-INF/views/common/footer.jsp" />
+	<!-- footer 끝 -->
+	
 </body>
 </html>

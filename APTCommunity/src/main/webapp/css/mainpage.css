@@ -31,12 +31,12 @@ div {
 	color: #3264bf
 }
 
-.dong {
+.mdong {
   float: left;
   margin-right: 10px;
 }
 
-.ho{
+.mho{
  float: right;
 }
 
@@ -163,12 +163,12 @@ div.mphnum_box p {
 }
 
 
-.board_all {
+.mboard_all {
   margin-top: 30px;
   width: 100%;
 }
 
-.board_all .title {
+.mboard_all .title {
   background-color: #f5f5f5;
   padding: 10px;
   border-bottom: 1px solid #dedede;
@@ -177,7 +177,7 @@ div.mphnum_box p {
   color: #222;
 }
 
-.board_notice {
+.mboard_notice {
   margin-top: 21px;
   float: left;
   width: 669px;
@@ -186,7 +186,7 @@ div.mphnum_box p {
   border: 1px solid #dcdcdc;
 }
 
-.board_notice1 {
+.mboard_notice1 {
   margin-top: 21px;
   float: left;
   width: 610px;
@@ -195,7 +195,7 @@ div.mphnum_box p {
   border: 1px solid #dcdcdc;
 }
 
-.board_board {
+.mboard_board {
   margin-top: 23px;
   border: none;
   border-radius: 3px;
@@ -204,42 +204,42 @@ div.mphnum_box p {
   border: 1px solid #dcdcdc;
 }
 
-.board_all .board_notice table {
+.mboard_all .mboard_notice table {
   width: 100%;
   border-collapse: collapse;
 }
 
-.board_all .board_notice table td {
+.mboard_all .mboard_notice table td {
   padding: 10px;
 }
 
-.board_all .board_notice a {
+.mboard_all .mboard_notice a {
   color: #3264bf;
 }
 
-.board_all .board_notice1 table {
+.mboard_all .mboard_notice1 table {
   width: 100%;
   border-collapse: collapse;
 }
 
-.board_all .board_notice1 table td {
+.mboard_all .mboard_notice1 table td {
   padding: 10px;
 }
 
-.board_all .board_notice1 a {
+.mboard_all .mboard_notice1 a {
   color: #3264bf;
 }
 
-.board_all .board_board table {
+.mboard_all .mboard_board table {
   width: 100%;
   border-collapse: collapse;
 }
 
-.board_all .board_board table td {
+.mboard_all .mboard_board table td {
   padding: 10px;
 }
 
-.board_all .board_board a {
+.mboard_all .mboard_board a {
   color: #3264bf;
 }
 

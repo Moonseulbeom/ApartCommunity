@@ -22,7 +22,26 @@
 					items[i].value = '';
 					items[i].focus();
 					return false;
-			    }//end of if
+			    }
+			    
+			    if(items[i].id == 'dongho' && 
+				    	 !/^\d{2,3}-\d{3,4}$/.test(
+				    	             $('#dongho').val())){
+						alert('동-호수 형식에 맞게 입력해주세요');
+						$('#dongho').val('');
+						$('#dongho').focus();
+						return false;
+				}
+			    
+			    if(items[i].id == 'email' && 
+				    	 !/^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i.test(
+				    	             $('#email').val())){
+						alert('이메일 형식에 맞게 입력해주세요');
+						$('#email').val('');
+						$('#email').focus();
+						return false;
+				}//end of if
+			    
 			}//end of for
 			
 			if($('#passwd').val()!=$('#cpasswd').val()){

@@ -27,6 +27,24 @@
 					items[i].focus();
 					return false;
 			    }
+			    
+			    if(items[i].id == 'phone' && 
+				    	 !/^\d{2,3}-\d{3,4}-\d{4}$/.test(
+				    	             $('#phone').val())){
+						alert('전화번호 형식에 맞게 입력해주세요');
+						$('#phone').val('');
+						$('#phone').focus();
+						return false;
+					}
+			    
+			    if(items[i].id == 'email' && 
+				    	 !/^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i.test(
+				    	             $('#email').val())){
+						alert('이메일 형식에 맞게 입력해주세요');
+						$('#email').val('');
+						$('#email').focus();
+						return false;
+					}
 			}
 		});
 	});

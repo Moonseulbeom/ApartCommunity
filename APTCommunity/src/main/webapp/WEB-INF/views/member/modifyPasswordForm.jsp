@@ -27,6 +27,16 @@
 					items[i].focus();
 					return false;
 			    }//end of if
+			    
+			    if(items[i].id == 'dongho' && 
+				    	 !/^\d{2,3}-\d{3,4}$/.test(
+				    	             $('#dongho').val())){
+						alert('동-호수 형식에 맞게 입력해주세요');
+						$('#dongho').val('');
+						$('#dongho').focus();
+						return false;
+					}
+			    
 			}//end of for
 			
 			if($('#passwd').val()!=$('#cpasswd').val()){

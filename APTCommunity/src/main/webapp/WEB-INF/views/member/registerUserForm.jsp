@@ -32,17 +32,17 @@ $(function() {
 	 		
 		if(!/^[0-9]{3}$/.test(
 				            $('#dong').val())){
-			alert('동 (101동 ~ 115동)이 유효하지 않습니다.');
+			alert('동 (101동 ~ 113동)이 유효하지 않습니다.');
 			$('#dong').val('');
 			$('#dong').focus();
 			return false;
 		}
 		
 		// 동이 101동~115동 사이인지 확인합니다.
-		if (101 <= +$('#dong').val() && +$('#dong').val() <= 115) {
+		if (101 <= +$('#dong').val() && +$('#dong').val() <= 113) {
 			// 유효합니다.
 		} else {
-			alert('동 (101동 ~ 115동)이 유효하지 않습니다.');
+			alert('동 (101동 ~ 113동)이 유효하지 않습니다.');
 			$('#dong').val('');
 			$('#dong').focus();
 			return false;
@@ -150,6 +150,25 @@ $(function() {
 				alert('동-호수 중복 체크 필수');
 				return false;
 			}
+		    
+		    if(items[i].id == 'phone' && 
+			    	 !/^\d{2,3}-\d{3,4}-\d{4}$/.test(
+			    	             $('#phone').val())){
+					alert('전화번호 형식에 맞게 입력해주세요');
+					$('#phone').val('');
+					$('#phone').focus();
+					return false;
+				}
+		    
+		    if(items[i].id == 'email' && 
+			    	 !/^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i.test(
+			    	             $('#email').val())){
+					alert('이메일 형식에 맞게 입력해주세요');
+					$('#email').val('');
+					$('#email').focus();
+					return false;
+				}
+		    
 		}
 		
 		
