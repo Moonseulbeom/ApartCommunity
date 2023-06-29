@@ -39,7 +39,7 @@
 				<li>
 				<div class="page-left">
 				<div class="sidebar">
-					<jsp:include page="/WEB-INF/views/common/sidebarCommu.jsp"/>
+					<jsp:include page="/WEB-INF/views/common/sidebar.jsp"/>
 					<h2>커뮤니티</h2>
 				<div class="menu">
 					<ul>
