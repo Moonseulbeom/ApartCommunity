@@ -145,7 +145,7 @@
 							<c:forEach var="bk" items="${bkList}">
 								<tr>
 									<td>${bk.bk_num}</td>
-									<td><a href="#"></a></td><!-- 시설이름?? -->
+									<td><a href="#">${bk.room_name}</a></td><!-- 시설이름?? -->
 									<td>${bk.bk_date}</td>
 									<td>${bk.book_mem}</td>
 								</tr>

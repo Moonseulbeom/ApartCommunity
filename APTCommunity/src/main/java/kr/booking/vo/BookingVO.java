@@ -12,7 +12,16 @@ public class BookingVO {
 	private String time;
 	
 	private Room_infoVO room_info; // 시설정보모델
+	private String room_name;
 	
+	public String getRoom_name() {
+		return room_name;
+	}
+
+	public void setRoom_name(String room_name) {
+		this.room_name = room_name;
+	}
+
 	private String dongho;
 	
 	public String getDongho() {

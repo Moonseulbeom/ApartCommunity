@@ -471,10 +471,16 @@ public class BookingDAO {
 		
 		try {
 			conn = DBUtil.getConnection();
-			sql = "SELECT * FROM (SELECT a.*, rownum rnum"
+			sql = "SELECT room_num, mem_num, bk_num, book_mem, bk_date, room_name"
+					+ " FROM (SELECT a.*, rownum rnum"
+					+ " FROM (SELECT * FROM member m JOIN booking b"
+					+ " USING(mem_num) JOIN room_info r USING(room_num)"
+					+ " WHERE mem_num=? ORDER BY bk_num DESC)a)"
+					+ " WHERE rnum >= ? AND rnum <= ?";
+		/*	sql = "SELECT * FROM (SELECT a.*, rownum rnum"
 					+ " FROM (SELECT * FROM booking b JOIN member m"
 					+ " USING(mem_num) WHERE mem_num=? ORDER BY bk_num DESC)a)"
-					+ " WHERE rnum >= ? AND rnum <= ?";
+					+ " WHERE rnum >= ? AND rnum <= ?";*/
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, mem_num);
 			pstmt.setInt(2, start);
@@ -483,10 +489,11 @@ public class BookingDAO {
 			list = new ArrayList<BookingVO>();
 			if(rs.next()) {
 				BookingVO vo = new BookingVO();
-				vo.setMem_num(rs.getInt("mem_num"));
+				vo.setMem_num(rs.getInt("mem_num"));//사용자번호
 				vo.setBk_num(rs.getInt("bk_num"));//예약번호
 				vo.setBk_date(rs.getString("bk_date"));//예약날짜
 				vo.setBook_mem(rs.getInt("book_mem"));//예약인원
+				vo.setRoom_name(rs.getString("room_name"));//예약시설명
 				
 				list.add(vo);
 			}
