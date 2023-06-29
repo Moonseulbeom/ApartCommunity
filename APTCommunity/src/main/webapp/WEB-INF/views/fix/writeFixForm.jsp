@@ -46,12 +46,12 @@
 						<li>
 						</li>
 						<li>
-						<div class="write-title">
-							<input type="text" id="title" name="title" maxlength="20" placeholder="제목을 입력해주세요.">	
-						</div>
+							<div class="write-title">
+								<input type="text" id="title" name="title" maxlength="20" placeholder="제목을 입력해주세요.">	
+							</div>
 						</li>
 						<li>
-							<textarea rows="5" cols="30" id="content" name="content" placeholder="하자 내용을 입력해주세요."></textarea>
+							<textarea rows="5" cols="30" id="content" name="content" placeholder="하자 내용을 입력해주세요." maxlength="650"></textarea>
 						</li>
 						<li>
 							<input type="file" id="filename" name="filename" accept="image/png, image/jpeg, image/gif" >

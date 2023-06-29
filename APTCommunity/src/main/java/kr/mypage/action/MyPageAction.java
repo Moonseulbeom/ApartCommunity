@@ -9,8 +9,6 @@ import javax.servlet.http.HttpSession;
 import kr.controller.Action;
 import kr.fix.dao.FixDAO;
 import kr.fix.vo.FixVO;
-import kr.inquiry.dao.InquiryDAO;
-import kr.inquiry.vo.InquiryVO;
 import kr.member.dao.MemberDAO;
 import kr.member.vo.MemberVO;
 import kr.mypage.dao.MyPageDAO;
@@ -39,9 +37,7 @@ public class MyPageAction implements Action{
 		/* 내가 쓴 글 목록 */
 		MyPageDAO myDao = MyPageDAO.getinstance();
 		List<MyPageVO> myList = myDao.myListMyPage(user_num,1,3);
-		/* 문의사항 목록 */
-		InquiryDAO inDao = InquiryDAO.getInstance();
-		List<InquiryVO> inList = inDao.myListInquiry(user_num);
+		/* 내가 쓴 댓글 목록 */
 		/* 예약 목록 */
 		FixDAO fixDao = FixDAO.getInstance();
 		List<FixVO> fixList = fixDao.myListFix(user_num);
@@ -49,7 +45,7 @@ public class MyPageAction implements Action{
 		request.setAttribute("member", member);
 		request.setAttribute("favList", favList);
 		request.setAttribute("myList", myList);
-		request.setAttribute("inList", inList);
+		
 		request.setAttribute("fixList", fixList);
 		
 		//JSP 경로 반환

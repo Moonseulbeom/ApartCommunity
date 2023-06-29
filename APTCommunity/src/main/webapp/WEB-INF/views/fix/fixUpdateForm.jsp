@@ -47,19 +47,12 @@
 						<li>
 						</li>
 						<li>
-						<div class="write-title">
-							<c:if test="${user_auth==1}">
-								<input type="text" id="title" name="title" maxlength="20" placeholder="제목을 입력해주세요." value="${fix.title}">	
-							</c:if>
-							<c:if test="${user_auth==9}">
-								<input type="text" id="adminTitle" name="title" maxlength="20" placeholder="제목을 입력해주세요." value="${fix.title}">
-								<label for="checkbox">상단고정</label>			
-								<input type="checkbox" id="check" name="check" value="1">
-							</c:if>
-						</div>
+							<div class="write-title">
+								<input type="text" id="title" name="title" maxlength="20" placeholder="제목을 입력해주세요.">	
+							</div>
 						</li>
 						<li>
-							<textarea rows="5" cols="30" id="content" name="content" placeholder="하자 내용을 입력해주세요.">${fix.content}</textarea>
+							<textarea rows="5" cols="30" id="content" name="content" placeholder="하자 내용을 입력해주세요." maxlength="650">${fix.content}</textarea>
 						</li>
 						<li>
 							<input type="file" id="filename" name="filename" accept="image/png, image/jpeg, image/gif" >
