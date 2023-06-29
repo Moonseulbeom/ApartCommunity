@@ -116,7 +116,7 @@
 							</c:forEach>
 						</table>
 						<h2>내가 쓴 글&nbsp;&nbsp;&nbsp;<input type="button" value="더보기" id="more_btn" 
-							onclick="loaction.href='myPageList.do'"></h2>
+							onclick="location.href='myPageList.do'"></h2>
 						<table id="myChoice">
 							<tr>
 								<th>글 번호</th>
@@ -134,7 +134,7 @@
 							</c:forEach>
 						</table>
 						<h2>예약 현황&nbsp;&nbsp;&nbsp;<input type="button" value="더보기" id="more_btn" 
-							onclick="loaction.href='myPage_booking.do'"></h2>
+							onclick="location.href='myPage_booking.do'"></h2>
 						<table id="myChoice">
 							<tr>
 								<th>글 번호</th>
@@ -158,14 +158,14 @@
 								<th>글 번호</th>
 								<th>제목</th>
 								<th>등록일</th>
-								<th>뭘넣지</th>
+								<th>답글 수</th>
 							</tr>
-							<c:forEach var="vo" items="${favList}">
+							<c:forEach var="inq" items="${inList}">
 								<tr>
-									<td>1</td>
-									<td><a href="#">1</a></td>
-									<td>1</td>
-									<td>1</td>
+									<td>${inq.in_num}</td>
+									<td><a href="#">${inq.title}</a></td>
+									<td>${inq.reg_date}</td>
+									<td>${inq.cnt}</td>
 								</tr>
 							</c:forEach>
 						</table>

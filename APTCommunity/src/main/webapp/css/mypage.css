@@ -63,14 +63,18 @@
 #myChoice th{
 	background-color: #f0f0f0;
 	text-align: center;
+	width: 20%;
 }
 #myChoice td{
-	text-align: left;
+	text-align: center;
+	width: 20%;
 }
 #myChoice {
 	margin-bottom: 25px;
 }
-
+#myChoice th:nth-child(2),#myChoice td:nth-child(2){
+  width: 40%;
+}
 
 /*상단 바로가기 버튼*/
 .service-up{
