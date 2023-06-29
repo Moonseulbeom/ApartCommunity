@@ -28,6 +28,15 @@
 					return false;
 			    }
 			    
+			    if(items[i].id == 'name' &&  
+				    	 !/^[가-힣]+$/.test(
+				    	             $('#name').val())){
+						alert('세대주는 한글만 입력가능합니다.');
+						$('#name').val('');
+						$('#name').focus();
+						return false;
+					}
+			    
 			    if(items[i].id == 'phone' && 
 				    	 !/^\d{2,3}-\d{3,4}-\d{4}$/.test(
 				    	             $('#phone').val())){
