@@ -36,37 +36,61 @@
 </script>
 </head>
 <body>
+	<!-- header 시작 -->
 	<jsp:include page="/WEB-INF/views/common/header.jsp" />
+	<!-- header 끝 -->
+
+	<!-- 내용 시작 -->
 	<div class="page-main">
-		<!-- 내용 시작 -->
 		<div class="content-main">
 			<div class="sbLogin">
 				<h2 class="sbTitle">로그인</h2>
 				<form class="login_box" id="login_form" action="login.do"
 					method="post">
 					<div class="login_input fl">
-						<p class="dong"><input type="text" id="dong" name="dong" placeholder="동"></p>
-						<p class="ho"><input type="text" id="ho" name="ho" placeholder="호"></p>
-						<p><input type="password" id="passwd" name="passwd" placeholder="비밀번호"></p>
+						<p class="login_dong">
+							<input type="text" id="dong" name="dong" placeholder="동">
+						</p>
+						<p class="login_ho">
+							<input type="text" id="ho" name="ho" placeholder="호">
+						</p>
+						<p>
+							<input type="password" id="passwd" name="passwd"
+								placeholder="비밀번호">
+						</p>
 					</div>
 					<p class="login_submit fl">
 						<button type="submit" class="loginBtn" id="login_btn">로그인</button>
 					</p>
 				</form>
+				
+				<!-- 하단 시작 -->
 				<div class="login_info">
 					<div class="btn_wrap">
-						<a href="${pageContext.request.contextPath}/member/registerUserAgree.do" class="join">회원가입</a>
-						<a href="${pageContext.request.contextPath}/main/main.do" class="ldSearch">메인 페이지</a>
+						<a
+							href="${pageContext.request.contextPath}/member/registerUserAgree.do"
+							class="join">회원가입</a> <a
+							href="${pageContext.request.contextPath}/main/main.do"
+							class="ldSearch">메인 페이지</a>
 					</div>
 					<ul>
 						<li>쌍용 아파트에 오신 것을 환영합니다.</li>
 						<li>비회원이신 분은 회원가입을 통하여 다양한 서비스를 경험하시기 바랍니다.</li>
 					</ul>
 				</div>
-			</div>
-		</div>
-		<!-- 내용 끝 -->
-	</div>
+				<!-- 하단 끝 -->
+				
+			</div> <!-- end of sbLogin -->
+			
+		</div> <!-- end of content-main -->
+		
+	</div> <!-- end of page-main -->
+	<!-- 내용 끝 -->
+
+
+	<!-- footer 시작 -->
 	<jsp:include page="/WEB-INF/views/common/footer.jsp" />
+	<!-- footer 끝 -->
+	
 </body>
 </html>

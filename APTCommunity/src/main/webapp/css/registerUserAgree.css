@@ -76,15 +76,6 @@ p {
     height: 150px;
     resize: none;
 }
-textarea {
-    padding: 10px;
-    vertical-align: middle;
-    background: #fff;
-    border: 1px solid #c7c9cc;
-    font-family: 'Nanum Gothic', 'Malgun Gothic', 'dotum', '돋움', 'Arial',dotum,Myriad,sans-serif;
-    color: #67686a;
-    font-size: 14px;
-}
 
 .agreeAll label {
     font-size: 15px;

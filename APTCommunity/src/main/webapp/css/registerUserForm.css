@@ -152,12 +152,12 @@ td {
     vertical-align: middle;
 }
 
-span {
+.rg_ess {
     color: #ff0000;
     font-size: 13px;
 }
 
-.sp_ch {
+.rg_carno {
     color: #0080ff;
     font-size: 13px;
 }

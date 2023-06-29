@@ -27,7 +27,7 @@
 			    if(items[i].id == 'dongho' && 
 				    	 !/^\d{2,3}-\d{3,4}$/.test(
 				    	             $('#dongho').val())){
-						alert('동-호수 형식에 맞게 입력해주세요');
+						alert('동-호수 형식 [ ex)000(동)-000(호) ] 에 맞게 입력해주세요');
 						$('#dongho').val('');
 						$('#dongho').focus();
 						return false;
@@ -36,7 +36,7 @@
 			    if(items[i].id == 'email' && 
 				    	 !/^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i.test(
 				    	             $('#email').val())){
-						alert('이메일 형식에 맞게 입력해주세요');
+						alert('이메일 형식 [ ex)test@test.com ] 에 맞게 입력해주세요');
 						$('#email').val('');
 						$('#email').focus();
 						return false;
@@ -65,57 +65,61 @@
 </script>
 </head>
 <body>
-<div class="page-main">
-	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
+	<!-- header 시작 -->
+	<jsp:include page="/WEB-INF/views/common/header.jsp" />
+	<!-- header 끝 -->
+
 	<!-- 내용 시작 -->
-	<div class="content-main">
-		<h2 class="sbTitle">회원탈퇴</h2>
-		<div class="deleteForm">
-			<p class="deleteTit">정보입력</p>
-		<form id="delete_form" action="deleteUser.do" method="post">
-			<table>
-				<colgroup>
-					<col width="25%">
-					<col width="auto">
-				</colgroup>
-				<tbody>
-					<tr>
-						<th>동-호수</th>
-						<td>
-							<input type="text" name="dongho" id="dongho" maxlength="12" autocomplete="off">
-						</td>
-					</tr>
-					<tr>
-						<th>이메일</th>
-						<td>
-							<input type="email" name="email" id="email" maxlength="50">
-						</td>
-					</tr>
-					<tr>
-						<th>비밀번호</th>
-						<td>
-							<input type="password" name="passwd" id="passwd" maxlength="12">
-						</td>
-					</tr>
-					<tr>
-						<th>비밀번호 확인</th>
-						<td>
-							<input type="password" name="cpasswd" id="cpasswd" maxlength="12">
-						</td>
-					</tr>
-				</tbody>
-			</table>
-			
-			<div class="btnWrap">
-				<input type="submit" value="회원 탈퇴">
-				<input type="button" value="MY페이지"
-				 onclick="location.href='${pageContext.request.contextPath}/member/myPage.do'">
-			</div> 
-		</form>
-		</div>
-	</div>
+	<div class="page-main">
+		<div class="content-main">
+			<h2 class="sbTitle">회원탈퇴</h2>
+			<div class="deleteForm">
+				<p class="deleteTit">정보입력</p>
+				<form id="delete_form" action="deleteUser.do" method="post">
+					<table>
+						<colgroup>
+							<col width="25%">
+							<col width="auto">
+						</colgroup>
+						<tbody>
+							<tr>
+								<th>동-호수</th>
+								<td><input type="text" name="dongho" id="dongho"
+									maxlength="12" placeholder="ex)000-000" autocomplete="off"></td>
+							</tr>
+							<tr>
+								<th>이메일</th>
+								<td><input type="email" name="email" id="email"
+									maxlength="50" placeholder="ex)test@test.com"></td>
+							</tr>
+							<tr>
+								<th>비밀번호</th>
+								<td><input type="password" name="passwd" id="passwd"
+									maxlength="12"></td>
+							</tr>
+							<tr>
+								<th>비밀번호 확인</th>
+								<td><input type="password" name="cpasswd" id="cpasswd"
+									maxlength="12"></td>
+							</tr>
+						</tbody>
+					</table>
+
+					<div class="btnWrap">
+						<input type="submit" value="회원 탈퇴"> <input type="button"
+							value="MY페이지"
+							onclick="location.href='${pageContext.request.contextPath}/member/myPage.do'">
+					</div>
+				</form>
+			</div> <!-- end of deleteForm -->
+		</div> <!-- end of content-main -->
+	</div> <!-- end of page-main -->
 	<!-- 내용 끝 -->
-</div>
+
+	<!-- footer 시작 -->
+	<jsp:include page="/WEB-INF/views/common/footer.jsp" />
+	<!-- footer 끝 -->
+
 </body>
 </html>
 

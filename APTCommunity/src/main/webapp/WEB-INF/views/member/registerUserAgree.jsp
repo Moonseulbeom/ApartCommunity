@@ -55,15 +55,19 @@
 		}
 	
 </script>
-<body>		
+<body>
+	<!-- header 시작 -->
 	<jsp:include page="/WEB-INF/views/common/header.jsp" />
+	<!-- header 끝 -->
+	
 	<!-- 상단 링크 버튼 시작-->
 	<div class="service-up">
 		<jsp:include page="/WEB-INF/views/common/up_button.jsp" />
 	</div>
 	<!-- 상단 링크 버튼 끝-->
+	
+	<!-- 내용 시작 -->
 	<div class="page-main">
-		<!-- 내용 시작 -->
 		<div class="sbLogin">
 			<h2 class="sbTitle">약관 동의</h2>
 			<div class="join_flow">
@@ -74,19 +78,19 @@
 				</ul>
 			</div>
 			<div class="agreeListAll">
-			<form class="agreeList">
-				<p class="agreeAll">
-					<input type="checkbox" name="setOpenSSL" id="all_check"> <label
-						for="all_check" class="point_cursor">약관전체동의</label>
-				</p>
-			</form>
-			<div class="agreeArea">
-				<p>
-					<input type="checkbox" name="setOpenSSL" id="privacy_check"
-						value="10"> <label for="privacy_check"
-						class="point_cursor">개인정보보호정책</label>
-				</p>
-				<textarea readonly>[아파트너 개인정보 취급방침]
+				<form class="agreeList">
+					<p class="agreeAll">
+						<input type="checkbox" name="setOpenSSL" id="all_check"> <label
+							for="all_check" class="point_cursor">약관전체동의</label>
+					</p>
+				</form>
+				<div class="agreeArea">
+					<p>
+						<input type="checkbox" name="setOpenSSL" id="privacy_check"
+							value="10"> <label for="privacy_check"
+							class="point_cursor">개인정보보호정책</label>
+					</p>
+					<textarea readonly>[아파트너 개인정보 취급방침]
 			
 	
 		1. 인사말 및 서비스 명의 정의
@@ -364,14 +368,14 @@
 		
 	
 		</textarea>
-			</div>
+				</div>
 
-			<div class="agreeArea">
-				<p>
-					<input type="checkbox" name="setOpenSSL" id="terms_check" value="7">
-					<label for="terms_check" class="point_cursor">이용약관</label>
-				</p>
-				<textarea readonly>[이용약관]
+				<div class="agreeArea">
+					<p>
+						<input type="checkbox" name="setOpenSSL" id="terms_check"
+							value="7"> <label for="terms_check" class="point_cursor">이용약관</label>
+					</p>
+					<textarea readonly>[이용약관]
 			제 1 장 총칙
 
     
@@ -601,16 +605,24 @@
         
     
 		</textarea>
-
-				<div>
-					<input class="btnWrap" type="button" value="다음"
-						onclick="goToNextPage();">
-				</div>
+				</div> <!-- end of agreeArea -->
+			</div> <!-- end of agreeListAll -->
+			
+			<!-- 하단 버튼 시작 -->
+			<div>
+			<input class="btnWrap" type="button" value="다음"
+				onclick="goToNextPage();">
 			</div>
-			</div>
-			<!-- 내용 끝 -->
-		</div>
-	</div>
+			<!-- 하단 버튼 끝 -->
+			
+		</div> <!-- end of sbLogin -->
+		
+	</div> <!-- end of page-main -->
+	<!-- 내용 끝 -->
+	
+	<!-- footer 시작 -->
 	<jsp:include page="/WEB-INF/views/common/footer.jsp" />
+	<!-- footer 끝 -->
+	
 </body>
 </html>

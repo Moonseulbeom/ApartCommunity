@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>회원탈퇴</title>
+<title>회원 탈퇴</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/deleteUser.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/custom.css">
@@ -14,25 +14,33 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/common.js"></script>
 </head>
 <body>
-<div class="page-main">
-	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
+	<!-- header 시작 -->
+	<jsp:include page="/WEB-INF/views/common/header.jsp" />
+	<!-- header 끝 -->
+
 	<!-- 내용 시작 -->
-	<div class="content-main">
-		<h2 class="sbTitle">회원탈퇴 완료</h2>
-		<div class="result-display">
-			<div class="align-center">
-				<span class="rsdp">"<b>회원탈퇴</b>가 완료되었습니다."</span>
-				<p>
-				<div class="btnWrap">
-				<input type="button" value="홈으로"
-				 onclick="location.href='${pageContext.request.contextPath}/main/main.do'">
-				</div> 
-			</div>
-		</div>
-	</div>
+	<div class="page-main">
+		<div class="content-main">
+			<h2 class="sbTitle">회원탈퇴 완료</h2>
+			<div class="result-display">
+				<div class="align-center">
+					<span class="rsdp">"<b>회원탈퇴</b>가 완료되었습니다."
+					</span>
+					<p>
+					<div class="btnWrap">
+						<input type="button" value="홈으로"
+							onclick="location.href='${pageContext.request.contextPath}/main/main.do'">
+					</div>
+				</div>
+			</div> <!-- end of result-display -->
+		</div> <!-- end of content-main -->
+	</div> <!-- end of page-main -->
 	<!-- 내용 끝 -->
-</div>
-	<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
+
+	<!-- footer 시작 -->
+	<jsp:include page="/WEB-INF/views/common/footer.jsp" />
+	<!-- footer 끝 -->
+
 </body>
 </html>
 </c:if>

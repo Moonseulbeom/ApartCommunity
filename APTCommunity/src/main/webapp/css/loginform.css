@@ -8,16 +8,6 @@
     margin-bottom: 50px;
 }
 
-.sbTitle {
-    margin-top: 20px;
-    padding-bottom: 20px;
-    border-bottom: 2px solid #d9d9d9;
-    text-align: center;
-    font-size: 35px;
-    font-weight: bold;
-    color: #2e2e2e;
-}
-
 .sbLogin .login_box {
     width: 530px;
     margin: 0 auto;
@@ -29,17 +19,12 @@
     margin-right: 10px;
 }
 
-.fl {
-    float: left;
-}
-
-
-.dong {
+.login_dong {
   float: left;
   margin-right: 10px;
 }
 
-.ho{
+.login_ho{
  float: right;
 }
 
@@ -65,9 +50,6 @@
     color: #fff;
     font-size: 15px;
     cursor: pointer;
-}
-textarea, submit {
-    vertical-align: middle;
 }
 
 .sbLogin .login_info {
