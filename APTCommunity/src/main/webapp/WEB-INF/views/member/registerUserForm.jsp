@@ -138,6 +138,15 @@ $(function() {
 					return false;
 				}
 			
+			if(items[i].id == 'name' &&  
+			    	 !/^[가-힣]+$/.test(
+			    	             $('#name').val())){
+					alert('세대주는 한글만 입력가능합니다.');
+					$('#name').val('');
+					$('#name').focus();
+					return false;
+				}
+			
 		    if(items[i].id == 'passwd' && 
 			    	 !/^[A-Za-z0-9]{4,12}$/.test(
 			    	             $('#passwd').val())){
