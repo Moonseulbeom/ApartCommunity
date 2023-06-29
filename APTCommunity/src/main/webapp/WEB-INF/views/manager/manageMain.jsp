@@ -12,6 +12,8 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 	$(function(){
+		
+		//java로 데이터 처리 후 해당 페이지를 불러옴 > 페이지의 태그(ex id=menage_member)를 찾아서 해당 부분만 호출해서 화면에 보여줌
 		//1.회원관리
 		$('#mem_btn').on('click',function(){
 			 $.ajax({
@@ -19,8 +21,8 @@
 				 url:'manage-serviceList.do?manage_select=1',
 				 dataType:'text',
 				 success:function(data){
-					 let plus = $('#manage_content').html(data).find('#manage_member');
-					 $('#manage_content').html(plus);
+					 let plus = $('#manage_content').html(data).find('#manage_member');//태그 찾기
+					 $('#manage_content').html(plus);//찾은 태그의 내용을 화면에 보여줌
 				 },
 				 error:function(){
 					 alert('1.통신 에러 발생');

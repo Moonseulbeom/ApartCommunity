@@ -14,6 +14,7 @@ public class DeleteUserAction implements Action{
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		HttpSession session = request.getSession();
 		Integer user_num = (Integer)session.getAttribute("user_num");
+		Integer user_auth = (Integer)session.getAttribute("user_auth");
 		if(user_num==null) {//로그인 되지 않은 경우
 			return "redirect:/member/loginForm.do";
 		}
@@ -25,11 +26,21 @@ public class DeleteUserAction implements Action{
 		String email = request.getParameter("email");
 		String passwd = request.getParameter("passwd");
 		
+		
 		//로그인한 아이디
 		String user_dongho = (String)session.getAttribute("user_dongho");
 		MemberDAO dao = MemberDAO.getInstance();
 		MemberVO db_member = dao.checkMember(dongho);
 		boolean check = false;
+		
+		if(user_auth == 9) {//관리자 페이지 유저 삭제
+			int mem_num = Integer.parseInt(request.getParameter("mem_num"));
+			dao.deleteMember(mem_num);
+			request.setAttribute("notice_msg", "회원 정보가 삭제되었습니다.");
+			request.setAttribute("notice_url", request.getContextPath()+"/manager/manageMain.do");
+			
+			return "/WEB-INF/views/common/alert_singleView.jsp";
+		}
 		
 		//사용자가 입력한 아이디가 존재하고
 		//각 로그인한 아이디,이메일과 입력한 아이디,이메일이 일치하는지 여부 체크

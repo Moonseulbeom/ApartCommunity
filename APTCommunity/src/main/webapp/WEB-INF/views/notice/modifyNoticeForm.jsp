@@ -49,7 +49,7 @@
 </script>
 </head>
 <body>
-<div id="wrap">
+<div id="wrap"><!-- header -->
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 	<!-- 내용 시작 -->
 <div class="main-main">
@@ -68,13 +68,6 @@
 						<option value="2" <c:if test="${notice.dept==2}">selected</c:if>>입대의 공지사항</option>
 						<option value="3" <c:if test="${notice.dept==3}">selected</c:if>>건의사항</option>
 				</select>
-				<%-- <select name="keyfield_cate">
-						<option value="1" <c:if test="${param.keyfield_cate==1}">selected</c:if>>공지사항</option>
-						<option value="2" <c:if test="${param.keyfield_cate==2}">selected</c:if>>자유게시판</option>
-						<option value="3" <c:if test="${param.keyfield_cate==3}">selected</c:if>>중고거래</option>
-						<option value="3" <c:if test="${param.keyfield_cate==3}">selected</c:if>>하자보수</option>
-						<option value="3" <c:if test="${param.keyfield_cate==3}">selected</c:if>>예약(시설)</option>
-				</select> --%>
 			</li>
 			<li>
 			<div class="wirte-title">
@@ -137,6 +130,7 @@
 	</div>
 </div>
 	<!-- 내용 끝 -->
+	<!--  footer -->
 	<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 </div>
 </body>

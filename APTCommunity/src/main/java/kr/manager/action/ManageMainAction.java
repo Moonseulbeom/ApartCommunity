@@ -1,15 +1,11 @@
 package kr.manager.action;
 
-import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import kr.controller.Action;
-import kr.member.dao.MemberDAO;
-import kr.member.vo.MemberVO;
-import kr.util.PageUtil;
 
 public class ManageMainAction implements Action {
 

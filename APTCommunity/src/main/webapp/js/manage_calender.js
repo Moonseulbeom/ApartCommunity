@@ -1,5 +1,5 @@
 	var today = new Date();
-	let ajaxRequest = null;//ajax 중복 실행 방지
+	let ajaxRequest = null;//ajax 중복 실행 방지 > ajax 사용자가 빠른 속도로 재시작하는 경우 발생하는 중복 실행을 방지하기 위한 변수
 	
 	//달력 생성하는 함수
 	function buildCalendar(){
@@ -109,12 +109,13 @@
 	}
 	
 	
-	
+//예약 관련 이벤트	
 $(function(){
-	let isDate;
+	let isDate;//클릭한 날짜
 	let room_name;//시설이름
 	let room_num;//룸 넘버
 	let room_type_name;//룸 이름
+	
 	//예약 가능한 날짜 클릭시 주황색으로 변경하기
 	$(document).on('click','.yday',function() {
 		$('.book-list').hide();//목록 숨기기
@@ -125,9 +126,9 @@ $(function(){
 	    $(this).addClass('enable');
 
 		isDate = $(this).attr('id');
-		room_name = $('select[name=room_select] > option:selected').val();
-		room_num = $('select[name=room_select2] > option:selected').val();
-		room_type_name = $('select[name=room_select2] > option:selected').text();
+		room_name = $('select[name=room_select] > option:selected').val();//시설이름
+		room_num = $('select[name=room_select2] > option:selected').val();//방번호
+		room_type_name = $('select[name=room_select2] > option:selected').text();//방이름
 
 		//console.log(room_name);
 		//console.log(room_type);
@@ -138,10 +139,10 @@ $(function(){
 		
 	
 		if(ajaxRequest != null){
-			ajaxRequest.abort();
+			ajaxRequest.abort();//이전 요청 취소
 		}
 	
-		
+		//날짜 클릭시 해당 날짜의 예약 리스트 보여주기 
 		ajaxRequest = $.ajax({
 			url:'manage-serviceList.do?manage_select=6',
 			type:'post',
@@ -150,12 +151,12 @@ $(function(){
 			success:function(param){
 				let output = '';
 				//alert(param.book_list.length);
-				if(param.book_list.length == 0){
+				if(param.book_list.length == 0){//예약이 없을 때
 					output += '<div class="result-display" id="book_non">현재 예약이 없습니다.</div>';
 					output += '<hr color="#edeff0" noshade="noshade" id="book_non_hr">';
 					$("#change-booklist").append(output);
 				}else{
-					$(param.book_list).each(function(index,item){
+					$(param.book_list).each(function(index,item){//예약이 있을때
 						//console.log(param.book_list);
 						output += '<tr>';
 						output += '<td>'+item.dongho+'</td>';
@@ -191,12 +192,13 @@ $(function(){
 
 
 	});// end of 예약 가능한 날짜 클릭()-----
-	//임시 휴관 버튼 누를시
+	
+	//비활성화 버튼 누를시
 	$('.book-list').on('click','#noBook_btn',function(){
 		//alert(isDate);
 		$('.book-list').hide();//목록 숨기기
 		$('#book_output').empty();//table 내용 비우기
-		$('#book_non').remove();
+		$('#book_non').remove();//예약이 없을 때 표시 되는 태그 내용 삭제
 		$('#book_non_hr').remove();
 		
 		if(ajaxRequest != null){
@@ -219,19 +221,18 @@ $(function(){
 						$('#yesBook_btn').show();//활동화 on
 						
 						$('.book-list').show(); 
-						
 					},
 					error:function(){
 						alert('휴관 버튼 네트워크 오류 발생');
 					}
 				})//ajax 끝
 	})
-	//활성 버튼 누를시
+	//활성화 버튼 누를시
 	$('.book-list').on('click','#yesBook_btn',function(){
 		//alert(isDate);
 		$('.book-list').hide();//목록 숨기기
 		$('#book_output').empty();//table 내용 비우기
-		$('#book_non').remove();
+		$('#book_non').remove();//예약이 없을 때 표시 되는 태그 내용 삭제
 		$('#book_non_hr').remove();
 		
 		if(ajaxRequest != null){

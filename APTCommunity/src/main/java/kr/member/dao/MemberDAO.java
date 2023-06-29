@@ -221,17 +221,29 @@ public class MemberDAO {
 	public void deleteMember(int mem_num) throws Exception {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
+		PreparedStatement pstmt2 = null;
+		
 		String sql = null;
 		
 		try {
 			conn = DBUtil.getConnection();
 			
-			sql = "DELETE FROM member WHERE mem_num=?";
+			conn.setAutoCommit(false);
+			
+			sql = "DELETE FROM member_detail WHERE mem_num = ?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, mem_num);
 			pstmt.executeUpdate();
 			
+			sql = "DELETE FROM member WHERE mem_num=?";
+			pstmt2 = conn.prepareStatement(sql);
+			pstmt2.setInt(1, mem_num);
+			pstmt2.executeUpdate();
+			
+			conn.commit();
+			
 		}catch(Exception e) {
+			conn.rollback();
 			throw new Exception(e);
 		}finally {
 			DBUtil.executeClose(null, pstmt, conn);
@@ -310,6 +322,7 @@ public class MemberDAO {
 				else if(keyfield.equals("2")) pstmt.setString(++cnt, keyword+"%");
 				else if(keyfield.equals("3")) pstmt.setString(++cnt, "%"+keyword);
 			}
+			
 			pstmt.setInt(++cnt, start);
 			pstmt.setInt(++cnt, end);
 			

@@ -45,7 +45,7 @@ $(function(){
 					output += '<table id="mem_output">';
 					$(param.list).each(function(index,item){
 						output += '<tr>';
-						output += '<td id="mem_detail_btn" class="mem-detail-btn">';
+						output += '<td id="mem_detail_btn" class="mem-detail-btn manage-detail-btn">';
 						output += '<input type="hidden" name="mem_num" id="mem_num" value="'+item.mem_num+'">';
 						output += item.dongho+'</td>'
 						output += '<td>'+item.name+'</td>';
@@ -169,30 +169,6 @@ $('#fix_select').change(function(){
 				$('#re_first .letter-count').text(remain);
 			}
 		})
-//----------------------------------회원 상세 수정 조건 체크 --------------------------------------------//	
-
-	$('#mem_detail_form').submit(function(){
-		if($('#name').val().trim()==''){
-				alert('세대주를 입력하세요');
-				$('#title').val('').focus();
-				return false;
-			}
-			if($('#passwd').val().trim()==''){
-				alert('비밀번호를 입력하세요');
-				$('#content').val('').focus();
-				return false;
-			}
-			if($('#phone').val().trim()==''){
-				alert('전화번호를 입력하세요');
-				$('#content').val('').focus();
-				return false;
-			}
-			if($('#email').val().trim()==''){
-				alert('이메일를 입력하세요');
-				$('#content').val('').focus();
-				return false;
-			}
-	})
 
 
 
