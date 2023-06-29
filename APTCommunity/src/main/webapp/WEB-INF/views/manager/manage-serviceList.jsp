@@ -46,7 +46,7 @@
 			<table id="mem_output">
 				<c:forEach var="mem" items="${ list }" varStatus="status">
 				<tr>
-					<td id="mem_detail_btn" class="manage-detail-btn">
+					<td id="mem_detail_btn" class="mem-detail-btn manage-detail-btn">
 						<input type="hidden" name="mem_num" id="mem_num" value="${ mem.mem_num }">
 						${ mem.dongho }
 					</td>
