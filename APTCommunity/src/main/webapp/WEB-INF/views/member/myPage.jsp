@@ -137,10 +137,10 @@
 							onclick="location.href='myPage_booking.do'"></h2>
 						<table id="myChoice">
 							<tr>
-								<th>글 번호</th>
-								<th>제목</th>
-								<th>등록일</th>
-								<th>비고</th>
+								<th>예약 번호</th>
+								<th>시설명</th>
+								<th>예약일자</th>
+								<th>예약인원</th>
 							</tr>
 							<c:forEach var="bk" items="${bkList}">
 								<tr>
@@ -156,16 +156,16 @@
 						<table id="myChoice">
 							<tr>
 								<th>글 번호</th>
-								<th>제목</th>
+								<th>문의사항</th>
 								<th>등록일</th>
-								<th>답글 수</th>
+								<th>비고</th>
 							</tr>
-							<c:forEach var="inq" items="${inList}">
+							<c:forEach var="in" items="${inList}">
 								<tr>
-									<td>${inq.in_num}</td>
-									<td><a href="#">${inq.title}</a></td>
-									<td>${inq.reg_date}</td>
-									<td>${inq.cnt}</td>
+									<td>${in.in_num}</td>
+									<td><a href="#">${in.title}</a></td>
+									<td>${in.reg_date}</td>
+									<td></td>
 								</tr>
 							</c:forEach>
 						</table>

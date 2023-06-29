@@ -638,8 +638,8 @@ public class InquiryDAO {
 			conn = DBUtil.getConnection();
 			sql = "SELECT * FROM (SELECT a.*, rownum rnum"
 					+ " FROM (SELECT * FROM inquiry i JOIN member m"
-					+ " USING(mem_num) JOIN inquiry_manage q USING(in_num)"
-					+ " WHERE q.mem_num = ? ORDER BY re_num DESC)a)"
+					+ " USING(mem_num) WHERE mem_num=?"
+					+ " ORDER BY in_num DESC)a)"
 					+ " WHERE rnum >= ? AND rnum <= ?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, mem_num);
@@ -652,7 +652,7 @@ public class InquiryDAO {
 				vo.setIn_num(rs.getInt("in_num"));
 				vo.setTitle(rs.getString("title"));
 				vo.setReg_date(rs.getDate("reg_date"));
-				vo.setCnt(rs.getInt("cnt"));
+				//vo.setCnt(rs.getInt("cnt"));
 
 				list.add(vo);
 			}
