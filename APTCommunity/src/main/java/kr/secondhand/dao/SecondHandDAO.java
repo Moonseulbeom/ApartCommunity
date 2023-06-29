@@ -112,7 +112,6 @@ public class SecondHandDAO {
 			if(rs.next()) {
 				count = rs.getInt(1); //컬럼인덱스를 넣어줌
 			}
-	         
 		}catch(Exception e) {
 			throw new Exception(e);
 		}finally {
@@ -520,7 +519,6 @@ public class SecondHandDAO {
 				vo.setSe_num(rs.getInt("se_num"));
 				vo.setTitle(StringUtil.useNoHtml(rs.getString("title")));
 				vo.setReg_date(rs.getDate("reg_date"));
-				vo.setDongho(rs.getString("dongho"));
 				vo.setDivision(rs.getInt("division"));
 
 				list.add(vo);

@@ -627,7 +627,7 @@ public class InquiryDAO {
 	}
 	
 	//내가 쓴 글(1:1문의)-염유진
-	public List<InquiryVO> myListInquiry(int mem_num) throws Exception{
+	public List<InquiryVO> myListInquiry(int mem_num, int start, int end) throws Exception{
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -636,10 +636,15 @@ public class InquiryDAO {
 		
 		try {
 			conn = DBUtil.getConnection();
-			sql = "SELECT * FROM inquiry LEFT OUTER JOIN (SELECT in_num, COUNT(*) cnt FROM inquiry_manage GROUP BY in_num) USING(in_num) WHERE mem_num=?"
-					+ " ORDER BY in_num DESC";
+			sql = "SELECT * FROM (SELECT a.*, rownum rnum"
+					+ " FROM (SELECT * FROM inquiry i JOIN member m"
+					+ " USING(mem_num) JOIN inquiry_manage q USING(in_num)"
+					+ " WHERE q.mem_num = ? ORDER BY re_num DESC)a)"
+					+ " WHERE rnum >= ? AND rnum <= ?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, mem_num);
+			pstmt.setInt(2, start);
+			pstmt.setInt(3, end);
 			rs = pstmt.executeQuery();
 			list = new ArrayList<InquiryVO>();
 			while(rs.next()) {

@@ -461,7 +461,42 @@ public class BookingDAO {
 		return list;
 	}
 	
-	
+	//내가 쓴 글 -> 마이페이지 - 염유진
+	public List<BookingVO> myBookingList(int mem_num, int start, int end) throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<BookingVO> list = null;
+		String sql = null;
+		
+		try {
+			conn = DBUtil.getConnection();
+			sql = "SELECT * FROM (SELECT a.*, rownum rnum"
+					+ " FROM (SELECT * FROM booking b JOIN member m"
+					+ " USING(mem_num) WHERE mem_num=? ORDER BY bk_num DESC)a)"
+					+ " WHERE rnum >= ? AND rnum <= ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, mem_num);
+			pstmt.setInt(2, start);
+			pstmt.setInt(3, end);
+			rs = pstmt.executeQuery();
+			list = new ArrayList<BookingVO>();
+			if(rs.next()) {
+				BookingVO vo = new BookingVO();
+				vo.setMem_num(rs.getInt("mem_num"));
+				vo.setBk_num(rs.getInt("bk_num"));//예약번호
+				vo.setBk_date(rs.getString("bk_date"));//예약날짜
+				vo.setBook_mem(rs.getInt("book_mem"));//예약인원
+				
+				list.add(vo);
+			}
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		return list;
+	}
 	
 	
 	

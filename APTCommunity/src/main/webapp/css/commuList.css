@@ -224,7 +224,6 @@ input[type="search"]{
 .detail-page-title input{
 	height: 27px;
 	border: none;
-	
 }
 .detail-page-title li:nth-child(2){
 	padding-top:5px;
@@ -235,7 +234,6 @@ input[type="search"]{
 }
 .detail-page-title li:nth-child(3){
 	text-align:right;
-	padding-right: 20px;
 }
 .detail-page-content{
 	padding: 30px 0 20px 0;

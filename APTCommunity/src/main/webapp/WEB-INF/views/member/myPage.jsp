@@ -142,12 +142,12 @@
 								<th>등록일</th>
 								<th>비고</th>
 							</tr>
-							<c:forEach var="fix" items="${fixList}">
+							<c:forEach var="bk" items="${bkList}">
 								<tr>
-									<td>${fix.fix_num}</td>
-									<td><a href="#">${fix.title}</a></td>
-									<td>${fix.reg_date}</td>
-									<td></td>
+									<td>${bk.bk_num}</td>
+									<td><a href="#"></a></td><!-- 시설이름?? -->
+									<td>${bk.bk_date}</td>
+									<td>${bk.book_mem}</td>
 								</tr>
 							</c:forEach>
 						</table>

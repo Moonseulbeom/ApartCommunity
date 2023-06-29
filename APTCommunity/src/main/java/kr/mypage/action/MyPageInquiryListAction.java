@@ -21,7 +21,7 @@ public class MyPageInquiryListAction implements Action{
 		}
 		
 		InquiryDAO dao = InquiryDAO.getInstance();
-		List<InquiryVO> list = dao.myListInquiry(user_num);
+		List<InquiryVO> list = dao.myListInquiry(user_num,1,10);
 		
 		request.setAttribute("list", list);
 		
