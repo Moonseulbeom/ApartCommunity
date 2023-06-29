@@ -3,7 +3,7 @@
 .manage-header{
 	margin: 10px 20px 10px 10px;
 	height: 50px;
-	width:100%;
+	min-width:1500px;
 	border-bottom: 2px solid #bababa;
 }
 .manage-header img{
@@ -67,7 +67,7 @@
 	font-weight: bold;
 }
 .manage-page-right{
-	width: 75%;
+	width: 1150px;
 	position: absolute;
 }
 .manage-content{
