@@ -173,37 +173,23 @@
 				<div class="mboard_all">
 				
 					<!-- 좌측 공지사항 게시판 시작 -->
-					<c:if test="${empty user_auth}">
 					<div class="mboard_notice">
 						<p class="title">공지사항</p>
 						<table>
 							<c:forEach var="notice" items="${noticelist}">
 								<tr>
 									<td>${notice.no_num}</td>
-									<td>로그인 후 열람 가능합니다.</td>
-									<td>${notice.reg_date}</td>
-								</tr>
-							</c:forEach>
-						</table>
-					</div>
-					</c:if>
-					<%-- 공지사항 게시판 2개인 이유 : class 구분해서 css 추가로 걸음 --%>
-					<c:if test="${!empty user_auth}">
-					<div class="mboard_notice1">
-						<p class="title">공지사항</p>
-						<table>
-							<c:forEach var="notice" items="${noticelist}">
-								<tr>
-									<td>${notice.no_num}</td>
 									<td>
+										<c:if test="${!empty user_auth}">
 										<a href="${pageContext.request.contextPath}/notice/noticeDetail.do?no_num=${notice.no_num}">${notice.title}</a>									
+										</c:if>
+										<c:if test="${empty user_auth}">로그인 후 열람 가능합니다.</c:if>
 									</td>
 									<td>${notice.reg_date}</td>
 								</tr>
 							</c:forEach>
 						</table>
 					</div>
-					</c:if>
 					<!-- 좌측 공지사항 게시판 끝 -->
 					
 					<!-- 우측 자유 게시판 시작 -->
