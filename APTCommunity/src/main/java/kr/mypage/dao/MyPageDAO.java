@@ -69,7 +69,7 @@ public class MyPageDAO {
 	
 	//내가 쓴 댓글
 	
-	public List<MyPageVO> MyPageReplyList(int mem_num) throws Exception{
+	public List<MyPageVO> MyPageReplyList(int mem_num, int start, int end) throws Exception{
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -78,16 +78,16 @@ public class MyPageDAO {
 		
 		try {
 			conn = DBUtil.getConnection();
-	
+			
 			sql = "SELECT * FROM(SELECT a.*, rownum rnum FROM "
-			+ "(SELECT '일대일문의' category, re_num, mem_num, content, reg_date FROM inquiry_manage UNION ALL "
-			+ "SELECT '중고거래' category, re_num, mem_num, content, reg_dat, FROM secondhand_reply UNION ALL "
-			+ "SELECT '하자보수' category, re_num, mem_num, content, reg_dateFROM fix_reply UNION ALL "
-			+ "SELECT '자유게시판' category, RE_num, mem_num, content, reg_dateFROM board_reply UNION ALL "
-			+ "ORDER BY reg_date DESC)a) WHERE rnum >= ? AND rnum <= ? and mem_num=?";
+			+ "(SELECT in_num num, '일대일문의' category, re_num, mem_num, content, reg_date FROM inquiry_manage UNION ALL "
+			+ "SELECT se_num num, '중고거래' category, re_num, mem_num, content, reg_date FROM secondhand_reply UNION ALL "
+		    + "SELECT board_num num, '자유게시판' category, re_num, mem_num, content, reg_date FROM board_reply "
+		    + "ORDER BY reg_date DESC)a) WHERE rnum >= ? AND rnum <= ? and mem_num=?";
+			
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, 1);
-			pstmt.setInt(2, 20);
+			pstmt.setInt(1, start);
+			pstmt.setInt(2, end);
 			pstmt.setInt(3, mem_num);
 			
 			rs = pstmt.executeQuery();
@@ -95,11 +95,11 @@ public class MyPageDAO {
 			while(rs.next()) {
 				MyPageVO vo = new MyPageVO();
 				vo.setCategory(rs.getString("category"));
-				vo.setNum(rs.getInt("in_num"));
+				vo.setNum(rs.getInt("num"));
 				vo.setMem_num(mem_num);
-				vo.setTitle(rs.getString("title"));
+				vo.setTitle(rs.getString("content"));
 				vo.setReg_date(rs.getDate("reg_date"));
-				vo.setCnt(rs.getInt("cnt"));
+				vo.setRe_num(rs.getInt("re_num"));
 				
 				list.add(vo);
 			}

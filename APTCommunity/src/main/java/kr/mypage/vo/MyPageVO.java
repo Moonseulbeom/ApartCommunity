@@ -12,6 +12,26 @@ public class MyPageVO {
 	private int cnt;//댓글 수
 	
 	private String dongho;//회원아이디
+	
+	private String content;//댓글
+	private int re_num;//댓글번호
+	
+
+	public int getRe_num() {
+		return re_num;
+	}
+
+	public void setRe_num(int re_num) {
+		this.re_num = re_num;
+	}
+
+	public String getContent() {
+		return content;
+	}
+
+	public void setContent(String content) {
+		this.content = content;
+	}
 
 	public String getCategory() {
 		return category;
