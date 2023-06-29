@@ -31,12 +31,12 @@
 		});
 		$(document).on('keyup','textarea',function(){
 			let inputLength = $(this).val().length;
-			if(inputLength > 700){//300자를 넘어선 경우
-				$(this).val($(this).val().substring(0,700));//300자 다음 글자는 자름
-				alert('최대 700자까지 입력가능합니다.');
+			if(inputLength > 600){//300자를 넘어선 경우
+				$(this).val($(this).val().substring(0,650));//300자 다음 글자는 자름
+				alert('최대 650자까지 입력가능합니다.');
 			}else{//300자 이하인 경우
-				let remain = 700 - inputLength;
-				remain += '/700';
+				let remain = 650 - inputLength;
+				remain += '/650';
 				$('#re_first .letter-count').text(remain);
 			}
 		})
@@ -62,13 +62,6 @@
 						<option value="2" <c:if test="${param.keyfield_dept==2}">selected</c:if>>입대의 공지사항</option>
 						<option value="3" <c:if test="${param.keyfield_dept==3}">selected</c:if>>건의사항</option>
 				</select>
-				<%-- <select name="keyfield_cate">
-						<option value="1" <c:if test="${param.keyfield_cate==1}">selected</c:if>>공지사항</option>
-						<option value="2" <c:if test="${param.keyfield_cate==2}">selected</c:if>>자유게시판</option>
-						<option value="3" <c:if test="${param.keyfield_cate==3}">selected</c:if>>중고거래</option>
-						<option value="3" <c:if test="${param.keyfield_cate==3}">selected</c:if>>하자보수</option>
-						<option value="3" <c:if test="${param.keyfield_cate==3}">selected</c:if>>예약(시설)</option>
-				</select> --%>
 			</li>
 			<li>
 			<div class="wirte-title">

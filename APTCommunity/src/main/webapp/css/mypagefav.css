@@ -180,6 +180,11 @@
 	font-size: 16px;
 }
 
+#myPage_write th,td{
+	border: 1px solid #ccc;
+	padding: 5px;
+}
+
 
 
 

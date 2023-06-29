@@ -57,7 +57,7 @@
 						</li>
 						<!-- 우측 메인 -->
 						<li>
-						<h1 style="font-size: 32px;">내가 작성한 글 목록</h1><hr><br>
+						<h1 style="font-size: 32px;">내가 작성한 댓글 목록</h1><hr><br>
 						<div class="page-right">
 							<div id="myPagd_fav">
 								<table id="myFavList">
