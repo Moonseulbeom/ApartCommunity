@@ -137,10 +137,12 @@ public class ManageServiceListAction implements Action {
 			String room_name = request.getParameter("room_name");
 			String room_num = request.getParameter("room_num");
 			String bk_date = request.getParameter("bk_date");
-	
+			String bk_num = request.getParameter("bk_num");
+			BookingDAO book_dao = BookingDAO.getInstance();
+			
 			//예약 리스트 선택
 			if(room_name != null && bk_date == null ) {
-				BookingDAO book_dao = BookingDAO.getInstance();
+				
 				List<Room_infoVO> bookinfo_list = book_dao.getRoomInfoList(room_name);
 				mapAjax.put("bookinfo_list", bookinfo_list);
 				ObjectMapper mapper = new ObjectMapper();
@@ -157,7 +159,6 @@ public class ManageServiceListAction implements Action {
 				//System.out.println(bk_date);
 				//System.out.println(room_type);
 				//System.out.println(book_check);
-				BookingDAO book_dao = BookingDAO.getInstance();
 					book_dao.deleteBookingFromDate(Integer.parseInt(room_num), bk_date);
 				if(book_check.equals("1")) {
 					//관리자 예약으로 시설 막기
@@ -180,17 +181,27 @@ public class ManageServiceListAction implements Action {
 					return "/WEB-INF/views/common/ajax_view.jsp";
 				}
 			}
+			//예약 취소하기
+			if(bk_num != null) {
+				book_dao.deleteBookingFromNum(Integer.parseInt(bk_num));
+				mapAjax.put("reuslt", "success");
+				ObjectMapper mapper = new ObjectMapper();
+				String ajaxData = mapper.writeValueAsString(mapAjax);
+				
+				request.setAttribute("ajaxData", ajaxData);
+				//JSP 경로 반환
+				return "/WEB-INF/views/common/ajax_view.jsp";
+			}
 			
 			//예약 리스트 확인
 			if(room_num != null) {
 				
 				//System.out.println(room_type);
-				BookingDAO book_dao = BookingDAO.getInstance();
 				List<BookingVO> book_list = book_dao.getManageBookList(Integer.parseInt(room_num),bk_date);
 				int check_auth = 1;
 				for(BookingVO book : book_list) {
-					String dongho = book.getDongho();
-					MemberVO mem = dao.checkMember(dongho);
+					String dongHo = book.getDongho();
+					MemberVO mem = dao.checkMember(dongHo);
 					if(mem.getAuth() == 9) {
 						check_auth = 9;
 					}

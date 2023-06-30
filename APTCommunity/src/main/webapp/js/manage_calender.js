@@ -159,11 +159,12 @@ $(function(){
 					$(param.book_list).each(function(index,item){//예약이 있을때
 						//console.log(param.book_list);
 						output += '<tr>';
-						output += '<td>'+item.dongho+'</td>';
+						output += '<td class="dongho">'+item.dongho+'</td>';
 						output += '<td>'+room_name+'</td>';
 						output += '<td>'+room_type_name+'</td>';
 						output += '<td>'+item.book_mem+'</td>';
 						output += '<td>'+item.start_time+'-'+item.end_time+'</td>';
+						output += '<td class="cancel-img"><input type="hidden" name="bk_num" id="bk_num" value="'+item.bk_num+'"><img src="/APTCommunity/img/x.png" class="cancel"></td>';
 						output += '</tr>';
 					})  
 					//console.log(param.check_auth != null);
@@ -192,7 +193,28 @@ $(function(){
 
 
 	});// end of 예약 가능한 날짜 클릭()-----
-	
+	//예약 취소 버튼 누르시 이벤트
+	$('#book_output').on('click','.cancel-img',function(){
+		let bk_num = $(this).parent().find('#bk_num').val();//예약 번호
+		room_num = $('select[name=room_select2] > option:selected').val();//방번호
+		//alert(bk_num);
+		let choice = confirm('예약을 취소하시겠습니까?');
+		if(choice){
+			$.ajax({
+				url:'manage-serviceList.do?manage_select=6',
+				data:{bk_num:bk_num},
+				type:'get',
+				dataType:'json',
+				success:function(param){
+					alert('예약이 취소되었습니다.');
+				},
+				error:function(){
+					alert('예약 취소 네트워크 오류');
+				}
+			})
+		}
+
+	})
 	//비활성화 버튼 누를시
 	$('.book-list').on('click','#noBook_btn',function(){
 		//alert(isDate);

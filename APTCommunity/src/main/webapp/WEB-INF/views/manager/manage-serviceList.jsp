@@ -314,6 +314,7 @@
 				<th>방</th>
 				<th>예약 인원</th>
 				<th>예약시간</th>
+				<th>취소</th>
 			</tr >
 		</table>
 		<div id="change-booklist">

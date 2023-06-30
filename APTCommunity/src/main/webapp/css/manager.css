@@ -67,7 +67,7 @@
 	font-weight: bold;
 }
 .manage-page-right{
-	width: 1150px;
+	width: 1200px;
 	position: absolute;
 }
 .manage-content{
@@ -304,7 +304,7 @@
 	float: right;
 }
 .book-list table{
-	width: 550px;
+	width: 600px;
 }
 
 #book_info th:first-child, #book_output td:first-child{
@@ -319,8 +319,11 @@
 #book_info th:nth-child(4), #book_output td:nth-child(4){
 	width: 100px;
 }
+#book_info th:nth-child(5), #book_output td:nth-child(5){
+	width: 130px;
+}
 #book_info th:last-child, #book_output td:last-child{
-	width: 150px;
+	width: 50px;
 }
 #book_title{
 	float: left;
@@ -352,7 +355,14 @@
     background-color: #a12920 !important;
     color: #FFF !important;
 }
-
+/*예약 취소 버튼*/
+.cancel-img img{
+	width: 30px;
+}
+.cancel-img img:hover{
+	cursor: pointer;
+	background-color: #bababa;
+}
 
 
 

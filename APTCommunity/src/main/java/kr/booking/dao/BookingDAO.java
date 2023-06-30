@@ -500,6 +500,7 @@ public class BookingDAO {
 			list = new ArrayList<BookingVO>();
 			while(rs.next()) {
 				BookingVO book = new BookingVO();
+				book.setBk_num(rs.getInt("bk_num"));
 				book.setDongho(rs.getString("dongho"));
 				book.setBook_mem(rs.getInt("book_mem"));
 				book.setStart_time(rs.getString("start_time"));
