@@ -473,11 +473,11 @@ form .rep-content{
 	
 }
 .outputmain{
+	min-height: 100px;
 	width: 700px;
-	height: 350px;
-	border: 1px solid #c5c6c7;
+	border: 1px solid;
 	border-radius: 5px;
-	margin: 30px 0 0 0; 
+	margin: 30px 0 30px 0; 
 }
 .comment{
 	margin: 20px 20px 0 20px ;

@@ -30,7 +30,7 @@ $(function(){
 					output += '<div class="comment">';
 					output += '<h3> 문의 답변<h3>';
 					output += '<h4> 작성자 : 관리자</h4>';
-					output += '<hr size="1" width="100%" noshade="noshade" color="#e8e8e8">'
+					output += '<hr size="1" width="100%" noshade="noshade">'
 					output += '<div class="sub-item">';
 					output += '<p>'+item.content+'</p>';
 					output += '<div class="sub-down">';
@@ -74,10 +74,7 @@ $(function(){
 			}
 		});
 	}
-	//페이지 처리 이벤트 연결(다음 댓글 보기 버튼 클릭시 데이터 추가)
-	$('.paging-button input').click(function(){
-		selectList(currentPage + 1);
-	});
+
 	
 	//댓글 등록
 	$('#comment_form').submit(function(event){
@@ -91,7 +88,11 @@ $(function(){
 			return false;
 		}
 		
-		
+		if(count ==1){
+			alert('이미 답변을 완료했습니다.');
+			$('#comment_content').val('').focus();
+			return false;
+		}
 		
 		//폼 이하의 태그에서 입력한 데이터를 모두 읽어옴
 		let form_data = $(this).serialize();
