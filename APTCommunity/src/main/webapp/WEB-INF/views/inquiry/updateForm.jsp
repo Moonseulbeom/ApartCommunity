@@ -45,12 +45,12 @@
 						<li>
 						<div class="write-title">
 							<c:if test="${user_auth==1 || user_auth== 9}">
-								<input type="text" id="title" name="title" maxlength="20" placeholder="제목을 입력해주세요." value="${inquiry.title}">	
+								<input type="text" id="title" name="title" maxlength="40" placeholder="제목을 입력해주세요." value="${inquiry.title}">	
 							</c:if>
 						</div>
 						</li>
 						<li>
-							<textarea rows="5" cols="30" id="content" name="content" placeholder="내용을 입력해주세요.">${inquiry.content}</textarea>
+							<textarea rows="5" cols="30" id="content" name="content" maxlength="650"  placeholder="내용을 입력해주세요.">${inquiry.content}</textarea>
 						</li>
 						<li>
 							<input type="file" id="filename" name="filename" accept="image/png, image/jpeg, image/gif" >

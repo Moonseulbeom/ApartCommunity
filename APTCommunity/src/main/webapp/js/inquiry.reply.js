@@ -24,6 +24,7 @@ $(function(){
 					//처음 호출시는 해당 ID의 div 내부 내용물을 제거
 					$('#output').empty();
 				}
+				
 				$(param.list).each(function(index,item){
 					let output = '<div class="outputmain">';
 					output += '<div class="comment">';
@@ -89,6 +90,10 @@ $(function(){
 			$('#comment_content').val('').focus();
 			return false;
 		}
+		
+		if(count != 1)
+		
+		
 		//폼 이하의 태그에서 입력한 데이터를 모두 읽어옴
 		let form_data = $(this).serialize();
 		

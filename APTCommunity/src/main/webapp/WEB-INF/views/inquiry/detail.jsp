@@ -79,9 +79,11 @@
 							<!-- 댓글 끝 -->
 							<!-- 댓글시작 -->
 							<div id="comment">
+							 	
 								<span class="comment-title">문의 답변</span>
+								
 								<form id="comment_form">
-									<input type="hidden" name="in_num" value="${inquiry.in_num}" id="in_num">
+									<input type="hidden" name="in_num" value="${inquiry.in_num}" id="in_num" maxlength="300">
 									<textarea rows="3" cols="50" name="comment_content" id="comment_content" class="rep-content"
 									<c:if test="${user_auth < 9}">disabled="disabled"</c:if>><c:if test="${user_auth < 9}">관리자만 작성할 수 있습니다.</c:if></textarea>
 									<c:if test="${!empty user_num || user_auth < 9}"> <%-- 로그인 된 상태 --%>
@@ -89,16 +91,22 @@
 										<span class="letter-count">300/300</span>
 									</div>
 									<div id="comment_second" class="align-right">
-										<input type="submit" value="전송">				
+									
+										<input type="submit" value="전송" >		
+									
 									</div>
 									</c:if>
 								</form>
+								
+								
 							</div>
+							
 							<div class="detail-btn">
 								<div class="detail-btn-div2">
 									<input type="button" value="목록" class="bottom-btn" onclick="location.href='list.do'" id="fixList_btn">
 									<%-- 로그인 한 회원번호와 작성자 회원번호가 일치해야 수정, 삭제 가능 --%>
 								    <c:if test="${ user_num == inquiry.mem_num || user_auth == 9}">
+								   
 								    <input type="button" value="수정" class="bottom-btn" onclick="location.href='updateForm.do?in_num=${inquiry.in_num}'">
 								    <input type="button" value="삭제" class="bottom-btn" id="delete_btn">
 								    <script type="text/javascript">
@@ -110,8 +118,11 @@
 						                		location.replace('delete.do?in_num=${inquiry.in_num}');
 						                  	}
 						               }
+						              
+						               	
 						            </script>
 						        	</c:if>
+						        	
 								</div>
 							</div>
 						</div>	

@@ -14,7 +14,16 @@ public class InquiryManageVO {
 	private String dongho;//회원 아이디
 	private int auth; //회원 등급
 	
+	private int count;//댓글 개수
 	
+	
+	public int getCount() {
+		return count;
+	}
+
+	public void setCount(int count) {
+		this.count = count;
+	}
 
 	public int getMem_num() {
 		return mem_num;
