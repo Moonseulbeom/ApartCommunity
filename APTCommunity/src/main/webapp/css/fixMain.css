@@ -1,18 +1,24 @@
 @charset "UTF-8";
+
+/* p태그 넘침 방지용 */
+p {
+	word-wrap: break-word;
+}
+
 /*메인 페이지*/
 .page-main{
 	width: 1000px;
 	margin: 50px auto;
 	border: none;
+	min-height: 400px;
 }
 .page-main li{
 	float: left;
 }
-.page-left{
-	padding-right: 50px;
-}
+
 .page-right{
 	width: 700px;
+	margin-left: 50px;
 }
 
 /*사이드 바*/
@@ -223,12 +229,6 @@
 }
 
 
-
-
-
-
-
-
 /*게시글이 없을 경우*/
 .result-display{
 	height: 50px;
@@ -294,6 +294,13 @@
 	padding: 30px 0;
 	width: 100%;
 	font-size: 1.3em;
+}
+
+/*상세 페이지 처리*/
+.page-count{
+	margin-top: 10px;
+	text-align: center;
+	font-size: 1.1em;	
 }
 /* 상세 <---> 댓글 구분선 */
 .hLine{
@@ -379,7 +386,6 @@ form .rep-content{
 	margin-top:5px;
 	margin-right:10px;
 	font-size: 10pt;
-	overflow: auto;
 }
 .sub-item span{
 	display:inline-block;
