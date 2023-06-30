@@ -91,7 +91,6 @@ $(function(){
 			return false;
 		}
 		
-		if(count != 1)
 		
 		
 		//폼 이하의 태그에서 입력한 데이터를 모두 읽어옴
