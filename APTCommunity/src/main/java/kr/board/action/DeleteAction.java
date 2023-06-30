@@ -15,6 +15,7 @@ public class DeleteAction implements Action{
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		HttpSession session = request.getSession();
 		Integer user_num = (Integer)session.getAttribute("user_num");
+		Integer user_auth = (Integer)session.getAttribute("user_auth");
 		
 		if(user_num == null) {
 			//로그인이 되지 않은 경우
@@ -28,7 +29,7 @@ public class DeleteAction implements Action{
 		
 		
 		//로그인한 회원번호와 작성자 회원번호가 일치하는지 체크
-		if(user_num != db_board.getMem_num()) {
+		if(user_num != db_board.getMem_num()&& user_auth != 9) {
 			//로그인한 회원번호와 작성자 회원번호가 불일치
 			return "/WEB-INF/views/common/notice.jsp";
 		}
