@@ -587,13 +587,13 @@ public class InquiryDAO {
 			if(A_select < 1) {
 				sub_sql = "IS NULL";
 			}else {
-				sub_sql = "IS NOT NULL";
+				sub_sql = "IS NOT NULL";	
 				check = 1;
 			}
 			sql = "SELECT * FROM (SELECT a.*, rownum rnum FROM"
-					+ "	(SELECT * FROM  inquiry i LEFT OUTER JOIN inquiry_manage im ON im.in_num = i.in_num JOIN member m ON m.mem_num = i.mem_num WHERE re_num "
-					+sub_sql+ "	ORDER BY i.in_num DESC)a)"
-					+ " WHERE rnum>=? AND rnum<=?";
+					+ " (SELECT DISTINCT(i.in_num), i.title, i.reg_date, dongho  FROM  inquiry i LEFT OUTER JOIN inquiry_manage im ON im.in_num = i.in_num JOIN member m ON m.mem_num = i.mem_num WHERE re_num "
+					+sub_sql+ " ORDER BY i.in_num DESC)a)"
+					+ "	WHERE rnum>=? AND rnum<=?";
 			//sql = "SELECT * FROM fix_reply m RIGHT OUTER JOIN fix f ON m.fix_num = f.fix_num WHERE re_num ";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, start);

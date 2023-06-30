@@ -112,7 +112,7 @@
 				</script>  
 				</form>
 			</c:if>
-				<input type="button" value="목록" class="bottom-btn" onclick="location.href='noticeList.do?dept=${ notice.dept }'">
+				<input type="button" value="목록" class="bottom-btn" onclick="history.go(-1)">
 			</div>
 		</div>
 		</div>	

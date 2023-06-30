@@ -573,9 +573,9 @@ public class FixDAO {
 					check = 1;
 				}
 				sql = "SELECT * FROM (SELECT a.*, rownum rnum FROM"
-						+ " (SELECT * FROM  fix f LEFT OUTER JOIN fix_reply re ON f.fix_num = re.fix_num JOIN member m ON m.mem_num = f.mem_num WHERE re_num "
-						+sub_sql+ " ORDER BY f.fix_num DESC)a)"
-						+ " WHERE rnum>=? AND rnum<=?";
+						+ "	(SELECT DISTINCT(f.fix_num), f.mem_num, f.mem_auth, f.title, f.reg_date, dongho FROM  fix f LEFT OUTER JOIN fix_reply re ON f.fix_num = re.fix_num JOIN member m ON m.mem_num = f.mem_num WHERE re_num "
+						+sub_sql+ "	ORDER BY f.fix_num DESC)a)"
+						+ "	WHERE rnum>=? AND rnum<=?";
 				//sql = "SELECT * FROM fix_reply m RIGHT OUTER JOIN fix f ON m.fix_num = f.fix_num WHERE re_num ";
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setInt(1, start);
