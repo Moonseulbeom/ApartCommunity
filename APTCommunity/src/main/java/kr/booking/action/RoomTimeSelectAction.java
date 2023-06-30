@@ -33,9 +33,20 @@ public class RoomTimeSelectAction implements Action{
 		
 		//DB에 데이터 삽입하기
 		BookingDAO dao = BookingDAO.getInstance();
-		dao.insertMemberBooking(booking);
 		
-		request.setAttribute("notice_msg", "시설 예약이 완료되었습니다.");
+		//이미 이 시설에 똑같은 시간대로 예약되있는지 확인하기
+		Boolean check = dao.isBooking(booking);
+
+		if (!check) {//없는경우
+			dao.insertMemberBooking(booking);
+		}else {//있는경우
+			request.setAttribute("notice_msg", "이미 예약된 시설입니다.");
+			request.setAttribute("notice_url", request.getContextPath()+"/booking/roomNameList.do");
+			return "/WEB-INF/views/common/alert_singleView.jsp";
+		}
+		
+		
+		request.setAttribute("notice_msg", "시설 예약이 완료되었습니다.\\n상세정보는 마이페이지에서 확인이 가능합니다.");
 		request.setAttribute("notice_url", request.getContextPath()+"/main/main.do");
 		
 		return "/WEB-INF/views/common/alert_singleView.jsp";

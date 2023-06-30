@@ -123,6 +123,39 @@ public class BookingDAO {
 		return list;
 	}
 	
+	//(유저) 시설 예약 전 있는지 확인여부
+	public boolean isBooking(BookingVO booking) throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
+		boolean result = false;
+		
+		try {
+			conn = DBUtil.getConnection();
+			sql = "SELECT * "
+				+ "FROM booking b JOIN room_info r ON b.room_num = r.room_num "
+				+ "WHERE r.room_num=? AND b.bk_date=? AND b.start_time=? AND b.end_time=? ";
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, booking.getRoom_num());
+			pstmt.setString(2, booking.getBk_date());
+			pstmt.setString(3, booking.getStart_time());
+			pstmt.setString(4, booking.getEnd_time());
+			
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				result = true;
+			}
+
+		} catch (Exception e) {
+			throw new Exception(e);
+		} finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		return result;
+	}
+	
 	//(관리자,유저) 시설 예약 하기
 	public void insertMemberBooking(BookingVO booking) throws Exception {
 		Connection conn = null;
@@ -396,6 +429,27 @@ public class BookingDAO {
 	}
 	
 	//(관리자) 해당 날짜 시간대 모두 비활성화 하기 (125번째줄 수행)
+	
+	//(관리자, 유저) bk_num 가져와서 해당 예약 삭제하기
+	public void deleteBookingFromNum(int bk_num)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+		
+		try {
+			conn = DBUtil.getConnection();
+			sql = "DELETE FROM booking WHERE bk_num=? ";
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, bk_num);
+			pstmt.executeUpdate();
+
+		} catch (Exception e) {
+			throw new Exception(e);
+		} finally {
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+	}
 	
 	//(관리자) 해당 날짜 예약 활성화 잘못 눌렀을 경우 유저 예약 카운트 가져오기
 	public int getTimeCount(int room_num, String bk_date) throws Exception {

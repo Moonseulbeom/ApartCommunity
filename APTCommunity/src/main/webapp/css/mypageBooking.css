@@ -183,6 +183,23 @@
 #myBookingList td{
 	font-size:1.1em;
 }
+#myBookingList td:first-child{
+	width: 10%;
+}
+#myBookingList td:last-child{
+	width: 10%;
+}
+#myBookingList button{
+	width:100%;
+	height:100%;
+	background-color: white;
+	border:none;
+}
+#myBookingList button:hover{
+	background-color: gray;
+	color: white;
+	font-weight: 700;
+}
 /* 테이블 사이 라인 Margin */
 #tM{
 	margin: 30px 0px;

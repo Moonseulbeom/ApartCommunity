@@ -13,6 +13,20 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/common.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/mypageBooking.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$(document).on('click','.bk-cancel',function(){
+			$('#bk_num').val($(this).val());
+			let choice = confirm('예약을 취소하시겠습니까?');
+			if(choice){
+				$('#cancelMyBookingForm').submit();
+			}
+			else{
+				return;
+			}
+		});
+	});
+</script>
 </head>
 <body>
 	<div id="wrap">
@@ -65,6 +79,8 @@
 						<div class="page-right">
 							<div id="myPage_home">
 							<!-- 여기에 넣어주시면 됩니다!! -->
+								<form id="cancelMyBookingForm" method="post" action="cancelMyBookingForm.do">
+								<input type="hidden" id="bk_num" name="bk_num">
 								<table id="myBookingList">
 									<caption>내 예약 신청 현황</caption>
 									<!-- 예약 신청 현황 없는 경우 -->
@@ -80,7 +96,7 @@
 											<th>타입</th>
 											<th>인원</th>
 											<th>예약날짜</th>
-											<th>시간</th>
+											<th colspan="2">시간</th>
 										</tr>
 										<c:forEach var="book" items="${list}">
 										<tr>
@@ -90,17 +106,19 @@
 											<td>${book.book_mem}</td>
 											<td>${book.bk_date}</td>
 											<td>${book.time}</td>
+											<td><button type="button" class="bk-cancel" value="${book.bk_num}">예약취소</button></td>
 										</tr>
 										</c:forEach>
 									</c:if>
 								</table>
+								</form>
 								<hr id="tM" size="1" noshade="noshade">
 								<form id="beforeMyBookingListForm" method="post" action="beforeMyBookingList.do">
 									<input type="month" id="search_booking" name="search_booking"><small> " 조회하실 날짜를 선택하세요 "</small>
 									<hr>
 									<table id="BeforeMyBookingList">
 										<caption>이전 예약 조회 </caption>
-<!-- 										<tr>
+									<%-- <tr>
 											<th>예약번호</th>
 											<th>시설</th>
 											<th>타입</th>
@@ -115,7 +133,7 @@
 											<td>3명</td>
 											<td>2023-06-26</td>
 											<td>14:00 ~ 16:00</td>
-										</tr> -->
+										</tr> --%>
 									</table>
 									<div class="paging-button" style="display:none;">
 										<input type="button" value="더보기">
