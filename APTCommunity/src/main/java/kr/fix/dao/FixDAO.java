@@ -499,7 +499,12 @@ public class FixDAO {
 					reply.setContent(StringUtil.useBrNoHtml(rs.getString("content")));
 					reply.setFix_num(rs.getInt("fix_num"));
 					reply.setMem_num(rs.getInt("mem_num"));
-					reply.setDongho(rs.getString("dongho"));
+					if (reply.getMem_num()==1) {//관리자는 1번
+						reply.setDongho("관리자");
+					}else {
+						reply.setDongho(rs.getString("dongho"));
+					}
+					
 					
 					list.add(reply);
 				}
