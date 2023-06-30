@@ -201,26 +201,33 @@ public class FixDAO {
 	public void deleteFix(int fix_num) throws Exception{
 		Connection conn = null;
 		PreparedStatement pstmt = null;
+		PreparedStatement pstmt2 = null;
 		String sql = null;
 		
 		try {
 			//커넥션풀로부터 커넥션을 할당
 			conn = DBUtil.getConnection();
+			conn.setAutoCommit(false);
 			
 			//댓글 삭제
+			sql = "DELETE FROM fix_reply WHERE fix_num=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, fix_num);
+			pstmt.executeUpdate();
 			
 			//부모글 삭제
 			sql = "DELETE FROM fix WHERE fix_num=?";
-			//PreparedStatement 객체 생성
-			pstmt = conn.prepareStatement(sql);
-			//?에 데이터 바인딩
-			pstmt.setInt(1, fix_num);
-			//SQL문 실행
-			pstmt.executeUpdate();
+			pstmt2 = conn.prepareStatement(sql);
+			pstmt2.setInt(1, fix_num);
+			pstmt2.executeUpdate();
+			
+			conn.commit();
 		}catch(Exception e) {
+			conn.rollback();
 			throw new Exception(e);
 		}finally {
 			//자원정리
+			DBUtil.executeClose(null, pstmt2, null);
 			DBUtil.executeClose(null, pstmt, conn);
 		}
 	}

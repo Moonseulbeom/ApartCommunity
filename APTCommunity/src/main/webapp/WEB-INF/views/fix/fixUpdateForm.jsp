@@ -48,7 +48,7 @@
 						</li>
 						<li>
 							<div class="write-title">
-								<input type="text" id="title" name="title" maxlength="20" placeholder="제목을 입력해주세요.">	
+								<input type="text" id="title" name="title" maxlength="20" placeholder="제목을 입력해주세요." value="${fix.title}" >	
 							</div>
 						</li>
 						<li>
