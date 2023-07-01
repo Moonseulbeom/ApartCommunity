@@ -91,9 +91,9 @@
 										<span class="letter-count">300/300</span>
 									</div>
 									<div id="comment_second" class="align-right">
-									
-										<input type="submit" value="전송" >		
-									
+									<c:if test="${user_auth == 9}">
+										<input type="submit" value="전송" disabled="disabled">		
+									</c:if>
 									</div>
 									</c:if>
 								</form>
