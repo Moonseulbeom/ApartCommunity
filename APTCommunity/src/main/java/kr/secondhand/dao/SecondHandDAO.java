@@ -502,12 +502,6 @@ public class SecondHandDAO {
 		
 		try {
 			conn = DBUtil.getConnection();
-			/*	sql = "SELECT se_num, division, title, reg_date, fav_num, mem_num"
-					+ " (SELECT a.*, rownum rnum FROM (SELECT * FROM"
-					+ " secondhand s JOIN member m USING(mem_num) JOIN"
-					+ " secondhand_fav f USING(se_num)"
-					+ " WHERE mem_num=? ORDER BY fav_num DESC)a)"
-					+ " WHERE rnum >=? AND rnum <= ?";*/
 			sql = "SELECT * FROM (SELECT a.*, rownum rnum"
 					+ " FROM (SELECT * FROM secondhand s JOIN member m"
 					+ " USING(mem_num) JOIN secondhand_fav f USING(se_num)"
@@ -527,6 +521,7 @@ public class SecondHandDAO {
 				vo.setReg_date(rs.getDate("reg_date"));
 				vo.setDivision(rs.getInt("division"));
 				vo.setMem_num(rs.getInt("mem_num"));
+				vo.setDongho(rs.getString("dongho"));
 
 				list.add(vo);
 			}
