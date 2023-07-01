@@ -127,7 +127,18 @@
 							<c:forEach var="hohohoho" items="${myList}">
 								<tr>
 									<td>${hohohoho.num}</td>
-									<td><a href="#">${hohohoho.title}</a></td>
+									<c:if test="${hohohoho.category=='하자보수'}">
+										<td><a href="${pageContext.request.contextPath}/fix/fixDetail.do?fix_num=${hohohoho.num}">${hohohoho.title}</a></td>
+									</c:if>
+									<c:if test="${hohohoho.category=='자유게시판'}">
+										<td><a href="${pageContext.request.contextPath}/board/boardDetail.do?board_num=${hohohoho.num}">${hohohoho.title}</a></td>
+									</c:if>
+									<c:if test="${hohohoho.category=='일대일문의'}">
+										<td><a href="${pageContext.request.contextPath}/inquiry/detail.do?in_num=${hohohoho.num}">${hohohoho.title}</a></td>
+									</c:if>
+									<c:if test="${hohohoho.category=='중고거래'}">
+										<td><a href="${pageContext.request.contextPath}/secondhand/seBuyDetail.do?se_num=${hohohoho.num}">${hohohoho.title}</a></td>
+									</c:if>
 									<td>${hohohoho.reg_date}</td>
 									<td></td>
 								</tr>
@@ -145,7 +156,7 @@
 							<c:forEach var="bk" items="${bkList}">
 								<tr>
 									<td>${bk.bk_num}</td>
-									<td><a href="#">${bk.room_name}</a></td><!-- 시설이름?? -->
+									<td>${bk.room_name}</td>
 									<td>${bk.bk_date}</td>
 									<td>${bk.book_mem}</td>
 								</tr>
@@ -163,7 +174,7 @@
 							<c:forEach var="in" items="${inList}">
 								<tr>
 									<td>${in.in_num}</td>
-									<td><a href="#">${in.title}</a></td>
+									<td><a href="${pageContext.request.contextPath}/inquiry/detail.do?in_num=${in.in_num}">${in.title}</a></td>
 									<td>${in.reg_date}</td>
 									<td></td>
 								</tr>

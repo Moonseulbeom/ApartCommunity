@@ -24,9 +24,7 @@ public class MyPageListAction implements Action{
 		
 		MemberDAO mDao = MemberDAO.getInstance();
 		MemberVO member = mDao.getMember(user_num);
-		if(member.getMem_num() != user_num) {
-			return "";
-		}
+		
 		MyPageDAO dao = MyPageDAO.getinstance();
 		List<MyPageVO> list = dao.myListMyPage(user_num,1,100);
 		
