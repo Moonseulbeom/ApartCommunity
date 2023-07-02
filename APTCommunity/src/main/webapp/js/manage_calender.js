@@ -141,60 +141,13 @@ $(function(){
 		if(ajaxRequest != null){
 			ajaxRequest.abort();//이전 요청 취소
 		}
-	
-		//날짜 클릭시 해당 날짜의 예약 리스트 보여주기 
-		ajaxRequest = $.ajax({
-			url:'manage-serviceList.do?manage_select=6',
-			type:'post',
-			data:{room_num:room_num, bk_date:isDate},
-			dataType:'json',
-			success:function(param){
-				let output = '';
-				//alert(param.book_list.length);
-				if(param.book_list.length == 0){//예약이 없을 때
-					output += '<div class="result-display" id="book_non">현재 예약이 없습니다.</div>';
-					output += '<hr color="#edeff0" noshade="noshade" id="book_non_hr">';
-					$("#change-booklist").append(output);
-				}else{
-					$(param.book_list).each(function(index,item){//예약이 있을때
-						//console.log(param.book_list);
-						output += '<tr>';
-						output += '<td class="dongho">'+item.dongho+'</td>';
-						output += '<td>'+room_name+'</td>';
-						output += '<td>'+room_type_name+'</td>';
-						output += '<td>'+item.book_mem+'</td>';
-						output += '<td>'+item.start_time+'-'+item.end_time+'</td>';
-						output += '<td class="cancel-img"><input type="hidden" name="bk_num" id="bk_num" value="'+item.bk_num+'"><img src="/APTCommunity/img/x.png" class="cancel"></td>';
-						output += '</tr>';
-					})  
-					//console.log(param.check_auth != null);
-					
-					$("#book_output").append(output); // index가 끝날때까지
-				}
-					//lert(param.check_auth);//버튼 활성화/비활성화
-					
-					if(param.check_auth == 9){//활성화 버튼 보이기
-						$('#yesBook_btn').show();
-						$('#noBook_btn').hide();
-					}else if(param.check_auth == 1){//비활성화 버튼 보이기
-						$('#yesBook_btn').hide();
-						$('#noBook_btn').show();
-					}
-					
-					$('.book-list').show(); 
-			},
-			error:function(){
-				alert('!네트워크 오류 발생!');
-				$("#timeList_content").empty();
-				let output ="<h1 class='right-text'>오류 발생</h1>";
-				$('#timeList_content').append(output);
-			}
-		});//-----.ajax
-
+		bookList(room_num, isDate);
 
 	});// end of 예약 가능한 날짜 클릭()-----
+	
 	//예약 취소 버튼 누르시 이벤트
 	$('#book_output').on('click','.cancel-img',function(){
+		$('#book_output').empty();//table 내용 비우기
 		let bk_num = $(this).parent().find('#bk_num').val();//예약 번호
 		room_num = $('select[name=room_select2] > option:selected').val();//방번호
 		//alert(bk_num);
@@ -207,6 +160,7 @@ $(function(){
 				dataType:'json',
 				success:function(param){
 					alert('예약이 취소되었습니다.');
+					bookList(room_num, isDate);
 				},
 				error:function(){
 					alert('예약 취소 네트워크 오류');
@@ -310,4 +264,55 @@ $(function(){
 		$('#book_mem').val($(this).val());
 		
 	});
+
+function bookList(room_num, isDate){
+		//날짜 클릭시 해당 날짜의 예약 리스트 보여주기 
+		ajaxRequest = $.ajax({
+			url:'manage-serviceList.do?manage_select=6',
+			type:'post',
+			data:{room_num:room_num, bk_date:isDate},
+			dataType:'json',
+			success:function(param){
+				let output = '';
+				//alert(param.book_list.length);
+				if(param.book_list.length == 0){//예약이 없을 때
+					output += '<div class="result-display" id="book_non">현재 예약이 없습니다.</div>';
+					output += '<hr color="#edeff0" noshade="noshade" id="book_non_hr">';
+					$("#change-booklist").append(output);
+				}else{
+					$(param.book_list).each(function(index,item){//예약이 있을때
+					//alert('작동2');
+						//console.log(param.book_list);
+						output += '<tr>';
+						output += '<td class="dongho">'+item.dongho+'</td>';
+						output += '<td>'+room_name+'</td>';
+						output += '<td>'+room_type_name+'</td>';
+						output += '<td>'+item.book_mem+'</td>';
+						output += '<td>'+item.start_time+'-'+item.end_time+'</td>';
+						output += '<td class="cancel-img"><input type="hidden" name="bk_num" id="bk_num" value="'+item.bk_num+'"><img src="/APTCommunity/img/x.png" class="cancel"></td>';
+						output += '</tr>';
+					})  
+					//console.log(param.check_auth != null);
+					
+					$("#book_output").append(output); // index가 끝날때까지
+				}
+					//lert(param.check_auth);//버튼 활성화/비활성화
+					
+					if(param.check_auth == 9){//활성화 버튼 보이기
+						$('#yesBook_btn').show();
+						$('#noBook_btn').hide();
+					}else if(param.check_auth == 1){//비활성화 버튼 보이기
+						$('#yesBook_btn').hide();
+						$('#noBook_btn').show();
+					}
+					$('.book-list').show(); 
+			},
+			error:function(){
+				alert('!네트워크 오류 발생!');
+				$("#timeList_content").empty();
+				let output ="<h1 class='right-text'>오류 발생</h1>";
+				$('#timeList_content').append(output);
+			}
+		});//-----.ajax
+}
 });
