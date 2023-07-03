@@ -542,7 +542,7 @@ public class BookingDAO {
 			pstmt.setInt(3, end);
 			rs = pstmt.executeQuery();
 			list = new ArrayList<BookingVO>();
-			if(rs.next()) {
+			while(rs.next()) {
 				BookingVO vo = new BookingVO();
 				vo.setMem_num(rs.getInt("mem_num"));//사용자번호
 				vo.setBk_num(rs.getInt("bk_num"));//예약번호
