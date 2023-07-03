@@ -37,7 +37,7 @@ public class MyPageAction implements Action{
 		
 		/* 좋아요 목록 */
 		SecondHandDAO shDao = SecondHandDAO.getinstance();
-		List<SecondHandVO> favList = shDao.getListSecondhandFav(1, 3, user_num);		
+		List<SecondHandVO> favList = shDao.getListSecondhandFav(1,3, user_num);		
 		/* 내가 쓴 글 목록 */
 		MyPageDAO myDao = MyPageDAO.getinstance();
 		List<MyPageVO> myList = myDao.myListMyPage(user_num,1,3);
@@ -46,7 +46,7 @@ public class MyPageAction implements Action{
 		List<InquiryVO> inList = inDao.myListInquiry(user_num,1,3);
 		/* 예약 목록 */
 		BookingDAO bkDao = BookingDAO.getInstance();
-		List<BookingVO> bkList = bkDao.myBookingList(user_num, 1, 3);
+		List<BookingVO> bkList = bkDao.myBookingList(user_num, 1,3);
 		
 		request.setAttribute("member", member);
 		request.setAttribute("favList", favList);

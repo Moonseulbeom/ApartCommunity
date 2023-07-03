@@ -35,7 +35,7 @@ public class BuyListAction implements Action{
 		int count = dao.getSecondHandCount(keyfield, keyword);
 		
 						//keyfield,keyword,currentPage(현재페이지),count,rowCount,pageCount,요청URL
-		PageUtil page = new PageUtil(keyfield,keyword,Integer.parseInt(pageNum),count,20,10,"seBuyList.do");
+		PageUtil page = new PageUtil(keyfield,keyword,Integer.parseInt(pageNum),count,10,10,"seBuyList.do");
 		System.out.println(count);
 		List<SecondHandVO> list = null;
 		if(count > 0) {
@@ -59,8 +59,6 @@ public class BuyListAction implements Action{
 		request.setAttribute("count", count);
 		request.setAttribute("list", list);
 		request.setAttribute("page", page.getPage());
-		
-		System.out.println(count);
 		
 		//JSP 경로 반환
 		return "/WEB-INF/views/secondhand/seBuyList.jsp";

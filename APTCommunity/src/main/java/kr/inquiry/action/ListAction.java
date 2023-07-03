@@ -40,7 +40,7 @@ public class ListAction implements Action{
 		//keyfield,keyword,currentPage,count,
 		//rowCount,pageCount,요청URL
 		PageUtil page = new PageUtil(keyfield,keyword,Integer.parseInt(pageNum),
-						count,20,10,"list.do");
+						count,10,10,"list.do");
 		
 		List<InquiryVO> list = null;
 		if(count > 0) {

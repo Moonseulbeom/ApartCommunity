@@ -35,7 +35,7 @@ public class ListAction implements Action{
 		QuestionDAO dao = QuestionDAO.getInstance();
 		int count = dao.getQuestionCount(keyfield, keyword);
 				
-		PageUtil page = new PageUtil(keyfield,keyword,Integer.parseInt(pageNum),count,20,10,"questionlist.do");
+		PageUtil page = new PageUtil(keyfield,keyword,Integer.parseInt(pageNum),count,10,10,"questionlist.do");
 		
 		List<QuestionVO> list = null;
 		if(count > 0) {

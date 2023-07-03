@@ -122,7 +122,7 @@
 								<th>글 번호</th>
 								<th>제목</th>
 								<th>등록일</th>
-								<th>비고</th>
+								<th>카테고리</th>
 							</tr>
 							<c:forEach var="hohohoho" items="${myList}">
 								<tr>
@@ -140,7 +140,7 @@
 										<td><a href="${pageContext.request.contextPath}/secondhand/seBuyDetail.do?se_num=${hohohoho.num}">${hohohoho.title}</a></td>
 									</c:if>
 									<td>${hohohoho.reg_date}</td>
-									<td></td>
+									<td>${hohohoho.category}</td>
 								</tr>
 							</c:forEach>
 						</table>

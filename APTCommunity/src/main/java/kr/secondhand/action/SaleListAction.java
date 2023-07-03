@@ -35,7 +35,7 @@ public class SaleListAction implements Action{
 		int count = dao.getSecondHandCount(keyfield, keyword);
 		
 						//keyfield,keyword,currentPage(현재페이지),count,rowCount,pageCount,요청URL
-		PageUtil page = new PageUtil(keyfield,keyword,Integer.parseInt(pageNum),count,20,10,"list.do");
+		PageUtil page = new PageUtil(keyfield,keyword,Integer.parseInt(pageNum),count,10,10,"list.do");
 		
 		List<SecondHandVO> list = null;
 		if(count > 0) {
