@@ -134,7 +134,7 @@ $('#fix_select').change(function(){
 			 data:{A_select:A_select},
 			 success:function(param){
 				 let plus = $('#manage_content').html(param).find('#manage_fix');
-				 $('#manage_content').html(plus);--실행됨
+				 $('#manage_content').html(plus);//실행됨
 			 },
 			 error:function(){
 				 alert('하자보수 통신 에러 발생');

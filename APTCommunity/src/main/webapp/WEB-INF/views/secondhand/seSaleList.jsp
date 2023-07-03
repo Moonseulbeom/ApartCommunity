@@ -77,6 +77,22 @@
 					<div class="commu-main-list">
 						<c:if test="${ count > 1 || !empty count }">
 						<hr color="#edeff0" noshade="noshade">
+						<!-- 게시글이 없을 경우 -->
+						<c:if test="${ count < 1 || empty count }">
+							<div class="result-commu-display">
+								게시글이 없습니다.
+							</div>
+							<hr color="#edeff0" noshade="noshade">
+						</c:if>
+						<!-- 게시글 목록 시작 -->
+						<c:if test="${count > 0}">
+						<ul>
+							<li>글번호</li>
+							<li>제목</li>
+							<li>작성자</li>
+							<li>작성일</li>
+						</ul>
+						<hr color="#edeff0" noshade="noshade">
 						<!-- 고정 게시글 목록 시작 -->
 						<div class="board-article-fixed">
 						<table class="list-fixed">
@@ -97,21 +113,6 @@
 						</table>
 						</div>
 						<!-- 고정 게시글 목록 시작 -->
-						<!-- 게시글이 없을 경우 -->
-						<c:if test="${ count < 1 || empty count }">
-							<div class="result-commu-display">
-								게시글이 없습니다.
-							</div>
-							<hr color="#edeff0" noshade="noshade">
-						</c:if>
-						<!-- 게시글 목록 시작 -->
-						<c:if test="${count > 0}">
-						<ul>
-							<li>글번호</li>
-							<li>제목</li>
-							<li>작성자</li>
-							<li>작성일</li>
-						</ul>
 						<div class="board-article">
 						<table class="list">
 						<c:forEach var="vo" items="${list}">

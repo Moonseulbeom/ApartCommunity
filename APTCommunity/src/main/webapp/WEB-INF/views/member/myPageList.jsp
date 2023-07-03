@@ -96,7 +96,6 @@
 									</tr>
 									</c:forEach>
 								</table>
-								<div class="page-count">${page}</div>
 								<div class="paging-button" style="display: none;">
 									<input type="button" value="더보기">
 								</div>
