@@ -638,7 +638,7 @@ public class InquiryDAO {
 			conn = DBUtil.getConnection();
 			sql = "SELECT * FROM inquiry LEFT OUTER JOIN"
 					+ " (SELECT in_num, COUNT(*) cnt FROM inquiry_manage GROUP BY in_num)"
-					+ " USING(in_num) WHERE mem_num=?"
+					+ " USING(in_num) WHERE mem_num=? AND ROWNUM <=3"
 					+ " ORDER BY in_num DESC";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, mem_num);

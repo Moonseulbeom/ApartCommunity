@@ -128,7 +128,6 @@ $(function(){
 		$('#bk_date').val(isDate);
 		
 		let auth = $('#is_Auth').val();
-		console.log("room_name의 값 : " + $('#room_name').val());
 		
 		if(auth!=9){ //유저 일 경우
 			//미리 시간배열을 저장해놓음
