@@ -37,7 +37,7 @@ public class MyPageListAction implements Action{
 		PageUtil page = new PageUtil(keyfield,keyword,Integer.parseInt(pageNum),count,15,10,"myPageList.do");
 		
 		MyPageDAO dao = MyPageDAO.getinstance();
-		List<MyPageVO> list = dao.myListMyPage(user_num,1,5);
+		List<MyPageVO> list = dao.myListMyPage(user_num,1,15);
 		
 		request.setAttribute("list", list);
 		request.setAttribute("member", member);
