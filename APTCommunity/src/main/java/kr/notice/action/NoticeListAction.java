@@ -28,7 +28,7 @@ public class NoticeListAction implements Action
         request.setCharacterEncoding("utf-8");
         NoticeDAO dao = NoticeDAO.getInstance();
         //상단 게시글 목록
-        List<NoticeVO> fixedList = dao.getFixedList(dept, 1, 1, 5);
+        List<NoticeVO> fixedList = dao.getFixedList(dept, 1, 1, 3);
         for(NoticeVO no : fixedList) {
         	no.setTitle(StringUtil.useNoHtml(no.getTitle()));
         }

@@ -92,7 +92,7 @@
 									</div>
 									<div id="comment_second" class="align-right">
 									<c:if test="${user_auth == 9}">
-										<input type="submit" value="전송" disabled="disabled">		
+										<input type="submit" value="전송" >		
 									</c:if>
 									</div>
 									</c:if>
