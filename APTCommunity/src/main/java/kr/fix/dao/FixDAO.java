@@ -105,7 +105,11 @@ public class FixDAO {
 				fix.setTitle(StringUtil.useNoHtml(rs.getString("title")));
 				fix.setMem_num(rs.getInt("mem_num"));
 				fix.setReg_date(rs.getDate("reg_date"));
-				fix.setDongHo(rs.getString("dongho"));
+				if (rs.getString("dongho").equals("999-999")) {
+					fix.setDongHo("관리자");
+				}else{
+					fix.setDongHo(rs.getString("dongho"));
+				}
 				
 				int check = getcheck(rs.getInt("fix_num"));
 				fix.setCheck(check);

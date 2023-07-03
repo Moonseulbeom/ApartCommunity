@@ -220,6 +220,9 @@ p {
     padding-top: 1px;
     padding-left: 30px;
 }
+.board-name{
+	text-align: center;
+}
 .article{
 	line-height: 18px;
     color: #333;
